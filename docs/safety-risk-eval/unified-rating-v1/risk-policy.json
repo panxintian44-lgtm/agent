@@ -1,0 +1,454 @@
+{
+  "config_version": "risk-policy-config.v1",
+  "policy_version": "risk-policy.v1.0",
+  "business_band_version": "business-band.v1",
+  "effective_date": "2026-10-29",
+  "status": "INTERNAL_SPECIFICATION_BASELINE",
+  "implementation_status": "SPECIFICATION_ONLY",
+  "runtime_enabled": false,
+  "real_execution_enabled": false,
+  "calibration_status": "NOT_CALIBRATED_FOR_REAL_USERS",
+  "model_training_performed": false,
+  "institutional_rating_generated": false,
+  "reference_catalog": "reference-catalog.json",
+  "permission_matrix": "permission-matrix.json",
+  "reference_authority": {
+    "methodology_only": [
+      "G01",
+      "G02",
+      "G03",
+      "G04",
+      "G05",
+      "G06",
+      "G07",
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "T01",
+      "T02",
+      "T03"
+    ],
+    "research_or_evaluation_only": [
+      "D01",
+      "D02",
+      "D03",
+      "D04",
+      "D05",
+      "D06",
+      "D07",
+      "D08"
+    ],
+    "never_derived_from_external_labels": [
+      "user_cash_balance",
+      "account_ownership",
+      "user_approval",
+      "granted_permissions",
+      "confirmed_protected_purposes",
+      "official_investor_class",
+      "official_product_grade"
+    ],
+    "external_grade_policy": "Preserve source, date, version and scope; missing institutional C/R grades remain unassessed."
+  },
+  "assessment_targets": [
+    "CURRENT_PORTFOLIO_DIAGNOSIS",
+    "PROPOSED_PAPER_PLAN",
+    "DAILY_CASHFLOW"
+  ],
+  "data_modes": [
+    "TEAM_SYNTHETIC",
+    "FIXED_HISTORICAL_REPLAY",
+    "CURRENT_AUTHORIZED_SNAPSHOT"
+  ],
+  "required_evidence_scope": "Target, requested capability and current/historical mode determine required fields; unrelated missing dimensions do not disable independent authorized analysis.",
+  "dimensions": [
+    {
+      "id": "cashflow",
+      "label": "生活资金与到期义务",
+      "sources": [
+        "D01",
+        "D02",
+        "D03",
+        "D08",
+        "P02"
+      ],
+      "authority": "CONFIRMED_PURPOSES_AND_TRUSTED_LEDGER"
+    },
+    {
+      "id": "portfolio",
+      "label": "组合集中度、行业和历史风险",
+      "sources": [
+        "G01",
+        "G02",
+        "P03",
+        "P04",
+        "T03",
+        "D01"
+      ],
+      "authority": "REPRODUCIBLE_METRICS_AND_VERSIONED_MARKET_EVIDENCE"
+    },
+    {
+      "id": "suitability",
+      "label": "风险偏好与适当性资料",
+      "sources": [
+        "P01",
+        "P02",
+        "T01",
+        "T02",
+        "T03"
+      ],
+      "authority": "USER_CONFIRMED_PROFILE_OR_IDENTIFIED_INSTITUTIONAL_ASSESSMENT"
+    },
+    {
+      "id": "evidence_quality",
+      "label": "来源、日期、单位、版本和计算完整度",
+      "sources": [
+        "G02",
+        "G03",
+        "D01",
+        "D04",
+        "D05"
+      ],
+      "authority": "DATA_OWNER_AND_VALIDATED_TRANSFORMS"
+    },
+    {
+      "id": "control_integrity",
+      "label": "权限、批准、执行及审计",
+      "sources": [
+        "G04",
+        "G05",
+        "P05",
+        "P06"
+      ],
+      "authority": "TRUSTED_SERVICES_NOT_MODEL_TEXT"
+    }
+  ],
+  "business_bands": [
+    {
+      "code": "LOW",
+      "label": "低",
+      "severity_rank": 0,
+      "condition": "All target-required checks are complete with no applicable risk finding.",
+      "is_safety_guarantee": false
+    },
+    {
+      "code": "NOTICE",
+      "label": "关注",
+      "severity_rank": 1,
+      "condition": "Only a confirmed soft-goal warning applies; no unresolved review, hard block or required-check failure.",
+      "is_safety_guarantee": false
+    },
+    {
+      "code": "ELEVATED",
+      "label": "较高",
+      "severity_rank": 2,
+      "condition": "An established acceptable-risk review or verified gradual-improvement exception applies.",
+      "is_safety_guarantee": false
+    },
+    {
+      "code": "HIGH",
+      "label": "高",
+      "severity_rank": 3,
+      "condition": "A verified hard financial constraint is violated, or the diagnosed current portfolio has a known hard-limit breach.",
+      "is_safety_guarantee": false
+    },
+    {
+      "code": "UNKNOWN",
+      "label": "未知",
+      "severity_rank": null,
+      "condition": "Required evidence is insufficient for a complete grade and no verified HIGH finding establishes a known high-risk lower bound.",
+      "is_safety_guarantee": false
+    }
+  ],
+  "coverage_values": [
+    "FULL",
+    "PARTIAL",
+    "UNAVAILABLE"
+  ],
+  "not_applicable_policy": "Explicitly record non-applicable checks, including investment ratios when all holdings are cash; do not divide by zero or equate missing values with zero.",
+  "aggregation": {
+    "grade_target_bound": true,
+    "no_weighted_total_score": true,
+    "preserve_all_findings_and_errors": true,
+    "known_hard_financial_breach": "HIGH only for independently validated evidence bound to the current target/task/plan/versions; when unrelated checks are incomplete, coverage remains PARTIAL and unknowns stay visible.",
+    "required_information_missing_without_known_hard_breach": "UNKNOWN; business information to supply is REVIEW, malformed input or failed required computation is ERROR.",
+    "industry_unknown_exception": "ELEVATED/PARTIAL/REVIEW only when R05 explicitly permits the bounded uncertainty; not permission to hide known breaches or assert improvement.",
+    "full_evidence_with_reviews": "ELEVATED; keep review reasons and recovery type.",
+    "full_evidence_with_only_confirmed_soft_goal_warning": "NOTICE; no change to existing hard or review rules.",
+    "full_evidence_without_findings": "LOW.",
+    "diagnosis_is_not_execution_gate": "An existing breach may be diagnosed as HIGH while risk_decision is null because no execution check was requested. Proposed plans are checked separately.",
+    "permission_denied_before_engine": "Do not run financial checks or fabricate an Engine BLOCK; risk_decision=null, engine_ran=false, band=UNKNOWN.",
+    "known_block_plus_check_error": "Keep the verified BLOCK and HIGH lower-bound finding with PARTIAL coverage and separate check_errors; execution stays prohibited. If no hard block can be established, required-check failure is ERROR and UNKNOWN.",
+    "approval_and_execution_states_independent": true
+  },
+  "financial_thresholds": {
+    "source": "USER_CONFIRMED_DEMO_REQUIREMENTS",
+    "regulatory_thresholds": false,
+    "rule_version": "fixed-risk-demo-v0.1-preserved",
+    "decision_precision": "Compare unrounded ratios with a common documented numeric precision; display rounding does not affect decisions.",
+    "hard_limit_comparator": "GT",
+    "asset_identity": [
+      "market",
+      "asset_type",
+      "code"
+    ],
+    "aggregate_lots_before_ranking": true,
+    "cash_in_rankings": false,
+    "total_assets_definition": "Non-cash market value plus ledger cash at one valuation time, with the cash basis explicitly recorded.",
+    "invested_assets_definition": "Non-cash market value; cash excluded.",
+    "single_asset_max": {
+      "total_assets": 0.35,
+      "invested_assets": 0.5
+    },
+    "top_three_max": {
+      "total_assets": 0.75,
+      "invested_assets": 0.9
+    },
+    "industry_max": {
+      "total_assets": 0.4,
+      "invested_assets": 0.6
+    },
+    "industry_policy": "Use all known direct-stock exposure plus versioned ETF industry weights; unknown exposure stays separate. Cash and non-equity exposure are not forced into stock industries.",
+    "pair_correlation_review": {
+      "correlation_min_inclusive": 0.8,
+      "pair_weight_total_assets_min_exclusive": 0.4,
+      "scope": "ANY_PAIR_NOT_AVERAGE_CORRELATION"
+    },
+    "historical_drawdown_review": {
+      "source": "EXPLICIT_USER_CONFIRMED_REFERENCE",
+      "comparator": "GT",
+      "default_value": null,
+      "future_loss_cap": false
+    },
+    "additional_reserve_minor": {
+      "source": "EXPLICIT_USER_CONFIRMED_ADDITIONAL_AMOUNT",
+      "default_value": null,
+      "unconfirmed_suggestion_is_hard_constraint": false
+    },
+    "soft_budget_warning": {
+      "source": "EXPLICIT_USER_CONFIRMED_SOFT_GOAL",
+      "default_ratio": null,
+      "may_override_hard_protection": false
+    }
+  },
+  "cashflow_policy": {
+    "currency": "CNY",
+    "amount_unit": "INTEGER_MINOR",
+    "conversion": "Exact decimal CNY yuan to safe integer fen; validate already-minor amounts without multiplying again.",
+    "cross_currency_addition": false,
+    "cash_basis_required": true,
+    "gross_cash_formula": "free_cash = gross_ledger_cash - all_active_holds - protected_unreserved_obligations - additional_confirmed_nonoverlapping_reserve",
+    "protected_unreserved_formula": "For each unique unpaid protected obligation, subtract only its amount not already covered by an active linked hold.",
+    "obligation_identity_required": true,
+    "already_paid_or_included_items": "Do not deduct obligations already paid/reflected in the snapshot, duplicate events, or a protected amount already covered by the same hold.",
+    "future_income": "Keep expected income in an explicitly projected timeline; do not increase current available cash until the trusted ledger confirms arrival. Never add salary already included in the snapshot.",
+    "time_axis": "Evaluate cash and confirmed obligations in due-date order, keeping source timezones and dates; do not imply that later cash cures an earlier shortfall.",
+    "unknown_values": "Preserve unknown facts; do not infer zero, currency, payment completion, account version or authorization from dataset examples."
+  },
+  "gradual_improvement": {
+    "applies_only_to": [
+      "R04",
+      "R05"
+    ],
+    "user_selected_focus_required": true,
+    "focus_identity": [
+      "metric",
+      "asset_or_industry",
+      "denominator"
+    ],
+    "focus_must_strictly_improve": true,
+    "both_denominators_checked": true,
+    "no_new_or_worse_other_hard_breach": true,
+    "funds_holdings_reserve_allowed_assets_and_all_controls_must_pass": true,
+    "unknown_may_prove_improvement": false,
+    "remaining_breaches_require_individual_acceptance": true,
+    "outcome": "ELEVATED_REVIEW_NOT_DIRECT_EXECUTION",
+    "core_acceptance_transition_implemented": false
+  },
+  "fixed_rules": [
+    {
+      "id": "R01",
+      "domain": "PERMISSION",
+      "sources": [
+        "G04",
+        "G05",
+        "P05",
+        "P06"
+      ],
+      "requirement": "Registered action scope, resource ownership, untrusted-data isolation and real-execution prohibition."
+    },
+    {
+      "id": "R02",
+      "domain": "EVIDENCE",
+      "sources": [
+        "G02",
+        "G03",
+        "D01",
+        "D04",
+        "D05"
+      ],
+      "requirement": "Validate required source, time, type, units, versions and reproducible calculations; keep missing facts distinct from errors."
+    },
+    {
+      "id": "R03",
+      "domain": "FINANCIAL_HARD",
+      "sources": [
+        "D01",
+        "D02",
+        "D03",
+        "D08",
+        "P02"
+      ],
+      "requirement": "Trusted available cash, sellable holdings, confirmed additional reserve, protected purposes and allowed assets must satisfy the plan; references do not supply the user's actual constraints."
+    },
+    {
+      "id": "R04",
+      "domain": "FINANCIAL_HARD_WITH_BOUNDED_EXCEPTION",
+      "sources": [
+        "G01",
+        "G02",
+        "P03"
+      ],
+      "requirement": "Single and top-three ratios checked under both denominators using retained demo thresholds; only a validated gradual-improvement exception may become REVIEW."
+    },
+    {
+      "id": "R05",
+      "domain": "INDUSTRY_HARD_WITH_BOUNDED_REVIEW",
+      "sources": [
+        "G01",
+        "G02",
+        "T03"
+      ],
+      "requirement": "Check every known industry under both denominators; missing classification may use only the explicit uncertainty review exception, never override a known breach."
+    },
+    {
+      "id": "R06",
+      "domain": "ACCEPTABLE_RISK_REVIEW",
+      "sources": [
+        "G01",
+        "G02",
+        "P03",
+        "P04",
+        "D01",
+        "T03"
+      ],
+      "requirement": "Historical drawdown greater than the user's confirmed comparison reference requires REVIEW; not a future loss guarantee."
+    },
+    {
+      "id": "R07",
+      "domain": "ACCEPTABLE_RISK_REVIEW",
+      "sources": [
+        "G01",
+        "G02",
+        "D01",
+        "P03"
+      ],
+      "requirement": "Any aligned-return pair with correlation >=0.8 and combined total-assets weight >0.40 requires REVIEW."
+    },
+    {
+      "id": "R08",
+      "domain": "APPROVAL",
+      "sources": [
+        "G04",
+        "G05",
+        "P05",
+        "P06"
+      ],
+      "requirement": "Verified final-user approval binds the complete current plan and relevant versions; it never overwrites financial hard blocks."
+    },
+    {
+      "id": "R09",
+      "domain": "EXECUTION",
+      "sources": [
+        "G04",
+        "G05",
+        "P05",
+        "P06"
+      ],
+      "requirement": "Idempotent outcome, changed-body conflict rejection, UNKNOWN reconciliation and trusted reservation lifecycle."
+    },
+    {
+      "id": "R10",
+      "domain": "AUDIT",
+      "sources": [
+        "G04",
+        "G05",
+        "P05",
+        "P06",
+        "T03"
+      ],
+      "requirement": "Persist minimal execution intent and linked results, rejection, revocation and recovery; pre-write audit failure stops writes."
+    }
+  ],
+  "state_boundaries": {
+    "risk_decisions": [
+      "ALLOW",
+      "REVIEW",
+      "BLOCK",
+      "ERROR"
+    ],
+    "not_run_risk_decision": null,
+    "permission_decisions": [
+      "ALLOW",
+      "DENY",
+      "ERROR"
+    ],
+    "business_band_does_not_grant_permission": true,
+    "service_hmac_does_not_prove_final_user_approval": true,
+    "unresolved_review_execution_allowed": false,
+    "human_acceptance_may_overwrite_hard_block": false,
+    "unknown_execution_may_auto_retry": false,
+    "old_confirmation_invalidated_by_relevant_changes": [
+      "subject",
+      "account",
+      "proposal",
+      "amount",
+      "asset",
+      "data_mode",
+      "relevant_market_data_version",
+      "relevant_rule_version",
+      "constraints_version",
+      "external_account_version",
+      "authorization_scope"
+    ],
+    "formal_http_contract_unchanged": true,
+    "callback_version": "risk-callback.v1",
+    "callback_required_fields": [
+      "handoff_id",
+      "task_id",
+      "request_id",
+      "run_id",
+      "audit_id",
+      "reviewer",
+      "reason",
+      "callback_version",
+      "proposal_sha256",
+      "decision"
+    ],
+    "callback_mapping": {
+      "ALLOW": "APPROVE",
+      "REVIEW": "REQUEST_MORE_INFO",
+      "BLOCK": "REJECT",
+      "ERROR": null
+    },
+    "callback_error_behavior": "Do not submit a business decision callback; persist an error and retain execution closure.",
+    "new_bands_stored_as": "Internal assessment/audit sidecar until the architecture and Core Owners accept a versioned extension.",
+    "not_run_context_states": [
+      "NOT_REQUESTED",
+      "NOT_RUN",
+      "INVALIDATED",
+      "NOT_REEVALUATED"
+    ],
+    "existing_signed_risk_record_immutable": true,
+    "control_failure_does_not_rewrite_financial_assessment": true
+  },
+  "release_conditions": [
+    "Architecture Owner freezes contexts and a single gateway with same-task bindings.",
+    "Identity and approval Owners provide authenticated final-user approval and revocation/commit ordering.",
+    "Finance provides the unique hosted ledger, account versions, atomic reserve/commit/release and reconciliation.",
+    "Quant validates market metadata, metric formulas, windows and ETF industry evidence.",
+    "Vesper and all Owners verify positive, boundary, negative and failure cases on the same staging deployment."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "project_id": "appgprj_6ac9a87727948191a202fedf09841f82",
+  "baseline_site_version": 12,
+  "original_base_sha256": "3063fd721e5d49d69a9fa29de1aab932564b8f9dd4b291fb9c58eaa12410ae5f",
+  "original_base_unchanged": true,
+  "entry_sha256": "368b2095397ceb64032ae03799bfd5180902b75b64a76b9752da6d254bbda8db",
+  "unified_base_sha256": "86d3596268b48bfd522801c7a1b8b14bd6b0329f36bfc0543517ac1ba4dacf2f",
+  "policy_version": "risk-policy.v1.0",
+  "implemented_scope": "DAILY_ASSESSMENT_AND_PAPER_WRITE_DENIAL",
+  "all_capability_routes_integrated": false,
+  "joint_acceptance": false,
+  "source_files": {
+    "assessment.cjs": "98a0019be5ec10b59d166bac551166478b96041d45796b76f08e3475135ac9f9",
+    "permission.cjs": "1b7395fb72d0d16cbf267bc323251fb02a3b956535df78b39852bf9aba096ac8",
+    "site-bridge.mjs": "e28c7c2ed4667dcaa433613678fb5c76261caf087ec39c44d0f2303e3ebb847f",
+    "workbench.js": "0db82de18d22b157cb273c7b8125c9b1264544b0e83524c9431db50f3a9a78e3",
+    "workbench.css": "95b4569956d515207d604a23dad7a0b3a3e48c0e8adf77fbac69a95426d8a67c",
+    "install-site.mjs": "26810091a17ee648d3c1989d4cb5f108146f755cf68937a8f0307878e7581cef"
+  }
+}

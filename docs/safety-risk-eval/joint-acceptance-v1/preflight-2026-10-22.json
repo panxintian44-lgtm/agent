@@ -1,0 +1,56 @@
+{
+  "schema_version": "risk-joint-preflight.v1",
+  "checked_at": "2026-10-22T07:06:18.187Z",
+  "mode": "READ_ONLY_PREFLIGHT",
+  "real_model_calls": 0,
+  "joint_acceptance": false,
+  "execution_allowed": false,
+  "services": [
+    {
+      "id": "risk_validation",
+      "endpoint": "https://finance-lab-risk-bridge.realchenchenluo.workers.dev/health",
+      "http_status": null,
+      "status": "UNAVAILABLE",
+      "health_verified": false,
+      "execution_allowed": false
+    },
+    {
+      "id": "core_validation",
+      "endpoint": "https://finance-lab-core-risk-validation.realchenchenluo.workers.dev/health",
+      "http_status": null,
+      "status": "UNAVAILABLE",
+      "health_verified": false,
+      "execution_allowed": false
+    },
+    {
+      "id": "independent_chat",
+      "endpoint": "https://xinlan-qwen38-share.lixjanus526.workers.dev/api/tinglan/status",
+      "http_status": null,
+      "status": "UNAVAILABLE",
+      "health_verified": false,
+      "execution_allowed": false
+    }
+  ],
+  "blockers": [
+    {
+      "service_id": null,
+      "code": "JOINT_ACCEPTANCE_NOT_PERFORMED",
+      "message_zh": "三条公开GET探测不构成模型→Risk→审批→执行联合验收；后续须核验同一任务的完整证据。"
+    },
+    {
+      "service_id": "risk_validation",
+      "code": "NETWORK_ERROR",
+      "message_zh": "只读探测失败或响应无法验证；未建立会话、调用模型、发送回调或执行操作。"
+    },
+    {
+      "service_id": "core_validation",
+      "code": "TIMEOUT",
+      "message_zh": "只读探测失败或响应无法验证；未建立会话、调用模型、发送回调或执行操作。"
+    },
+    {
+      "service_id": "independent_chat",
+      "code": "TIMEOUT",
+      "message_zh": "只读探测失败或响应无法验证；未建立会话、调用模型、发送回调或执行操作。"
+    }
+  ]
+}

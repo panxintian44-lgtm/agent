@@ -1,0 +1,19 @@
+{
+  "runtime_version": "daily-risk-hardening.v1.1",
+  "risk_policy_version": "risk-policy.v1.1",
+  "permission_policy_version": "permission-policy.v1.1",
+  "assessment_version": "unified-risk-assessment.v1",
+  "supported_source_contract": "daily-risk-workbench.v1",
+  "supported_source_policy": "daily-cashflow-policy.v1.0",
+  "validation_statuses": ["VALID", "INVALID", "UNSUPPORTED"],
+  "invalid_result_behavior": "UNKNOWN_STOP_MODEL_AND_CALLBACK_PRESERVE_ORIGINAL",
+  "risk_callback_version": "risk-callback.v1",
+  "risk_callback_fields_changed": false,
+  "new_financial_thresholds": false,
+  "live_execution_enabled": false,
+  "paper_write_enabled": false,
+  "trusted_end_user_approval_connected": false,
+  "team_shared_ledger_connected": false,
+  "all_capability_routes_connected": false,
+  "historical_records_rewritten": false
+}

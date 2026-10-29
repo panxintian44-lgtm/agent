@@ -1,0 +1,646 @@
+TAP version 13
+# Subtest: opening the page only reads health and never submits business operations
+ok 1 - opening the page only reads health and never submits business operations
+  ---
+  duration_ms: 30.8302
+  type: 'test'
+  ...
+# Subtest: offline is visible immediately and reconnect only rechecks GET health
+ok 2 - offline is visible immediately and reconnect only rechecks GET health
+  ---
+  duration_ms: 2.3911
+  type: 'test'
+  ...
+# Subtest: unknown submitted writes keep the original identifiers and block new writes
+ok 3 - unknown submitted writes keep the original identifiers and block new writes
+  ---
+  duration_ms: 2.0362
+  type: 'test'
+  ...
+# Subtest: pending writes survive reload and reading old NOT_STARTED is not proof of failure
+ok 4 - pending writes survive reload and reading old NOT_STARTED is not proof of failure
+  ---
+  duration_ms: 1.4214
+  type: 'test'
+  ...
+# Subtest: hidden tabs pause polling and visible tabs perform a new read
+ok 5 - hidden tabs pause polling and visible tabs perform a new read
+  ---
+  duration_ms: 1.4573
+  type: 'test'
+  ...
+# Subtest: failed health checks never retain a green label or allow writes
+ok 6 - failed health checks never retain a green label or allow writes
+  ---
+  duration_ms: 1.6685
+  type: 'test'
+  ...
+# Subtest: an in-flight write is recorded before sending and a reloaded page cannot resubmit
+ok 7 - an in-flight write is recorded before sending and a reloaded page cannot resubmit
+  ---
+  duration_ms: 2.6382
+  type: 'test'
+  ...
+# Subtest: storage failure prevents sending a write rather than losing the cross-refresh guard
+ok 8 - storage failure prevents sending a write rather than losing the cross-refresh guard
+  ---
+  duration_ms: 0.9515
+  type: 'test'
+  ...
+# Subtest: an operation failure remains visible after successful health checks
+ok 9 - an operation failure remains visible after successful health checks
+  ---
+  duration_ms: 1.5438
+  type: 'test'
+  ...
+# Subtest: local validation feedback is visible without making a business request
+ok 10 - local validation feedback is visible without making a business request
+  ---
+  duration_ms: 1.0037
+  type: 'test'
+  ...
+# Subtest: health recovery cannot dismiss an operation error sharing a health error code
+ok 11 - health recovery cannot dismiss an operation error sharing a health error code
+  ---
+  duration_ms: 1.1083
+  type: 'test'
+  ...
+# Subtest: the UMD browser global and CommonJS both expose the presenter and describe API
+ok 12 - the UMD browser global and CommonJS both expose the presenter and describe API
+  ---
+  duration_ms: 1.9726
+  type: 'test'
+  ...
+# Subtest: the panel starts hidden and has fixed accessible identifiers
+ok 13 - the panel starts hidden and has fixed accessible identifiers
+  ---
+  duration_ms: 0.4314
+  type: 'test'
+  ...
+# Subtest: known NETWORK_TIMEOUT produces fixed Chinese problem and recovery text
+ok 14 - known NETWORK_TIMEOUT produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.271
+  type: 'test'
+  ...
+# Subtest: known NETWORK_OFFLINE produces fixed Chinese problem and recovery text
+ok 15 - known NETWORK_OFFLINE produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0702
+  type: 'test'
+  ...
+# Subtest: known NETWORK_ERROR produces fixed Chinese problem and recovery text
+ok 16 - known NETWORK_ERROR produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0686
+  type: 'test'
+  ...
+# Subtest: known HTTP_SERVER_ERROR produces fixed Chinese problem and recovery text
+ok 17 - known HTTP_SERVER_ERROR produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.049
+  type: 'test'
+  ...
+# Subtest: known HTTP_UNAUTHORIZED produces fixed Chinese problem and recovery text
+ok 18 - known HTTP_UNAUTHORIZED produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0493
+  type: 'test'
+  ...
+# Subtest: known HTTP_FORBIDDEN produces fixed Chinese problem and recovery text
+ok 19 - known HTTP_FORBIDDEN produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0548
+  type: 'test'
+  ...
+# Subtest: known HTTP_RATE_LIMITED produces fixed Chinese problem and recovery text
+ok 20 - known HTTP_RATE_LIMITED produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.08
+  type: 'test'
+  ...
+# Subtest: known HTTP_CLIENT_ERROR produces fixed Chinese problem and recovery text
+ok 21 - known HTTP_CLIENT_ERROR produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0924
+  type: 'test'
+  ...
+# Subtest: known LOCAL_STORAGE_UNAVAILABLE produces fixed Chinese problem and recovery text
+ok 22 - known LOCAL_STORAGE_UNAVAILABLE produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0892
+  type: 'test'
+  ...
+# Subtest: known CORE_UNAVAILABLE produces fixed Chinese problem and recovery text
+ok 23 - known CORE_UNAVAILABLE produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.1039
+  type: 'test'
+  ...
+# Subtest: known CONNECTION_NOT_READY produces fixed Chinese problem and recovery text
+ok 24 - known CONNECTION_NOT_READY produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0333
+  type: 'test'
+  ...
+# Subtest: known HEALTH_UNAVAILABLE produces fixed Chinese problem and recovery text
+ok 25 - known HEALTH_UNAVAILABLE produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0227
+  type: 'test'
+  ...
+# Subtest: known INPUT_VALIDATION produces fixed Chinese problem and recovery text
+ok 26 - known INPUT_VALIDATION produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0216
+  type: 'test'
+  ...
+# Subtest: uncertain state has priority over both HTTP denial and a contradictory unsent flag
+ok 27 - uncertain state has priority over both HTTP denial and a contradictory unsent flag
+  ---
+  duration_ms: 0.0978
+  type: 'test'
+  ...
+# Subtest: pending state says still processing rather than inventing a failed operation
+ok 28 - pending state says still processing rather than inventing a failed operation
+  ---
+  duration_ms: 0.1002
+  type: 'test'
+  ...
+# Subtest: stable unknown and pending-operation codes cannot lose their reconciliation state
+ok 29 - stable unknown and pending-operation codes cannot lose their reconciliation state
+  ---
+  duration_ms: 0.0683
+  type: 'test'
+  ...
+# Subtest: GET failure never claims that the underlying business was rejected or never executed
+ok 30 - GET failure never claims that the underlying business was rejected or never executed
+  ---
+  duration_ms: 0.0608
+  type: 'test'
+  ...
+# Subtest: a known rejected POST remains blocked without claiming a completed execution
+ok 31 - a known rejected POST remains blocked without claiming a completed execution
+  ---
+  duration_ms: 0.0499
+  type: 'test'
+  ...
+# Subtest: unknown codes and operation names are replaced rather than displayed
+ok 32 - unknown codes and operation names are replaced rather than displayed
+  ---
+  duration_ms: 0.0666
+  type: 'test'
+  ...
+# Subtest: task identifiers are bounded and cannot carry arbitrary server paragraphs
+ok 33 - task identifiers are bounded and cannot carry arbitrary server paragraphs
+  ---
+  duration_ms: 0.0655
+  type: 'test'
+  ...
+# Subtest: the exact fixed operation whitelist is accepted
+ok 34 - the exact fixed operation whitelist is accepted
+  ---
+  duration_ms: 0.039
+  type: 'test'
+  ...
+# Subtest: show only writes sanitized textContent and exposes no raw error payload or credentials
+ok 35 - show only writes sanitized textContent and exposes no raw error payload or credentials
+  ---
+  duration_ms: 0.1428
+  type: 'test'
+  ...
+# Subtest: show and close never check, query, unlock or retry an operation
+ok 36 - show and close never check, query, unlock or retry an operation
+  ---
+  duration_ms: 0.5018
+  type: 'test'
+  ...
+# Subtest: buttons invoke only their explicit callback with sanitized current information
+ok 37 - buttons invoke only their explicit callback with sanitized current information
+  ---
+  duration_ms: 0.1344
+  type: 'test'
+  ...
+# Subtest: query is visible only when a valid task and reconciliation are both present
+ok 38 - query is visible only when a valid task and reconciliation are both present
+  ---
+  duration_ms: 0.0935
+  type: 'test'
+  ...
+# Subtest: current returns a defensive copy and repeated creation does not duplicate the panel
+ok 39 - current returns a defensive copy and repeated creation does not duplicate the panel
+  ---
+  duration_ms: 0.0919
+  type: 'test'
+  ...
+# Subtest: callback failure cannot hide or clear an unresolved operation
+ok 40 - callback failure cannot hide or clear an unresolved operation
+  ---
+  duration_ms: 0.1226
+  type: 'test'
+  ...
+# Subtest: missing document or invalid callbacks fail before creating a panel
+ok 41 - missing document or invalid callbacks fail before creating a panel
+  ---
+  duration_ms: 0.2
+  type: 'test'
+  ...
+# Subtest: read-only health uses the pinned GET and exact safe envelope
+ok 42 - read-only health uses the pinned GET and exact safe envelope
+  ---
+  duration_ms: 17.725
+  type: 'test'
+  ...
+# Subtest: Core reachability, model configuration and business readiness stay separate
+ok 43 - Core reachability, model configuration and business readiness stay separate
+  ---
+  duration_ms: 1.4555
+  type: 'test'
+  ...
+# Subtest: missing and failed storage never prevent independent Core diagnostics
+ok 44 - missing and failed storage never prevent independent Core diagnostics
+  ---
+  duration_ms: 1.9481
+  type: 'test'
+  ...
+# Subtest: Core connection failure is redacted and storage remains independently UP
+ok 45 - Core connection failure is redacted and storage remains independently UP
+  ---
+  duration_ms: 0.1996
+  type: 'test'
+  ...
+# Subtest: redirects, HTTP errors and other services cannot report Core UP
+ok 46 - redirects, HTTP errors and other services cannot report Core UP
+  ---
+  duration_ms: 1.3204
+  type: 'test'
+  ...
+# Subtest: Core response is limited to 32 KiB including chunked bodies
+ok 47 - Core response is limited to 32 KiB including chunked bodies
+  ---
+  duration_ms: 1.0809
+  type: 'test'
+  ...
+# Subtest: hanging fetch is bounded even when the transport ignores AbortSignal
+ok 48 - hanging fetch is bounded even when the transport ignores AbortSignal
+  ---
+  duration_ms: 17.7232
+  type: 'test'
+  ...
+# Subtest: response body and cancellation share the fetch deadline
+ok 49 - response body and cancellation share the fetch deadline
+  ---
+  duration_ms: 30.1501
+  type: 'test'
+  ...
+# Subtest: slow storage is bounded without hiding Core status
+ok 50 - slow storage is bounded without hiding Core status
+  ---
+  duration_ms: 15.8776
+  type: 'test'
+  ...
+# Subtest: concurrent callers share an in-flight probe and receive independent copies
+ok 51 - concurrent callers share an in-flight probe and receive independent copies
+  ---
+  duration_ms: 0.5725
+  type: 'test'
+  ...
+# Subtest: cache expires after its TTL and is isolated by storage binding
+ok 52 - cache expires after its TTL and is isolated by storage binding
+  ---
+  duration_ms: 0.4174
+  type: 'test'
+  ...
+# Subtest: unavailable results are cached without background work and later recover
+ok 53 - unavailable results are cached without background work and later recover
+  ---
+  duration_ms: 0.2629
+  type: 'test'
+  ...
+# Subtest: the browser UMD and CommonJS expose the same small client API
+ok 54 - the browser UMD and CommonJS expose the same small client API
+  ---
+  duration_ms: 17.751
+  type: 'test'
+  ...
+# Subtest: same-origin GET uses manual redirects and same-origin credentials without logging headers
+ok 55 - same-origin GET uses manual redirects and same-origin credentials without logging headers
+  ---
+  duration_ms: 0.8674
+  type: 'test'
+  ...
+# Subtest: JSON writes preserve the caller's existing request key and do not invent or retry requests
+ok 56 - JSON writes preserve the caller's existing request key and do not invent or retry requests
+  ---
+  duration_ms: 0.7964
+  type: 'test'
+  ...
+# Subtest: already serialized JSON is sent once without double encoding
+ok 57 - already serialized JSON is sent once without double encoding
+  ---
+  duration_ms: 0.2923
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "https://untrusted.invalid/api"
+ok 58 - unsafe route is refused before sending: "https://untrusted.invalid/api"
+  ---
+  duration_ms: 0.4049
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "http://localhost/api"
+ok 59 - unsafe route is refused before sending: "http://localhost/api"
+  ---
+  duration_ms: 0.0921
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "//untrusted.invalid/api"
+ok 60 - unsafe route is refused before sending: "//untrusted.invalid/api"
+  ---
+  duration_ms: 0.0604
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/\\\\untrusted.invalid/api"
+ok 61 - unsafe route is refused before sending: "/\\\\untrusted.invalid/api"
+  ---
+  duration_ms: 0.0767
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/%2funtrusted.invalid"
+ok 62 - unsafe route is refused before sending: "/%2funtrusted.invalid"
+  ---
+  duration_ms: 0.0858
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/%5cuntrusted.invalid"
+ok 63 - unsafe route is refused before sending: "/%5cuntrusted.invalid"
+  ---
+  duration_ms: 0.1043
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "api/status"
+ok 64 - unsafe route is refused before sending: "api/status"
+  ---
+  duration_ms: 0.0618
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/api/status\#secret"
+ok 65 - unsafe route is refused before sending: "/api/status\#secret"
+  ---
+  duration_ms: 0.053
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/api/\\nstatus"
+ok 66 - unsafe route is refused before sending: "/api/\\nstatus"
+  ---
+  duration_ms: 0.0534
+  type: 'test'
+  ...
+# Subtest: known offline state causes zero HTTP attempts and never reports a sent request
+ok 67 - known offline state causes zero HTTP attempts and never reports a sent request
+  ---
+  duration_ms: 0.1719
+  type: 'test'
+  ...
+# Subtest: browser navigator offline state is respected by the default dependency
+ok 68 - browser navigator offline state is respected by the default dependency
+  ---
+  duration_ms: 0.9613
+  type: 'test'
+  ...
+# Subtest: GET deadline works even when fetch ignores AbortSignal
+ok 69 - GET deadline works even when fetch ignores AbortSignal
+  ---
+  duration_ms: 17.4388
+  type: 'test'
+  ...
+# Subtest: GET deadline also bounds a stalled body after HTTP 200
+ok 70 - GET deadline also bounds a stalled body after HTTP 200
+  ---
+  duration_ms: 15.0876
+  type: 'test'
+  ...
+# Subtest: POST deadline works even when fetch ignores AbortSignal
+ok 71 - POST deadline works even when fetch ignores AbortSignal
+  ---
+  duration_ms: 14.9601
+  type: 'test'
+  ...
+# Subtest: POST deadline also bounds a stalled body after HTTP 200
+ok 72 - POST deadline also bounds a stalled body after HTTP 200
+  ---
+  duration_ms: 16.0199
+  type: 'test'
+  ...
+# Subtest: a lost write receipt is uncertain, linked to the original task, and never retried
+ok 73 - a lost write receipt is uncertain, linked to the original task, and never retried
+  ---
+  duration_ms: 0.4332
+  type: 'test'
+  ...
+# Subtest: GET network failures cannot create an unknown-write event
+ok 74 - GET network failures cannot create an unknown-write event
+  ---
+  duration_ms: 0.1624
+  type: 'test'
+  ...
+# Subtest: HTTP 400 explicitly rejects a write without reporting UNKNOWN
+ok 75 - HTTP 400 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.6218
+  type: 'test'
+  ...
+# Subtest: HTTP 401 explicitly rejects a write without reporting UNKNOWN
+ok 76 - HTTP 401 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.3321
+  type: 'test'
+  ...
+# Subtest: HTTP 403 explicitly rejects a write without reporting UNKNOWN
+ok 77 - HTTP 403 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.1873
+  type: 'test'
+  ...
+# Subtest: HTTP 409 explicitly rejects a write without reporting UNKNOWN
+ok 78 - HTTP 409 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.1525
+  type: 'test'
+  ...
+# Subtest: HTTP 429 explicitly rejects a write without reporting UNKNOWN
+ok 79 - HTTP 429 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.1554
+  type: 'test'
+  ...
+# Subtest: an explicit 4xx remains a rejection when its JSON is broken or its error body stalls
+ok 80 - an explicit 4xx remains a rejection when its JSON is broken or its error body stalls
+  ---
+  duration_ms: 13.1742
+  type: 'test'
+  ...
+# Subtest: HTTP 409 explicitly unknown business state keeps the original request frozen
+ok 81 - HTTP 409 explicitly unknown business state keeps the original request frozen
+  ---
+  duration_ms: 0.9184
+  type: 'test'
+  ...
+# Subtest: HTTP 409 RUNNING keeps a pending operation without claiming that it failed
+ok 82 - HTTP 409 RUNNING keeps a pending operation without claiming that it failed
+  ---
+  duration_ms: 0.2096
+  type: 'test'
+  ...
+# Subtest: HTTP 429 explicitly unknown business state keeps the original request frozen
+ok 83 - HTTP 429 explicitly unknown business state keeps the original request frozen
+  ---
+  duration_ms: 0.9968
+  type: 'test'
+  ...
+# Subtest: HTTP 429 RUNNING keeps a pending operation without claiming that it failed
+ok 84 - HTTP 429 RUNNING keeps a pending operation without claiming that it failed
+  ---
+  duration_ms: 0.131
+  type: 'test'
+  ...
+# Subtest: GET 4xx business UNKNOWN does not invent an attempted write
+ok 85 - GET 4xx business UNKNOWN does not invent an attempted write
+  ---
+  duration_ms: 0.1768
+  type: 'test'
+  ...
+# Subtest: GET HTTP 500 is explicit about write reconciliation
+ok 86 - GET HTTP 500 is explicit about write reconciliation
+  ---
+  duration_ms: 0.1982
+  type: 'test'
+  ...
+# Subtest: GET HTTP 502 is explicit about write reconciliation
+ok 87 - GET HTTP 502 is explicit about write reconciliation
+  ---
+  duration_ms: 0.9064
+  type: 'test'
+  ...
+# Subtest: GET HTTP 503 is explicit about write reconciliation
+ok 88 - GET HTTP 503 is explicit about write reconciliation
+  ---
+  duration_ms: 0.1196
+  type: 'test'
+  ...
+# Subtest: POST HTTP 500 is explicit about write reconciliation
+ok 89 - POST HTTP 500 is explicit about write reconciliation
+  ---
+  duration_ms: 0.1191
+  type: 'test'
+  ...
+# Subtest: POST HTTP 502 is explicit about write reconciliation
+ok 90 - POST HTTP 502 is explicit about write reconciliation
+  ---
+  duration_ms: 0.1368
+  type: 'test'
+  ...
+# Subtest: POST HTTP 503 is explicit about write reconciliation
+ok 91 - POST HTTP 503 is explicit about write reconciliation
+  ---
+  duration_ms: 0.0958
+  type: 'test'
+  ...
+# Subtest: invalid JSON and oversized write responses are uncertain without returning a fabricated result
+ok 92 - invalid JSON and oversized write responses are uncertain without returning a fabricated result
+  ---
+  duration_ms: 1.6235
+  type: 'test'
+  ...
+# Subtest: the exact 512 KiB JSON boundary is accepted and a byte more is refused
+ok 93 - the exact 512 KiB JSON boundary is accepted and a byte more is refused
+  ---
+  duration_ms: 1.8165
+  type: 'test'
+  ...
+# Subtest: GET redirects are refused without following the hostile location
+ok 94 - GET redirects are refused without following the hostile location
+  ---
+  duration_ms: 0.1433
+  type: 'test'
+  ...
+# Subtest: POST redirects are refused without following the hostile location
+ok 95 - POST redirects are refused without following the hostile location
+  ---
+  duration_ms: 0.0706
+  type: 'test'
+  ...
+# Subtest: already-followed and opaque redirect responses cannot be treated as success
+ok 96 - already-followed and opaque redirect responses cannot be treated as success
+  ---
+  duration_ms: 0.2094
+  type: 'test'
+  ...
+# Subtest: server diagnostics are bounded and stacks, tokens and unknown English text stay private
+ok 97 - server diagnostics are bounded and stacks, tokens and unknown English text stay private
+  ---
+  duration_ms: 0.6302
+  type: 'test'
+  ...
+# Subtest: HTTP 200 top UNKNOWN remains visible and prevents blind resubmission
+ok 98 - HTTP 200 top UNKNOWN remains visible and prevents blind resubmission
+  ---
+  duration_ms: 0.2074
+  type: 'test'
+  ...
+# Subtest: HTTP 200 execution UNKNOWN remains visible and prevents blind resubmission
+ok 99 - HTTP 200 execution UNKNOWN remains visible and prevents blind resubmission
+  ---
+  duration_ms: 0.1154
+  type: 'test'
+  ...
+# Subtest: HTTP 200 top RUNNING remains visible and prevents blind resubmission
+ok 100 - HTTP 200 top RUNNING remains visible and prevents blind resubmission
+  ---
+  duration_ms: 0.1053
+  type: 'test'
+  ...
+# Subtest: HTTP 200 execution RUNNING remains visible and prevents blind resubmission
+ok 101 - HTTP 200 execution RUNNING remains visible and prevents blind resubmission
+  ---
+  duration_ms: 0.0816
+  type: 'test'
+  ...
+# Subtest: existing Risk callback UNKNOWN and nested task bindings preserve the original identifiers
+ok 102 - existing Risk callback UNKNOWN and nested task bindings preserve the original identifiers
+  ---
+  duration_ms: 0.2343
+  type: 'test'
+  ...
+# Subtest: a GET query that reports a pending operation is not mistaken for another attempted write
+ok 103 - a GET query that reports a pending operation is not mistaken for another attempted write
+  ---
+  duration_ms: 0.0992
+  type: 'test'
+  ...
+# Subtest: observer exceptions do not replace a network outcome or trigger another write
+ok 104 - observer exceptions do not replace a network outcome or trigger another write
+  ---
+  duration_ms: 2.1716
+  type: 'test'
+  ...
+# Subtest: default read, write, model, and explicit deadlines are selected without real waiting
+ok 105 - default read, write, model, and explicit deadlines are selected without real waiting
+  ---
+  duration_ms: 65.0024
+  type: 'test'
+  ...
+# Subtest: client and request configuration errors are rejected before HTTP
+ok 106 - client and request configuration errors are rejected before HTTP
+  ---
+  duration_ms: 1.2229
+  type: 'test'
+  ...
+1..106
+# tests 106
+# suites 0
+# pass 106
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 259.8955

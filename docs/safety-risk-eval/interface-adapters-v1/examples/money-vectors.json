@@ -1,0 +1,144 @@
+{
+  "fixture": true,
+  "amount_unit_required": true,
+  "cases": [
+    {
+      "input": {
+        "amount": "0.01",
+        "unit": "YUAN",
+        "currency": "CNY"
+      },
+      "normalized": {
+        "currency": "CNY",
+        "unit": "MINOR",
+        "amount_minor": 1,
+        "source_unit": "YUAN"
+      },
+      "exact_yuan_decimal": "0.01",
+      "compatible_yuan_number": 0.01
+    },
+    {
+      "input": {
+        "amount": 0.1,
+        "unit": "YUAN",
+        "currency": "CNY"
+      },
+      "normalized": {
+        "currency": "CNY",
+        "unit": "MINOR",
+        "amount_minor": 10,
+        "source_unit": "YUAN"
+      },
+      "exact_yuan_decimal": "0.10",
+      "compatible_yuan_number": 0.1
+    },
+    {
+      "input": {
+        "amount": "8000.00",
+        "unit": "YUAN",
+        "currency": "CNY"
+      },
+      "normalized": {
+        "currency": "CNY",
+        "unit": "MINOR",
+        "amount_minor": 800000,
+        "source_unit": "YUAN"
+      },
+      "exact_yuan_decimal": "8000.00",
+      "compatible_yuan_number": 8000
+    },
+    {
+      "input": {
+        "amount": null,
+        "unit": "YUAN",
+        "currency": "CNY"
+      },
+      "normalized": {
+        "currency": "CNY",
+        "unit": "MINOR",
+        "amount_minor": null,
+        "source_unit": "YUAN"
+      },
+      "exact_yuan_decimal": null,
+      "compatible_yuan_number": null
+    },
+    {
+      "input": {
+        "amount": 800000,
+        "unit": "MINOR",
+        "currency": "CNY"
+      },
+      "normalized": {
+        "currency": "CNY",
+        "unit": "MINOR",
+        "amount_minor": 800000,
+        "source_unit": "MINOR"
+      },
+      "exact_yuan_decimal": "8000.00",
+      "compatible_yuan_number": 8000
+    },
+    {
+      "input": {
+        "amount": "10000000000.00",
+        "unit": "YUAN",
+        "currency": "CNY"
+      },
+      "normalized": {
+        "currency": "CNY",
+        "unit": "MINOR",
+        "amount_minor": 1000000000000,
+        "source_unit": "YUAN"
+      },
+      "exact_yuan_decimal": "10000000000.00",
+      "compatible_yuan_number": 10000000000
+    },
+    {
+      "input": {
+        "amount": "1.005",
+        "unit": "YUAN",
+        "currency": "CNY"
+      },
+      "error_code": "INVALID_AMOUNT_PRECISION"
+    },
+    {
+      "input": {
+        "amount": "1.000",
+        "unit": "YUAN",
+        "currency": "CNY"
+      },
+      "error_code": "INVALID_AMOUNT_PRECISION"
+    },
+    {
+      "input": {
+        "amount": 0.30000000000000004,
+        "unit": "YUAN",
+        "currency": "CNY"
+      },
+      "error_code": "INVALID_AMOUNT_PRECISION"
+    },
+    {
+      "input": {
+        "amount": "10000000000.01",
+        "unit": "YUAN",
+        "currency": "CNY"
+      },
+      "error_code": "AMOUNT_OUT_OF_RANGE"
+    },
+    {
+      "input": {
+        "amount": 1,
+        "unit": "UNKNOWN",
+        "currency": "CNY"
+      },
+      "error_code": "UNSUPPORTED_AMOUNT_UNIT"
+    },
+    {
+      "input": {
+        "amount": 1,
+        "unit": "YUAN",
+        "currency": "USD"
+      },
+      "error_code": "UNSUPPORTED_CURRENCY"
+    }
+  ]
+}

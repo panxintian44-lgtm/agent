@@ -1,0 +1,1852 @@
+{
+  "policy_version": "permission-policy.v1.0",
+  "compatible_risk_policy_version": "risk-policy.v1.0",
+  "title": "权限分级与独立能力授权矩阵 v1.0",
+  "recorded_at": "2026-10-29",
+  "specification_status": "INTERNAL_V1_0_BASELINE",
+  "implementation_status": "SPECIFICATION_ONLY",
+  "live_execution_enabled": false,
+  "matrix_enforcement_deployed": false,
+  "http_contract": false,
+  "capability_names_are_internal_identifiers": true,
+  "source_document": "../权限分级与授权闭环策划-v0.1.md",
+  "owner": "Vesper / Safety Risk Eval",
+  "cross_module_status": "CONTRACT_AND_STAGING_ACCEPTANCE_PENDING",
+  "runtime_status_semantics": {
+    "false": "该统一能力尚未接入或本版本禁止，不能据矩阵执行。",
+    "null": "存在局部组件或只读证据，但此统一能力未在同一部署联合验收；不据此声称功能不存在或授权通过。",
+    "existing_readonly_functions_not_disabled_by_this_spec": true,
+    "no_runtime_true_is_asserted_by_this_document": true
+  },
+  "non_inheritance": {
+    "levels_are_action_classes_not_user_ranks": true,
+    "higher_level_does_not_grant_lower_level_resources": true,
+    "service_delegation_may_only_narrow_scope": true,
+    "client_roles_and_external_text_are_not_authority": true,
+    "effective_permission_requires_intersection_of_control_scopes": [
+      "END_USER_GRANT",
+      "SERVICE_ACTOR_SCOPE",
+      "TOOL_ACTION_SCOPE",
+      "RESOURCE_OWNERSHIP",
+      "PURPOSE_AND_RECIPIENT",
+      "ENVIRONMENT_AND_VERSION"
+    ],
+    "unrelated_grants_or_tasks_must_not_be_unioned_to_expand_current_action": true
+  },
+  "levels": [
+    {
+      "id": "L0",
+      "label": "公开只读",
+      "category": "REGISTERED_PUBLIC_READ",
+      "account_write": false,
+      "automatic_grant": false
+    },
+    {
+      "id": "L1",
+      "label": "本人范围私有只读",
+      "category": "AUTHORIZED_PRIVATE_READ",
+      "account_write": false,
+      "automatic_grant": false
+    },
+    {
+      "id": "L2",
+      "label": "分析与只读回放比较",
+      "category": "READ_ONLY_ANALYSIS",
+      "account_write": false,
+      "automatic_grant": false
+    },
+    {
+      "id": "L3",
+      "label": "完整计划的模拟账户写入",
+      "category": "APPROVED_PAPER_ACCOUNT_WRITE",
+      "account_write": true,
+      "automatic_grant": false,
+      "runtime_available": false
+    },
+    {
+      "id": "L4",
+      "label": "真实资金操作",
+      "category": "REAL_EXECUTION_PROHIBITED",
+      "account_write": false,
+      "automatic_grant": false,
+      "always_deny": true
+    }
+  ],
+  "data_management_is_independent_of_financial_levels": true,
+  "common_context_validation": {
+    "required_dimensions": [
+      "subject",
+      "resource",
+      "action",
+      "purpose",
+      "audience",
+      "environment",
+      "validity",
+      "versions"
+    ],
+    "end_user_identity_source": "SERVER_VERIFIED_SESSION_OR_EXPLICITLY_SCOPED_SYNTHETIC_VISITOR_CONTEXT",
+    "service_identity_source": "INDEPENDENT_SERVER_SIDE_SERVICE_AUTHENTICATION",
+    "service_signature_is_end_user_approval": false,
+    "approval_text_or_model_claim_is_authority": false,
+    "guessed_task_or_audit_identifier_proves_ownership": false,
+    "resources_include_reads_queries_memory_audit_exports_and_downloads": true,
+    "unknown_action_default": "DENY",
+    "unavailable_required_validation_default": "ERROR",
+    "private_read_without_valid_ownership_or_grant": "DENY_OR_ERROR_NO_DATA_RETURN",
+    "original_scope_must_not_expand_on_retry": true,
+    "credential_locations": "SERVER_ONLY_NEVER_MODEL_CONTEXT_OR_BROWSER_LOCAL_STORAGE"
+  },
+  "independent_states": {
+    "permission": [
+      "ALLOW",
+      "DENY",
+      "ERROR"
+    ],
+    "risk": [
+      "ALLOW",
+      "REVIEW",
+      "BLOCK",
+      "ERROR"
+    ],
+    "risk_not_run": null,
+    "permission_denial_risk_engine_ran": false,
+    "approval": {
+      "labels_only_not_new_contract_enums": [
+        "未确认",
+        "已确认",
+        "已拒绝",
+        "已撤回",
+        "已失效"
+      ],
+      "contract_owner": "APPROVAL_AND_CORE_OWNER"
+    },
+    "execution": {
+      "labels_only_not_new_contract_enums": [
+        "未启动",
+        "运行中",
+        "成功",
+        "失败",
+        "结果未知"
+      ],
+      "source": "TRUSTED_EXECUTION_RECEIPT"
+    },
+    "states_must_not_be_coerced_into_each_other": true,
+    "business_risk_band_does_not_grant_permission": true
+  },
+  "paper_write_gates": {
+    "mode": "PAPER_ONLY",
+    "currently_available": false,
+    "all_required": [
+      "VALID_END_USER_IDENTITY_AND_RESOURCE_OWNERSHIP",
+      "ACTIVE_EXACT_ACTION_AND_DATA_AUTHORIZATION",
+      "SERVER_VERIFIED_CURRENT_RISK_ALLOW_WITH_ALL_HARD_CONSTRAINTS_SATISFIED",
+      "VALID_COMPLETE_PLAN_END_USER_APPROVAL",
+      "SAME_SUBJECT_ACCOUNT_TASK_PROPOSAL_SHA256_AND_DEPENDENCY_VERSIONS",
+      "CURRENT_LEDGER_ATOMIC_ACCOUNT_VERSION_AND_FUNDS_CHECK",
+      "CONFIRMED_PROTECTED_PURPOSES_PRESERVED_ACROSS_TASKS",
+      "TRUSTED_REVOCATION_AND_COMMIT_ORDERING",
+      "DURABLE_PRE_EXECUTION_INTENT_AUDIT",
+      "IDEMPOTENCY_AND_RECEIPT_RECONCILIATION_AVAILABLE"
+    ],
+    "review_acceptance_protocol_available": false,
+    "current_review_behavior": "REQUEST_MORE_INFO_AND_NO_L3; ACCEPTANCE_CHECKBOX_DOES_NOT_REPLACE_CALLBACK_OR_APPROVAL",
+    "plan_parameter_change": "INVALIDATE_RELEVANT_RISK_AND_APPROVAL_RECHECK_AND_RECONFIRM",
+    "legitimate_reservation_version_advance": "FOLLOW_ONLY_FROZEN_SAME_RESERVATION_PROTOCOL_NOT_ARBITRARY_VERSION_BYPASS",
+    "missing_or_unknown_gate": "DO_NOT_RESERVE_OR_COMMIT",
+    "real_financial_side_effects_allowed": false,
+    "applies_to": [
+      "paper.reserve",
+      "paper.commit"
+    ],
+    "cleanup_actions_use_separate_restricted_recovery_authority": true
+  },
+  "cleanup_and_reconciliation": {
+    "original_task_scope_only": true,
+    "can_continue_after_user_data_grant_revocation": "ONLY_AUTHENTICATED_TRUSTED_RECOVERY_ACTOR_WITH_ORIGINAL_RESERVATION_AND_ACCOUNT_BINDING",
+    "user_read_still_requires_active_owner_identity": true,
+    "no_new_investment_or_transfer": true,
+    "release_only_unconsumed_original_reservation": true,
+    "unknown_submission_state": "QUERY_ORIGINAL_RECEIPT_BEFORE_ANY_RELEASE_OR_RETRY",
+    "repeated_request": "RETURN_ORIGINAL_RECEIPT_OR_DUPLICATE_STATUS_NO_SECOND_EFFECT",
+    "same_idempotency_key_changed_body": "DENY_CONFLICT_AND_AUDIT",
+    "reboot_with_inflight_record": "RECONCILE_OR_KEEP_UNKNOWN_NO_NEW_KEY",
+    "actions": [
+      "paper.release",
+      "execution.reconcile"
+    ]
+  },
+  "revocation_commit_race": {
+    "owner": "AUTHORIZATION_AND_FINANCE_LEDGER_OWNER",
+    "trusted_atomic_commit_point_required": true,
+    "browser_timestamps_are_ordering_authority": false,
+    "revoked_before_atomic_commit": "DENY_COMMIT_AND_IDEMPOTENTLY_RELEASE_UNCONSUMED_RESERVATION",
+    "committed_before_revocation": "PRESERVE_ACTUAL_COMMIT_RECEIPT_STOP_LATER_STEPS_AND_RECONCILE",
+    "ordering_unknown": "KEEP_UNKNOWN_AND_CLOSE_NEW_WRITES",
+    "protocol_not_implemented_or_not_verified": "KEEP_L3_CLOSED"
+  },
+  "fail_closed": {
+    "required_authorization_or_identity_service_error": "ERROR_AND_BLOCK_RELATED_PRIVATE_READS_TRANSMISSIONS_AND_WRITES",
+    "risk_approval_or_ledger_error": "STOP_RELATED_FUNDS_ACTIONS",
+    "pending_rejected_revoked_expired_approval": "NO_PAPER_RESERVE_OR_COMMIT",
+    "audit_failure_before_execution": "NO_FUNDS_WRITE",
+    "audit_result_failure_after_possible_commit": "UNKNOWN_AND_RECONCILE_NOT_FABRICATED_ROLLBACK",
+    "network_timeout_after_write_sent": "UNKNOWN_READ_ONLY_RECOVERY_NO_AUTOMATIC_WRITE_RETRY",
+    "frontend_button_disabled_is_sufficient": false,
+    "healthy_connection_clears_business_error": false,
+    "offline_success_fallback_allowed": false,
+    "unaffected_authorized_public_or_historical_reads_may_continue": true,
+    "external_content_may_modify_permissions_rules_or_approval": false
+  },
+  "audit_requirements": {
+    "event_types": [
+      "AUTHORIZATION_REQUESTED",
+      "AUTHORIZATION_CONFIRMED",
+      "AUTHORIZATION_REVOKED",
+      "TOOL_DENIED",
+      "RISK_CHECKED",
+      "PLAN_APPROVED",
+      "PLAN_REJECTED",
+      "PLAN_INVALIDATED",
+      "RESERVATION_CREATED",
+      "PAPER_COMMITTED",
+      "RESERVATION_RELEASED",
+      "EXECUTION_RECONCILED"
+    ],
+    "required_reference_groups": [
+      "ORIGINAL_SERVICE_TRACE_IDS",
+      "MINIMIZED_SUBJECT_ACCOUNT_ACTOR_REFERENCES",
+      "AUTHORIZATION_SCOPE_AND_VERSION",
+      "PROPOSAL_AND_DEPENDENCY_VERSIONS",
+      "PERMISSION_AND_RISK_DECISIONS_SEPARATE",
+      "APPROVAL_VERIFICATION_RESULT",
+      "ACTUAL_ENFORCEMENT_POINT",
+      "EXECUTION_RESERVATION_IDEMPOTENCY_RECEIPTS",
+      "TIMESTAMPS_AND_RECOVERY_ACTIONS"
+    ],
+    "raw_secrets_cookies_api_keys_or_hmac_keys_logged": false,
+    "raw_salary_bills_or_full_model_context_logged_by_default": false,
+    "owner_summary_and_privileged_redacted_views_separate": true,
+    "retention_policy_owner_confirmation_required": true
+  },
+  "compatibility": {
+    "unchanged_http_contracts": [
+      "investment-agent.v1",
+      "review-workflow.v1",
+      "risk-handoff.v1",
+      "risk-callback.v1"
+    ],
+    "new_context_or_fields_are_current_http_contract": false,
+    "risk_callback_required_fields": [
+      "handoff_id",
+      "task_id",
+      "request_id",
+      "run_id",
+      "audit_id",
+      "reviewer",
+      "reason",
+      "callback_version",
+      "proposal_sha256",
+      "decision"
+    ],
+    "risk_callback_decisions": [
+      "APPROVE",
+      "REJECT",
+      "REQUEST_MORE_INFO"
+    ],
+    "risk_to_callback": {
+      "ALLOW": "APPROVE",
+      "REVIEW": "REQUEST_MORE_INFO",
+      "BLOCK": "REJECT",
+      "ERROR": null
+    },
+    "risk_error_behavior": "PRESERVE_ERROR_AND_DO_NOT_SEND_BUSINESS_DECISION_CALLBACK",
+    "extra_subject_account_nonce_fields": "TEAM_REVIEWED_SIGNED_SIDECAR_OR_VERSIONED_CONTRACT_ONLY",
+    "no_extra_fields_inserted_into_frozen_callback": true,
+    "proposal_sha256_not_replaced_by_other_hashes": true,
+    "confirmation_expiry_and_retention_numbers": "CONFIGURATION_REQUIRES_OWNER_CONFIRMATION_NO_INDUSTRY_DEFAULT_CLAIM"
+  },
+  "capabilities": [
+    {
+      "id": "public.read",
+      "label": "公开只读",
+      "permission_level": "L0",
+      "permission_domain": "PUBLIC_INFORMATION",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "PUBLIC_VISITOR",
+        "AUTHENTICATED_USER",
+        "SCOPED_AGENT"
+      ],
+      "scope": {
+        "subject": "ANONYMOUS_OR_AUTHENTICATED_ACTOR",
+        "resource": "REGISTERED_PUBLIC_SOURCE_AND_QUERY_TYPE",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "PUBLIC_READ_ONLY_INFORMATION",
+        "audience": "REGISTERED_PUBLIC_DATA_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "tool_registry_version",
+          "source_version"
+        ]
+      },
+      "confirmation_type": "NONE",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "REGISTERED_TOOL",
+        "READ_ONLY_EFFECT_VERIFIED",
+        "PUBLIC_SOURCE_ALLOWLIST",
+        "RATE_AND_COST_LIMITS_SATISFIED"
+      ],
+      "invalidation_triggers": [
+        "TOOL_OR_SOURCE_REMOVED",
+        "ENVIRONMENT_CHANGED"
+      ],
+      "enforcement": {
+        "primary_owner": "ENTRY_PROXY_AND_TOOL_DISPATCHER",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "USE_AN_ALLOWED_PUBLIC_SOURCE",
+        "RESTORE_TOOL_SERVICE"
+      ],
+      "current_capability": {
+        "runtime_available": null,
+        "status": "EXISTING_COMPONENT_EVIDENCE_ONLY_NOT_JOINTLY_VERIFIED",
+        "evidence_note": "现有公开页面和健康接口有可达证据，不等于此动作目录已正式接线。"
+      },
+      "side_effect": "NONE",
+      "notes": [
+        "允许公开读取不包含任意URL抓取、私有网络或用户资料读取。"
+      ]
+    },
+    {
+      "id": "financial_data.read",
+      "label": "本人财务资料读取",
+      "permission_level": "L1",
+      "permission_domain": "PRIVATE_INFORMATION",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_FINANCIAL_FIELDS_ACCOUNT_OR_TASK_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "EXACT_USER_APPROVED_ANALYSIS_OR_DISPLAY",
+        "audience": "NAMED_CORE_RISK_FINANCE_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "authorization_version",
+          "account_version_if_available",
+          "data_version",
+          "constraints_version_if_used"
+        ]
+      },
+      "confirmation_type": "DATA_ACCESS_GRANT",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "VERIFIED_SUBJECT",
+        "RESOURCE_OWNERSHIP_MATCH",
+        "FIELD_SCOPE_MATCH",
+        "PURPOSE_MATCH",
+        "ACTIVE_ACCESS_GRANT"
+      ],
+      "invalidation_triggers": [
+        "SUBJECT_OR_ACCOUNT_CHANGED",
+        "GRANT_EXPIRED_OR_REVOKED",
+        "SESSION_INVALID",
+        "FIELD_OR_PURPOSE_EXPANDED"
+      ],
+      "enforcement": {
+        "primary_owner": "IDENTITY_PROXY_AND_RESOURCE_SERVICE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "SUBJECT_OR_RESOURCE_MISMATCH",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REAUTHENTICATE_THE_RESOURCE_OWNER",
+        "OBTAIN_EXACT_SCOPE_GRANT"
+      ],
+      "current_capability": {
+        "runtime_available": null,
+        "status": "EXISTING_COMPONENT_EVIDENCE_ONLY_NOT_JOINTLY_VERIFIED",
+        "evidence_note": "现有独立组件有数据读取/任务查询能力；未验证统一主体、账户和正式同源代理，不能视作已获跨服务私有读取权。"
+      },
+      "side_effect": "NONE",
+      "notes": [
+        "仅签名访客会话可用于自己的虚构演示空间；真实财务资料所需身份强度未确认时不开放。"
+      ]
+    },
+    {
+      "id": "model_context.send",
+      "label": "向指定模型发送本次资料",
+      "permission_level": null,
+      "permission_domain": "DATA_TRANSMISSION",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_SELECTED_FIELDS_AND_QUESTION_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "EXACT_APPROVED_MODEL_ANALYSIS",
+        "audience": "NAMED_MODEL_PROVIDER_AND_ENDPOINT",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "authorization_version",
+          "question_version",
+          "source_scope_version",
+          "data_version",
+          "model_recipient_version"
+        ]
+      },
+      "confirmation_type": "MODEL_DATA_SEND_CONSENT",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "SOURCE_READ_AUTHORIZED",
+        "VISIBLE_FIELD_AND_RECIPIENT_SUMMARY",
+        "CURRENT_SEND_CONSENT",
+        "MINIMIZED_PAYLOAD",
+        "SEPARATE_API_COST_PERMISSION"
+      ],
+      "invalidation_triggers": [
+        "QUESTION_SUBSTANTIALLY_CHANGED",
+        "MODEL_RECIPIENT_CHANGED",
+        "DATA_FIELDS_OR_SOURCE_SCOPE_CHANGED",
+        "GRANT_REVOKED_OR_SESSION_INVALID"
+      ],
+      "enforcement": {
+        "primary_owner": "SAME_ORIGIN_BACKEND_PROXY",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REVIEW_CURRENT_FIELDS_QUESTION_AND_RECIPIENT",
+        "CONFIRM_NEW_SEND_SCOPE"
+      ],
+      "current_capability": {
+        "runtime_available": null,
+        "status": "EXISTING_COMPONENT_EVIDENCE_ONLY_NOT_JOINTLY_VERIFIED",
+        "evidence_note": "PR33候选有前端发送授权快照撤销；服务端统一授权接线及上线仍未验收。"
+      },
+      "side_effect": "EXTERNAL_DATA_TRANSMISSION",
+      "notes": [
+        "资料发送同意不包含长期Memory写入或模拟资金批准。"
+      ]
+    },
+    {
+      "id": "analysis.run",
+      "label": "资金分析与方案提议",
+      "permission_level": "L2",
+      "permission_domain": "ANALYSIS",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_CURRENT_TASK_AND_AUTHORIZED_INPUTS_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "READ_ONLY_ANALYSIS_AND_PROPOSAL",
+        "audience": "REGISTERED_CORE_AND_QUANT_TOOLS",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "task_version",
+          "data_version",
+          "rule_version",
+          "constraints_version_if_used"
+        ]
+      },
+      "confirmation_type": "EXISTING_ANALYSIS_SCOPE",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "INPUT_READ_AUTHORIZED",
+        "REGISTERED_NO_ACCOUNT_WRITE_TOOLS",
+        "REQUIRED_DATA_VALID",
+        "NO_PERMISSION_OR_CONSTRAINT_MUTATION"
+      ],
+      "invalidation_triggers": [
+        "RELEVANT_INPUT_CHANGED",
+        "REQUIRED_DATA_INVALIDATED",
+        "AUTHORIZATION_REVOKED"
+      ],
+      "enforcement": {
+        "primary_owner": "CORE_DISPATCHER_AND_TOOL_ADAPTER",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REPAIR_REQUIRED_INPUT",
+        "RERUN_AUTHORIZED_ANALYSIS"
+      ],
+      "current_capability": {
+        "runtime_available": null,
+        "status": "EXISTING_COMPONENT_EVIDENCE_ONLY_NOT_JOINTLY_VERIFIED",
+        "evidence_note": "main已有确定性健康诊断与只读Handoff；正式Risk业务回写和统一资金链未验收。"
+      },
+      "side_effect": "NONE",
+      "notes": [
+        "模型只提出动作，不能把分析结论写成本人授权。"
+      ]
+    },
+    {
+      "id": "profile.confirm_write",
+      "label": "确认修改个人画像",
+      "permission_level": null,
+      "permission_domain": "PROFILE_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_PROFILE_FIELDS_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "USER_REVIEWED_PROFILE_CORRECTION",
+        "audience": "PROFILE_RESOURCE_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "profile_version",
+          "authorization_version",
+          "dependent_task_versions"
+        ]
+      },
+      "confirmation_type": "PROFILE_CHANGE_CONFIRMATION",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "VERIFIED_OWNER",
+        "OLD_AND_NEW_VALUES_SHOWN",
+        "EXPLICIT_CHANGE_CONFIRMATION",
+        "EXPECTED_RESOURCE_VERSION_MATCH"
+      ],
+      "invalidation_triggers": [
+        "PROFILE_VERSION_CHANGED",
+        "CONFIRMATION_WITHDRAWN",
+        "OWNER_OR_FIELD_SCOPE_CHANGED"
+      ],
+      "enforcement": {
+        "primary_owner": "PROFILE_SERVICE",
+        "supporting_owners": [
+          "CORE",
+          "RISK",
+          "MEMORY"
+        ],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "SHOW_CURRENT_PROFILE_DIFF",
+        "CONFIRM_CURRENT_CHANGE",
+        "INVALIDATE_RELEVANT_UNEXECUTED_PLANS"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "PROFILE_PERSISTENT_WRITE",
+      "notes": [
+        "无关昵称等展示字段变化不使资金计划自动失效；财务依赖字段变化必须追踪影响。"
+      ]
+    },
+    {
+      "id": "constraints.confirm_update",
+      "label": "确认修改资金用途约束",
+      "permission_level": null,
+      "permission_domain": "CONSTRAINT_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_PROTECTED_PURPOSES_AND_LIMITS_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "USER_REVIEWED_CONSTRAINT_CHANGE",
+        "audience": "CONSTRAINT_RESOURCE_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "constraints_version",
+          "authorization_version",
+          "dependent_proposal_versions"
+        ]
+      },
+      "confirmation_type": "CONSTRAINT_CHANGE_CONFIRMATION",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "VERIFIED_OWNER",
+        "OLD_NEW_VALUES_AND_AFFECTED_PLANS_SHOWN",
+        "EXPLICIT_CHANGE_CONFIRMATION",
+        "EXPECTED_CONSTRAINTS_VERSION_MATCH"
+      ],
+      "invalidation_triggers": [
+        "CONSTRAINTS_VERSION_CHANGED",
+        "CONFIRMATION_WITHDRAWN",
+        "ACCOUNT_OR_OWNER_CHANGED"
+      ],
+      "enforcement": {
+        "primary_owner": "CONSTRAINT_SERVICE",
+        "supporting_owners": [
+          "FINANCE",
+          "CORE",
+          "RISK"
+        ],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "PROTECTED_PURPOSE_CHANGE_NOT_CONFIRMED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "SHOW_CHANGE_IMPACT",
+        "CONFIRM_NEW_CONSTRAINT_VERSION",
+        "RECHECK_AND_REAPPROVE_DEPENDENT_PLANS"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "CONFIRMED_CONSTRAINT_WRITE",
+      "notes": [
+        "模型、新闻和Memory归纳不得自行放宽房租学费保护；一次资金计划确认不授权修改保护用途。"
+      ]
+    },
+    {
+      "id": "memory.read",
+      "label": "读取本人任务所需记忆",
+      "permission_level": "L1",
+      "permission_domain": "MEMORY_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_MEMORY_ITEMS_AND_DERIVED_INDEX_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "CURRENT_TASK_AUTHORIZED_MEMORY_RETRIEVAL",
+        "audience": "NAMED_MEMORY_AND_CORE_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "memory_item_version",
+          "memory_consent_version",
+          "source_version",
+          "authorization_version"
+        ]
+      },
+      "confirmation_type": "MEMORY_READ_GRANT",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "VERIFIED_SUBJECT",
+        "MEMORY_OWNERSHIP_MATCH",
+        "TASK_PURPOSE_MATCH",
+        "ITEM_AND_SOURCE_CONSENT_ACTIVE",
+        "DERIVED_COPY_NOT_REVOKED"
+      ],
+      "invalidation_triggers": [
+        "MEMORY_OR_SOURCE_REVOKED",
+        "PURPOSE_CHANGED",
+        "GRANT_EXPIRED_OR_REVOKED",
+        "SESSION_INVALID"
+      ],
+      "enforcement": {
+        "primary_owner": "MEMORY_SERVICE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "SUBJECT_OR_RESOURCE_MISMATCH",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "RELOAD_ONLY_ACTIVE_AUTHORIZED_MEMORY",
+        "REMOVE_REVOKED_DERIVED_RETRIEVALS"
+      ],
+      "current_capability": {
+        "runtime_available": null,
+        "status": "EXISTING_COMPONENT_EVIDENCE_ONLY_NOT_JOINTLY_VERIFIED",
+        "evidence_note": "既有Memory模块有授权/范围机制；统一主体及撤回传播仍需同部署验收。"
+      },
+      "side_effect": "NONE",
+      "notes": [
+        "不得从已撤回摘要、向量索引、缓存或旧报告重新恢复为有效权威记忆。"
+      ]
+    },
+    {
+      "id": "memory.confirm_write",
+      "label": "本人确认保存或更新长期记忆",
+      "permission_level": null,
+      "permission_domain": "MEMORY_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_REVIEWED_MEMORY_ITEMS_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "EXACT_CONFIRMED_LONG_TERM_MEMORY_USE",
+        "audience": "MEMORY_RESOURCE_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "memory_item_version",
+          "memory_consent_version",
+          "source_version",
+          "authorization_version"
+        ]
+      },
+      "confirmation_type": "MEMORY_SAVE_CONFIRMATION",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "VERIFIED_OWNER",
+        "CONTENT_SOURCE_PURPOSE_AND_RETENTION_SHOWN",
+        "EXPLICIT_SAVE_CONFIRMATION",
+        "EXPECTED_ITEM_VERSION_MATCH",
+        "MODEL_INFERENCE_DISTINGUISHED_FROM_FACT"
+      ],
+      "invalidation_triggers": [
+        "CONTENT_OR_PURPOSE_CHANGED",
+        "SOURCE_OR_CONSENT_REVOKED",
+        "EXPECTED_VERSION_CHANGED"
+      ],
+      "enforcement": {
+        "primary_owner": "MEMORY_SERVICE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "PROTECTED_PURPOSE_CHANGE_NOT_CONFIRMED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REVIEW_CURRENT_MEMORY_PROPOSAL",
+        "CONFIRM_EXACT_SAVE_SCOPE",
+        "INVALIDATE_DEPENDENT_RESULTS_WHEN_REQUIRED"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "LONG_TERM_MEMORY_WRITE",
+      "notes": [
+        "任务最小运行记录不自动成为长期记忆；模型只能提交待确认建议。"
+      ]
+    },
+    {
+      "id": "memory.revoke",
+      "label": "本人撤回记忆使用授权",
+      "permission_level": null,
+      "permission_domain": "MEMORY_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_MEMORY_ITEMS_CONSENT_AND_DERIVED_RETRIEVALS_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "WITHDRAW_FUTURE_MEMORY_USE",
+        "audience": "MEMORY_AND_AUTHORIZATION_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "memory_consent_version",
+          "memory_item_version",
+          "revocation_version"
+        ]
+      },
+      "confirmation_type": "MEMORY_REVOKE_EXPLICIT_INTENT",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "VERIFIED_OWNER",
+        "EXACT_ITEM_OR_PURPOSE_SCOPE",
+        "TRUSTED_REVOCATION_RECORD",
+        "DEPENDENCY_INVALIDATION_AVAILABLE"
+      ],
+      "invalidation_triggers": [
+        "TARGET_SCOPE_CHANGED",
+        "ACTOR_OR_RESOURCE_OWNERSHIP_CHANGED"
+      ],
+      "enforcement": {
+        "primary_owner": "MEMORY_AND_AUTHORIZATION_SERVICE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "STOP_FUTURE_RETRIEVAL",
+        "INVALIDATE_SUMMARIES_VECTORS_AND_CACHES",
+        "PAUSE_DEPENDENT_UNEXECUTED_ACTIONS",
+        "KEEP_MINIMAL_AUDIT_REFERENCE"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "MEMORY_CONSENT_REVOCATION",
+      "notes": [
+        "撤回并不自动抹去已发生的事实；既有报告可保留必要历史依据，但不得再次成为有效检索源。",
+        "重复撤回同一授权返回原撤回记录，不产生第二次状态变化。"
+      ]
+    },
+    {
+      "id": "data.export",
+      "label": "导出本人指定数据",
+      "permission_level": null,
+      "permission_domain": "DATA_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_EXACT_EXPORT_OBJECTS_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "USER_REQUESTED_EXPORT_TO_NAMED_DESTINATION",
+        "audience": "NAMED_DOWNLOAD_RECIPIENT",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "authorization_version",
+          "export_scope_version",
+          "resource_version"
+        ]
+      },
+      "confirmation_type": "DATA_EXPORT_CONFIRMATION",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "VERIFIED_OWNER",
+        "EXPLICIT_OBJECT_AND_DESTINATION",
+        "GENERATION_SCOPE_VALID",
+        "DOWNLOAD_SUBJECT_SCOPE_EXPIRY_AND_REVOCATION_RECHECK",
+        "NO_OTHER_SUBJECT_DATA"
+      ],
+      "invalidation_triggers": [
+        "GRANT_EXPIRED_OR_REVOKED",
+        "EXPORT_SCOPE_CHANGED",
+        "DOWNLOADER_SUBJECT_MISMATCH",
+        "RESOURCE_ACCESS_REVOKED"
+      ],
+      "enforcement": {
+        "primary_owner": "DATA_EXPORT_AND_DOWNLOAD_SERVICE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REVERIFY_OWNER_AND_DOWNLOAD_SCOPE",
+        "ISSUE_NEW_SCOPED_EXPORT_IF_STILL_AUTHORIZED"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "PRIVATE_DATA_EXPORT",
+      "notes": [
+        "不能仅在生成文件时校验；下载链接不作为不受限制的授权证明。"
+      ]
+    },
+    {
+      "id": "data.delete",
+      "label": "删除本人指定私有资料",
+      "permission_level": null,
+      "permission_domain": "DATA_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_EXACT_PRIVATE_RECORDS_AND_DERIVED_COPIES_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "USER_REQUESTED_DATA_REMOVAL",
+        "audience": "DATA_RESOURCE_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "resource_version",
+          "authorization_version",
+          "retention_policy_version"
+        ]
+      },
+      "confirmation_type": "DATA_DELETE_CONFIRMATION",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "VERIFIED_OWNER",
+        "EXPLICIT_OBJECT_SCOPE",
+        "RETENTION_RULE_APPLIED_AND_EXPLAINED",
+        "DEPENDENT_ACTION_INVALIDATION",
+        "DERIVED_INDEX_AND_CACHE_HANDLING"
+      ],
+      "invalidation_triggers": [
+        "OBJECT_SCOPE_CHANGED",
+        "OWNER_OR_VERSION_CHANGED"
+      ],
+      "enforcement": {
+        "primary_owner": "DATA_RESOURCE_SERVICE",
+        "supporting_owners": [
+          "MEMORY",
+          "AUDIT"
+        ],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REVIEW_CURRENT_DELETE_SCOPE",
+        "APPLY_APPROVED_RETENTION_AND_REMOVAL",
+        "SAVE_MINIMAL_MANAGEMENT_EVENT"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "PRIVATE_DATA_DELETION",
+      "notes": [
+        "保留义务与期限由团队确认；不能借完整审计无限保存工资、账单或完整敏感副本。"
+      ]
+    },
+    {
+      "id": "proposal.compare",
+      "label": "只读比较方案",
+      "permission_level": "L2",
+      "permission_domain": "ANALYSIS",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_PROPOSAL_AND_VALID_COMPARISON_DATA_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "READ_ONLY_SCENARIO_COMPARISON",
+        "audience": "CORE_AND_REPORT_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "proposal_version",
+          "data_version",
+          "rule_version",
+          "constraints_version_if_used"
+        ]
+      },
+      "confirmation_type": "EXISTING_ANALYSIS_SCOPE",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "AUTHORIZED_INPUTS",
+        "REQUIRED_COMPARISON_DATA_VALID",
+        "NO_ACCOUNT_WRITES",
+        "EXCESS_LIMITS_VISIBLE"
+      ],
+      "invalidation_triggers": [
+        "PROPOSAL_OR_DATA_CHANGED",
+        "AUTHORIZATION_REVOKED"
+      ],
+      "enforcement": {
+        "primary_owner": "CORE_AND_TOOL_ADAPTER",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REPAIR_DATA_OR_CREATE_NEW_COMPARISON",
+        "KEEP_BLOCKED_EXECUTION_LABEL"
+      ],
+      "current_capability": {
+        "runtime_available": null,
+        "status": "EXISTING_COMPONENT_EVIDENCE_ONLY_NOT_JOINTLY_VERIFIED",
+        "evidence_note": "已有局部健康检查/方案比较，不证明账户写入能力。"
+      },
+      "side_effect": "NONE",
+      "notes": [
+        "原持仓或拟议方案超限可以有权只读比较；无法计算的曲线不得编造。"
+      ]
+    },
+    {
+      "id": "report.save",
+      "label": "保存本人只读报告",
+      "permission_level": "L2",
+      "permission_domain": "REPORT_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_CURRENT_PRIVATE_REPORT_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "OWNER_ONLY_HISTORICAL_REPORT",
+        "audience": "PRIVATE_REPORT_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "report_version",
+          "source_versions",
+          "authorization_version"
+        ]
+      },
+      "confirmation_type": "REPORT_SAVE_SCOPE",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "VERIFIED_REPORT_OWNER",
+        "SOURCE_AUTHORIZED",
+        "MINIMIZED_PRIVATE_STORAGE",
+        "NO_ACCOUNT_OR_AUTHORITY_WRITE"
+      ],
+      "invalidation_triggers": [
+        "SOURCE_CONSENT_WITHDRAWN",
+        "OWNER_OR_REPORT_SCOPE_CHANGED"
+      ],
+      "enforcement": {
+        "primary_owner": "REPORT_SERVICE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REVERIFY_REPORT_ACCESS",
+        "MARK_STALE_DERIVED_CONCLUSIONS",
+        "DO_NOT_REINTRODUCE_REVOKED_MEMORY"
+      ],
+      "current_capability": {
+        "runtime_available": null,
+        "status": "EXISTING_COMPONENT_EVIDENCE_ONLY_NOT_JOINTLY_VERIFIED",
+        "evidence_note": "已有局部报告与审计展示；本矩阵的统一资源授权尚未联调。"
+      },
+      "side_effect": "PRIVATE_READ_ONLY_REPORT_SAVE",
+      "notes": []
+    },
+    {
+      "id": "paper.reserve",
+      "label": "按完整批准计划预留模拟资金",
+      "permission_level": "L3",
+      "permission_domain": "PAPER_EXECUTION",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_SINGLE_PAPER_ACCOUNT_AND_COMPLETE_PLAN_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "EXACT_APPROVED_PAPER_PLAN_RESERVATION",
+        "audience": "UNIQUE_ACTION_GATEWAY_AND_FINANCE_LEDGER",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "account_version",
+          "constraints_version",
+          "proposal_sha256",
+          "rule_version",
+          "authorization_version",
+          "approval_version"
+        ]
+      },
+      "confirmation_type": "COMPLETE_PAPER_PLAN_APPROVAL",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "ALL_PAPER_WRITE_GATES",
+        "EXPECTED_ACCOUNT_VERSION_ATOMIC_MATCH",
+        "AVAILABLE_FUNDS_AND_PROTECTED_PURPOSES_SATISFIED",
+        "IDEMPOTENT_RESERVATION",
+        "TRUSTED_REVOCATION_ORDERING"
+      ],
+      "invalidation_triggers": [
+        "APPROVAL_MISSING_REJECTED_REVOKED_EXPIRED",
+        "RELEVANT_PLAN_OR_CONSTRAINT_CHANGED",
+        "EXTERNAL_ACCOUNT_VERSION_CHANGED",
+        "REQUIRED_CONTROL_UNKNOWN"
+      ],
+      "enforcement": {
+        "primary_owner": "UNIQUE_ACTION_GATEWAY_AND_FINANCE_LEDGER",
+        "supporting_owners": [
+          "CORE",
+          "RISK",
+          "APPROVAL_SERVICE"
+        ],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "PLAN_APPROVAL_NOT_VALID",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "READ_TRUSTED_NEW_SNAPSHOT",
+        "RECHECK_RISK_AND_PERMISSION",
+        "REAPPROVE_CURRENT_COMPLETE_PLAN_IF_REQUIRED"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "PAPER_FUNDS_RESERVATION",
+      "notes": []
+    },
+    {
+      "id": "paper.commit",
+      "label": "提交已批准模拟计划中的既定动作",
+      "permission_level": "L3",
+      "permission_domain": "PAPER_EXECUTION",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "SERVER_VERIFIED_END_USER_OR_EXPLICIT_TASK_SCOPED_DELEGATION; SYNTHETIC_VISITOR_ONLY_IN_OWN_ISOLATED_DEMO_SCOPE",
+        "resource": "SUBJECT_OWNED_ORIGINAL_PAPER_ACCOUNT_PLAN_AND_RESERVATION_OR_EXPLICITLY_SCOPED_DELEGATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "EXACT_APPROVED_REMAINING_PLAN_STEP",
+        "audience": "UNIQUE_ACTION_GATEWAY_AND_FINANCE_LEDGER",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "decision_snapshot_version",
+          "trusted_reservation_version",
+          "constraints_version",
+          "proposal_sha256",
+          "authorization_version",
+          "approval_version"
+        ]
+      },
+      "confirmation_type": "COMPLETE_PAPER_PLAN_APPROVAL",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "ALL_PAPER_WRITE_GATES",
+        "RESERVATION_BELONGS_TO_SAME_TASK_PLAN_ACCOUNT",
+        "ATOMIC_COMMIT_POINT_AND_REVOCATION_ORDERING",
+        "NO_PARAMETER_EXPANSION",
+        "IDEMPOTENT_COMMIT"
+      ],
+      "invalidation_triggers": [
+        "APPROVAL_OR_GRANT_INVALID",
+        "PLAN_OR_ACCOUNT_SUBSTITUTED",
+        "UNEXPECTED_EXTERNAL_VERSION_CHANGE",
+        "RESERVATION_INVALID",
+        "REQUIRED_CONTROL_UNKNOWN"
+      ],
+      "enforcement": {
+        "primary_owner": "UNIQUE_ACTION_GATEWAY_AND_FINANCE_LEDGER",
+        "supporting_owners": [
+          "CORE",
+          "RISK",
+          "APPROVAL_SERVICE"
+        ],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "PLAN_APPROVAL_NOT_VALID",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "QUERY_ORIGINAL_EXECUTION_FIRST",
+        "REPAIR_OR_RELEASE_ONLY_ORIGINAL_RESERVATION",
+        "RECHECK_AND_REAPPROVE_NEW_PLAN_IF_REQUIRED"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "PAPER_LEDGER_COMMIT",
+      "notes": [
+        "本计划合法reserve造成的版本推进只按冻结预留协议验证，不与其他任务的余额变化混同。",
+        "整段四周回放可一次批准，但每步仍检查现有约束、资金与撤回状态；不在历史日期反复要求现实审批。"
+      ]
+    },
+    {
+      "id": "paper.release",
+      "label": "释放原任务未消耗的模拟预留",
+      "permission_level": "L3",
+      "permission_domain": "TRUSTED_RECOVERY",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "AUTHENTICATED_FINANCE_RECOVERY_ACTOR",
+        "AUTHENTICATED_GATEWAY_RECOVERY_ACTOR"
+      ],
+      "scope": {
+        "subject": "AUTHENTICATED_SCOPED_FINANCE_OR_GATEWAY_RECOVERY_ACTOR",
+        "resource": "ORIGINAL_TASK_ACCOUNT_PLAN_AND_EXISTING_RESERVATION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "RELEASE_ONLY_UNCONSUMED_ORIGINAL_RESERVATION",
+        "audience": "UNIQUE_FINANCE_LEDGER",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "reservation_version",
+          "original_proposal_sha256",
+          "ledger_reconciliation_version"
+        ]
+      },
+      "confirmation_type": "TRUSTED_RECOVERY_AUTHORITY",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "SERVICE_RECOVERY_AUTHORITY_VALID",
+        "ORIGINAL_SUBJECT_ACCOUNT_TASK_BINDING",
+        "EXISTING_RESERVATION_VALIDATED",
+        "ATOMIC_IDEMPOTENT_RELEASE",
+        "NO_NEW_INVESTMENT_OR_TRANSFER"
+      ],
+      "invalidation_triggers": [
+        "RESERVATION_ALREADY_CONSUMED_OR_RELEASED",
+        "TASK_ACCOUNT_OR_PLAN_MISMATCH"
+      ],
+      "enforcement": {
+        "primary_owner": "FINANCE_LEDGER_AND_UNIQUE_GATEWAY",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "READ_ORIGINAL_RECEIPT",
+        "RECONCILE_BEFORE_RELEASE_WHEN_UNKNOWN"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "RELEASE_ORIGINAL_UNCONSUMED_PAPER_RESERVATION",
+      "notes": [
+        "用户资料授权撤回后仍允许可信服务必要收尾；不能以已失效的新投资授权阻止安全释放，也不能借释放重新投资。",
+        "提交是否已发生未知时先核账，不假定释放等于回滚。",
+        "L3说明该动作会改变模拟预留；它不授予新投资资格。仅对原预留的可信收尾按专门恢复权限执行，不要求已撤回用户重新批准新投资。"
+      ]
+    },
+    {
+      "id": "execution.reconcile",
+      "label": "查询原执行回执并核查未知结果",
+      "permission_level": "L1",
+      "permission_domain": "TRUSTED_RECOVERY",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_FINANCE_RECOVERY_ACTOR",
+        "AUTHENTICATED_GATEWAY_RECOVERY_ACTOR"
+      ],
+      "scope": {
+        "subject": "VERIFIED_RESOURCE_OWNER_OR_AUTHENTICATED_SCOPED_RECOVERY_ACTOR",
+        "resource": "ORIGINAL_EXECUTION_AND_ACCOUNT_TASK_BINDING",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "READ_ORIGINAL_RESULT_AND_RECONCILE_ONLY",
+        "audience": "ORIGINAL_EXECUTION_OR_LEDGER_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "original_proposal_sha256",
+          "execution_record_version",
+          "ledger_version"
+        ]
+      },
+      "confirmation_type": "EXISTING_OWNER_READ_GRANT_OR_TRUSTED_RECOVERY_AUTHORITY",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "ORIGINAL_EXECUTION_ID_OR_IDEMPOTENCY_KEY",
+        "SUBJECT_ACCOUNT_TASK_BINDING",
+        "TRUSTED_QUERY_AUTHORITY",
+        "NO_AUTOMATIC_WRITE_RETRY"
+      ],
+      "invalidation_triggers": [
+        "QUERY_ACTOR_OR_RESOURCE_MISMATCH",
+        "QUERY_AUTHORITY_REVOKED"
+      ],
+      "enforcement": {
+        "primary_owner": "EXECUTION_RECEIPT_AND_FINANCE_SERVICE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ACTION_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "RESTORE_TRUSTED_QUERY_SERVICE",
+        "KEEP_UNKNOWN_UNTIL_RECEIPT_VERIFIED"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "NONE",
+      "notes": [
+        "用户本人查询仍须有效身份/资源权限；服务端受限核账可在原用户会话失效后继续。",
+        "不得换task_id、nonce或幂等键盲目重发资金请求。",
+        "L1说明它是受归属约束的私有只读查询；可信恢复服务与本人查询分别验证各自最小权限。"
+      ]
+    },
+    {
+      "id": "audit.read",
+      "label": "读取本人审计摘要或授权脱敏视图",
+      "permission_level": "L1",
+      "permission_domain": "AUDIT_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "VERIFIED_RESOURCE_OWNER_OR_EXPLICITLY_SCOPED_AUDIT_ACTOR",
+        "resource": "OWNER_TASK_AUDIT_SUMMARY_OR_AUTHORIZED_REDACTED_VIEW",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "OWNER_REVIEW_OR_EXPLICIT_AUDIT_PURPOSE",
+        "audience": "AUDIT_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "audit_view_version",
+          "authorization_version",
+          "source_task_version"
+        ]
+      },
+      "confirmation_type": "AUDIT_READ_SCOPE",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "SUBJECT_RESOURCE_RELATION_VALID",
+        "PURPOSE_AND_VIEW_SCOPE_MATCH",
+        "MINIMIZATION_AND_REDACTION_APPLIED",
+        "NO_CREDENTIALS_OR_CROSS_SUBJECT_LEAKAGE"
+      ],
+      "invalidation_triggers": [
+        "SUBJECT_OR_PURPOSE_CHANGED",
+        "AUDIT_SCOPE_EXPIRED_OR_REVOKED"
+      ],
+      "enforcement": {
+        "primary_owner": "AUDIT_SERVICE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "AUDIT_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REAUTHENTICATE_OR_RESTRICT_TO_AUTHORIZED_REDACTED_VIEW"
+      ],
+      "current_capability": {
+        "runtime_available": null,
+        "status": "EXISTING_COMPONENT_EVIDENCE_ONLY_NOT_JOINTLY_VERIFIED",
+        "evidence_note": "已有局部审计记录/时间线；跨服务统一主体和查询权限尚未联合验收。"
+      },
+      "side_effect": "NONE",
+      "notes": [
+        "知道task_id或audit_id不证明归属；运维/评测角色默认只看虚构案例或脱敏视图。"
+      ]
+    },
+    {
+      "id": "audit.export",
+      "label": "导出指定范围审计材料",
+      "permission_level": null,
+      "permission_domain": "AUDIT_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "VERIFIED_RESOURCE_OWNER",
+        "AUTHENTICATED_SCOPED_SERVICE_ACTOR"
+      ],
+      "scope": {
+        "subject": "VERIFIED_RESOURCE_OWNER_OR_EXPLICITLY_SCOPED_AUDIT_ACTOR",
+        "resource": "EXACT_OWNER_AUDIT_OR_APPROVED_REDACTED_RECORDS",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "NAMED_AUDIT_OR_OWNER_EXPORT_PURPOSE",
+        "audience": "NAMED_EXPORT_DESTINATION",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "audit_view_version",
+          "export_scope_version",
+          "authorization_version"
+        ]
+      },
+      "confirmation_type": "AUDIT_EXPORT_CONFIRMATION",
+      "confirmation_note": "有效既有授权可复用；仅当对象、用途、范围和版本完全匹配时，用户明确操作可形成确认记录，不重复索要相同确认。",
+      "preconditions": [
+        "AUDIT_READ_SCOPE_VALID",
+        "EXPLICIT_SCOPE_AND_DESTINATION",
+        "GENERATION_AND_DOWNLOAD_RECHECK",
+        "REDACTION_APPLIED",
+        "NO_CREDENTIAL_EXPORT"
+      ],
+      "invalidation_triggers": [
+        "EXPORT_OR_DOWNLOAD_SCOPE_INVALID",
+        "AUTHORIZATION_EXPIRED_OR_REVOKED",
+        "RECIPIENT_CHANGED"
+      ],
+      "enforcement": {
+        "primary_owner": "AUDIT_AND_DOWNLOAD_SERVICE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "AUDIT_SCOPE_DENIED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REVERIFY_SCOPE_AND_RECIPIENT",
+        "GENERATE_ONLY_NEW_AUTHORIZED_EXPORT"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "SCOPED_AUDIT_EXPORT",
+      "notes": []
+    },
+    {
+      "id": "policy.publish",
+      "label": "发布经评审权限或风险策略",
+      "permission_level": null,
+      "permission_domain": "OPERATIONS_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "AUTHORIZED_POLICY_MAINTAINER"
+      ],
+      "scope": {
+        "subject": "AUTHENTICATED_AUTHORIZED_POLICY_MAINTAINER",
+        "resource": "EXACT_POLICY_BUNDLE_AND_DEPLOYMENT_ENVIRONMENT",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "REVIEWED_VERSIONED_POLICY_RELEASE",
+        "audience": "AUTHORIZED_POLICY_DISTRIBUTION_SERVICE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "policy_version",
+          "approval_record_version",
+          "deployment_version"
+        ]
+      },
+      "confirmation_type": "PRIVILEGED_CHANGE_APPROVAL",
+      "confirmation_note": "仅接受对应维护者的受保护变更审批；这不是最终用户的财务确认，也不产生代用户资金授权。",
+      "preconditions": [
+        "SCOPED_MAINTAINER_ROLE",
+        "REVIEWED_POLICY_DIFF",
+        "ENVIRONMENT_SCOPE_MATCH",
+        "TEST_AND_ROLLBACK_EVIDENCE",
+        "NO_L4_ENABLE_SWITCH"
+      ],
+      "invalidation_triggers": [
+        "MAINTAINER_GRANT_REVOKED",
+        "POLICY_OR_ENVIRONMENT_CHANGED",
+        "REVIEW_APPROVAL_INVALIDATED"
+      ],
+      "enforcement": {
+        "primary_owner": "POLICY_RELEASE_CONTROL_PLANE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ADMIN_ROLE_NOT_USER_APPROVAL",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "OBTAIN_REVIEW_FOR_CURRENT_POLICY_VERSION",
+        "RESTORE_ONLY_APPROVED_SAFE_CONFIGURATION"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "POLICY_RELEASE",
+      "notes": [
+        "发布/回滚不能恢复已失效用户授权或批准；维护角色不授予用户资产读取或代批。"
+      ]
+    },
+    {
+      "id": "deployment.manage",
+      "label": "管理明确授权的部署资源",
+      "permission_level": null,
+      "permission_domain": "OPERATIONS_CONTROL",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "AUTHORIZED_DEPLOYMENT_MAINTAINER"
+      ],
+      "scope": {
+        "subject": "AUTHENTICATED_AUTHORIZED_DEPLOYMENT_MAINTAINER",
+        "resource": "EXACT_ACCOUNT_WORKER_ENVIRONMENT_AND_DEPLOYMENT",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "APPROVED_DEPLOYMENT_OR_ROLLBACK",
+        "audience": "AUTHORIZED_DEPLOYMENT_CONTROL_PLANE",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "deployment_id",
+          "source_sha",
+          "maintainer_grant_version"
+        ]
+      },
+      "confirmation_type": "PRIVILEGED_CHANGE_APPROVAL",
+      "confirmation_note": "仅接受对应维护者的受保护变更审批；这不是最终用户的财务确认，也不产生代用户资金授权。",
+      "preconditions": [
+        "SCOPED_ENVIRONMENT_PERMISSION",
+        "SOURCE_SHA_AND_DEPLOYMENT_MATCH",
+        "REVIEWED_CHANGE",
+        "NO_USER_APPROVAL_IMPERSONATION",
+        "NO_SECRET_DISCLOSURE"
+      ],
+      "invalidation_triggers": [
+        "ACCOUNT_WORKER_OR_ENVIRONMENT_CHANGED",
+        "MAINTAINER_PERMISSION_REVOKED",
+        "SOURCE_OR_DEPLOYMENT_CHANGED"
+      ],
+      "enforcement": {
+        "primary_owner": "DEPLOYMENT_CONTROL_PLANE",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "ADMIN_ROLE_NOT_USER_APPROVAL",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "REVERIFY_NAMED_ACCOUNT_RESOURCE_AND_APPROVAL",
+        "APPLY_ONLY_REVIEWED_DEPLOYMENT"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "SPECIFICATION_NOT_INTEGRATED",
+        "evidence_note": "本矩阵尚未接入正式统一服务，不能据本规范宣称可执行。"
+      },
+      "side_effect": "DEPLOYMENT_CHANGE",
+      "notes": [
+        "GitHub仓库权限不自动等于Cloudflare权限；Cloudflare访问也不等于用户资金授权。"
+      ]
+    },
+    {
+      "id": "real_trade.*",
+      "label": "真实资金操作禁止",
+      "permission_level": "L4",
+      "permission_domain": "REAL_EXECUTION",
+      "automatic_inheritance": false,
+      "independent_action_registration_required": true,
+      "actors": [
+        "ANY_ACTOR"
+      ],
+      "scope": {
+        "subject": "ANY_ACTOR",
+        "resource": "ANY_REAL_FINANCIAL_ACCOUNT_OR_TRANSACTION",
+        "action": "EXACT_REGISTERED_ACTION_AND_VALIDATED_PARAMETERS",
+        "purpose": "ANY_REAL_EXECUTION_PURPOSE",
+        "audience": "ANY_REAL_EXECUTION_TARGET",
+        "environment": "EXACT_REGISTERED_ENVIRONMENT_NO_STAGING_PRODUCTION_SUBSTITUTION",
+        "validity": "CURRENT_GRANT_NOT_EXPIRED_OR_REVOKED_WHERE_REQUIRED",
+        "versions": [
+          "permission-policy.v1.0"
+        ]
+      },
+      "confirmation_type": "NO_CONFIRMATION_CAN_ENABLE_THIS_ACTION",
+      "confirmation_note": "本版本永久禁止真实资金动作；任何既有授权、用户确认、管理员角色或配置均不能开启。",
+      "preconditions": [
+        "ALWAYS_DENY_IN_THIS_VERSION"
+      ],
+      "invalidation_triggers": [
+        "NOT_APPLICABLE_ALWAYS_DISABLED"
+      ],
+      "enforcement": {
+        "primary_owner": "TOOL_REGISTRY_GATEWAY_AND_FINANCIAL_ADAPTER",
+        "supporting_owners": [],
+        "assignment_status": "CROSS_MODULE_OWNER_ACCEPTANCE_PENDING"
+      },
+      "on_denial": {
+        "result": "DENY",
+        "code": "REAL_EXECUTION_DISABLED",
+        "effects_allowed": false,
+        "event_scope": "THIS_PERMISSION_GATE_CHECK_ONLY",
+        "starts_new_risk_check": false,
+        "prior_risk_records": "PRESERVE_EXISTING_VERSION_BOUND_RECORDS_DO_NOT_OVERWRITE"
+      },
+      "on_verification_failure": {
+        "result": "ERROR",
+        "code": "REQUIRED_CONTROL_UNAVAILABLE",
+        "effects_allowed": false
+      },
+      "recovery": [
+        "NO_EXECUTION_RECOVERY_PATH_IN_THIS_VERSION",
+        "MAY_CREATE_SEPARATE_AUTHORIZED_READ_ONLY_COMPARISON"
+      ],
+      "current_capability": {
+        "runtime_available": false,
+        "status": "PERMANENTLY_DISABLED_THIS_VERSION",
+        "evidence_note": "无用户、管理员、配置或服务签名可开启本版本真实交易。"
+      },
+      "side_effect": "PROHIBITED_REAL_FUNDS_EFFECT",
+      "notes": [
+        "通配符仅表示禁止整个动作族，不是允许匹配任意工具。"
+      ]
+    }
+  ]
+}

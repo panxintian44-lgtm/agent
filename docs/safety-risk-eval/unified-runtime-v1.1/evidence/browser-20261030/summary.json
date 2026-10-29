@@ -1,0 +1,55 @@
+{
+  "verified_at_beijing": "2026-10-30 01:04",
+  "verification": "LIVE_V15_BROWSER_SYNTHETIC_SESSION",
+  "site_version": 15,
+  "source_commit": "bde20b6dca5f3a4aa5b7bc815f73b0aac81cc8b7",
+  "task_id": "daily-task-ba8932e0-2678-45c5-a9c0-7158594119a8",
+  "final_check_id": "daily-check-ec99d222-1b4a-40f7-821c-7bb927e9de4d",
+  "previous_block_check_id": "daily-check-ad99d178-ab00-4414-9142-deb811c796bf",
+  "observations": [
+    {
+      "id": "LOW_ALLOW_AND_FULL_COVERAGE",
+      "result": "PASS"
+    },
+    {
+      "id": "EXACT_ZERO_REMAINDER",
+      "result": "PASS"
+    },
+    {
+      "id": "CONFIRMATION_RECHECK_GRADE_PRESERVED",
+      "result": "PASS"
+    },
+    {
+      "id": "APPROVAL_RECORDED_IN_AUDIT",
+      "result": "PASS"
+    },
+    {
+      "id": "EXECUTION_AND_REPEAT_DISABLED_AFTER_CONFIRMATION",
+      "result": "PASS"
+    },
+    {
+      "id": "ONE_FEN_EXCESS_HIGH_BLOCK",
+      "result": "PASS"
+    },
+    {
+      "id": "PARAMETER_CHANGE_INVALIDATES_OLD_CONFIRMATION",
+      "result": "PASS"
+    },
+    {
+      "id": "SAME_TASK_AND_CURRENT_CHECK_REFERENCE",
+      "result": "PASS"
+    },
+    {
+      "id": "CASH_AND_HOLDS_UNCHANGED",
+      "result": "PASS"
+    }
+  ],
+  "confirmation_authority": "LOCAL_SYNTHETIC_SESSION_ONLY",
+  "real_model_button_clicked": false,
+  "execution_button_clicked": false,
+  "provider_billing_checked": false,
+  "team_joint_acceptance": false,
+  "original_v14_issue_found": true,
+  "issue_reproduced_by_local_http": true,
+  "issue_fixed_and_rechecked_on_v15": true
+}

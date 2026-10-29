@@ -1,0 +1,1020 @@
+{
+  "casebook_version": "unified-risk-rating-cases.v1",
+  "policy_version": "risk-policy.v1.0",
+  "permission_policy_version": "permission-policy.v1.0",
+  "status": "EVALUATION_DESIGNS_NOT_EXECUTED",
+  "application_tests_run": false,
+  "model_calls": 0,
+  "full_service_joint_acceptance": false,
+  "note": "Expected results are specifications, not measured engine, gateway or deployed-service responses. Financial grade does not imply current runtime execution eligibility. Earlier signed records remain immutable when current checks are invalidated.",
+  "cases": [
+    {
+      "case_id": "UC01",
+      "title": "资金和其他必要条件满足",
+      "status": "NOT_RUN",
+      "scope": "FINANCIAL_POLICY",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "gross_cash_minor": 1800000,
+        "holds_minor": 0,
+        "protected_minor": 1300000,
+        "additional_confirmed_reserve_minor": 0,
+        "proposed_minor": 200000
+      },
+      "expected": {
+        "business_risk_band": "LOW",
+        "coverage": "FULL",
+        "risk_decision": "ALLOW",
+        "rule_refs": [
+          "R03"
+        ],
+        "runtime_execution_enabled": false,
+        "free_cash_minor": 500000,
+        "approval_status": "PENDING",
+        "execution_gate": "WAIT_FOR_VERIFIED_USER_APPROVAL",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context",
+        "protected_cashflow"
+      ]
+    },
+    {
+      "case_id": "UC02",
+      "title": "投入侵占房租学费",
+      "status": "NOT_RUN",
+      "scope": "FINANCIAL_POLICY",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "gross_cash_minor": 1800000,
+        "holds_minor": 0,
+        "protected_minor": 1300000,
+        "additional_confirmed_reserve_minor": 0,
+        "proposed_minor": 800000
+      },
+      "expected": {
+        "business_risk_band": "HIGH",
+        "coverage": "FULL",
+        "risk_decision": "BLOCK",
+        "rule_refs": [
+          "R03"
+        ],
+        "runtime_execution_enabled": false,
+        "free_cash_minor": 500000,
+        "shortfall_minor": 300000,
+        "user_acceptance_can_override": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context",
+        "protected_cashflow"
+      ]
+    },
+    {
+      "case_id": "UC03",
+      "title": "当前余额未知",
+      "status": "NOT_RUN",
+      "scope": "FINANCIAL_POLICY",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "proposed_minor": 200000,
+        "gross_cash_minor": null
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "PARTIAL",
+        "risk_decision": "REVIEW",
+        "rule_refs": [
+          "R02",
+          "R03"
+        ],
+        "runtime_execution_enabled": false,
+        "recovery": "SUPPLY_VERIFIED_BUSINESS_INFORMATION",
+        "acceptance_allowed": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context",
+        "protected_cashflow"
+      ],
+      "remove_baseline_fields": [
+        "gross_cash_minor"
+      ]
+    },
+    {
+      "case_id": "UC04",
+      "title": "整数分输入格式错误",
+      "status": "NOT_RUN",
+      "scope": "FINANCIAL_POLICY",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "proposed_minor": 200000,
+        "gross_cash_minor": "NaN"
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "UNAVAILABLE",
+        "risk_decision": "ERROR",
+        "rule_refs": [
+          "R02"
+        ],
+        "runtime_execution_enabled": false,
+        "callback": null,
+        "recovery": "FIX_INPUT_OR_CALCULATION",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context",
+        "protected_cashflow"
+      ],
+      "remove_baseline_fields": [
+        "gross_cash_minor"
+      ]
+    },
+    {
+      "case_id": "UC05",
+      "title": "全现金无投资分母",
+      "status": "NOT_RUN",
+      "scope": "FINANCIAL_POLICY",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "cash_minor": 1000000,
+        "non_cash_values_minor": [],
+        "requested_purpose": "PROPOSED_PAPER_PLAN_KEEP_CASH",
+        "risk_gate_requested": true,
+        "account_write_requested": false,
+        "protected_obligations": [],
+        "protected_purposes_explicitly_confirmed": true,
+        "additional_reserve_minor": 0
+      },
+      "expected": {
+        "business_risk_band": "LOW",
+        "coverage": "FULL",
+        "risk_decision": "ALLOW",
+        "rule_refs": [
+          "R04",
+          "R05"
+        ],
+        "runtime_execution_enabled": false,
+        "invested_ratios": "NOT_APPLICABLE_ALL_CASH",
+        "divide_by_zero": false,
+        "risk_decision_scope": "REQUESTED_PLAN_CHECK_WITH_NO_FUNDS_WRITE",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC06",
+      "title": "单只两口径恰等于上限",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "cash_minor": 300000,
+        "non_cash_values_minor": [
+          350000,
+          100000,
+          90000,
+          80000,
+          80000
+        ]
+      },
+      "expected": {
+        "business_risk_band": "LOW",
+        "coverage": "FULL",
+        "risk_decision": "ALLOW",
+        "rule_refs": [
+          "R04"
+        ],
+        "runtime_execution_enabled": false,
+        "single_total_ratio": 0.35,
+        "single_invested_ratio": 0.5,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC07",
+      "title": "总资产未超限但非现金口径超限",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "cash_minor": 600000,
+        "non_cash_values_minor": [
+          250000,
+          50000,
+          40000,
+          30000,
+          30000
+        ]
+      },
+      "expected": {
+        "business_risk_band": "HIGH",
+        "coverage": "FULL",
+        "risk_decision": "BLOCK",
+        "rule_refs": [
+          "R04"
+        ],
+        "runtime_execution_enabled": false,
+        "single_total_ratio": 0.25,
+        "single_invested_ratio": 0.625,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC08",
+      "title": "已知行业超限且有未知份额",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "known_industry_total_ratio": 0.41,
+        "unknown_industry_total_ratio": 0.1
+      },
+      "expected": {
+        "business_risk_band": "HIGH",
+        "coverage": "PARTIAL",
+        "risk_decision": "BLOCK",
+        "rule_refs": [
+          "R05"
+        ],
+        "runtime_execution_enabled": false,
+        "unknown_acceptance_may_override": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC09",
+      "title": "约定行业未知复核例外",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "known_industry_limits_pass": true,
+        "unknown_classification": true,
+        "all_other_required_checks_valid": true
+      },
+      "expected": {
+        "business_risk_band": "ELEVATED",
+        "coverage": "PARTIAL",
+        "risk_decision": "REVIEW",
+        "rule_refs": [
+          "R05"
+        ],
+        "runtime_execution_enabled": false,
+        "limitation_type": "ACCEPTABLE_LIMITATION",
+        "core_review_acceptance_transition": "NOT_IMPLEMENTED",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC10",
+      "title": "重点下降且其他硬超限未恶化",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "focus": {
+          "metric": "single_asset",
+          "asset_or_industry": "DEMO_ASSET_A",
+          "denominator": "total_assets"
+        },
+        "before": 0.6,
+        "after": 0.4,
+        "both_denominators_other_checks": "VALIDATED_NOT_NEW_OR_WORSE",
+        "remaining_breach": true
+      },
+      "expected": {
+        "business_risk_band": "ELEVATED",
+        "coverage": "FULL",
+        "risk_decision": "REVIEW",
+        "rule_refs": [
+          "R04"
+        ],
+        "runtime_execution_enabled": false,
+        "improvement_exception": "VERIFIED",
+        "remaining_breaches_need_acceptance": true,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC11",
+      "title": "焦点下降但另一个口径恶化",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "focus_before": 0.6,
+        "focus_after": 0.4,
+        "another_hard_metric_new_or_worse": true
+      },
+      "expected": {
+        "business_risk_band": "HIGH",
+        "coverage": "FULL",
+        "risk_decision": "BLOCK",
+        "rule_refs": [
+          "R04",
+          "R05"
+        ],
+        "runtime_execution_enabled": false,
+        "improvement_exception": "DENIED",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC12",
+      "title": "未知不能证明改善豁免",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "known_proposed_single_total_ratio": 0.4,
+        "focus_improves": true,
+        "other_hard_constraints_evidence": "MISSING"
+      },
+      "expected": {
+        "business_risk_band": "HIGH",
+        "coverage": "PARTIAL",
+        "risk_decision": "BLOCK",
+        "rule_refs": [
+          "R02",
+          "R04"
+        ],
+        "runtime_execution_enabled": false,
+        "improvement_exception": "NOT_PROVEN",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC13",
+      "title": "历史回撤超用户复核参考",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "historical_drawdown": 0.12,
+        "user_confirmed_review_reference": 0.1,
+        "window_and_formula": "VALIDATED"
+      },
+      "expected": {
+        "business_risk_band": "ELEVATED",
+        "coverage": "FULL",
+        "risk_decision": "REVIEW",
+        "rule_refs": [
+          "R06"
+        ],
+        "runtime_execution_enabled": false,
+        "future_loss_cap_claim": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC14",
+      "title": "相关系数等于阈值但权重等于上限",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "pair_correlation": 0.8,
+        "pair_total_assets_weight": 0.4,
+        "aligned_returns": "VALIDATED"
+      },
+      "expected": {
+        "business_risk_band": "LOW",
+        "coverage": "FULL",
+        "risk_decision": "ALLOW",
+        "rule_refs": [
+          "R07"
+        ],
+        "runtime_execution_enabled": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC15",
+      "title": "相关系数等于阈值且权重大于上限",
+      "status": "NOT_RUN",
+      "scope": "FOCUSED_RULE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "pair_correlation": 0.8,
+        "pair_total_assets_weight": 0.400001,
+        "aligned_returns": "VALIDATED"
+      },
+      "expected": {
+        "business_risk_band": "ELEVATED",
+        "coverage": "FULL",
+        "risk_decision": "REVIEW",
+        "rule_refs": [
+          "R07"
+        ],
+        "runtime_execution_enabled": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC16",
+      "title": "独立资金硬拦与另一计算错误共存",
+      "status": "NOT_RUN",
+      "scope": "FINANCIAL_POLICY",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "verified_current_cash_shortfall_minor": 300000,
+        "independent_portfolio_tool_status": "ERROR"
+      },
+      "expected": {
+        "business_risk_band": "HIGH",
+        "coverage": "PARTIAL",
+        "risk_decision": "BLOCK",
+        "rule_refs": [
+          "R03",
+          "R02"
+        ],
+        "runtime_execution_enabled": false,
+        "check_errors": [
+          "PORTFOLIO_TOOL_ERROR"
+        ],
+        "complete_check_success": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC17",
+      "title": "跨用户读取在入口被拒",
+      "status": "NOT_RUN",
+      "scope": "PERMISSION_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "session_subject": "SYNTHETIC_A",
+        "resource_owner": "SYNTHETIC_B"
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "UNAVAILABLE",
+        "risk_decision": null,
+        "rule_refs": [
+          "R01"
+        ],
+        "runtime_execution_enabled": false,
+        "permission_decision": "DENY",
+        "risk_engine_ran": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY",
+        "risk_check_state": "NOT_RUN"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC18",
+      "title": "合成外部文本要求真实交易",
+      "status": "NOT_RUN",
+      "scope": "PERMISSION_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "content_trust": "UNTRUSTED_EXTERNAL_DATA",
+        "synthetic_attempted_action": "real_trade.buy",
+        "claimed_user_approval": "EXTERNAL_TEXT_ONLY"
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "UNAVAILABLE",
+        "risk_decision": null,
+        "rule_refs": [
+          "R01",
+          "R08"
+        ],
+        "runtime_execution_enabled": false,
+        "permission_decision": "DENY",
+        "risk_engine_ran": false,
+        "model_call_performed": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY",
+        "risk_check_state": "NOT_RUN"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC19",
+      "title": "风险通过但未本人批准",
+      "status": "NOT_RUN",
+      "scope": "APPROVAL_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "financial_check": "ALLOW",
+        "current_plan_unchanged": true,
+        "verified_user_approval": false,
+        "financial_assessment_completed": true,
+        "original_risk_decision": "ALLOW",
+        "original_business_band": "LOW",
+        "assessment_bound_to_unchanged_plan": true
+      },
+      "expected": {
+        "business_risk_band": "LOW",
+        "coverage": "FULL",
+        "risk_decision": "ALLOW",
+        "rule_refs": [
+          "R08"
+        ],
+        "runtime_execution_enabled": false,
+        "approval_status": "PENDING",
+        "execution_gate": "CLOSED",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY",
+        "risk_decision_source": "ORIGINAL_VERSION_BOUND_ASSESSMENT"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC20",
+      "title": "批准后改金额",
+      "status": "NOT_RUN",
+      "scope": "APPROVAL_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "approved_amount_minor": 200000,
+        "current_amount_minor": 300000,
+        "proposal_hash_matches": false
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "PARTIAL",
+        "risk_decision": null,
+        "rule_refs": [
+          "R08"
+        ],
+        "runtime_execution_enabled": false,
+        "previous_band": "LOW",
+        "previous_risk_decision": "ALLOW",
+        "previous_assessment_status": "INVALIDATED_FOR_CURRENT_PLAN",
+        "approval_status": "INVALIDATED",
+        "recheck_required": true,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY",
+        "risk_check_state": "INVALIDATED"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC21",
+      "title": "完全相同执行请求重放",
+      "status": "NOT_RUN",
+      "scope": "EXECUTION_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "idempotency_key": "synthetic-key-21",
+        "same_body": true,
+        "existing_receipt": true,
+        "receipt_and_assessment_bind_same_subject_account_task_and_proposal": true,
+        "original_assessment_band": "LOW",
+        "original_risk_decision": "ALLOW",
+        "original_assessment_version_unchanged": true,
+        "original_assessment_coverage": "FULL"
+      },
+      "expected": {
+        "business_risk_band": "LOW",
+        "coverage": "FULL",
+        "risk_decision": "ALLOW",
+        "rule_refs": [
+          "R09"
+        ],
+        "runtime_execution_enabled": false,
+        "execution_gate": "READ_ORIGINAL_RECEIPT_ONLY",
+        "new_cash_effects": 0,
+        "risk_decision_source": "ORIGINAL_VERSION_BOUND_ASSESSMENT",
+        "new_risk_check_ran": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC22",
+      "title": "同幂等键改正文",
+      "status": "NOT_RUN",
+      "scope": "EXECUTION_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "idempotency_key": "synthetic-key-22",
+        "same_body": false
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "PARTIAL",
+        "risk_decision": null,
+        "rule_refs": [
+          "R09"
+        ],
+        "runtime_execution_enabled": false,
+        "request_outcome": "CONFLICT",
+        "new_cash_effects": 0,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY",
+        "risk_check_state": "NOT_REEVALUATED"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC23",
+      "title": "写请求回执未知",
+      "status": "NOT_RUN",
+      "scope": "EXECUTION_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "original_risk_decision": "ALLOW",
+        "request_sent": true,
+        "receipt_verified": false
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "PARTIAL",
+        "risk_decision": null,
+        "rule_refs": [
+          "R09"
+        ],
+        "runtime_execution_enabled": false,
+        "original_signed_risk_record_preserved": true,
+        "current_execution_status": "UNKNOWN",
+        "automatic_write_retry": false,
+        "recovery": "RECONCILE_ORIGINAL_REQUEST",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY",
+        "risk_check_state": "NOT_REEVALUATED"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC24",
+      "title": "执行意图审计失败",
+      "status": "NOT_RUN",
+      "scope": "AUDIT_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "financial_assessment_completed": true,
+        "original_risk_decision": "ALLOW",
+        "original_business_band": "LOW",
+        "assessment_bound_to_unchanged_plan": true,
+        "intent_audit_persisted": false
+      },
+      "expected": {
+        "business_risk_band": "LOW",
+        "coverage": "FULL",
+        "risk_decision": "ALLOW",
+        "rule_refs": [
+          "R10"
+        ],
+        "runtime_execution_enabled": false,
+        "control_check": "ERROR",
+        "execution_gate": "CLOSED",
+        "new_cash_effects": 0,
+        "risk_decision_source": "ORIGINAL_VERSION_BOUND_ASSESSMENT",
+        "control_coverage": "REQUIRED_AUDIT_CHECK_FAILED",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC25",
+      "title": "模型直接改保护用途或长期记忆",
+      "status": "NOT_RUN",
+      "scope": "PERMISSION_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "actor": "MODEL_PROPOSAL",
+        "action": "constraints.confirm_update",
+        "verified_user_confirmation": false
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "UNAVAILABLE",
+        "risk_decision": null,
+        "rule_refs": [
+          "R01",
+          "R08"
+        ],
+        "runtime_execution_enabled": false,
+        "permission_decision": "DENY",
+        "persistent_constraint_changes": 0,
+        "risk_engine_ran": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY",
+        "risk_check_state": "NOT_RUN"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC26",
+      "title": "原持仓超限仅作诊断",
+      "status": "NOT_RUN",
+      "scope": "CURRENT_PORTFOLIO_DIAGNOSIS",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "known_single_total_ratio": 0.6,
+        "requested_account_write": false
+      },
+      "expected": {
+        "business_risk_band": "HIGH",
+        "coverage": "FULL",
+        "risk_decision": null,
+        "rule_refs": [
+          "R04"
+        ],
+        "runtime_execution_enabled": false,
+        "diagnosis_available": true,
+        "execution_check_status": "NOT_REQUESTED",
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY",
+        "risk_check_state": "NOT_REQUESTED"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    },
+    {
+      "case_id": "UC27",
+      "title": "自述工资计划不能补成账户事实",
+      "status": "NOT_RUN",
+      "scope": "FINANCIAL_POLICY",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "dataset_source": "SYNTHETIC_SELF_REPORTED_JOURNAL_NOT_A_LEDGER_SNAPSHOT",
+        "verified_cash_snapshot": null,
+        "salary_arrived_in_ledger": "UNKNOWN",
+        "gross_cash_minor": null,
+        "inspiration_reference": "D01"
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "PARTIAL",
+        "risk_decision": "REVIEW",
+        "rule_refs": [
+          "R02",
+          "R03"
+        ],
+        "runtime_execution_enabled": false,
+        "income_added_to_current_cash": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context",
+        "protected_cashflow"
+      ],
+      "remove_baseline_fields": [
+        "gross_cash_minor"
+      ]
+    },
+    {
+      "case_id": "UC28",
+      "title": "房租保护和同义务预留不双扣",
+      "status": "NOT_RUN",
+      "scope": "FINANCIAL_POLICY",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "gross_cash_minor": 1800000,
+        "active_holds_minor": 400000,
+        "holds_linked_to_rent_minor": 400000,
+        "unpaid_protected_total_minor": 1300000,
+        "protected_unreserved_minor": 900000,
+        "additional_confirmed_reserve_minor": 0,
+        "proposed_minor": 200000,
+        "active_holds": [
+          {
+            "reservation_id": "synthetic-rent-hold",
+            "obligation_id": "synthetic-rent",
+            "amount_minor": 400000,
+            "status": "ACTIVE"
+          }
+        ]
+      },
+      "expected": {
+        "business_risk_band": "LOW",
+        "coverage": "FULL",
+        "risk_decision": "ALLOW",
+        "rule_refs": [
+          "R03"
+        ],
+        "runtime_execution_enabled": false,
+        "free_cash_minor": 500000,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context",
+        "protected_cashflow"
+      ]
+    },
+    {
+      "case_id": "UC29",
+      "title": "只有确认软预算目标偏离",
+      "status": "NOT_RUN",
+      "scope": "FINANCIAL_POLICY",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "soft_goal_confirmed": true,
+        "soft_budget_minor": 200000,
+        "spend_minor": 210000,
+        "protected_cash_conflict": false,
+        "other_required_checks_valid": true
+      },
+      "expected": {
+        "business_risk_band": "NOTICE",
+        "coverage": "FULL",
+        "risk_decision": "ALLOW",
+        "rule_refs": [
+          "R03"
+        ],
+        "runtime_execution_enabled": false,
+        "soft_goal_may_override_hard_protection": false,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY"
+      },
+      "baseline_refs": [
+        "common_context",
+        "protected_cashflow"
+      ]
+    },
+    {
+      "case_id": "UC30",
+      "title": "两个任务并发争用资金",
+      "status": "NOT_RUN",
+      "scope": "EXECUTION_GATE",
+      "data_mode": "TEAM_SYNTHETIC",
+      "fixture_authority": "SYNTHETIC_NOT_REAL_ACCOUNT_OR_APPROVAL",
+      "other_required_checks": "Assumed valid only in focused rule tests; whole-flow tests require actual trusted-service evidence.",
+      "given": {
+        "free_cash_minor": 500000,
+        "task_one_reserve_minor": 300000,
+        "task_two_reserve_minor": 300000,
+        "shared_account": true
+      },
+      "expected": {
+        "business_risk_band": "UNKNOWN",
+        "coverage": "PARTIAL",
+        "risk_decision": null,
+        "rule_refs": [
+          "R03",
+          "R09"
+        ],
+        "runtime_execution_enabled": false,
+        "max_total_reservation_minor": 500000,
+        "second_request": "VERSION_OR_FUNDS_CONFLICT",
+        "required_recheck": true,
+        "coverage_scope": "FINANCIAL_ASSESSMENT_ONLY",
+        "risk_check_state": "NOT_REEVALUATED"
+      },
+      "baseline_refs": [
+        "common_context"
+      ]
+    }
+  ],
+  "expected_coverage_scope": "FINANCIAL_ASSESSMENT_FOR_TARGET_RULES_ONLY; approval, permission, audit and execution controls have separate states and coverage.",
+  "synthetic_baselines": {
+    "fixture_use": "LOCAL_TEST_DESIGN_ONLY_NEVER_A_REAL_TRUSTED_CONTEXT",
+    "merge_rule": "Apply named baselines, then remove_baseline_fields, then explicit given values. Focused-rule cases only assess rule_refs and cannot be treated as complete user input.",
+    "common_context": {
+      "currency": "CNY",
+      "amount_unit": "INTEGER_MINOR",
+      "cash_basis": "GROSS_SETTLED_LEDGER_CASH_INCLUDING_HOLDS",
+      "as_of": "2026-10-29T00:00:00+08:00",
+      "subject_id": "SYNTHETIC_SUBJECT_A",
+      "account_id": "SYNTHETIC_ACCOUNT_A",
+      "account_version": "synthetic-account-v1",
+      "constraints_version": "synthetic-constraints-v1",
+      "proposal_version": "synthetic-proposal-v1",
+      "identity_and_ownership_source": "EXPLICIT_TRUSTED_SERVICE_TEST_DOUBLE",
+      "units_dates_versions_and_sources_validated": true,
+      "purpose_confirmation_source": "SYNTHETIC_USER_CONFIRMATION_RECORD",
+      "additional_reserve_explicitly_confirmed_minor": 0,
+      "allowed_assets_and_required_profile": "VALIDATED_SYNTHETIC_FIXTURE",
+      "other_required_metric_checks": "REGISTERED_VALIDATED_TEST_DOUBLES_NOT_REAL_MARKET_RESULTS"
+    },
+    "protected_cashflow": {
+      "gross_cash_minor": 1800000,
+      "active_holds": [],
+      "protected_obligations": [
+        {
+          "obligation_id": "synthetic-rent",
+          "amount_minor": 400000,
+          "status": "UNPAID",
+          "due_at": "2026-11-01T00:00:00+08:00",
+          "confirmed": true
+        },
+        {
+          "obligation_id": "synthetic-tuition",
+          "amount_minor": 600000,
+          "status": "UNPAID",
+          "due_at": "2026-11-10T00:00:00+08:00",
+          "confirmed": true
+        },
+        {
+          "obligation_id": "synthetic-living",
+          "amount_minor": 300000,
+          "status": "UNPAID",
+          "due_at": "2026-11-15T00:00:00+08:00",
+          "confirmed": true
+        }
+      ],
+      "overlapping_obligations": false,
+      "additional_reserve_minor": 0
+    }
+  }
+}

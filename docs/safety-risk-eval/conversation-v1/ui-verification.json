@@ -1,0 +1,34 @@
+{
+  "modelCalls": 0,
+  "mode": "MOCK_HTTP_UI",
+  "results": [
+    {
+      "width": 375,
+      "result": "PASS",
+      "cases": [
+        "string amounts",
+        "separate confirmations",
+        "read-only block",
+        "closed audit and model details",
+        "XSS escaped",
+        "stale response ignored",
+        "real failure not success"
+      ],
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "result": "PASS",
+      "cases": [
+        "string amounts",
+        "separate confirmations",
+        "read-only block",
+        "closed audit and model details",
+        "XSS escaped",
+        "stale response ignored",
+        "real failure not success"
+      ],
+      "overflow": false
+    }
+  ]
+}

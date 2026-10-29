@@ -1,0 +1,52 @@
+{
+  "site": "appgprj_6ac9a87727948191a202fedf09841f82",
+  "version": 11,
+  "source": "692f5df04c85a8cc865b913a348cbe5c1f288bbe",
+  "deployment": {
+    "id": "appgdep_6ada37974760819181318704817cdf1d",
+    "project_id": "appgprj_6ac9a87727948191a202fedf09841f82",
+    "title": "基金风控与安全攻防工作台",
+    "version_id": "appgprj_6ac9a87727948191a202fedf09841f82~appgver_936935615d748191b34aceb88210b98a",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://fund-risk-workbench.panxintian44.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6ac9a87727948191a202fedf09841f82",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-22T16:19:42.345799+00:00"
+  },
+  "url": "https://fund-risk-workbench.panxintian44.chatgpt.site/risk",
+  "verification": {
+    "unit_tests": {
+      "passed": 73,
+      "failed": 0
+    },
+    "candidate_site": {
+      "passed": 11,
+      "failed": 0
+    },
+    "live_get_health": {
+      "http_status": 200,
+      "overall": "UP",
+      "storage": "UP",
+      "core": "UP",
+      "model_configured": true,
+      "inference_probe": "NOT_RUN",
+      "business_acceptance": "NOT_VERIFIED",
+      "application_session_created": false,
+      "edge_cookie_names": [
+        "__cf_bm"
+      ]
+    },
+    "real_model_calls": 0,
+    "business_post_requests": 0,
+    "local_visual_states": [
+      "healthy",
+      "storage_unavailable"
+    ],
+    "live_visual_verified": true
+  },
+  "monitoring_scope": "FOREGROUND_PAGE_ONLY"
+}

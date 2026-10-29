@@ -1,0 +1,46 @@
+{
+  "schema_version": "risk-pr37-import-verification.v1",
+  "generated_at": "2026-10-29T17:29:52.261Z",
+  "source_head": "43f28cbbf9a2335a965c2debe988eb2c76b1e761",
+  "target_base": "d4da8afbef5a4989903f211e874a7cfdfe526554",
+  "node_version": "v24.22.1",
+  "scope": "IMPORT_LOCAL_PROGRAM_AND_TEST_DOUBLE_VERIFICATION_ONLY",
+  "program_tests": {
+    "passed": 499,
+    "failed": 0,
+    "skipped": 0,
+    "output": "program-tests.tap",
+    "includes_health_mjs_cases": 12
+  },
+  "interface_examples": {
+    "callback_cases": 4,
+    "money_cases": 12,
+    "files": 10,
+    "result": "UNCHANGED"
+  },
+  "specification_checks": {
+    "passed": 888,
+    "invalid_configurations_rejected": 4,
+    "qiqi_fixed_snapshot_digests_verified": 3,
+    "application_case_designs": 30,
+    "application_cases_run": 0,
+    "source_git_object": "96c7f5ac74a46998f5523745b640535e5ea1a504"
+  },
+  "component_http": {
+    "passed": 11,
+    "failed": 1,
+    "output": "component-http.json",
+    "failed_case": "readonly_capability",
+    "finding": "REVIEW_ONLY approval accepted by target Core; execution probe did not run after failed assertion",
+    "blocked_owner": "Core Owner, not yet confirmed",
+    "reference_fix": "https://github.com/Fintechathon-agent/Fintechathon-agent/commit/d9c261fefaad61985bfe0f3cdef4a07546f8b6d4"
+  },
+  "real_model_calls": 0,
+  "paid_api_calls": 0,
+  "real_financial_operations": 0,
+  "live_workbench_browser_reverified": false,
+  "target_repository_deployed": false,
+  "target_main_merged": false,
+  "formal_risk_joint_acceptance": false,
+  "core_finance_ui_deployment_files_modified": false
+}

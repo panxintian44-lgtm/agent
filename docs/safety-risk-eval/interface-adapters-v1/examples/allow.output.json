@@ -1,0 +1,42 @@
+{
+  "adapter_version": "risk-core-callback-adapter.v1",
+  "risk_decision": "ALLOW",
+  "status": "DRAFT_READY",
+  "dispatch_allowed": false,
+  "execution_allowed": false,
+  "callback": {
+    "callback_version": "risk-callback.v1",
+    "handoff_id": "fixture-handoff-allow-v1",
+    "task_id": "fixture-core-task-allow-v1",
+    "request_id": "fixture-core-request-allow-v1",
+    "run_id": "fixture-core-run-allow-v1",
+    "audit_id": "fixture-core-audit-allow-v1",
+    "proposal_sha256": "6623917aee06a94a116c9a0727cd5bb76dc77541437b1286ac39309966643764",
+    "decision": "APPROVE",
+    "reviewer": "fixture-risk-reviewer-not-an-authenticated-identity",
+    "reason": "风险检查通过，未授予执行权；检查=fixture-risk-check-allow-v1；原因=NONE"
+  },
+  "audit_context": {
+    "risk_check_id": "fixture-risk-check-allow-v1",
+    "checked_at": "2026-10-21T04:00:00.000Z",
+    "policy_version": "daily-cashflow-policy.v1.0",
+    "local_task_id": "fixture-local-risk-task-allow-v1",
+    "core_binding": {
+      "handoff_id": "fixture-handoff-allow-v1",
+      "task_id": "fixture-core-task-allow-v1",
+      "request_id": "fixture-core-request-allow-v1",
+      "run_id": "fixture-core-run-allow-v1",
+      "audit_id": "fixture-core-audit-allow-v1",
+      "proposal_sha256": "6623917aee06a94a116c9a0727cd5bb76dc77541437b1286ac39309966643764"
+    },
+    "plan_hash": "6623917aee06a94a116c9a0727cd5bb76dc77541437b1286ac39309966643764",
+    "reason_codes": [],
+    "reasons": []
+  },
+  "required_next_actions": [
+    "LOAD_SERVER_OWNED_TASK_AND_VERIFY_CURRENT_VERSIONS",
+    "VERIFY_SENDER_IDENTITY_AND_APPLY_CORE_SIGNATURE_CONTRACT",
+    "PERSIST_RISK_AUDIT_BEFORE_DISPATCH",
+    "APPLY_CORE_APPROVAL_AND_EXECUTION_GATES"
+  ]
+}

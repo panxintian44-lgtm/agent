@@ -1,0 +1,17 @@
+{
+  "site_version_number": 15,
+  "project_id": "appgprj_6ac9a87727948191a202fedf09841f82",
+  "version_id": "appgprj_6ac9a87727948191a202fedf09841f82~appgver_baa444e8942081919e60321a1953a4e4",
+  "deployment_id": "appgdep_6ae37ab9e394819196c21a4106d5f2d7",
+  "status": "succeeded",
+  "source_commit_sha": "bde20b6dca5f3a4aa5b7bc815f73b0aac81cc8b7",
+  "baseline_site_version": 14,
+  "baseline_source_commit_sha": "797a930ad7233fa8e6015381105f47d515f08ecc",
+  "native_deployment_verified_at": "2026-10-29T16:56:33.044458+00:00",
+  "archive_content_hash": "sha256:d5a510cd9934e5381dad4b26159341eaa91ce57df3a2df0b67c0477326ff38ea",
+  "url": "https://fund-risk-workbench.panxintian44.chatgpt.site/risk",
+  "access_mode": "public",
+  "paper_write_enabled": false,
+  "real_execution_enabled": false,
+  "team_joint_acceptance": false
+}

@@ -1,0 +1,149 @@
+{
+  "artifact_type": "RULE_SPECIFICATION_REGISTRY",
+  "policy_version": "daily-cashflow-policy.v1.0",
+  "status": "MODULE4_SPEC_PENDING_TEAM_REVIEW",
+  "runtime_implemented": false,
+  "currency": "CNY",
+  "amount_unit": "MINOR",
+  "minor_unit_exponent": 2,
+  "scopes": ["ANALYSIS", "FUTURE_CONDITIONAL_PLAN", "PAPER_PREFLIGHT"],
+  "risk_results": ["ALLOW", "REVIEW", "BLOCK", "ERROR"],
+  "behavior": {
+    "allow_real_transactions": false,
+    "required_check_failure_stops_dependent_actions": true,
+    "fallback_to_simulated_success": false,
+    "risk_allow_grants_execution": false,
+    "preserve_all_reasons": true,
+    "error_overrides_completed_result": true,
+    "precedence_without_error": ["BLOCK", "REVIEW", "ALLOW"],
+    "warnings_change_risk_result_by_default": false,
+    "optional_missing_metric_changes_risk_result": false,
+    "unknown_amount_as_zero": false,
+    "future_income_as_current_cash": false,
+    "matched_purpose_payment_consumes_reservation": true,
+    "untrusted_text_can_change_policy": false,
+    "requires_atomic_preflight_and_allocation": true,
+    "requires_durable_intent_audit_before_execution": true,
+    "unknown_execution_allows_blind_retry": false,
+    "approved_plan_can_use_changed_relevant_versions": false
+  },
+  "parameters": {
+    "hard_cash_floor": {
+      "initial_state": "UNSPECIFIED",
+      "allowed_states": ["UNSPECIFIED", "DISABLED_CONFIRMED", "ENABLED_CONFIRMED"],
+      "amount_minor": null,
+      "overlap_must_be_reconciled": true
+    },
+    "soft_goals": {
+      "require_itemized_acceptance_by_default": false,
+      "enable_acceptance_requires_user_confirmation": true,
+      "acceptance_cannot_override_hard_constraints": true,
+      "resolution_strategy": "APPEND_NEW_ALLOW_RECHECK_PRESERVE_ORIGINAL_REVIEW"
+    },
+    "budget_reference": {
+      "enabled_by_default": false,
+      "template_id": "ADAPTED_CASH_ALLOCATION.v1",
+      "income_basis": "SAME_PERIOD_TAKE_HOME_CASH_INCOME",
+      "reference_bps": {"needs": 5000, "goals": 2000, "wants": 3000},
+      "warning_comparators": {"needs": "GT", "goals": "LT", "wants": "GT"},
+      "confirmed_due_repayment_bucket": "needs",
+      "additional_not_yet_due_financing_principal_bucket": "goals",
+      "credit_card_purchase_and_repayment_counted_twice": false,
+      "old_capital_transfer_counts_as_new_saving": false,
+      "consumption_accrual_view_is_separate": true,
+      "investment_is_consumption": false,
+      "reference_is_hard_limit": false,
+      "source": "https://files.consumerfinance.gov/f/201603_cfpb_rules-to-live-by_my-spending-rule-to-live-by.pdf",
+      "adaptation": "Product classification proposal; not identical to all debt categories in the source worksheet."
+    },
+    "emergency_target": {
+      "enabled_by_default": false,
+      "target_months": null,
+      "reference_options_months": [3, 6],
+      "denominator": "USER_CONFIRMED_MONTHLY_ESSENTIAL_CASH_OUTGOINGS",
+      "numerator": "EXPLICIT_AVAILABLE_EMERGENCY_ALLOCATION_EXCLUDING_OTHER_PURPOSES",
+      "warning_comparator": "LT",
+      "reference_is_hard_limit": false,
+      "source": "https://www.moneyhelper.org.uk/en/savings/types-of-savings/emergency-savings-how-much-is-enough"
+    },
+    "debt_metrics": {
+      "standard_dti_denominator": "GROSS_MONTHLY_TOTAL_INCOME",
+      "standard_dti_threshold": null,
+      "non_mortgage_reference_enabled_by_default": false,
+      "non_mortgage_reference_bps": 2000,
+      "non_mortgage_warning_comparator": "GTE",
+      "non_mortgage_denominator": "TAKE_HOME_MONTHLY_INCOME",
+      "reference_is_hard_limit": false,
+      "sources": [
+        "https://www.consumerfinance.gov/ask-cfpb/what-is-a-debt-to-income-ratio-en-1791/",
+        "https://www.mheducation.com/unitas/highered/sample-chapters/9781260013993.pdf#page=50"
+      ]
+    },
+    "freshness": {
+      "universal_ttl_seconds": null,
+      "preflight_requires_latest_consistent_provider_read": true,
+      "provider_validity_must_be_known": true
+    },
+    "stress_scenarios": {"enabled_by_default": false, "assumptions_must_be_explicit": true, "fabricated_probability_allowed": false}
+  },
+  "effect_definitions": {
+    "INFO": "Display and audit only; does not change Risk result.",
+    "WARNING": "Display and audit; REVIEW only while explicitly required itemized acceptance is unresolved. After acceptance, append a fresh ALLOW check only if all applicable conditions pass; retain the original REVIEW and evidence.",
+    "REVIEW": "A dependent action waits for required repair, evidence or recheck.",
+    "BLOCK": "The current action is prohibited; acceptance cannot bypass it.",
+    "ERROR": "A required check cannot be completed; stop dependent actions.",
+    "GATE_WAIT": "Execution waits; an already valid financial Risk result is not rewritten.",
+    "GATE_DENY": "Execution is denied; retain separate approval and execution state.",
+    "REPLAY": "Return the original receipt without a second ledger write."
+  },
+  "rules": [
+    {"rule_id": "D01", "title": "数据与计算", "priority": "P0", "reasons": [
+      {"code": "DAILY_DATA_REQUIRED", "effect": "REVIEW", "recovery": "补充并确认必需资料"},
+      {"code": "DAILY_DATA_STALE", "effect": "REVIEW", "recovery": "更新过期证据并重检"},
+      {"code": "DAILY_DATA_INCONSISTENT", "effect": "ERROR", "recovery": "修复契约、单位或可信关联"},
+      {"code": "DAILY_CHECK_UNAVAILABLE", "effect": "ERROR", "recovery": "恢复必要核验后重检"}
+    ]},
+    {"rule_id": "D02", "title": "当前资金与硬性保护", "priority": "P0", "reasons": [
+      {"code": "PROTECTED_PURPOSE_CONFLICT", "effect": "BLOCK", "recovery": "降低或延后动作、可信补资后重检"},
+      {"code": "PAYMENT_CASH_INSUFFICIENT", "effect": "BLOCK", "recovery": "补足可结算资金后重检"},
+      {"code": "HARD_FLOOR_CONFLICT", "effect": "BLOCK", "recovery": "保留已确认最低现金后重检"},
+      {"code": "PURPOSE_LINK_UNVERIFIED", "effect": "REVIEW", "recovery": "核实同用途账单及占用关联"}
+    ]},
+    {"rule_id": "D03", "title": "日期现金流", "priority": "P0", "reasons": [
+      {"code": "PAYMENT_DATE_GAP", "effect": "BLOCK", "recovery": "调整资金安排并按日期复算"},
+      {"code": "PAYMENT_ORDER_UNVERIFIED", "effect": "REVIEW", "recovery": "核实同日收付先后"},
+      {"code": "FUTURE_CASHFLOW_ASSUMPTION", "effect": "INFO", "recovery": "保留未来收入假设和日期"},
+      {"code": "CASHFLOW_STRESS_GAP", "effect": "WARNING", "recovery": "说明假设下的缺口和可选调整"}
+    ]},
+    {"rule_id": "D04", "title": "跨任务占用与对账", "priority": "P0", "reasons": [
+      {"code": "SHARED_FUNDS_CONFLICT", "effect": "BLOCK", "recovery": "按最新共享账本重新安排"},
+      {"code": "SHARED_FUNDS_RECONCILIATION_REQUIRED", "effect": "REVIEW", "recovery": "核查同笔记录、归属或释放状态"},
+      {"code": "SHARED_LEDGER_UNAVAILABLE", "effect": "ERROR", "recovery": "恢复共享占用核验后重检"}
+    ]},
+    {"rule_id": "D05", "title": "预算提醒", "priority": "P1", "reasons": [
+      {"code": "PERSONAL_BUDGET_EXCEEDED", "effect": "WARNING", "recovery": "调整对应软预算或可选消费"},
+      {"code": "BUDGET_REFERENCE_DEVIATION", "effect": "WARNING", "recovery": "解释参考差异，不自动修改约束"}
+    ]},
+    {"rule_id": "D06", "title": "应急储备提醒", "priority": "P1", "reasons": [
+      {"code": "RESERVE_TARGET_SHORTFALL", "effect": "WARNING", "recovery": "讨论补足或明确接受柔性偏离"}
+    ]},
+    {"rule_id": "D07", "title": "期限与流动性", "priority": "P0", "reasons": [
+      {"code": "LIQUIDITY_DATE_MISMATCH", "effect": "BLOCK", "recovery": "提供能覆盖用款日的资金安排"},
+      {"code": "LIQUIDITY_EVIDENCE_REQUIRED", "effect": "REVIEW", "recovery": "补齐依赖的赎回、结算或转账证据"}
+    ]},
+    {"rule_id": "D08", "title": "版本与执行门禁", "priority": "P0", "reasons": [
+      {"code": "DAILY_APPROVAL_STALE", "effect": "REVIEW", "recovery": "当前版本重检并重新确认"},
+      {"code": "PERMISSION_DENIED", "effect": "BLOCK", "recovery": "改为权限允许的请求"},
+      {"code": "REAL_TRADING_FORBIDDEN", "effect": "BLOCK", "recovery": "改为明确模拟请求"},
+      {"code": "APPROVAL_REQUIRED", "effect": "GATE_WAIT", "recovery": "取得可信完整计划确认"},
+      {"code": "APPROVAL_REJECTED", "effect": "GATE_DENY", "recovery": "停止当前动作并保留拒绝"},
+      {"code": "APPROVAL_REVOKED", "effect": "GATE_DENY", "recovery": "停止未执行动作并核查竞态"},
+      {"code": "IDEMPOTENCY_CONTENT_CONFLICT", "effect": "BLOCK", "recovery": "新方案使用新有效流程"},
+      {"code": "EXECUTION_STATUS_UNKNOWN", "effect": "GATE_WAIT", "recovery": "查询原执行，不盲目重试或释放"},
+      {"code": "DUPLICATE_REQUEST_REPLAYED", "effect": "REPLAY", "recovery": "返回已有回执且不重复写入"},
+      {"code": "AUDIT_WRITE_FAILED", "effect": "ERROR", "recovery": "按执行前后事实恢复审计，不重做已成功动作"},
+      {"code": "GATEWAY_NOT_CONNECTED", "effect": "ERROR", "recovery": "完成受控网关接入和联合验证"},
+      {"code": "UNTRUSTED_INSTRUCTION_IGNORED", "effect": "INFO", "recovery": "隔离外部文字并继续核验实际提议"}
+    ]}
+  ]
+}
