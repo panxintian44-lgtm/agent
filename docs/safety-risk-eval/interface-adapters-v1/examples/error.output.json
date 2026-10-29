@@ -1,0 +1,38 @@
+{
+  "adapter_version": "risk-core-callback-adapter.v1",
+  "risk_decision": "ERROR",
+  "status": "ERROR_HELD",
+  "dispatch_allowed": false,
+  "execution_allowed": false,
+  "callback": null,
+  "audit_context": {
+    "risk_check_id": "fixture-risk-check-error-v1",
+    "checked_at": "2026-10-21T04:00:00.000Z",
+    "policy_version": "daily-cashflow-policy.v1.0",
+    "local_task_id": "fixture-local-risk-task-error-v1",
+    "core_binding": {
+      "handoff_id": "fixture-handoff-error-v1",
+      "task_id": "fixture-core-task-error-v1",
+      "request_id": "fixture-core-request-error-v1",
+      "run_id": "fixture-core-run-error-v1",
+      "audit_id": "fixture-core-audit-error-v1",
+      "proposal_sha256": "421247abaab8170807634d9619563411fdf1926314ca21bdec742b2047e9b289"
+    },
+    "plan_hash": "421247abaab8170807634d9619563411fdf1926314ca21bdec742b2047e9b289",
+    "reason_codes": [
+      "DAILY_CHECK_UNAVAILABLE"
+    ],
+    "reasons": [
+      {
+        "rule_id": "D01",
+        "code": "DAILY_CHECK_UNAVAILABLE",
+        "message_zh": "必需的资金计算不可用，本次检查失败。",
+        "status": "ERROR"
+      }
+    ]
+  },
+  "required_next_actions": [
+    "PERSIST_RISK_ERROR_AND_KEEP_EXECUTION_CLOSED",
+    "RESTORE_REQUIRED_CHECKS_BEFORE_DRAFTING_CALLBACK"
+  ]
+}

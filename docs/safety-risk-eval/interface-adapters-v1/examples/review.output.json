@@ -1,0 +1,52 @@
+{
+  "adapter_version": "risk-core-callback-adapter.v1",
+  "risk_decision": "REVIEW",
+  "status": "DRAFT_READY",
+  "dispatch_allowed": false,
+  "execution_allowed": false,
+  "callback": {
+    "callback_version": "risk-callback.v1",
+    "handoff_id": "fixture-handoff-review-v1",
+    "task_id": "fixture-core-task-review-v1",
+    "request_id": "fixture-core-request-review-v1",
+    "run_id": "fixture-core-run-review-v1",
+    "audit_id": "fixture-core-audit-review-v1",
+    "proposal_sha256": "664808137ce9a9bf12f585ce0846b8bcd080d22b7195ffc8449d646c1cefaaaf",
+    "decision": "REQUEST_MORE_INFO",
+    "reviewer": "fixture-risk-reviewer-not-an-authenticated-identity",
+    "reason": "需要补充资料或重新复核，执行暂停；检查=fixture-risk-check-review-v1；原因=DAILY_DATA_REQUIRED"
+  },
+  "audit_context": {
+    "risk_check_id": "fixture-risk-check-review-v1",
+    "checked_at": "2026-10-21T04:00:00.000Z",
+    "policy_version": "daily-cashflow-policy.v1.0",
+    "local_task_id": "fixture-local-risk-task-review-v1",
+    "core_binding": {
+      "handoff_id": "fixture-handoff-review-v1",
+      "task_id": "fixture-core-task-review-v1",
+      "request_id": "fixture-core-request-review-v1",
+      "run_id": "fixture-core-run-review-v1",
+      "audit_id": "fixture-core-audit-review-v1",
+      "proposal_sha256": "664808137ce9a9bf12f585ce0846b8bcd080d22b7195ffc8449d646c1cefaaaf"
+    },
+    "plan_hash": "664808137ce9a9bf12f585ce0846b8bcd080d22b7195ffc8449d646c1cefaaaf",
+    "reason_codes": [
+      "DAILY_DATA_REQUIRED"
+    ],
+    "reasons": [
+      {
+        "rule_id": "D01",
+        "code": "DAILY_DATA_REQUIRED",
+        "message_zh": "本次手续费未知，需要补齐后重新检查。",
+        "status": "REVIEW"
+      }
+    ]
+  },
+  "required_next_actions": [
+    "LOAD_SERVER_OWNED_TASK_AND_VERIFY_CURRENT_VERSIONS",
+    "VERIFY_SENDER_IDENTITY_AND_APPLY_CORE_SIGNATURE_CONTRACT",
+    "PERSIST_RISK_AUDIT_BEFORE_DISPATCH",
+    "APPLY_CORE_APPROVAL_AND_EXECUTION_GATES",
+    "AFTER_ACCEPTED_REQUEST_MORE_INFO_CREATE_NEW_CORE_TASK_AND_HANDOFF"
+  ]
+}

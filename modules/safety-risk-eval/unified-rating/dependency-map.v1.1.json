@@ -1,0 +1,22 @@
+{
+  "dependency_version": "daily-grade-dependencies.v1.1",
+  "rule_dependency_catalog": [
+    { "rule_id": "D01", "requires": ["currency", "amount_unit", "as_of", "required_evidence", "required_services", "versions_current", "confirmed_numeric_and_date_fields"], "produces": ["data_availability", "calculation_validity"], "missing_scope": "CORE_CASH_EVIDENCE_EXCEPT_EXPLICIT_OPTIONAL_FIELDS" },
+    { "rule_id": "D02", "requires": ["cash_ledger_minor", "cash_available_minor", "holds", "purposes", "action_type", "action_amount_minor", "fees_minor", "extra_nonoverlapping_hold_minor", "hard_floor_state", "verified_settlement_links_when_used"], "produces": ["free_before_minor", "projected_free_after_minor", "shortfall_minor", "projected_state"], "missing_scope": "CORE_CASH_EVIDENCE" },
+    { "rule_id": "D03", "requires": ["D02_cash_evidence", "as_of", "action_at", "purpose_due_dates", "income_events_with_included_status", "same_day_order_when_needed"], "produces": ["cashflow", "baseline_date_gap_minor", "after_action_date_gap_minor"], "missing_scope": "CORE_CASH_EVIDENCE" },
+    { "rule_id": "D04", "requires": ["ledger_revision", "holds", "verified_hold_purpose_coverage", "versions_current", "shared_ledger_evidence_when_required"], "produces": ["holds_before_minor", "SHARED_FUNDS_CONFLICT", "reconciliation_status"], "missing_scope": "CORE_CASH_EVIDENCE" },
+    { "rule_id": "D05", "requires_if_user_enabled": ["budget_reference_or_personal_budget", "category_budget_remaining_minor_or_budget_buckets_minor"], "produces": ["budget_over_minor", "BUDGET_REFERENCE_DEVIATION"], "missing_scope": "OPTIONAL_INDICATOR" },
+    { "rule_id": "D06", "requires_if_user_enabled": ["emergency_allocation_before_minor", "monthly_essential_minor", "target_months", "emergency_nonoverlap"], "produces": ["emergency_allocation_after_minor", "RESERVE_TARGET_SHORTFALL"], "missing_scope": "OPTIONAL_INDICATOR" },
+    { "rule_id": "D07", "requires_if_redemption_used": ["liquidity_evidence", "latest_reliable_available_at", "required_payment_date"], "produces": ["LIQUIDITY_DATE_MISMATCH", "LIQUIDITY_EVIDENCE_REQUIRED"], "missing_scope": "CORE_CASH_EVIDENCE_FOR_DEPENDENT_LIQUIDITY_CONCLUSION" },
+    { "rule_id": "D08", "requires": ["trusted_permission_and_approval_context", "versions_current", "idempotency_state", "execution_state", "audit_and_gateway_readiness"], "produces": ["gate_reasons", "control_reason_codes", "execution_gate"], "missing_scope": "CONTROL_OR_OTHER_EVIDENCE" }
+  ],
+  "default_missing_dependency": "CORE_CASH_EVIDENCE",
+  "optional_data_fields": ["budget_reference", "category_budget_remaining_minor", "emergency_target", "emergency_nonoverlap", "emergency_allocation_before_minor", "action_uses_emergency_allocation_minor", "monthly_essential_minor", "target_months", "stress_assumption"],
+  "optional_field_prefixes": ["budget_buckets_minor:"],
+  "core_evidence_rules": ["D01", "D04"],
+  "core_evidence_review_codes": ["PURPOSE_LINK_UNVERIFIED"],
+  "financial_hard_codes": ["PROTECTED_PURPOSE_CONFLICT", "PAYMENT_CASH_INSUFFICIENT", "HARD_FLOOR_CONFLICT", "PAYMENT_DATE_GAP", "SHARED_FUNDS_CONFLICT", "LIQUIDITY_DATE_MISMATCH"],
+  "hard_finding_requires": ["VALID_DETERMINISTIC_RESULT", "SAFE_INTEGER_CORE_CASH_METRICS", "NO_UNRESOLVED_CORE_EVIDENCE_DEPENDENCY", "REGISTERED_BLOCK_REASON"],
+  "optional_missing_does_not_prove_safety": true,
+  "independent_control_error_may_preserve_known_high_lower_bound": true
+}

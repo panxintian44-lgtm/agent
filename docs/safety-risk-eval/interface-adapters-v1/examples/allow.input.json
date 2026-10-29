@@ -1,0 +1,139 @@
+{
+  "handoff": {
+    "handoff_version": "risk-handoff.v1",
+    "contract_version": "model-review.v1",
+    "workflow_version": "review-workflow.v1",
+    "schema_version": "model-review.v1",
+    "handoff_id": "fixture-handoff-allow-v1",
+    "task_id": "fixture-core-task-allow-v1",
+    "request_id": "fixture-core-request-allow-v1",
+    "session_id": "fixture-session-allow",
+    "run_id": "fixture-core-run-allow-v1",
+    "audit_id": "fixture-core-audit-allow-v1",
+    "data_mode": "SYNTHETIC_REPLAY",
+    "execution_mode": "PAPER",
+    "capability": "SIMULATION_ONLY",
+    "portfolio_snapshot_id": null,
+    "risk_profile_version": null,
+    "plan_id": "fixture-core-plan-allow",
+    "plan_hash": "6623917aee06a94a116c9a0727cd5bb76dc77541437b1286ac39309966643764",
+    "policy_version": "daily-cashflow-policy.v1.0",
+    "workflow_status": "PENDING_RISK",
+    "status": "PENDING_REVIEW",
+    "decision": "REQUIRED",
+    "owner": "Unified Risk",
+    "execution_allowed": false,
+    "proposal": {
+      "proposed_action": "HOLD_FOR_REVIEW",
+      "action_reason": "虚构资料的资金安排，需要独立风险检查及用户确认。",
+      "risk_level": "medium",
+      "requested_action": "只评审虚构资金安排，不执行真实交易。",
+      "action_parameters": {
+        "amount": "2000.00",
+        "amount_unit": "YUAN",
+        "currency": "CNY"
+      },
+      "model_response_id": "fixture-provider-allow-not-a-live-call",
+      "proposal_sha256": "6623917aee06a94a116c9a0727cd5bb76dc77541437b1286ac39309966643764"
+    },
+    "reviewed_input": {
+      "text": "虚构接口样例，无真实账户资料。",
+      "source_task_id": "fixture-previous-core-task-allow-v1"
+    },
+    "input_authority": "UNVERIFIED_CALLER_INPUT",
+    "model": {
+      "source": "model",
+      "status": "PROPOSED",
+      "model": "TEST_DOUBLE_NOT_A_LIVE_MODEL",
+      "provider_response_id": "fixture-provider-allow-not-a-live-call",
+      "call_succeeded": true
+    },
+    "evidence": {
+      "input_sha256": "d28369a4818866a284998f9d8a356de921134363171cdd7051912ac3b4f79111",
+      "proposal_sha256": "6623917aee06a94a116c9a0727cd5bb76dc77541437b1286ac39309966643764",
+      "audit_id": "fixture-core-audit-allow-v1",
+      "model_response_id": "fixture-provider-allow-not-a-live-call",
+      "plan_id": "fixture-core-plan-allow",
+      "plan_hash": "6623917aee06a94a116c9a0727cd5bb76dc77541437b1286ac39309966643764",
+      "policy_version": "daily-cashflow-policy.v1.0"
+    },
+    "approval": {
+      "approval_id": "fixture-core-approval-allow",
+      "task_id": "fixture-core-task-allow-v1",
+      "required": true,
+      "status": "BLOCKED",
+      "decision": null,
+      "proposal_sha256": "6623917aee06a94a116c9a0727cd5bb76dc77541437b1286ac39309966643764",
+      "approver": null,
+      "decided_at": null,
+      "expires_at": null
+    },
+    "memory_write_status": "NOT_REQUESTED",
+    "trace": {
+      "schema_version": "model-review.v1",
+      "request_id": "fixture-core-request-allow-v1",
+      "task_id": "fixture-core-task-allow-v1",
+      "session_id": "fixture-session-allow",
+      "run_id": "fixture-core-run-allow-v1",
+      "audit_id": "fixture-core-audit-allow-v1",
+      "handoff_id": "fixture-handoff-allow-v1"
+    },
+    "audit": {
+      "audit_id": "fixture-core-audit-allow-v1",
+      "event_count": 1,
+      "latest_event": {
+        "event_id": "fixture-event-allow",
+        "task_id": "fixture-core-task-allow-v1",
+        "actor": "TEST_DOUBLE",
+        "event_type": "fixture.created",
+        "payload": {
+          "request_id": "fixture-core-request-allow-v1",
+          "run_id": "fixture-core-run-allow-v1"
+        },
+        "timestamp": "2026-10-21T04:00:00.000Z"
+      }
+    },
+    "record_endpoint": "/api/review/task/fixture-core-task-allow-v1",
+    "callback": {
+      "callback_version": "risk-callback.v1",
+      "endpoint": "/api/review/risk-callback",
+      "method": "POST",
+      "required_fields": [
+        "callback_version",
+        "handoff_id",
+        "task_id",
+        "request_id",
+        "run_id",
+        "audit_id",
+        "proposal_sha256",
+        "decision",
+        "reviewer",
+        "reason"
+      ],
+      "decisions": [
+        "APPROVE",
+        "REJECT",
+        "REQUEST_MORE_INFO"
+      ],
+      "retry_policy": "Identical accepted callback returns DUPLICATE without another decision or audit event. Changed callbacks are rejected. REQUEST_MORE_INFO requires a new reviewed task."
+    }
+  },
+  "risk_result": {
+    "risk_check_id": "fixture-risk-check-allow-v1",
+    "decision": "ALLOW",
+    "check_complete": true,
+    "checked_at": "2026-10-21T04:00:00.000Z",
+    "policy_version": "daily-cashflow-policy.v1.0",
+    "core_binding": {
+      "handoff_id": "fixture-handoff-allow-v1",
+      "task_id": "fixture-core-task-allow-v1",
+      "request_id": "fixture-core-request-allow-v1",
+      "run_id": "fixture-core-run-allow-v1",
+      "audit_id": "fixture-core-audit-allow-v1",
+      "proposal_sha256": "6623917aee06a94a116c9a0727cd5bb76dc77541437b1286ac39309966643764"
+    },
+    "local_task_id": "fixture-local-risk-task-allow-v1",
+    "reasons": []
+  },
+  "reviewer": "fixture-risk-reviewer-not-an-authenticated-identity"
+}

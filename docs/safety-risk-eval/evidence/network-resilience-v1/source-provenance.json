@@ -1,0 +1,14 @@
+{
+  "project_id": "appgprj_6ac9a87727948191a202fedf09841f82",
+  "baseline_site_version": 10,
+  "baseline_sha256": "3063fd721e5d49d69a9fa29de1aab932564b8f9dd4b291fb9c58eaa12410ae5f",
+  "mutation_handlers_changed": false,
+  "entry_sha256": "1e853cfbbfe8a4c4e5bbb99c0e2e381d072457d1d75c4a77e74da9eeefe91d57",
+  "files": {
+    "network.js": "f35c5bf1211902019dc44f36b354da3c4f0f33259aae1a5c3d6c272dbb91c038",
+    "connection.js": "36d8b5dd3eff7dba80ae5e86a1572a0822e3bdc238b38456adb8b1b3541d3ee8",
+    "connection.css": "4bc1bd1ecb3fec264ff3671c42fae7a760647f40f6b6f92b200bf20201cae9a2",
+    "health.mjs": "5fbe2f2509ad80704cff26c98a98f22ef7347243c52fc7838b7737ceb3564d03",
+    "install-site.mjs": "c13776043951c1df8b86b34ac629bad06c5d7129d6aaf0654d0e495f313d1821"
+  }
+}

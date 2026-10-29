@@ -1,0 +1,63 @@
+{
+  "verification": "PREPARED_SITE_HANDLER_WITH_HEALTH_TEST_DOUBLES",
+  "passed": 12,
+  "failed": 0,
+  "real_model_calls": 0,
+  "business_acceptance": "NOT_VERIFIED",
+  "checks": [
+    {
+      "route": "/risk",
+      "result": "PASS"
+    },
+    {
+      "route": "/risk/app.js",
+      "result": "PASS"
+    },
+    {
+      "route": "/risk/daily.js",
+      "result": "PASS"
+    },
+    {
+      "route": "/risk/network.js",
+      "result": "PASS"
+    },
+    {
+      "route": "/risk/feedback.js",
+      "result": "PASS"
+    },
+    {
+      "route": "/risk/connection.js",
+      "result": "PASS"
+    },
+    {
+      "route": "/risk/connection.css",
+      "result": "PASS"
+    },
+    {
+      "route": "/api/safety/health",
+      "result": "PASS",
+      "no_session_created": true,
+      "model_inference_calls": 0
+    },
+    {
+      "route": "/api/safety/health",
+      "method": "POST",
+      "expected_status": 405,
+      "result": "PASS"
+    },
+    {
+      "route": "/api/safety/health",
+      "method": "GET",
+      "expected_status": 403,
+      "result": "PASS"
+    },
+    {
+      "route": "/investment",
+      "result": "UNCHANGED"
+    },
+    {
+      "route": "/merchant",
+      "result": "UNCHANGED"
+    }
+  ]
+}

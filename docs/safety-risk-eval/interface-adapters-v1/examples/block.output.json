@@ -1,0 +1,51 @@
+{
+  "adapter_version": "risk-core-callback-adapter.v1",
+  "risk_decision": "BLOCK",
+  "status": "DRAFT_READY",
+  "dispatch_allowed": false,
+  "execution_allowed": false,
+  "callback": {
+    "callback_version": "risk-callback.v1",
+    "handoff_id": "fixture-handoff-block-v1",
+    "task_id": "fixture-core-task-block-v1",
+    "request_id": "fixture-core-request-block-v1",
+    "run_id": "fixture-core-run-block-v1",
+    "audit_id": "fixture-core-audit-block-v1",
+    "proposal_sha256": "45dfa05b5bc5b951bd7a65f7fc82eb04eba0c18ebc753fd5d7ea266118461580",
+    "decision": "REJECT",
+    "reviewer": "fixture-risk-reviewer-not-an-authenticated-identity",
+    "reason": "风险检查阻止此方案；检查=fixture-risk-check-block-v1；原因=PROTECTED_PURPOSE_CONFLICT"
+  },
+  "audit_context": {
+    "risk_check_id": "fixture-risk-check-block-v1",
+    "checked_at": "2026-10-21T04:00:00.000Z",
+    "policy_version": "daily-cashflow-policy.v1.0",
+    "local_task_id": "fixture-local-risk-task-block-v1",
+    "core_binding": {
+      "handoff_id": "fixture-handoff-block-v1",
+      "task_id": "fixture-core-task-block-v1",
+      "request_id": "fixture-core-request-block-v1",
+      "run_id": "fixture-core-run-block-v1",
+      "audit_id": "fixture-core-audit-block-v1",
+      "proposal_sha256": "45dfa05b5bc5b951bd7a65f7fc82eb04eba0c18ebc753fd5d7ea266118461580"
+    },
+    "plan_hash": "45dfa05b5bc5b951bd7a65f7fc82eb04eba0c18ebc753fd5d7ea266118461580",
+    "reason_codes": [
+      "PROTECTED_PURPOSE_CONFLICT"
+    ],
+    "reasons": [
+      {
+        "rule_id": "D02",
+        "code": "PROTECTED_PURPOSE_CONFLICT",
+        "message_zh": "本次安排占用了已经确认的学费保护资金。",
+        "status": "BLOCK"
+      }
+    ]
+  },
+  "required_next_actions": [
+    "LOAD_SERVER_OWNED_TASK_AND_VERIFY_CURRENT_VERSIONS",
+    "VERIFY_SENDER_IDENTITY_AND_APPLY_CORE_SIGNATURE_CONTRACT",
+    "PERSIST_RISK_AUDIT_BEFORE_DISPATCH",
+    "APPLY_CORE_APPROVAL_AND_EXECUTION_GATES"
+  ]
+}

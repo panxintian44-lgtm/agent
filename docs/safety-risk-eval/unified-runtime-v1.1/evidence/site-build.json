@@ -1,0 +1,33 @@
+{
+  "project_id": "appgprj_6ac9a87727948191a202fedf09841f82",
+  "baseline_site_version": 13,
+  "baseline_hashes": {
+    "index.js": "368b2095397ceb64032ae03799bfd5180902b75b64a76b9752da6d254bbda8db",
+    "index-unified-base.js": "86d3596268b48bfd522801c7a1b8b14bd6b0329f36bfc0543517ac1ba4dacf2f",
+    "network-assets.mjs": "b60a53c740670dc5d638e7a02d774be9e7dbc5505498fb50eaca2f1cc831684b"
+  },
+  "policy_version": "risk-policy.v1.1",
+  "permission_policy_version": "permission-policy.v1.1",
+  "entry_sha256": "368b2095397ceb64032ae03799bfd5180902b75b64a76b9752da6d254bbda8db",
+  "unified_base_sha256": "7601c2acbc5d78c2e6c620f2c1cd12a950d588b0f231e293e6dbdd481be4b9e2",
+  "implementation_scope": "DAILY_RESULT_VALIDATION_PERMISSION_REQUIREMENTS_AND_CLOSED_WRITES",
+  "all_capability_routes_integrated": false,
+  "team_joint_acceptance": false,
+  "real_model_calls": 0,
+  "evaluator_sources": {
+    "assessment.cjs": "398f415bb61a4d37a82acacf034354289fa8416839575771157f3ba51d339929",
+    "..\\..\\..\\docs\\safety-risk-eval\\unified-rating-v1\\risk-policy.json": "42f037a9da2c13a51967b110cf069f4b1555f1902c16f0183088168a27bca12a",
+    "..\\..\\..\\docs\\safety-risk-eval\\daily-policy-v1\\policy-config.v1.json": "e01da713b2e1021bdadd6918be3ee54238df9884602d5e5774597867a537d9a1",
+    "runtime-config.v1.1.json": "14e5449b9aeef1107ce2ac4aaf7bb6f290ea2e35a18220aed554137f725e63eb",
+    "dependency-map.v1.1.json": "dd53b381a7ea2c2521920bd2f429d8ff08ba4f44b737fb9fa20cd4b0048c2e00",
+    "daily-result-validation.cjs": "54b67bea7742b8f00e031047a47592307c3eecb28c125d787d123360916691d3",
+    "permission.cjs": "648c93ad94ccffb90672a5357b65112f65e9ec5560a357e0dc7b380bce2a874b",
+    "..\\..\\..\\docs\\safety-risk-eval\\unified-rating-v1\\permission-matrix.json": "97bf0ddf5813b3fcf6f58cbb18b001936cb51e88ea190367cd723933a6dc7044"
+  },
+  "source_files": {
+    "site-bridge.mjs": "60c85c008cae96fafa3b51f4bd1ef45c6197d2b16721a35cd203744125ae6d37",
+    "workbench.js": "f8c30534580b803f32644f15df4aaca5500adc949fbc29f7ed23e0f414f2ac89",
+    "workbench.css": "95b4569956d515207d604a23dad7a0b3a3e48c0e8adf77fbac69a95426d8a67c",
+    "install-site.mjs": "b90778c73657f48a17958fadb8897f2596df7fe6831b8a4c15d7977cd402b44b"
+  }
+}

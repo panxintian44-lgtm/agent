@@ -1,0 +1,30 @@
+{
+  "adapter_version": "risk-core-callback-adapter.v1",
+  "status": "MODULE4_PROPOSAL_PENDING_TEAM_REVIEW",
+  "fixture": true,
+  "real_model_called": false,
+  "account_verified": false,
+  "callback_sent": false,
+  "execution_authorized": false,
+  "notice_zh": "全部为虚构契约样例。call_succeeded等模型字段属于测试替身，不代表真实模型调用或签名验证。ERROR样例callback为null。",
+  "core_source_commit": "23a978e",
+  "cases": [
+    {
+      "input": "allow.input.json",
+      "output": "allow.output.json"
+    },
+    {
+      "input": "review.input.json",
+      "output": "review.output.json"
+    },
+    {
+      "input": "block.input.json",
+      "output": "block.output.json"
+    },
+    {
+      "input": "error.input.json",
+      "output": "error.output.json"
+    }
+  ],
+  "money_vectors": "money-vectors.json"
+}

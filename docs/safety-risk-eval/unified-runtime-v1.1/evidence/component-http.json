@@ -1,0 +1,116 @@
+{
+  "schema_version": "risk-joint-acceptance.v1",
+  "generated_at": "2026-10-29T10:18:33.989Z",
+  "mode": "LOCAL_HTTP_COMPONENT_INTEGRATION",
+  "source_manifest": {
+    "core_commit": "9e6bed133c36f7fa42fc15f4dc7a8791049b0841",
+    "core_tree": "5a77eff7f567fc6f0f7bbabbff67e10d6f4348e6",
+    "candidate_overlays": [
+      {
+        "path": "chenchen/integrations/review-workflow.js",
+        "base_sha256": "799029143ce0ecc4a7b7bfe111d8e893c48d89858663f5fb9997a70bbf976763",
+        "candidate_sha256": "7cb41b1195dc4a3e65cbfa2ac9760d86baf46f785034164afd1e72e591037b5e",
+        "changed": true
+      }
+    ],
+    "risk_sources": {
+      "daily-engine.cjs": "f588c9d2299fce5a94248744a359eb0ceccfc9c958d6f66688f5849d235ab556",
+      "interface-adapters/money.cjs": "7548c9a1f65e59fe43663cfda68c34c91e5358ad3324dd578cd0575467271dd1",
+      "interface-adapters/conversation-input.cjs": "24fc91ff4b2bb01817d3cccd1e9d8b3e209f0b9ae42f2d69265f04c41666991d",
+      "interface-adapters/conversation-risk.cjs": "491ee6cdfd4d8a4ce4f869015b9d81a0be8666342abc7160581d3bbc05ac3451",
+      "interface-adapters/conversation-store.cjs": "5d3c32dc7e1c4a0e974a891788a568137f1a25fea4f603d124a090d865b3427e",
+      "interface-adapters/conversation-review.cjs": "0c308159978a66a150128a2053f4816ebfae13a30174ecb1b921c3b4a920b0ee",
+      "interface-adapters/core-client.cjs": "61171c2d99bc293d9b20707ea8dd2174262f53ded2316ea54d396b3382827381",
+      "interface-adapters/risk-callback.cjs": "eac98b03e6f593290a9aeb79fb22cc892fd6c9d4d5523def7e715ac7fb8b56b5",
+      "interface-adapters/risk-callback-sender.cjs": "f76c1dd0a848671c631631ef785920c61e1e6548047e35ff02b71f71efaa208c"
+    }
+  },
+  "model_evidence": "TEST_DOUBLE_NOT_LIVE",
+  "approval_evidence": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN",
+  "core_storage": "IN_MEMORY_TEST_ADAPTER_NOT_CLOUDFLARE_SQLITE",
+  "paper_scope": "CORE_INTERNAL_SIMULATED_RECEIPT_ONLY",
+  "original_conversation_capability": "REVIEW_ONLY_UNCHANGED",
+  "joint_acceptance": false,
+  "production_connected": false,
+  "real_model_calls": 0,
+  "passed": 12,
+  "failed": 0,
+  "cases": [
+    {
+      "scenario_id": "normal_confirmed_plan",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE",
+      "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+    },
+    {
+      "scenario_id": "rent_conflict",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE",
+      "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+    },
+    {
+      "scenario_id": "tuition_conflict",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE",
+      "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+    },
+    {
+      "scenario_id": "confirmed_purpose_revision",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE",
+      "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+    },
+    {
+      "scenario_id": "approval_rejected",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE",
+      "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+    },
+    {
+      "scenario_id": "missing_fee_review",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE",
+      "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+    },
+    {
+      "scenario_id": "wrong_signature_and_cross_task",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE",
+      "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+    },
+    {
+      "scenario_id": "readonly_capability",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE"
+    },
+    {
+      "scenario_id": "unknown_callback_response",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE"
+    },
+    {
+      "scenario_id": "result_storage_unknown",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE"
+    },
+    {
+      "scenario_id": "approval_parameter_change",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE",
+      "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+    },
+    {
+      "scenario_id": "cross_task_funds_rechecked",
+      "result": "PASS",
+      "source_mode": "TEST_DOUBLE_NOT_LIVE",
+      "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+    }
+  ],
+  "failures": [],
+  "live_acceptance_requirements": [
+    "VERIFY_PRODUCTION_WORKER_SHARED_CORE_RISK_TASK",
+    "VERIFY_REAL_MODEL_RISK_CHAIN_WITH_AUTHORIZED_BUDGET",
+    "VERIFY_REAL_USER_APPROVAL_AND_PAPER_ACCOUNT_GATEWAY"
+  ],
+  "full_local_report_sha256": "e848a15729860b4e82efc86971ffb98f52b85ef1884d11d7a58d9d6102b6edcc"
+}

@@ -1,0 +1,82 @@
+{
+  "verification": "LOCAL_WORKER_WITH_IN_MEMORY_SQLITE_D1_ADAPTER",
+  "passed": 18,
+  "failed": 0,
+  "real_model_calls": 0,
+  "external_requests": 0,
+  "team_joint_acceptance": false,
+  "checks": [
+    {
+      "name": "public policy registered read, no private session or model call",
+      "result": "PASS"
+    },
+    {
+      "name": "public policy cannot be mutated",
+      "result": "PASS"
+    },
+    {
+      "name": "asset /risk",
+      "result": "PASS"
+    },
+    {
+      "name": "asset /risk/app.js",
+      "result": "PASS"
+    },
+    {
+      "name": "asset /risk/daily.js",
+      "result": "PASS"
+    },
+    {
+      "name": "asset /risk/unified.js",
+      "result": "PASS"
+    },
+    {
+      "name": "asset /risk/unified.css",
+      "result": "PASS"
+    },
+    {
+      "name": "server derives HIGH from real deterministic daily result",
+      "result": "PASS"
+    },
+    {
+      "name": "grade persisted as linked audit sidecar",
+      "result": "PASS"
+    },
+    {
+      "name": "second session cannot read first task",
+      "result": "PASS"
+    },
+    {
+      "name": "affordable synthetic plan is LOW, still no execution authority",
+      "result": "PASS"
+    },
+    {
+      "name": "plan confirmation remains separate",
+      "result": "PASS"
+    },
+    {
+      "name": "L3 blocked after confirmation, repeat cannot write or deduct",
+      "result": "PASS"
+    },
+    {
+      "name": "permission denials audited without rewriting previous Risk",
+      "result": "PASS"
+    },
+    {
+      "name": "unconfirmed inputs are UNKNOWN",
+      "result": "PASS"
+    },
+    {
+      "name": "relevant plan change invalidates old confirmation",
+      "result": "PASS"
+    },
+    {
+      "name": "execution denial still checks session ownership first",
+      "result": "PASS"
+    },
+    {
+      "name": "audit/storage failure is visible error, never success",
+      "result": "PASS"
+    }
+  ]
+}

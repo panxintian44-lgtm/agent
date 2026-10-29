@@ -1,0 +1,1162 @@
+{
+  "schema_version": "risk-pr37-import-manifest.v1",
+  "source_repository": "Fintechathon-agent/Fintechathon-agent",
+  "source_pr": 37,
+  "source_head": "43f28cbbf9a2335a965c2debe988eb2c76b1e761",
+  "source_base": "4b351560743fde5038eefef7cbd89413bddbe9cd",
+  "target_repository": "realchenchenluo/agent",
+  "target_base": "d4da8afbef5a4989903f211e874a7cfdfe526554",
+  "branch": "codex/import-risk-pr37-v1.1",
+  "source_file_count": 127,
+  "pr_changed_path_count": 54,
+  "prerequisite_count": 73,
+  "migration_amendments": [
+    "context-for-eko.md",
+    "docs/safety-risk-eval/unified-runtime-v1.1/队友交接请求-2026-10-30.md"
+  ],
+  "files": [
+    {
+      "path": "context-for-eko.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "eb9e412b83c9a775abb80928d45ec5891dce94752059993ea7d3d95ce89b48da",
+      "imported_sha256": "25fa371000db52c47a0b7dca1e29136cafbf919ffebb6070f5b304acad0aa274",
+      "source_bytes": 32682,
+      "imported_bytes": 33269,
+      "migration_note_added": true
+    },
+    {
+      "path": "docs/safety-risk-eval/conversation-v1/ui-verification.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "33a1f5026ab182ec7397d09eacdbc7ac5c546f1502ed310c7bfe0f8688553323",
+      "imported_sha256": "33a1f5026ab182ec7397d09eacdbc7ac5c546f1502ed310c7bfe0f8688553323",
+      "source_bytes": 723,
+      "imported_bytes": 723,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/daily-policy-v1/policy-config.v1.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "ea9f25711edfe84950297052c2944dbb4d1640c8a6a12e36aebd86227a1193ea",
+      "imported_sha256": "ea9f25711edfe84950297052c2944dbb4d1640c8a6a12e36aebd86227a1193ea",
+      "source_bytes": 9347,
+      "imported_bytes": 9347,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/frontend-errors-v1/candidate-verification.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "cd6bd99946101051a5a19eecaad641eed2e6f066eefc49d8058e9d20f839b89e",
+      "imported_sha256": "cd6bd99946101051a5a19eecaad641eed2e6f066eefc49d8058e9d20f839b89e",
+      "source_bytes": 1208,
+      "imported_bytes": 1208,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/frontend-errors-v1/deployment.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "c48dfcaec5eee8018387c5df52063a9e24a45de1b9bd6cd245eefa5aa1d4bd64",
+      "imported_sha256": "c48dfcaec5eee8018387c5df52063a9e24a45de1b9bd6cd245eefa5aa1d4bd64",
+      "source_bytes": 1253,
+      "imported_bytes": 1253,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/frontend-errors-v1/local-error-visible-after-scroll.png",
+      "role": "PREREQUISITE",
+      "source_sha256": "18bb0b15f97d21d55147447a844bb692a775da8fbc80b27113d49862a5821553",
+      "imported_sha256": "18bb0b15f97d21d55147447a844bb692a775da8fbc80b27113d49862a5821553",
+      "source_bytes": 50631,
+      "imported_bytes": 50631,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/frontend-errors-v1/source-provenance.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "49cdc3c614f29360d967e23bff408c9a6487356d3a62ca3231766e7836b5b265",
+      "imported_sha256": "49cdc3c614f29360d967e23bff408c9a6487356d3a62ca3231766e7836b5b265",
+      "source_bytes": 854,
+      "imported_bytes": 854,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/frontend-errors-v1/unit-tests.tap",
+      "role": "PREREQUISITE",
+      "source_sha256": "04436152c299b03a5e04b699dda1456ed7d20043d9713ae732b9b01a38510ce4",
+      "imported_sha256": "04436152c299b03a5e04b699dda1456ed7d20043d9713ae732b9b01a38510ce4",
+      "source_bytes": 22167,
+      "imported_bytes": 22167,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/network-resilience-v1/candidate-verification.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "117561cd8e78004f48c5dc75f2ce8d23248314e57b5f4c72e4ad405c701901c6",
+      "imported_sha256": "117561cd8e78004f48c5dc75f2ce8d23248314e57b5f4c72e4ad405c701901c6",
+      "source_bytes": 1136,
+      "imported_bytes": 1136,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/network-resilience-v1/deployment.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "de9af395d92310f0051a0ae0958bed9592819f734d0b1d23a54b2e1f1112ab09",
+      "imported_sha256": "de9af395d92310f0051a0ae0958bed9592819f734d0b1d23a54b2e1f1112ab09",
+      "source_bytes": 1571,
+      "imported_bytes": 1571,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/network-resilience-v1/local-storage-unavailable.png",
+      "role": "PREREQUISITE",
+      "source_sha256": "a8eea56e607dd4c78ab3c40bdf87bbb12e81c80d5b13345c47b1408464826c44",
+      "imported_sha256": "a8eea56e607dd4c78ab3c40bdf87bbb12e81c80d5b13345c47b1408464826c44",
+      "source_bytes": 61891,
+      "imported_bytes": 61891,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/network-resilience-v1/online-status.png",
+      "role": "PREREQUISITE",
+      "source_sha256": "6c14888c11a948fed9a040c4e71ff88ef8a7ce1b121d9866bb496442e2801bbb",
+      "imported_sha256": "6c14888c11a948fed9a040c4e71ff88ef8a7ce1b121d9866bb496442e2801bbb",
+      "source_bytes": 61954,
+      "imported_bytes": 61954,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/network-resilience-v1/source-provenance.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "1594205e43ac431e7e6e9f7897462daee290fc368bd1cec50f4fe1d261b6820a",
+      "imported_sha256": "1594205e43ac431e7e6e9f7897462daee290fc368bd1cec50f4fe1d261b6820a",
+      "source_bytes": 767,
+      "imported_bytes": 767,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/evidence/network-resilience-v1/unit-tests.tap",
+      "role": "PREREQUISITE",
+      "source_sha256": "a799ea4dc6e7884b0ce0f4fbc45378d8566be1e1b0c932dbea941f14b230bb7f",
+      "imported_sha256": "a799ea4dc6e7884b0ce0f4fbc45378d8566be1e1b0c932dbea941f14b230bb7f",
+      "source_bytes": 15076,
+      "imported_bytes": 15076,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/allow.input.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "4f7b27528d06bb40094b469c0b3bab20a3e5f37b00f43da28ff343abd2ffb3c9",
+      "imported_sha256": "4f7b27528d06bb40094b469c0b3bab20a3e5f37b00f43da28ff343abd2ffb3c9",
+      "source_bytes": 5208,
+      "imported_bytes": 5208,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/allow.output.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "5568617d297f3293025d7fddf9ff6b66e987379c79ef02e4e01a5313a905ef9b",
+      "imported_sha256": "5568617d297f3293025d7fddf9ff6b66e987379c79ef02e4e01a5313a905ef9b",
+      "source_bytes": 1731,
+      "imported_bytes": 1731,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/block.input.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "64e82fad3521dddfe1f9edf59e3882c29b51820fbe9a8a9c60ae768452a5b110",
+      "imported_sha256": "64e82fad3521dddfe1f9edf59e3882c29b51820fbe9a8a9c60ae768452a5b110",
+      "source_bytes": 5410,
+      "imported_bytes": 5410,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/block.output.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "3c7a940863c76dabf95bff4876ccfd56898818a45538a798eabafbf6a7c056ee",
+      "imported_sha256": "3c7a940863c76dabf95bff4876ccfd56898818a45538a798eabafbf6a7c056ee",
+      "source_bytes": 1982,
+      "imported_bytes": 1982,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/error.input.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "7a2ddd04be7f2a00dd593611116dfeba3c5193671ef65cf3284fc97ca92cbaf4",
+      "imported_sha256": "7a2ddd04be7f2a00dd593611116dfeba3c5193671ef65cf3284fc97ca92cbaf4",
+      "source_bytes": 5405,
+      "imported_bytes": 5405,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/error.output.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "8f2b5c7624ee4a825017b3f1eeb48b8bee8453c9e242278ebe6b57c21855f16e",
+      "imported_sha256": "8f2b5c7624ee4a825017b3f1eeb48b8bee8453c9e242278ebe6b57c21855f16e",
+      "source_bytes": 1287,
+      "imported_bytes": 1287,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/manifest.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "cc3712d5266d79667a45ce81b02dfa0ad3a7d9f3933362b7b23585c1cbb5bff3",
+      "imported_sha256": "cc3712d5266d79667a45ce81b02dfa0ad3a7d9f3933362b7b23585c1cbb5bff3",
+      "source_bytes": 850,
+      "imported_bytes": 850,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/money-vectors.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "c897f86c34ead83035b3f8d7a4f32ccf92b391db7e8dc28760d59a961733dee7",
+      "imported_sha256": "c897f86c34ead83035b3f8d7a4f32ccf92b391db7e8dc28760d59a961733dee7",
+      "source_bytes": 3075,
+      "imported_bytes": 3075,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/review.input.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "1f0cb80ef7622eba7837fe74997731c5d4c51fac4375db57d1a429aa73db3861",
+      "imported_sha256": "1f0cb80ef7622eba7837fe74997731c5d4c51fac4375db57d1a429aa73db3861",
+      "source_bytes": 5436,
+      "imported_bytes": 5436,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/examples/review.output.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "231ed95abb0e2886531f18207eea0e902bc2a7ed4b49c5bc43d47b7a8d24dd99",
+      "imported_sha256": "231ed95abb0e2886531f18207eea0e902bc2a7ed4b49c5bc43d47b7a8d24dd99",
+      "source_bytes": 2078,
+      "imported_bytes": 2078,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/interface-adapters-v1/验证记录-2026-10-21.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "939483348de1f5a1ddf01cdfb8acac8df17c1a19e6fbdb0d18bc9b9dead0c235",
+      "imported_sha256": "939483348de1f5a1ddf01cdfb8acac8df17c1a19e6fbdb0d18bc9b9dead0c235",
+      "source_bytes": 1512,
+      "imported_bytes": 1512,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/joint-acceptance-v1/local-http-2026-10-22.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "dc252612bcacf11b47e98c277a7776b0735a91eb1d7a04792adc3015943404bf",
+      "imported_sha256": "dc252612bcacf11b47e98c277a7776b0735a91eb1d7a04792adc3015943404bf",
+      "source_bytes": 439909,
+      "imported_bytes": 439909,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/joint-acceptance-v1/local-http-first-2026-10-22.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "bc9e42b106349497dd3a8f9b153ad2165f53ef582bd5f7a16dd2887af520a925",
+      "imported_sha256": "bc9e42b106349497dd3a8f9b153ad2165f53ef582bd5f7a16dd2887af520a925",
+      "source_bytes": 353690,
+      "imported_bytes": 353690,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/joint-acceptance-v1/preflight-2026-10-22.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "7903181f42e5c1d452a946edbea3209b6aa3a80b1decb407ced153762f049b5b",
+      "imported_sha256": "7903181f42e5c1d452a946edbea3209b6aa3a80b1decb407ced153762f049b5b",
+      "source_bytes": 1883,
+      "imported_bytes": 1883,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/joint-acceptance-v1/preflight-proxy-2026-10-22.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "ca8bd0cf6c3f3d8b23b860d3c273ac8060a849c4f3c79401b69b14acfdad73df",
+      "imported_sha256": "ca8bd0cf6c3f3d8b23b860d3c273ac8060a849c4f3c79401b69b14acfdad73df",
+      "source_bytes": 2606,
+      "imported_bytes": 2606,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/research/金融风控参考调研-2026-10-29.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "0a1833d2d939c58054317fc4b9cf89896893663c4ba1e13220ff6c045e5ba654",
+      "imported_sha256": "0a1833d2d939c58054317fc4b9cf89896893663c4ba1e13220ff6c045e5ba654",
+      "source_bytes": 26862,
+      "imported_bytes": 26862,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-rating-v1/README.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "cbd7059bd16f359b87b8d2dd10b6f01b1db38bfc8283eba089a394e69e803fe0",
+      "imported_sha256": "cbd7059bd16f359b87b8d2dd10b6f01b1db38bfc8283eba089a394e69e803fe0",
+      "source_bytes": 17706,
+      "imported_bytes": 17706,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-rating-v1/acceptance-cases.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "2f8cb0a44336b10e526ec9ac74fe44b558b129b15ae75f05a215b58ea4e88486",
+      "imported_sha256": "2f8cb0a44336b10e526ec9ac74fe44b558b129b15ae75f05a215b58ea4e88486",
+      "source_bytes": 34372,
+      "imported_bytes": 34372,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-rating-v1/permission-matrix.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "9db18ea524655aab6b62fbe1104f43d92e62e98502a4399f3971afc5ec1c136b",
+      "imported_sha256": "9db18ea524655aab6b62fbe1104f43d92e62e98502a4399f3971afc5ec1c136b",
+      "source_bytes": 74560,
+      "imported_bytes": 74560,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-rating-v1/reference-catalog.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "50052b8e047fa70232470d5e1bce7b598d813353ce790fa6e8cc29e6d4d1d56a",
+      "imported_sha256": "50052b8e047fa70232470d5e1bce7b598d813353ce790fa6e8cc29e6d4d1d56a",
+      "source_bytes": 35697,
+      "imported_bytes": 35697,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-rating-v1/risk-policy.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "c7c230cd17d9c9dd583e48f1354bbf38a90eb33ee53358b86799ba139481338f",
+      "imported_sha256": "c7c230cd17d9c9dd583e48f1354bbf38a90eb33ee53358b86799ba139481338f",
+      "source_bytes": 15666,
+      "imported_bytes": 15666,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-rating-v1/verify-package.mjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "9af6af4cc4bf332968f4ec2d216bc1b16337a63916db67ff7660d8613de380a8",
+      "imported_sha256": "9af6af4cc4bf332968f4ec2d216bc1b16337a63916db67ff7660d8613de380a8",
+      "source_bytes": 14402,
+      "imported_bytes": 14402,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/deployment-v15.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "58560bb0a941c5e0e25c31f01413d58a990b6baa1b685add87d45fa2645141b5",
+      "imported_sha256": "58560bb0a941c5e0e25c31f01413d58a990b6baa1b685add87d45fa2645141b5",
+      "source_bytes": 826,
+      "imported_bytes": 826,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/site-build-v15.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "48f9aed8c8b10334d5839c5cbee938661d40a0e8d30f3f73b8f454132c1e140b",
+      "imported_sha256": "48f9aed8c8b10334d5839c5cbee938661d40a0e8d30f3f73b8f454132c1e140b",
+      "source_bytes": 2217,
+      "imported_bytes": 2217,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/summary.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "dec8836c54749e14da64418af0f65ce49c8614ec2945fdb18b2f3e50cb7f0da0",
+      "imported_sha256": "dec8836c54749e14da64418af0f65ce49c8614ec2945fdb18b2f3e50cb7f0da0",
+      "source_bytes": 1514,
+      "imported_bytes": 1514,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/v14-confirmed-grade-missing.jpg",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "dfcd70f63ce876791dc7ed9df71b092cc9ae25aaf5941fa85829003edf80e386",
+      "imported_sha256": "dfcd70f63ce876791dc7ed9df71b092cc9ae25aaf5941fa85829003edf80e386",
+      "source_bytes": 354816,
+      "imported_bytes": 354816,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/v15-low-confirmed-detail.jpg",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "f85f1f032da64dbf9daa30a256fed04b3b125cf3c44c175ba3a212ffd33b645f",
+      "imported_sha256": "f85f1f032da64dbf9daa30a256fed04b3b125cf3c44c175ba3a212ffd33b645f",
+      "source_bytes": 159778,
+      "imported_bytes": 159778,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/v15-low-confirmed.jpg",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "f6178636b1cf0e57e8bc7750b0743483cd38a0b374f04a4eb2c32a4c67dfcd63",
+      "imported_sha256": "f6178636b1cf0e57e8bc7750b0743483cd38a0b374f04a4eb2c32a4c67dfcd63",
+      "source_bytes": 381070,
+      "imported_bytes": 381070,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/v15-low-confirmed.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "8f20c4790c48f5fe4d5c834338e20682711f42ecb3e314f7d88db5c84b44a9b3",
+      "imported_sha256": "8f20c4790c48f5fe4d5c834338e20682711f42ecb3e314f7d88db5c84b44a9b3",
+      "source_bytes": 3263,
+      "imported_bytes": 3263,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/v15-one-fen-block.jpg",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "f48b9ad0e53faaa87cb60987dae3f51f9112213a0fcb9c20542d42d79c02a02b",
+      "imported_sha256": "f48b9ad0e53faaa87cb60987dae3f51f9112213a0fcb9c20542d42d79c02a02b",
+      "source_bytes": 399999,
+      "imported_bytes": 399999,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/v15-one-fen-block.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "fa54de590e7af5fdff5291042b2dca868866f1c8acaeb9e4ccbe558dff5f5bad",
+      "imported_sha256": "fa54de590e7af5fdff5291042b2dca868866f1c8acaeb9e4ccbe558dff5f5bad",
+      "source_bytes": 3009,
+      "imported_bytes": 3009,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/worker-http-30.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "8855ffb097a02136b616320eddcaabec1db2031a4d069dab9071f641c82bfa57",
+      "imported_sha256": "8855ffb097a02136b616320eddcaabec1db2031a4d069dab9071f641c82bfa57",
+      "source_bytes": 3395,
+      "imported_bytes": 3395,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/browser-20261030/worker-http-v13-baseline-30.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "8855ffb097a02136b616320eddcaabec1db2031a4d069dab9071f641c82bfa57",
+      "imported_sha256": "8855ffb097a02136b616320eddcaabec1db2031a4d069dab9071f641c82bfa57",
+      "source_bytes": 3395,
+      "imported_bytes": 3395,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/component-http.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "f798176f14961b369ec7a3a0023bf9fa6ef769df172aaefb441b969cdb11e33c",
+      "imported_sha256": "f798176f14961b369ec7a3a0023bf9fa6ef769df172aaefb441b969cdb11e33c",
+      "source_bytes": 4646,
+      "imported_bytes": 4646,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/deployment.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "7e726bd0f18de6caf49012e2c3c15538c7d9273efa99d6cfa436a9545d91cbbd",
+      "imported_sha256": "7e726bd0f18de6caf49012e2c3c15538c7d9273efa99d6cfa436a9545d91cbbd",
+      "source_bytes": 1022,
+      "imported_bytes": 1022,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/program-tests.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "29b7fe15fc084194472610a84139e61bd03fb725446bf0eea54bc20bc6975eaa",
+      "imported_sha256": "29b7fe15fc084194472610a84139e61bd03fb725446bf0eea54bc20bc6975eaa",
+      "source_bytes": 37622,
+      "imported_bytes": 37622,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/site-build.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "c773db2c2f88cea0c780b6aebd708f81dfd751aac98478d07d59c7e09a745451",
+      "imported_sha256": "c773db2c2f88cea0c780b6aebd708f81dfd751aac98478d07d59c7e09a745451",
+      "source_bytes": 2217,
+      "imported_bytes": 2217,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/evidence/worker-http.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "0b66b4d11ccc0de664b54bc1cb67afbfa7c0549354e24b2e8c6fee98352236f3",
+      "imported_sha256": "0b66b4d11ccc0de664b54bc1cb67afbfa7c0549354e24b2e8c6fee98352236f3",
+      "source_bytes": 2843,
+      "imported_bytes": 2843,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/浏览器补验与确认重检修复-2026-10-30.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "c84fdfd3ec4ed3679f8c302a6f62833921b2668cf6f2de0d7b811b5230aa1d13",
+      "imported_sha256": "c84fdfd3ec4ed3679f8c302a6f62833921b2668cf6f2de0d7b811b5230aa1d13",
+      "source_bytes": 5345,
+      "imported_bytes": 5345,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/能力覆盖表.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "fa81bb7622482be912449ebe3ebea4651d2b580f86f838df7c7e7dfa9565259e",
+      "imported_sha256": "fa81bb7622482be912449ebe3ebea4651d2b580f86f838df7c7e7dfa9565259e",
+      "source_bytes": 10896,
+      "imported_bytes": 10896,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/规则与权限说明.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "aa1773c5b098ec1de4209cde5b8b50988f2b10b804b842a2ef742d5a8963241e",
+      "imported_sha256": "aa1773c5b098ec1de4209cde5b8b50988f2b10b804b842a2ef742d5a8963241e",
+      "source_bytes": 13897,
+      "imported_bytes": 13897,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/队友交接请求-2026-10-30.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "4903ec9e50972e1bd069b92a1b55bd1f9acb8df9f1bb2d924efab378dc805572",
+      "imported_sha256": "d34eeb0dd7e85f2f06d7294d58e142555a92a07776d7ae54fba9855747736418",
+      "source_bytes": 10555,
+      "imported_bytes": 10611,
+      "migration_note_added": true
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1.1/验证报告.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "f4e1712aa5d7c3dcf45637c6e71270d1002848b7d718b1e71f595e6da60c782d",
+      "imported_sha256": "f4e1712aa5d7c3dcf45637c6e71270d1002848b7d718b1e71f595e6da60c782d",
+      "source_bytes": 6299,
+      "imported_bytes": 6299,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1/site-handler-verification.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "c323d21bcc001267528308a168bcd50ee844c93b90abfb45a88a98dab393e324",
+      "imported_sha256": "c323d21bcc001267528308a168bcd50ee844c93b90abfb45a88a98dab393e324",
+      "source_bytes": 1895,
+      "imported_bytes": 1895,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1/site-provenance.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "b35d9d33ea44ca306e09b486b2514d3d52695e5dfce904b239ff6fb774547ffb",
+      "imported_sha256": "b35d9d33ea44ca306e09b486b2514d3d52695e5dfce904b239ff6fb774547ffb",
+      "source_bytes": 1146,
+      "imported_bytes": 1146,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/unified-runtime-v1/交付与验证-2026-10-29.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "f87266e7e49fc3f9340da4100782022bcddac9d8d56e3dee0698d132deab51c4",
+      "imported_sha256": "f87266e7e49fc3f9340da4100782022bcddac9d8d56e3dee0698d132deab51c4",
+      "source_bytes": 3535,
+      "imported_bytes": 3535,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/对话风控与正式回调接入-v1.0.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "caeb086df3d9ef69e9ea03562fc960a0ad68926bea7b7d8f61aa1c92498464cd",
+      "imported_sha256": "caeb086df3d9ef69e9ea03562fc960a0ad68926bea7b7d8f61aa1c92498464cd",
+      "source_bytes": 10783,
+      "imported_bytes": 10783,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/对话风控接入验证-2026-10-21.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "56311b07ec30b70f85e501982bbb0d750cf4a88e8da54ea8947e0379e0b634ef",
+      "imported_sha256": "56311b07ec30b70f85e501982bbb0d750cf4a88e8da54ea8947e0379e0b634ef",
+      "source_bytes": 3698,
+      "imported_bytes": 3698,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/接口字段对应与回调适配-v1.0.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "29e65e6986433dc1cb5c712d0174a57ec315feb7d1f866cf138fe4633e12626f",
+      "imported_sha256": "29e65e6986433dc1cb5c712d0174a57ec315feb7d1f866cf138fe4633e12626f",
+      "source_bytes": 16427,
+      "imported_bytes": 16427,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/权限分级与授权闭环策划-v0.1.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "f99ad2e9c60dbd8caa3e54cebbb8f45d23da7a27e79df7c9d80f4a038856a6f1",
+      "imported_sha256": "f99ad2e9c60dbd8caa3e54cebbb8f45d23da7a27e79df7c9d80f4a038856a6f1",
+      "source_bytes": 30915,
+      "imported_bytes": 30915,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/权限风控规划表-v0.2.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "b4f5d17a1493a665b16f9379729148069728911e4fbcb188865376ede6691fbc",
+      "imported_sha256": "b4f5d17a1493a665b16f9379729148069728911e4fbcb188865376ede6691fbc",
+      "source_bytes": 39768,
+      "imported_bytes": 39768,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/网络异常监测与恢复-v1.0.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "bbc2e29dd75c5f1caf755cde24d3c939057d9bf27f69f0da0df69ca200e1d330",
+      "imported_sha256": "bbc2e29dd75c5f1caf755cde24d3c939057d9bf27f69f0da0df69ca200e1d330",
+      "source_bytes": 9311,
+      "imported_bytes": 9311,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/联合验收与网页接线-v1.0.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "d10f7e10cb4d26e2fea70b159b900eaf01f9c75001ce5f30062fb8e85bceb7dc",
+      "imported_sha256": "d10f7e10cb4d26e2fea70b159b900eaf01f9c75001ce5f30062fb8e85bceb7dc",
+      "source_bytes": 24411,
+      "imported_bytes": 24411,
+      "migration_note_added": false
+    },
+    {
+      "path": "docs/safety-risk-eval/项目进度同步-2026-10-29.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "ca426990e88487eb2bc9d6d205e195d76ef65c8e0ce4f2184bed5fec9ac28446",
+      "imported_sha256": "ca426990e88487eb2bc9d6d205e195d76ef65c8e0ce4f2184bed5fec9ac28446",
+      "source_bytes": 7487,
+      "imported_bytes": 7487,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/daily-engine.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "9b3223ac2aac8aa9ffc93fbff5b903ae6c9da744a32dfce9d58bfceee1626b39",
+      "imported_sha256": "9b3223ac2aac8aa9ffc93fbff5b903ae6c9da744a32dfce9d58bfceee1626b39",
+      "source_bytes": 35003,
+      "imported_bytes": 35003,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/.gitignore",
+      "role": "PREREQUISITE",
+      "source_sha256": "b918a9d2e7532e9dc45d20bcbf14b26f3c43e884d9be63c40002b63e4c5b255e",
+      "imported_sha256": "b918a9d2e7532e9dc45d20bcbf14b26f3c43e884d9be63c40002b63e4c5b255e",
+      "source_bytes": 36,
+      "imported_bytes": 36,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/README.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "6034c32c33d6ad84f86145d3e419e9237232c1d7a8494759b126b1e7acb878df",
+      "imported_sha256": "6034c32c33d6ad84f86145d3e419e9237232c1d7a8494759b126b1e7acb878df",
+      "source_bytes": 2136,
+      "imported_bytes": 2136,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/conversation-input.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "5b7eab59442962c61a12259294e23d9e57a9bdfe7bd38364e4a17bfd01910533",
+      "imported_sha256": "5b7eab59442962c61a12259294e23d9e57a9bdfe7bd38364e4a17bfd01910533",
+      "source_bytes": 2819,
+      "imported_bytes": 2819,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/conversation-review.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "1d14bfe5c4e1308dcf614dfe2a9542e76d8586dff6cf64fdb08a81c6eea8ed85",
+      "imported_sha256": "1d14bfe5c4e1308dcf614dfe2a9542e76d8586dff6cf64fdb08a81c6eea8ed85",
+      "source_bytes": 15966,
+      "imported_bytes": 15966,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/conversation-risk.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "4f899ce802ab7033b87522c863c96afcf91c76f6479d85749c5adb91c28d00d3",
+      "imported_sha256": "4f899ce802ab7033b87522c863c96afcf91c76f6479d85749c5adb91c28d00d3",
+      "source_bytes": 19426,
+      "imported_bytes": 19426,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/conversation-server.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "60f6d7efd6b74e2b399049ee0a4e550df81be334ad36227bc9dfd5e84af1d496",
+      "imported_sha256": "60f6d7efd6b74e2b399049ee0a4e550df81be334ad36227bc9dfd5e84af1d496",
+      "source_bytes": 4173,
+      "imported_bytes": 4173,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/conversation-store.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "8874b35305a463f7a06c20ec05ed1c4089f9d4dcecabc59cee2de42f0d58ec1e",
+      "imported_sha256": "8874b35305a463f7a06c20ec05ed1c4089f9d4dcecabc59cee2de42f0d58ec1e",
+      "source_bytes": 3408,
+      "imported_bytes": 3408,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/core-client.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "cc40469ccd83f28f5dfc944cb4d83791547d9b76d4e4da175eef048d008f850c",
+      "imported_sha256": "cc40469ccd83f28f5dfc944cb4d83791547d9b76d4e4da175eef048d008f850c",
+      "source_bytes": 4344,
+      "imported_bytes": 4344,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/fixture-data.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "e29fc9bbc15179b63d865530aff29dd899519c9c434a7f3f63140db331bef4e3",
+      "imported_sha256": "e29fc9bbc15179b63d865530aff29dd899519c9c434a7f3f63140db331bef4e3",
+      "source_bytes": 4348,
+      "imported_bytes": 4348,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/money.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "a06db985b239db2d916a1ce7d4bb134d9664f6109d0d337ae0fc334a3320d5bd",
+      "imported_sha256": "a06db985b239db2d916a1ce7d4bb134d9664f6109d0d337ae0fc334a3320d5bd",
+      "source_bytes": 5139,
+      "imported_bytes": 5139,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/package-lock.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "16c480ea52ae6693c0d72757ae37e3f7413e8d5c0ed1004c9054735085758b19",
+      "imported_sha256": "16c480ea52ae6693c0d72757ae37e3f7413e8d5c0ed1004c9054735085758b19",
+      "source_bytes": 2408,
+      "imported_bytes": 2408,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/package.json",
+      "role": "PREREQUISITE",
+      "source_sha256": "3204c27c7c5515d597d36366459d976ea91120c84e5c3a788c13edf0b9b8de80",
+      "imported_sha256": "3204c27c7c5515d597d36366459d976ea91120c84e5c3a788c13edf0b9b8de80",
+      "source_bytes": 716,
+      "imported_bytes": 716,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/risk-callback-sender.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "0499b916d93b8e07a46c065f80183eb61eb201621f00fe93aea5ad072a56dbb4",
+      "imported_sha256": "0499b916d93b8e07a46c065f80183eb61eb201621f00fe93aea5ad072a56dbb4",
+      "source_bytes": 14195,
+      "imported_bytes": 14195,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/risk-callback.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "3fb7039002420b0a0a5a5f073ff329d875fdd2f435d48b6622f99ce6db9500de",
+      "imported_sha256": "3fb7039002420b0a0a5a5f073ff329d875fdd2f435d48b6622f99ce6db9500de",
+      "source_bytes": 13744,
+      "imported_bytes": 13744,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/test/conversation-flow.test.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "8883cc4c02235c18f3a315d82df48a0a6869d950c9a54524c9a9f5d834f5ac4c",
+      "imported_sha256": "8883cc4c02235c18f3a315d82df48a0a6869d950c9a54524c9a9f5d834f5ac4c",
+      "source_bytes": 17102,
+      "imported_bytes": 17102,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/test/conversation-risk.test.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "d3da22744bc5157d2ab1576f821fab14aa13f26823a027116317e07ebb4ddff9",
+      "imported_sha256": "d3da22744bc5157d2ab1576f821fab14aa13f26823a027116317e07ebb4ddff9",
+      "source_bytes": 14511,
+      "imported_bytes": 14511,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/test/core-compat.test.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "305daab443123e2877fdf5c1edddae55a74db27f5b990821dc850ad27ebef16b",
+      "imported_sha256": "305daab443123e2877fdf5c1edddae55a74db27f5b990821dc850ad27ebef16b",
+      "source_bytes": 7855,
+      "imported_bytes": 7855,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/test/money.test.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "26a196362458031baf82d8e08b542b2da1e0ed56a7e31ffa1fa181d15ffc1f68",
+      "imported_sha256": "26a196362458031baf82d8e08b542b2da1e0ed56a7e31ffa1fa181d15ffc1f68",
+      "source_bytes": 6255,
+      "imported_bytes": 6255,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/test/risk-callback-sender.test.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "107075e3642006cbdd3479e4cec5720e8ea1c705e7f31b11e9868eccb140438d",
+      "imported_sha256": "107075e3642006cbdd3479e4cec5720e8ea1c705e7f31b11e9868eccb140438d",
+      "source_bytes": 15497,
+      "imported_bytes": 15497,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/test/risk-callback.test.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "167b47629e3eb9a25e4ee2b0e4de05f84808e1530a2909509e14bfbe9711283b",
+      "imported_sha256": "167b47629e3eb9a25e4ee2b0e4de05f84808e1530a2909509e14bfbe9711283b",
+      "source_bytes": 13063,
+      "imported_bytes": 13063,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/verify-conversation-ui.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "3200019c606dcac4b6b1e3431d203166c0b6b262b60258d3323a33ff020f84c5",
+      "imported_sha256": "3200019c606dcac4b6b1e3431d203166c0b6b262b60258d3323a33ff020f84c5",
+      "source_bytes": 8046,
+      "imported_bytes": 8046,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/verify-python-bridge.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "8331ba49130de52be673605554ca41e27cbb9dec9b274d7540a979e8caed62e0",
+      "imported_sha256": "8331ba49130de52be673605554ca41e27cbb9dec9b274d7540a979e8caed62e0",
+      "source_bytes": 6192,
+      "imported_bytes": 6192,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/write-examples.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "47c0a8bde319827d237c13521b58aff5e1f1b37e9891b048ac8478339c25a421",
+      "imported_sha256": "47c0a8bde319827d237c13521b58aff5e1f1b37e9891b048ac8478339c25a421",
+      "source_bytes": 2844,
+      "imported_bytes": 2844,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/joint-acceptance/README.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "9d5e22c0c88f3c0b12f61f097c5676dd04b609b79305adfecd5f93d05ee40fa0",
+      "imported_sha256": "9d5e22c0c88f3c0b12f61f097c5676dd04b609b79305adfecd5f93d05ee40fa0",
+      "source_bytes": 2389,
+      "imported_bytes": 2389,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/joint-acceptance/core-snapshot.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "1e28d1aace75de753b6c4d86f4fef19593158516a28e944b7e8a3a8488f9db84",
+      "imported_sha256": "1e28d1aace75de753b6c4d86f4fef19593158516a28e944b7e8a3a8488f9db84",
+      "source_bytes": 2667,
+      "imported_bytes": 2667,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/joint-acceptance/harness.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "ca35db0b040edd8ba9bea2e016ba9a3d7d9fb49de59912e9f85f165984ce98ed",
+      "imported_sha256": "ca35db0b040edd8ba9bea2e016ba9a3d7d9fb49de59912e9f85f165984ce98ed",
+      "source_bytes": 26893,
+      "imported_bytes": 26893,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/joint-acceptance/preflight.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "1b8373e7fe797f9a4f19df187196b43e078004ffd01986612c3efb994a45cadd",
+      "imported_sha256": "1b8373e7fe797f9a4f19df187196b43e078004ffd01986612c3efb994a45cadd",
+      "source_bytes": 9466,
+      "imported_bytes": 9466,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/joint-acceptance/run.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "64e19b04d41b9854b8ef93fa5024b7350b30baed01957e3074fe4241f2ccd80f",
+      "imported_sha256": "64e19b04d41b9854b8ef93fa5024b7350b30baed01957e3074fe4241f2ccd80f",
+      "source_bytes": 1022,
+      "imported_bytes": 1022,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/joint-acceptance/test/preflight.test.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "5b37d725b35a62586a290ec3358d2f92ca723a92f358fc7452f1e5280dac791f",
+      "imported_sha256": "5b37d725b35a62586a290ec3358d2f92ca723a92f358fc7452f1e5280dac791f",
+      "source_bytes": 10933,
+      "imported_bytes": 10933,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/README.md",
+      "role": "PREREQUISITE",
+      "source_sha256": "5f29ba1ffe00425da91435ff218c88f6fd10d15e6e491fb9eb305ea64f90719b",
+      "imported_sha256": "5f29ba1ffe00425da91435ff218c88f6fd10d15e6e491fb9eb305ea64f90719b",
+      "source_bytes": 3041,
+      "imported_bytes": 3041,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/connection.css",
+      "role": "PREREQUISITE",
+      "source_sha256": "20ac204ff7becfa25d4543717c72450e61bce55bc45dee86fa4467691c1b1343",
+      "imported_sha256": "20ac204ff7becfa25d4543717c72450e61bce55bc45dee86fa4467691c1b1343",
+      "source_bytes": 2697,
+      "imported_bytes": 2697,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/connection.js",
+      "role": "PREREQUISITE",
+      "source_sha256": "551372c1e3869204633a8368355c3437ab56f0ced8169fc6a130e90b0bb95b9d",
+      "imported_sha256": "551372c1e3869204633a8368355c3437ab56f0ced8169fc6a130e90b0bb95b9d",
+      "source_bytes": 14976,
+      "imported_bytes": 14976,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/feedback.js",
+      "role": "PREREQUISITE",
+      "source_sha256": "8937ed840144fc85499bf1df2db6fa9b962be4c6eb604ba69ebff64a7a868505",
+      "imported_sha256": "8937ed840144fc85499bf1df2db6fa9b962be4c6eb604ba69ebff64a7a868505",
+      "source_bytes": 9276,
+      "imported_bytes": 9276,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/health.mjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "5fbe2f2509ad80704cff26c98a98f22ef7347243c52fc7838b7737ceb3564d03",
+      "imported_sha256": "5fbe2f2509ad80704cff26c98a98f22ef7347243c52fc7838b7737ceb3564d03",
+      "source_bytes": 6059,
+      "imported_bytes": 6059,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/install-site.mjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "29982834492dcf0eb00cce82bf113be8c664d0ece60e7b94373972c5b8a7ed02",
+      "imported_sha256": "29982834492dcf0eb00cce82bf113be8c664d0ece60e7b94373972c5b8a7ed02",
+      "source_bytes": 7512,
+      "imported_bytes": 7512,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/network.js",
+      "role": "PREREQUISITE",
+      "source_sha256": "f35c5bf1211902019dc44f36b354da3c4f0f33259aae1a5c3d6c272dbb91c038",
+      "imported_sha256": "f35c5bf1211902019dc44f36b354da3c4f0f33259aae1a5c3d6c272dbb91c038",
+      "source_bytes": 14039,
+      "imported_bytes": 14039,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/test/connection.test.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "9d63436efee7911bcd0257516a6516134d21f58da3f701cd4b857ea9bc88fbe5",
+      "imported_sha256": "9d63436efee7911bcd0257516a6516134d21f58da3f701cd4b857ea9bc88fbe5",
+      "source_bytes": 10431,
+      "imported_bytes": 10431,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/test/feedback.test.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "f5d07b86ae0b81d2e1065d3484b45ff4364a7814930efcd5e03c5aedb0f1762f",
+      "imported_sha256": "f5d07b86ae0b81d2e1065d3484b45ff4364a7814930efcd5e03c5aedb0f1762f",
+      "source_bytes": 12628,
+      "imported_bytes": 12628,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/test/health.test.mjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "bead17e5d51edd205c22e36082c1a676fe2806e2085211080600540084bccd55",
+      "imported_sha256": "bead17e5d51edd205c22e36082c1a676fe2806e2085211080600540084bccd55",
+      "source_bytes": 10635,
+      "imported_bytes": 10635,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/test/network.test.cjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "bb9860ad71aabdab369ddeb08e99a9b317db52e60bd9e6d85f4e3c0921c31fef",
+      "imported_sha256": "bb9860ad71aabdab369ddeb08e99a9b317db52e60bd9e6d85f4e3c0921c31fef",
+      "source_bytes": 19216,
+      "imported_bytes": 19216,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/network-resilience/verify-site.mjs",
+      "role": "PREREQUISITE",
+      "source_sha256": "aea768c493d88cd20305db737e7d8bfaf0ed8b5700f7d5297dd20d37ffc6869d",
+      "imported_sha256": "aea768c493d88cd20305db737e7d8bfaf0ed8b5700f7d5297dd20d37ffc6869d",
+      "source_bytes": 4013,
+      "imported_bytes": 4013,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/README.md",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "9fd89c6cef028e47e4dbe21d96f4aa99b8d50fa6915048e4f0bb6fd915b249d8",
+      "imported_sha256": "9fd89c6cef028e47e4dbe21d96f4aa99b8d50fa6915048e4f0bb6fd915b249d8",
+      "source_bytes": 7463,
+      "imported_bytes": 7463,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/assessment.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "398f415bb61a4d37a82acacf034354289fa8416839575771157f3ba51d339929",
+      "imported_sha256": "398f415bb61a4d37a82acacf034354289fa8416839575771157f3ba51d339929",
+      "source_bytes": 5412,
+      "imported_bytes": 5412,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/daily-result-validation.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "54b67bea7742b8f00e031047a47592307c3eecb28c125d787d123360916691d3",
+      "imported_sha256": "54b67bea7742b8f00e031047a47592307c3eecb28c125d787d123360916691d3",
+      "source_bytes": 19222,
+      "imported_bytes": 19222,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/dependency-map.v1.1.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "dd53b381a7ea2c2521920bd2f429d8ff08ba4f44b737fb9fa20cd4b0048c2e00",
+      "imported_sha256": "dd53b381a7ea2c2521920bd2f429d8ff08ba4f44b737fb9fa20cd4b0048c2e00",
+      "source_bytes": 3438,
+      "imported_bytes": 3438,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/install-site.mjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "6abafacf1d801beed43bdeb9d1c2fb2af67cd173cda552841d3e7e35d3dd90b2",
+      "imported_sha256": "6abafacf1d801beed43bdeb9d1c2fb2af67cd173cda552841d3e7e35d3dd90b2",
+      "source_bytes": 9291,
+      "imported_bytes": 9291,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/permission.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "648c93ad94ccffb90672a5357b65112f65e9ec5560a357e0dc7b380bce2a874b",
+      "imported_sha256": "648c93ad94ccffb90672a5357b65112f65e9ec5560a357e0dc7b380bce2a874b",
+      "source_bytes": 18454,
+      "imported_bytes": 18454,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/preview-site.mjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "f533a2c0486723956ad7dadc9facc97e921ee1dff7a91044222557fb4569a8b9",
+      "imported_sha256": "f533a2c0486723956ad7dadc9facc97e921ee1dff7a91044222557fb4569a8b9",
+      "source_bytes": 1070,
+      "imported_bytes": 1070,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/runtime-config.v1.1.json",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "14e5449b9aeef1107ce2ac4aaf7bb6f290ea2e35a18220aed554137f725e63eb",
+      "imported_sha256": "14e5449b9aeef1107ce2ac4aaf7bb6f290ea2e35a18220aed554137f725e63eb",
+      "source_bytes": 836,
+      "imported_bytes": 836,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/site-bridge.mjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "60c85c008cae96fafa3b51f4bd1ef45c6197d2b16721a35cd203744125ae6d37",
+      "imported_sha256": "60c85c008cae96fafa3b51f4bd1ef45c6197d2b16721a35cd203744125ae6d37",
+      "source_bytes": 3190,
+      "imported_bytes": 3190,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/site-fixture.mjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "e19a0aa54887fd176e1c7a26164829c68cc13c6222265d7ff7a44636162995f7",
+      "imported_sha256": "e19a0aa54887fd176e1c7a26164829c68cc13c6222265d7ff7a44636162995f7",
+      "source_bytes": 3549,
+      "imported_bytes": 3549,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/test/assessment.test.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "4ead8613b3ed6a03f8e6640dfd54564610243d989627547ea1010b0a77f9552a",
+      "imported_sha256": "4ead8613b3ed6a03f8e6640dfd54564610243d989627547ea1010b0a77f9552a",
+      "source_bytes": 17081,
+      "imported_bytes": 17081,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/test/daily-money-regression.test.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "81d7a1dd0db98b1b1a28e4953a02e0e359e7a5201dc09030bcb8aba18f8c7e93",
+      "imported_sha256": "81d7a1dd0db98b1b1a28e4953a02e0e359e7a5201dc09030bcb8aba18f8c7e93",
+      "source_bytes": 9174,
+      "imported_bytes": 9174,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/test/permission.test.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "6a83d4ab894f36a51baff2ef079d82af7a4388a257ffec34bd1c104eb81762b6",
+      "imported_sha256": "6a83d4ab894f36a51baff2ef079d82af7a4388a257ffec34bd1c104eb81762b6",
+      "source_bytes": 24815,
+      "imported_bytes": 24815,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/test/workbench-ui.test.cjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "7c3ae145d2b203623c899a4f0ff9d3ac3d5c8702e677798a3f585baf8ec8485f",
+      "imported_sha256": "7c3ae145d2b203623c899a4f0ff9d3ac3d5c8702e677798a3f585baf8ec8485f",
+      "source_bytes": 8807,
+      "imported_bytes": 8807,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/verify-site.mjs",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "d78bc43920ddfbc337d5734090b9152772e42c275f42389e86db856c8dd0e7c1",
+      "imported_sha256": "d78bc43920ddfbc337d5734090b9152772e42c275f42389e86db856c8dd0e7c1",
+      "source_bytes": 14840,
+      "imported_bytes": 14840,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/workbench.css",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "4b3c75efc41ee3ddeea08771f0833f8142a24ce31c2bc8aa28b12fc5c5f1fd7b",
+      "imported_sha256": "4b3c75efc41ee3ddeea08771f0833f8142a24ce31c2bc8aa28b12fc5c5f1fd7b",
+      "source_bytes": 886,
+      "imported_bytes": 886,
+      "migration_note_added": false
+    },
+    {
+      "path": "modules/safety-risk-eval/unified-rating/workbench.js",
+      "role": "PR37_CHANGED_PATH",
+      "source_sha256": "f8c30534580b803f32644f15df4aaca5500adc949fbc29f7ed23e0f414f2ac89",
+      "imported_sha256": "f8c30534580b803f32644f15df4aaca5500adc949fbc29f7ed23e0f414f2ac89",
+      "source_bytes": 6111,
+      "imported_bytes": 6111,
+      "migration_note_added": false
+    }
+  ]
+}

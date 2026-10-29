@@ -1,0 +1,73 @@
+{
+  "schema_version": "risk-joint-preflight.v1",
+  "checked_at": "2026-10-22T07:06:46.049Z",
+  "mode": "READ_ONLY_PREFLIGHT",
+  "real_model_calls": 0,
+  "joint_acceptance": false,
+  "execution_allowed": false,
+  "services": [
+    {
+      "id": "risk_validation",
+      "endpoint": "https://finance-lab-risk-bridge.realchenchenluo.workers.dev/health",
+      "http_status": 200,
+      "status": "HEALTH_ONLY",
+      "health_verified": true,
+      "execution_allowed": false,
+      "deployment": "CLOUD_VALIDATION",
+      "owner_source": "PR27-27bdefb",
+      "model_calls_enabled": false
+    },
+    {
+      "id": "core_validation",
+      "endpoint": "https://finance-lab-core-risk-validation.realchenchenluo.workers.dev/health",
+      "http_status": 200,
+      "status": "HEALTH_ONLY",
+      "health_verified": true,
+      "execution_allowed": false,
+      "contract_version": "investment-agent.v1",
+      "model_configured": false,
+      "audit_storage": "durable_object"
+    },
+    {
+      "id": "independent_chat",
+      "endpoint": "https://xinlan-qwen38-share.lixjanus526.workers.dev/api/tinglan/status",
+      "http_status": 401,
+      "status": "AUTHENTICATION_REQUIRED",
+      "health_verified": false,
+      "execution_allowed": false,
+      "access_boundary_verified": true
+    }
+  ],
+  "blockers": [
+    {
+      "service_id": null,
+      "code": "JOINT_ACCEPTANCE_NOT_PERFORMED",
+      "message_zh": "三条公开GET探测不构成模型→Risk→审批→执行联合验收；后续须核验同一任务的完整证据。"
+    },
+    {
+      "service_id": "risk_validation",
+      "code": "RISK_BUSINESS_CHAIN_NOT_PROBED",
+      "message_zh": "仅核验公开健康状态；未核验受保护状态、资金评估、正式回调、审批或执行。"
+    },
+    {
+      "service_id": "risk_validation",
+      "code": "RISK_MODEL_CALLS_DISABLED",
+      "message_zh": "Risk公开状态报告模型调用关闭；本次没有改变开关。"
+    },
+    {
+      "service_id": "core_validation",
+      "code": "CORE_CALLBACK_AUTH_NOT_PROBED",
+      "message_zh": "公开健康检查不证明机器身份、Risk签名、固定审核身份或正式业务回调已联合验收。"
+    },
+    {
+      "service_id": "core_validation",
+      "code": "CORE_MODEL_NOT_CONFIGURED",
+      "message_zh": "Core公开状态报告模型未配置；本次没有运行推理探测。"
+    },
+    {
+      "service_id": "independent_chat",
+      "code": "CHAT_SESSION_REQUIRED",
+      "message_zh": "公开探测没有会话，尚不能核验对话服务内部状态；没有建立会话或调用模型。"
+    }
+  ]
+}

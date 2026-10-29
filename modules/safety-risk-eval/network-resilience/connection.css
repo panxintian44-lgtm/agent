@@ -1,0 +1,25 @@
+.connection-strip{margin:0 0 24px;padding:16px 18px;border:1px solid #b4c7bf;border-radius:12px;background:#f0f6f2;color:#193c32;font-size:16px;line-height:1.65;overflow-wrap:anywhere}
+.connection-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.connection-heading h2{margin:0;font-size:18px;font-weight:700}
+.connection-strip p{margin:8px 0 0;max-width:75ch}
+.connection-strip .connection-footnote{font-size:14px;color:#3d5b50}
+.connection-strip button{margin:0;min-height:44px;padding:8px 14px;border:1px solid currentColor;border-radius:8px;background:#fff;color:#193c32;font:inherit;cursor:pointer}
+.connection-strip button:hover:not(:disabled){background:#e2eee7}
+.connection-strip button:focus-visible{outline:3px solid #23785a;outline-offset:3px}
+.connection-strip button:disabled{cursor:not-allowed;color:#5a6862;background:#e7eae8;border-color:#88958e}
+.connection-strip[data-state="offline"],.connection-strip[data-state="error"]{border-color:#b8716a;background:#fff2ef;color:#7e201a}
+.connection-strip[data-state="checking"],.connection-strip[data-state="degraded"]{border-color:#c3a563;background:#fff9eb;color:#67460c}
+#connection-pending{margin-top:12px;padding-top:12px;border-top:1px solid #a8843c;color:#67460c}
+#connection-pending-message{font-weight:650;margin-bottom:10px}
+#connection-query-result{max-height:220px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}
+@media(max-width:520px){.connection-strip{padding:14px}.connection-heading{gap:10px}.connection-heading button{width:100%}}
+#risk-operation-alert{position:fixed;inset:auto 16px max(16px,env(safe-area-inset-bottom)) auto;z-index:1000;width:min(520px,calc(100% - 32px));box-sizing:border-box;padding:18px 20px;background:#fff2ef;color:#7e201a;border:1px solid #b8716a;border-radius:12px;font-size:16px;line-height:1.6;max-height:48vh;overflow:auto;overflow-wrap:anywhere}
+#risk-operation-alert[hidden]{display:none}
+#risk-operation-alert h3{font-size:18px;line-height:1.4;margin:0 0 8px;font-weight:700}
+#risk-operation-alert p{margin:6px 0}
+#risk-operation-alert button{min-height:44px;padding:8px 12px;margin:10px 8px 0 0;border:1px solid currentColor;border-radius:8px;background:#fff;color:#7e201a;font:inherit;cursor:pointer}
+#risk-operation-alert button:hover{background:#f8ded8}
+#risk-operation-alert button:focus-visible{outline:3px solid #8b342c;outline-offset:3px}
+#risk-operation-alert button[hidden]{display:none}
+#operation-error-reference{font-size:14px;color:#793b33;white-space:pre-wrap;font-family:inherit;margin:6px 0}
+@media(max-width:520px){#risk-operation-alert{inset-inline:12px;width:auto;max-height:45vh;padding:16px}}

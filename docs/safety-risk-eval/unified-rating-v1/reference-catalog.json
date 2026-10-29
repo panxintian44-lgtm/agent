@@ -1,0 +1,838 @@
+{
+  "catalog_version": "risk-reference-catalog.v1",
+  "status": "REGISTERED_REFERENCES_NOT_FULL_DATA_IMPORT",
+  "registered_at": "2026-10-29",
+  "owner": "Vesper / Safety Risk Eval",
+  "reference_report": "docs/safety-risk-eval/research/金融风控参考调研-2026-10-29.md",
+  "allowed_use_semantics": "各项allowed_use仅记录本轮采用范围，不作法律许可或正式数据使用授权承诺。新下载、训练、再分发、真实业务使用须核实具体版本及许可。",
+  "external_full_datasets_downloaded": false,
+  "model_trained": false,
+  "runtime_integration": false,
+  "private_database_read": false,
+  "sensitive_user_data_imported": false,
+  "official_risk_grades_generated": false,
+  "counts": {
+    "open_source_projects": 7,
+    "dataset_groups": 8,
+    "academic_papers": 5,
+    "official_technical_reports": 1,
+    "official_policy_references": 3,
+    "total": 24
+  },
+  "source_freeze": {
+    "team_repository": "https://github.com/Fintechathon-agent/Fintechathon-agent",
+    "team_source_ref": "96c7f5ac74a46998f5523745b640535e5ea1a504",
+    "external_sources": "2026-10-29已核查引用；正式引入外部代码/数据时仍需冻结具体提交或数据版本"
+  },
+  "sources": [
+    {
+      "id": "G01",
+      "type": "OPEN_SOURCE_PROJECT",
+      "title": "Riskfolio-Lib",
+      "url": "https://github.com/dcajasn/Riskfolio-Lib",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "CODE_LICENSE_VERIFIED_AT_REFERENCE_REVIEW",
+        "software_spdx": "BSD-3-Clause",
+        "evidence_urls": [
+          "https://github.com/dcajasn/Riskfolio-Lib/blob/master/LICENSE.txt"
+        ],
+        "data_terms": "不由代码许可推定第三方数据使用或再分发许可"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "参考组合波动、CVaR、回撤、风险贡献与权重约束的计算和对账方法"
+      ],
+      "not_for": [
+        "不提供房租学费保护、本人审批、账户归属或本项目固定阈值",
+        "不把其优化输出直接当作可执行计划"
+      ],
+      "implementation_status": "NOT_INSTALLED_OR_EXECUTED"
+    },
+    {
+      "id": "G02",
+      "type": "OPEN_SOURCE_PROJECT",
+      "title": "skfolio",
+      "url": "https://github.com/skfolio/skfolio",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "CODE_LICENSE_VERIFIED_AT_REFERENCE_REVIEW",
+        "software_spdx": "BSD-3-Clause",
+        "evidence_urls": [
+          "https://github.com/skfolio/skfolio/blob/main/LICENSE"
+        ],
+        "data_terms": "不由代码许可推定第三方数据使用或再分发许可"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "参考组合风险约束、Walk Forward、样本外与压力测试方法"
+      ],
+      "not_for": [
+        "不提供中国居民投资风险分界或用户资金授权",
+        "未冻结窗口和指标口径前不替换现有Quant输出"
+      ],
+      "implementation_status": "NOT_INSTALLED_OR_EXECUTED"
+    },
+    {
+      "id": "G03",
+      "type": "OPEN_SOURCE_PROJECT",
+      "title": "Microsoft Qlib",
+      "url": "https://github.com/microsoft/qlib",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "CODE_LICENSE_VERIFIED_AT_REFERENCE_REVIEW",
+        "software_spdx": "MIT",
+        "evidence_urls": [
+          "https://github.com/microsoft/qlib/blob/main/LICENSE"
+        ],
+        "data_terms": "不由代码许可推定第三方数据使用或再分发许可"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "参考数据、模型、策略和回放的版本化工作流"
+      ],
+      "not_for": [
+        "官方数据可用性须重新核对，不能假设社区数据可信或可再分发",
+        "不能证明本人身份、资金保护或审批有效"
+      ],
+      "implementation_status": "NOT_INSTALLED_OR_EXECUTED"
+    },
+    {
+      "id": "G04",
+      "type": "OPEN_SOURCE_PROJECT",
+      "title": "Open Policy Agent",
+      "url": "https://github.com/open-policy-agent/opa",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "CODE_LICENSE_VERIFIED_AT_REFERENCE_REVIEW",
+        "software_spdx": "Apache-2.0",
+        "evidence_urls": [
+          "https://github.com/open-policy-agent/opa/blob/main/LICENSE"
+        ],
+        "data_terms": "不由代码许可推定第三方数据使用或再分发许可"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "参考策略决定、上下文与业务执行分离和固定策略测试"
+      ],
+      "not_for": [
+        "策略决定不能替代网关实际拦截",
+        "不自动提供身份、本人审批或原子资金账本"
+      ],
+      "implementation_status": "NOT_INSTALLED_OR_EXECUTED"
+    },
+    {
+      "id": "G05",
+      "type": "OPEN_SOURCE_PROJECT",
+      "title": "Apache Casbin",
+      "url": "https://github.com/apache/casbin",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "CODE_LICENSE_VERIFIED_AT_REFERENCE_REVIEW",
+        "software_spdx": "Apache-2.0",
+        "evidence_urls": [
+          "https://github.com/apache/casbin/blob/master/LICENSE"
+        ],
+        "data_terms": "不由代码许可推定第三方数据使用或再分发许可"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "参考主体—资源—动作、RBAC/ABAC、多租户与拒绝优先授权"
+      ],
+      "not_for": [
+        "授权库不提供身份认证，管理员或超级用户不能代替本人批准",
+        "不与OPA默认同时引入两套互相冲突的权限决定"
+      ],
+      "implementation_status": "NOT_INSTALLED_OR_EXECUTED"
+    },
+    {
+      "id": "G06",
+      "type": "OPEN_SOURCE_PROJECT",
+      "title": "scorecardpy",
+      "url": "https://github.com/ShichenXie/scorecardpy",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "CODE_LICENSE_VERIFIED_AT_REFERENCE_REVIEW",
+        "software_spdx": "MIT",
+        "evidence_urls": [
+          "https://github.com/ShichenXie/scorecardpy/blob/master/LICENSE"
+        ],
+        "data_terms": "不由代码许可推定第三方数据使用或再分发许可"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "参考可解释特征贡献、评分记录及分布漂移监测方法"
+      ],
+      "not_for": [
+        "信用/违约标签不等于生活资金冲突、投资承受能力或执行权限",
+        "不直接搬用训练后的评分分界"
+      ],
+      "implementation_status": "NOT_INSTALLED_OR_EXECUTED"
+    },
+    {
+      "id": "G07",
+      "type": "OPEN_SOURCE_PROJECT",
+      "title": "IBM AMLSim",
+      "url": "https://github.com/IBM/AMLSim",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "CODE_LICENSE_VERIFIED_AT_REFERENCE_REVIEW",
+        "software_spdx": "Apache-2.0",
+        "evidence_urls": [
+          "https://github.com/IBM/AMLSim/blob/master/LICENSE"
+        ],
+        "data_terms": "不由代码许可推定第三方数据使用或再分发许可"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "参考已知模式合成交易、异常路径和审计关联测试设计"
+      ],
+      "not_for": [
+        "它是合成模拟器而不是真实银行账户",
+        "洗钱标签不是房租学费保护等级或本人审批证据"
+      ],
+      "implementation_status": "NOT_INSTALLED_OR_EXECUTED"
+    },
+    {
+      "id": "D01",
+      "type": "TEAM_DATASET_GROUP",
+      "title": "七七已分享历史样本与复算资料",
+      "url": "https://github.com/Fintechathon-agent/Fintechathon-agent/blob/96c7f5ac74a46998f5523745b640535e5ea1a504/qiqi/docs/%E7%9C%9F%E5%AE%9E%E6%95%B0%E6%8D%AE%E4%BE%9B%E7%BB%99%E6%B8%85%E5%8D%95_%E7%BB%99%E6%9E%97%E7%B2%B9_2026-10-14.md",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "TEAM_SHARED_SCOPE_ONLY",
+        "notes": "按已分享仓库样本登记；不推定本机私有数据库或第三方市场数据的外发许可"
+      },
+      "access_status": "TEAM_SHARED_SNAPSHOT",
+      "ingested_content": "REFERENCE_METADATA_AND_SNAPSHOT_PROFILE_ONLY",
+      "allowed_use": [
+        "在已分享范围内做固定历史计算对账、字段适配及待标注评测设计",
+        "读取固定Git对象生成元数据摘要，不复制全部样本"
+      ],
+      "not_for": [
+        "不是实时行情、用户账户余额或本人审批证据",
+        "日报未填写标准答案，不能直接作为本项目四态评测标准",
+        "不读取或外发qiqi/brief/db/market.db及本机私有原始采集文件"
+      ],
+      "subassets": [
+        {
+          "id": "D01-BRIEF",
+          "repo": "https://github.com/Fintechathon-agent/Fintechathon-agent",
+          "path": "qiqi/brief/dataset/briefs_21d.jsonl",
+          "ref": "96c7f5ac74a46998f5523745b640535e5ea1a504",
+          "url": "https://github.com/Fintechathon-agent/Fintechathon-agent/blob/96c7f5ac74a46998f5523745b640535e5ea1a504/qiqi/brief/dataset/briefs_21d.jsonl",
+          "git_blob_oid": "1ffe99532a7aa8cee14152adff6e27a3dbfaf49d",
+          "git_blob_sha256": "a437001fb2fe3fc67aa917182fa55334a507c1e498a7a35160f25120fbd3c194",
+          "sha256_scope": "Raw file-content bytes returned by git show; excludes the Git blob header",
+          "byte_length": 59579,
+          "profile_checked_at": "2026-10-29",
+          "raw_content_copied": false,
+          "row_count": 39,
+          "row_unit": "event record",
+          "key_fields": [
+            "id",
+            "date",
+            "stage",
+            "event",
+            "explanation",
+            "risk",
+            "agent_mapping",
+            "decision"
+          ],
+          "unique_ids": 39,
+          "dates": {
+            "count": 8,
+            "min": "2026-10-07",
+            "max": "2026-10-16",
+            "values": [
+              "2026-10-07",
+              "2026-10-08",
+              "2026-10-09",
+              "2026-10-10",
+              "2026-10-11",
+              "2026-10-12",
+              "2026-10-13",
+              "2026-10-16"
+            ]
+          },
+          "quality_findings": {
+            "team_answer_missing_count": 39,
+            "outcome_result_missing_count": 38,
+            "expected_product_decisions_available": false
+          },
+          "risk_use": "事件解释和待标注案例；不将news severity或agent_mapping当正式风控结论"
+        },
+        {
+          "id": "D01-PRICES",
+          "repo": "https://github.com/Fintechathon-agent/Fintechathon-agent",
+          "path": "qiqi/tests/fixtures/real_prices_20261013.json",
+          "ref": "96c7f5ac74a46998f5523745b640535e5ea1a504",
+          "url": "https://github.com/Fintechathon-agent/Fintechathon-agent/blob/96c7f5ac74a46998f5523745b640535e5ea1a504/qiqi/tests/fixtures/real_prices_20261013.json",
+          "git_blob_oid": "3b644a0277f5699087dda6086ef89fd13026b601",
+          "git_blob_sha256": "ea4a1252a3343e226d86a3f924f300d13633dac61e408fcd9d2d90a88462a640",
+          "sha256_scope": "Raw file-content bytes returned by git show; excludes the Git blob header",
+          "byte_length": 3563,
+          "profile_checked_at": "2026-10-29",
+          "raw_content_copied": false,
+          "row_count": 480,
+          "row_unit": "price observation across 4 series",
+          "series_count": 4,
+          "key_fields": [
+            "510300",
+            "600036",
+            "600519",
+            "000001"
+          ],
+          "dates": null,
+          "series_profile": {
+            "510300": {
+              "row_count": 120,
+              "non_finite_values": 0,
+              "non_positive_values": 0
+            },
+            "600036": {
+              "row_count": 120,
+              "non_finite_values": 0,
+              "non_positive_values": 0
+            },
+            "600519": {
+              "row_count": 120,
+              "non_finite_values": 0,
+              "non_positive_values": 0
+            },
+            "000001": {
+              "row_count": 120,
+              "non_finite_values": 0,
+              "non_positive_values": 0
+            }
+          },
+          "claimed_capture_date": "2026-10-13",
+          "capture_date_basis": "Filename and qiqi/tests/test_risk_history.py comment; no embedded dates in this JSON",
+          "quality_findings": {
+            "source_embedded": false,
+            "adjustment_embedded": false,
+            "currency_unit_embedded": false,
+            "cross_asset_date_alignment_verified": false
+          },
+          "risk_use": "补齐日期、来源、单位与复权元数据后做固定波动/回撤/两两相关对账；不当实时行情"
+        },
+        {
+          "id": "D01-NAV",
+          "repo": "https://github.com/Fintechathon-agent/Fintechathon-agent",
+          "path": "qiqi/tests/fixtures/real_nav_000001_of_20261013.json",
+          "ref": "96c7f5ac74a46998f5523745b640535e5ea1a504",
+          "url": "https://github.com/Fintechathon-agent/Fintechathon-agent/blob/96c7f5ac74a46998f5523745b640535e5ea1a504/qiqi/tests/fixtures/real_nav_000001_of_20261013.json",
+          "git_blob_oid": "434a244fd3aaf710e843a52f36c0392257a9106c",
+          "git_blob_sha256": "120127a3834c6717fbe5e63bcda29567d4efd1e018e4a64649f2bac6ba2948b7",
+          "sha256_scope": "Raw file-content bytes returned by git show; excludes the Git blob header",
+          "byte_length": 2529,
+          "profile_checked_at": "2026-10-29",
+          "raw_content_copied": false,
+          "row_count": 120,
+          "row_unit": "dated fund NAV observation",
+          "key_fields": [
+            "dates",
+            "navs"
+          ],
+          "dates": {
+            "count": 120,
+            "min": "2026-04-15",
+            "max": "2026-10-13",
+            "unique_count": 120,
+            "strictly_increasing": true
+          },
+          "quality_findings": {
+            "date_value_count_match": true,
+            "non_finite_values": 0,
+            "non_positive_values": 0,
+            "source_embedded": false,
+            "instrument_id_embedded": false,
+            "nav_type_embedded": false,
+            "currency_unit_embedded": false
+          },
+          "instrument_id_from_filename": "000001.OF",
+          "risk_use": "该固定历史窗口的净值路径和回撤对账；基金代码不能与股票000001混用"
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "type": "EXTERNAL_DATASET_GROUP",
+      "title": "CFPB National Financial Well-Being Survey",
+      "url": "https://www.consumerfinance.gov/data-research/financial-well-being-survey-data/",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "SEPARATE_DATA_LICENSE_NOT_CONFIRMED",
+        "notes": "机构提供公开使用CSV与指南；不标作MIT或独立CC许可",
+        "evidence_urls": [
+          "https://www.consumerfinance.gov/documents/5588/cfpb_nfwbs-puf-user-guide.pdf",
+          "https://www.consumerfinance.gov/documents/5586/cfpb_nfwbs-puf-codebook.pdf"
+        ]
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮登记收入稳定性、支付压力、应急缓冲和生活资金画像维度"
+      ],
+      "not_for": [
+        "美国2016调查不能直接校准中国用户硬阈值",
+        "FWBscore不是违约概率、投资评级或操作授权",
+        "缺失/拒答编码不能当负收入或0；总体估计需抽样权重"
+      ]
+    },
+    {
+      "id": "D03",
+      "type": "EXTERNAL_DATASET_GROUP",
+      "title": "CHFS 中国家庭金融调查",
+      "url": "https://chfs.swufe.edu.cn/sjzx/gksjk.htm",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "APPLICATION_AND_USE_TERMS_REQUIRED",
+        "notes": "实名学术申请；未经许可不得转发或上平台；不读取非官方镜像",
+        "evidence_urls": [
+          "https://chfs.swufe.edu.cn/sjzx/sjsq.htm",
+          "https://chfs.swufe.edu.cn/info/1041/2131.htm"
+        ]
+      },
+      "access_status": "APPLICATION_REQUIRED",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮只登记中国家庭资产负债、收入支出与缓冲能力研究入口"
+      ],
+      "not_for": [
+        "未获相应申请许可前不下载、训练或公开分发",
+        "不将家庭调查结果当个人余额或操作授权"
+      ],
+      "availability_record": "本轮资料显示开放2011—2021六轮学术申请；2023/2025暂未开放，不推定后续可用性"
+    },
+    {
+      "id": "D04",
+      "type": "EXTERNAL_DATASET_GROUP",
+      "title": "FinQA / ConvFinQA",
+      "url": "https://github.com/czyssrs/FinQA",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "PARTIAL_DATA_TERMS_VERIFIED",
+        "software_spdx": "MIT",
+        "components": [
+          {
+            "name": "FinQA",
+            "data_license": "CC-BY-4.0",
+            "evidence_url": "https://finqasite.github.io/about.html"
+          },
+          {
+            "name": "ConvFinQA",
+            "data_license": null,
+            "status": "DATA_TERMS_REQUIRE_VERSION_CONFIRMATION",
+            "evidence_url": "https://github.com/czyssrs/ConvFinQA"
+          }
+        ],
+        "notes": "软件MIT不自动确定数据和继承内容许可；本轮未下载数据"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮登记金额、单位、多步算术、证据引用和多轮修订评测方法"
+      ],
+      "not_for": [
+        "财报问答标准答案不是个人余额或本产品四态/审批标签",
+        "不能沿用已知存在标签泄漏的数据格式作为未审查基线"
+      ]
+    },
+    {
+      "id": "D05",
+      "type": "EXTERNAL_DATASET_GROUP",
+      "title": "Kenneth French Data Library",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "SEPARATE_DATA_REUSE_TERMS_NOT_CONFIRMED",
+        "notes": "官网保留Fama/French版权；未找到CC/MIT数据许可",
+        "evidence_urls": [
+          "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library/f-f_factors.html"
+        ]
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮登记市场因子/研究组合与风险计算对照方法"
+      ],
+      "not_for": [
+        "因子收益不是中国单只基金价格或净值",
+        "数据版本会重建，缺失码不能当巨额亏损",
+        "未核对具体使用条件前不推定可再分发"
+      ]
+    },
+    {
+      "id": "D06",
+      "type": "SYNTHETIC_DATA_GENERATOR_REFERENCE",
+      "title": "IBM AMLSim 生成器与输出 Schema",
+      "url": "https://github.com/IBM/AMLSim",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "CODE_ONLY_OUTPUT_TERMS_REQUIRE_REVIEW",
+        "software_spdx": "Apache-2.0",
+        "notes": "代码许可已登记；实际生成输出/样本和第三方来源仍需单独核对",
+        "evidence_urls": [
+          "https://github.com/IBM/AMLSim/blob/master/LICENSE",
+          "https://raw.githubusercontent.com/IBM/AMLSim/master/paramFiles/1K/schema.json"
+        ]
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮登记合成账户、交易、告警和可控模式的测试设计"
+      ],
+      "not_for": [
+        "本轮没有运行生成器或导入其输出",
+        "模拟账户/洗钱告警不提供实际归属、本人审批或房租学费规则标准答案"
+      ]
+    },
+    {
+      "id": "D07",
+      "type": "EXTERNAL_DATASET_GROUP",
+      "title": "Feedzai Bank Account Fraud (BAF)",
+      "url": "https://github.com/feedzai/bank-account-fraud",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "RESTRICTED_DATA_TERMS_REQUIRE_CLARIFICATION",
+        "data_license_in_author_datasheet": "CC-BY-NC-ND-4.0",
+        "software_license_text": "Apache-2.0 with additional commercial-contact notice",
+        "notes": "作者datasheet Q44/Author Statement给出数据限制；代码许可不能覆盖；本轮未独立读到Kaggle当前许可",
+        "evidence_urls": [
+          "https://raw.githubusercontent.com/feedzai/bank-account-fraud/main/documents/datasheet.pdf",
+          "https://raw.githubusercontent.com/feedzai/bank-account-fraud/main/LICENSE",
+          "https://www.kaggle.com/datasets/sgpjesus/bank-account-fraud-dataset-neurips-2022"
+        ]
+      },
+      "access_status": "LICENSE_CLARIFICATION_REQUIRED",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮只登记欺诈、时间漂移、公平性研究方向及许可限制"
+      ],
+      "not_for": [
+        "许可澄清前不获取数据用于产品训练或公开再分发",
+        "开户欺诈标签不等于投资风险、生活资金保护或操作权限"
+      ]
+    },
+    {
+      "id": "D08",
+      "type": "EXTERNAL_DATASET_GROUP",
+      "title": "Federal Reserve SHED",
+      "url": "https://www.federalreserve.gov/consumerscommunities/shed_data.htm",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "SEPARATE_DATA_LICENSE_NOT_CONFIRMED",
+        "notes": "官方匿名公开使用文件与codebook；未核实独立CC数据授权"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮登记收入中断、生活支出、住房/教育与应急压力维度，参考2025调查入口"
+      ],
+      "not_for": [
+        "美国调查不能直接作为中国用户硬阈值",
+        "匿名调查没有本人批准或本次交易授权标签"
+      ]
+    },
+    {
+      "id": "P01",
+      "type": "ACADEMIC_PAPER",
+      "title": "Financial risk tolerance revisited: the development of a risk assessment instrument",
+      "url": "https://openjournals.libs.uga.edu/fsr/article/view/3890",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "FULL_TEXT_REUSE_NOT_ASSESSED",
+        "notes": "仅登记引文及本轮自己的方法摘要，不复制问卷或论文全文"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮参考13项、多维度风险容忍度的采集思路"
+      ],
+      "not_for": [
+        "不复制未完整核查的问卷/评分",
+        "国外分界不能直接作为中国用户准入或权限",
+        "不能推导当前35%/75%等演示阈值"
+      ],
+      "authors": [
+        "John Grable",
+        "Ruth H. Lytton"
+      ],
+      "publication": {
+        "year": 1999,
+        "venue": "Financial Services Review 8(3):163–181",
+        "doi": "10.1016/S1057-0810(99)00041-4"
+      },
+      "verification_scope": "已核对期刊元数据/摘要；未完整取得一手全文",
+      "supporting_urls": [
+        "https://doi.org/10.1016/S1057-0810(99)00041-4"
+      ]
+    },
+    {
+      "id": "P02",
+      "type": "OFFICIAL_TECHNICAL_REPORT",
+      "title": "CFPB Financial Well-Being Scale: Scale development technical report",
+      "url": "https://www.consumerfinance.gov/data-research/research-reports/financial-well-being-technical-report/",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "FULL_TEXT_REUSE_NOT_ASSESSED",
+        "notes": "仅登记引文及本轮自己的方法摘要，不复制问卷或论文全文"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮参考日常财务控制、冲击吸收、目标进度和选择自由四维"
+      ],
+      "not_for": [
+        "福祉分数不是产品R级、违约概率或执行权限",
+        "改变题目或翻译/计分后不能未经验证宣称与原分数可比"
+      ],
+      "authors": [
+        "Consumer Financial Protection Bureau"
+      ],
+      "publication": {
+        "year": 2017,
+        "document_type": "Official technical report, not a journal article"
+      },
+      "verification_scope": "已核查机构/作者全文关键部分",
+      "supporting_urls": [
+        "https://files.consumerfinance.gov/f/documents/201705_cfpb_financial-well-being-scale-technical-report.pdf"
+      ]
+    },
+    {
+      "id": "P03",
+      "type": "ACADEMIC_PAPER",
+      "title": "Coherent Measures of Risk",
+      "url": "https://people.math.ethz.ch/~delbaen/ftp/preprints/CoherentMF.pdf",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "FULL_TEXT_REUSE_NOT_ASSESSED",
+        "notes": "仅登记引文及本轮自己的方法摘要，不复制问卷或论文全文"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮参考组合整体风险度量和聚合一致性"
+      ],
+      "not_for": [
+        "不支持简单平均单资产风险标签",
+        "不提供本项目集中度/行业或生活预算统一分界"
+      ],
+      "authors": [
+        "Philippe Artzner",
+        "Freddy Delbaen",
+        "Jean-Marc Eber",
+        "David Heath"
+      ],
+      "publication": {
+        "year": 1999,
+        "venue": "Mathematical Finance 9(3):203–228",
+        "doi": "10.1111/1467-9965.00068",
+        "linked_manuscript_year": 1998
+      },
+      "verification_scope": "已读作者全文关键部分，期刊1999与1998稿本分开",
+      "supporting_urls": [
+        "https://doi.org/10.1111/1467-9965.00068"
+      ]
+    },
+    {
+      "id": "P04",
+      "type": "ACADEMIC_PAPER",
+      "title": "Optimization of Conditional Value-at-Risk",
+      "url": "https://sites.math.washington.edu/~rtr/papers/rtr179-CVaR1.pdf",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "FULL_TEXT_REUSE_NOT_ASSESSED",
+        "notes": "仅登记引文及本轮自己的方法摘要，不复制问卷或论文全文"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮参考尾部损失视角与可复算的情景比较"
+      ],
+      "not_for": [
+        "CVaR不是未来最大可能损失或收益保证",
+        "不推出统一个人风险档位或当前演示仓位阈值"
+      ],
+      "authors": [
+        "R. Tyrrell Rockafellar",
+        "Stanislav Uryasev"
+      ],
+      "publication": {
+        "year": 2000,
+        "venue": "Journal of Risk 2(3):21–41",
+        "doi": "10.21314/jor.2000.038",
+        "linked_manuscript_year": 1999
+      },
+      "verification_scope": "已读作者关键正文，期刊2000与1999稿本分开",
+      "supporting_urls": [
+        "https://doi.org/10.21314/jor.2000.038"
+      ]
+    },
+    {
+      "id": "P05",
+      "type": "ACADEMIC_PAPER",
+      "title": "AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents",
+      "url": "https://arxiv.org/abs/2406.13352v3",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "FULL_TEXT_REUSE_NOT_ASSESSED",
+        "notes": "仅登记引文及本轮自己的方法摘要，不复制问卷或论文全文"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮参考银行场景、不可信工具数据、正常任务效用与攻击目标分开评测"
+      ],
+      "not_for": [
+        "不是金融产品风险等级或银行系统安全认证",
+        "运行样例不代表本产品正式线上验收"
+      ],
+      "authors": [
+        "Edoardo Debenedetti",
+        "Jie Zhang",
+        "Mislav Balunović",
+        "Luca Beurer-Kellner",
+        "Marc Fischer",
+        "Florian Tramèr"
+      ],
+      "publication": {
+        "year": 2024,
+        "document_type": "Verified arXiv v3"
+      },
+      "verification_scope": "正文核查过工具数据与确定性验收方法",
+      "supporting_urls": [
+        "https://github.com/ethz-spylab/agentdojo"
+      ]
+    },
+    {
+      "id": "P06",
+      "type": "ACADEMIC_PAPER",
+      "title": "Defeating Prompt Injections by Design (CaMeL)",
+      "url": "https://arxiv.org/abs/2503.18813v2",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "FULL_TEXT_REUSE_NOT_ASSESSED",
+        "notes": "仅登记引文及本轮自己的方法摘要，不复制问卷或论文全文"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮参考可信控制流、不可信数据流隔离及工具调用能力策略"
+      ],
+      "not_for": [
+        "研究代码不能直接当生产安全保证",
+        "不混用未核验后续版本/性能数字"
+      ],
+      "authors": [
+        "Edoardo Debenedetti et al."
+      ],
+      "publication": {
+        "year": 2025,
+        "document_type": "Verified arXiv v2"
+      },
+      "verification_scope": "本轮固定arXiv v2与作者研究代码边界",
+      "supporting_urls": [
+        "https://github.com/google-research/camel-prompt-injection"
+      ]
+    },
+    {
+      "id": "T01",
+      "type": "OFFICIAL_POLICY_REFERENCE",
+      "title": "证券期货投资者适当性管理办法",
+      "url": "https://www.csrc.gov.cn/csrc/c106256/c1653849/content.shtml",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "OFFICIAL_REFERENCE_METADATA_ONLY",
+        "notes": "引用适当性设计要点，不复制全文或宣称认证"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮参考承受能力、产品风险、财务状况、目标/期限/经验及动态更新的分层"
+      ],
+      "not_for": [
+        "不能把本模拟Agent等同已具备经营机构资质或已完成合规审查",
+        "不由模型自动宣称官方C/R评级"
+      ],
+      "verification_scope": "网页标注2016公布、2020修订；适用经营机构的范围需专业确认"
+    },
+    {
+      "id": "T02",
+      "type": "OFFICIAL_POLICY_REFERENCE",
+      "title": "基金募集机构投资者适当性管理实施指引（试行）",
+      "url": "https://www.amac.org.cn/fwdt/wyb/jgdjhcpbeian/zcglcpba/xgzc/201912/t20191222_19886.html",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "OFFICIAL_REFERENCE_METADATA_ONLY",
+        "notes": "引用类别设计要点，不复制评分表"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮登记普通投资者C1—C5与产品/服务R1—R5的不同语义"
+      ],
+      "not_for": [
+        "C/R等级不能等同L0—L4权限",
+        "不把未验证问卷分数标成正式机构C类"
+      ],
+      "verification_scope": "部分正文页面超时，通过协会官方检索/抓取结果核对类别，未复刻完整评分"
+    },
+    {
+      "id": "T03",
+      "type": "OFFICIAL_POLICY_REFERENCE",
+      "title": "公开募集证券投资基金投资者适当性管理细则（2026）",
+      "url": "https://www.amac.org.cn/xwfb/xhyw/202606/P020260612617672605532.pdf",
+      "checked_at": "2026-10-29",
+      "verification_basis": "2026-10-29参考调研的一手来源核查；不是当前业务接口或账户事实认证",
+      "license": {
+        "status": "OFFICIAL_REFERENCE_METADATA_ONLY",
+        "notes": "引用设计要点；不复刻全文或宣称本项目完成合规认证"
+      },
+      "access_status": "METADATA_ONLY",
+      "ingested_content": "REFERENCE_METADATA_ONLY",
+      "allowed_use": [
+        "本轮参考量化/定性结合、权重/窗口/阈值记录、仓位/波动/回撤与动态复核"
+      ],
+      "not_for": [
+        "适用基金管理人/销售机构的规范不自动成为本模拟Agent资质",
+        "不据此推导本项目统一数值阈值或自动生成官方评级"
+      ],
+      "verification_scope": "本轮读到4页全文，发布与适用范围保留",
+      "supporting_urls": [
+        "https://www.amac.org.cn/xwfb/xhyw/202606/t20260612_27826.html"
+      ]
+    }
+  ]
+}
