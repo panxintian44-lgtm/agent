@@ -2,7 +2,7 @@
 
 从[旧仓库PR #37](https://github.com/Fintechathon-agent/Fintechathon-agent/pull/37)导入，来源head为`43f28cbbf9a2335a965c2debe988eb2c76b1e761`。这是供新仓库评审、接线的确定性风控模块，**尚未挂载到本仓库的线上问答入口**。
 
-迁入后的499项程序回归通过；组件HTTP仍有1项只读能力审批拦截失败，见迁入说明中的P0请求。不得据此开放执行或称完整链路已验收。
+原迁入提交`e17c881`的只读审批失败已由后续补丁在本地修复：Core 301项、Risk 499项、组件HTTP 14项通过，见[P0复现与验证](../../docs/safety-risk-eval/p0-readonly-closure-2026-10-30/README.md)。线上同版本验收仍NO-GO，资金写入口不因本地通过而开放。
 
 先读[迁入说明与复现命令](../../docs/safety-risk-eval/pr37-import-2026-10-30/README.md)，以及[规则与权限](../../docs/safety-risk-eval/unified-runtime-v1.1/规则与权限说明.md)、[能力覆盖表](../../docs/safety-risk-eval/unified-runtime-v1.1/能力覆盖表.md)。
 

@@ -1,0 +1,36 @@
+{
+  "schema_version": "risk-core-joint-acceptance-record.v1",
+  "generated_at": "2026-10-30T07:33:42.507Z",
+  "status": "NO_GO",
+  "formal_joint_acceptance": false,
+  "risk_fix_commit": "c1cc3c4bbab4700b5c156f09a649cbbf62e979a6",
+  "core_pr4_observed_head": "6b69fa3a87b934644597ba8988bd3888a4c453aa",
+  "unique_integrated_candidate_sha": null,
+  "core_staging_url_confirmed": null,
+  "risk_staging_url_confirmed": null,
+  "core_deployment_id": null,
+  "risk_deployment_id": null,
+  "core_owner": "林粹",
+  "risk_owner": "Vesper",
+  "core_owner_signoff": "PENDING",
+  "risk_owner_signoff": "LOCAL_EVIDENCE_ONLY_NOT_JOINT_SIGNOFF",
+  "blockers": [
+    "FREEZE_ONE_INTEGRATED_SHA_INCLUDING_MEMORY_AND_SERVICE_IDENTITY_POLICY",
+    "DEPLOY_AND_VERIFY_MATCHING_CORE_RISK_STAGING_SHA",
+    "VERIFY_SERVICE_IDENTITY_AND_SIGNATURE_CONFIG_WITHOUT_SHARING_SECRET_VALUES",
+    "VERIFY_AUTHENTICATED_USER_APPROVAL_AND_CROSS_USER_ISOLATION",
+    "VERIFY_SHARED_LEDGER_AND_EXECUTION_GATEWAY_WITH_FIXED_SYNTHETIC_DATA",
+    "COLLECT_BOTH_OWNER_SIGNOFFS_AND_HTTP_AUDIT_EVIDENCE"
+  ],
+  "evidence_available": [
+    "LOCAL_CORE_301_PASS",
+    "LOCAL_RISK_499_PASS",
+    "LOCAL_COMPONENT_HTTP_14_PASS",
+    "PUBLIC_HEALTH_GET_OLD_VALIDATION_SERVICES_ONLY"
+  ],
+  "real_model_calls": 0,
+  "real_financial_operations": 0,
+  "public_financial_post_requests": 0,
+  "real_execution_enabled": false,
+  "original_workbench_fund_writes_enabled": false
+}

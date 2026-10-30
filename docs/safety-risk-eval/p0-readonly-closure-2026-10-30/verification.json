@@ -1,0 +1,269 @@
+{
+  "schema_version": "risk-p0-local-verification.v1",
+  "generated_at": "2026-10-30T07:33:42.505Z",
+  "baseline_commit": "e17c881c1b7d24747c039a25a8bf7447009f0456",
+  "code_fix_commit": "c1cc3c4bbab4700b5c156f09a649cbbf62e979a6",
+  "environment": {
+    "platform": "win32",
+    "node": "v24.22.1",
+    "adapter_dependency": "ajv@8.17.1"
+  },
+  "scope": "LOCAL_PROGRAM_AND_HTTP_TEST_DOUBLES_ONLY",
+  "before_targeted": {
+    "tests": 17,
+    "pass": 3,
+    "fail": 14,
+    "skipped": 0,
+    "file": "before-targeted.tap",
+    "sha256": "c9f31ce1e7469a26ad313be6070e4026cf125c031a0ea61af0627f47114eff47"
+  },
+  "after_core": {
+    "tests": 301,
+    "pass": 301,
+    "fail": 0,
+    "skipped": 0,
+    "file": "core-tests.tap",
+    "sha256": "e3bab0120218e3735b7425a2cf16483a342c771143509ac7193e347ae04a9aaf"
+  },
+  "after_risk": {
+    "tests": 499,
+    "pass": 499,
+    "fail": 0,
+    "skipped": 0,
+    "file": "risk-tests.tap",
+    "sha256": "c7ad27ebd4aae6d892e855737f434a7fa5b82d33ede565eb2ea5381133636e6a"
+  },
+  "new_targeted_cases_included_in_core": 17,
+  "component_http": {
+    "passed": 14,
+    "failed": 0,
+    "file": "component-http.json",
+    "sha256": "e6dd88cb7fdd9dc1b19cca77796e83e629926b1a7ec2e2e4f889983007a48c43",
+    "scope": "PINNED_OLD_CORE_WORKER_WITH_CURRENT_WORKFLOW_AND_HELPERS",
+    "cases": [
+      {
+        "id": "normal_confirmed_plan",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-1a770d32-0618-4a59-b57f-6fee09e81cca",
+          "task_id": "review-task-726167e3-1cf4-4bab-8de1-809c67c58248",
+          "request_id": "req-b9c66865-369d-44c2-b5c6-3283968ebbb6",
+          "run_id": "review-f0a8596b-840a-4da8-817c-baf03335e82c",
+          "audit_id": "audit-733fc77a-eca9-4367-bbb0-949f69c6acae",
+          "proposal_sha256": "11bfd8b0954a20d4d34b1382a71cf19d0270b6177c2731d13fd360d848263c59"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "rent_conflict",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-848f94ef-a6a2-4672-a745-dd10dc4d4fb6",
+          "task_id": "review-task-855db2fa-8600-4178-9bf2-4505a8ced4a9",
+          "request_id": "req-5df92ac1-7f7c-4fd8-b6ca-c08142e2bd54",
+          "run_id": "review-3d29c546-ff6a-4208-8878-0f1cacfd62e9",
+          "audit_id": "audit-d1cf4719-3eaf-4de1-95b0-42009fe9069c",
+          "proposal_sha256": "bfe61d37c7bdea847aa00cb1f9780f1daa335b28eef61290e31f94a44ddcb4a8"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "tuition_conflict",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-6909b5fe-d1a5-48fc-8ecf-4e776f299e1d",
+          "task_id": "review-task-c3bacc56-13cb-448b-9b37-c598569e2051",
+          "request_id": "req-2a15dd68-8da7-42e2-9335-e5de488dc937",
+          "run_id": "review-faa835ae-f412-412b-b0b5-360b41a21449",
+          "audit_id": "audit-a6b3c20b-b770-4119-8119-f6fda0e51c5c",
+          "proposal_sha256": "d2cde7cec484605727ff05f580a8a8757e5538e8ee11e2ea965e9cd8e7a29d71"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "confirmed_purpose_revision",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-81f44532-4913-47e2-a588-deb9c8bae6c2",
+          "task_id": "review-task-9e105118-2387-42b1-a5e8-909c375596dd",
+          "request_id": "req-adb77e49-aa3a-4d90-a11b-c29ce233dbc8",
+          "run_id": "review-6c4e605b-4340-4f43-8d25-f58ba2173b2a",
+          "audit_id": "audit-5a0ae0a6-4e4f-4569-bc06-df016e4cb1fc",
+          "proposal_sha256": "baeef5ba57c53bbeec39933a5bce52ec24adba21f49253405491b4672ce01d16"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "approval_rejected",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-c446272e-2f6c-477b-8f58-9d7f9e550fa2",
+          "task_id": "review-task-f12fea6e-22cd-49bc-bafa-6b48870c2b85",
+          "request_id": "req-6d51d7ed-1205-4ad6-959d-b0b8efe554cc",
+          "run_id": "review-4283782e-918e-440b-806c-ecb5d68403ea",
+          "audit_id": "audit-4bb41b20-35e4-499c-beb2-a5b92d0980f2",
+          "proposal_sha256": "efa24424fa0eff99941351a6706e82cc5170b802849888f4fd8a5aeba139e398"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "missing_fee_review",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-058d1d20-096d-4b98-a8a0-f025ee843927",
+          "task_id": "review-task-1ece0414-a6c1-4079-94e7-71e7a41c70ee",
+          "request_id": "req-d8169562-82e5-4350-8fb3-0aea27c40047",
+          "run_id": "review-7529efa9-1565-442f-98bc-2691f5b8d895",
+          "audit_id": "audit-9dad8a22-f9bb-4501-a52e-d694ba610cc3",
+          "proposal_sha256": "613db02b41ed3626464f137d419bdf69057a369290a8f04a0c9ae8d84c97957f"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "wrong_signature_and_cross_task",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-73c78b65-9b4c-4eb3-8b26-f2069d696511",
+          "task_id": "review-task-abbb19bd-9c47-4e7e-a001-1b33a8100638",
+          "request_id": "req-c95b060b-1856-435b-99be-21fe7ae58abd",
+          "run_id": "review-242ecc26-2f66-4b05-af41-155c5fbbf584",
+          "audit_id": "audit-d7514715-bebe-4ab2-8986-a8fecf62bee9",
+          "proposal_sha256": "25507212da9b82939bbb85eb43a4fcfc7d800b034a649f9dbd8b465a67dba5b8"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "cross_session_callback_binding",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-472c17f6-237b-4b77-b9e4-1f7a06ffe5ea",
+          "task_id": "review-task-98460958-72d6-4979-9116-8a2b3d9cf458",
+          "request_id": "req-d7ffcddf-8ff2-44e6-9397-4fcfa4d70eeb",
+          "run_id": "review-05d5e811-89e9-428b-8755-7d153ec2db23",
+          "audit_id": "audit-bfc40617-5e08-43b4-a3b0-ee865ffcccac",
+          "proposal_sha256": "2aa3f46d2f8ae22b5d17e0d1773682a6a4f0b5f373e97999f356a69d3d88d454"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "approval_expired",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-1edf70a7-d3e3-4390-b6f8-1f53fdd83065",
+          "task_id": "review-task-0eb188c3-fec5-4212-a82c-aace92f7bdfa",
+          "request_id": "req-18ca1ca5-bb4a-485a-be77-4bb9c6d6ef71",
+          "run_id": "review-5d166c0a-9791-4eea-b777-f22afc896afa",
+          "audit_id": "audit-1e6244c9-5141-4aee-b4fb-9aebabc92537",
+          "proposal_sha256": "54760f35975af17a0b49e74299ef14496693bf6b22cc758a48347df8107a1cfd"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "readonly_capability",
+        "result": "PASS",
+        "trace": {
+          "task_id": "review-task-9801594e-eb1b-4726-87f7-55508b5040e8",
+          "run_id": "review-9392893c-2678-4c80-abf4-aaaf70eecfec",
+          "audit_id": "audit-c004f77b-64b3-4bff-a69b-f5686678af79",
+          "proposal_sha256": "b7c73134285e980d58f74750dd7a8a034e0b1ec22321de6d90e13fbbe79f86bb"
+        },
+        "approval_identity": "TEST_DOUBLE_NOT_LIVE"
+      },
+      {
+        "id": "unknown_callback_response",
+        "result": "PASS",
+        "trace": {
+          "task_id": "review-task-40e746a1-258d-4b18-afe6-38172d6345a3",
+          "run_id": "review-38a57d21-a27e-4ada-a1a4-623f425c0d89",
+          "audit_id": "audit-16d48891-1820-45e0-ad25-9ad87e965634",
+          "proposal_sha256": "2520bf16f8e32fc934414fdbfd05d2cda8aa6a8230c3a89dd9f8a2f092a5b671"
+        },
+        "approval_identity": "TEST_DOUBLE_NOT_LIVE"
+      },
+      {
+        "id": "result_storage_unknown",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-8b07d4b1-0ab6-4302-864b-31be03b5b1e7",
+          "task_id": "review-task-412005c9-bf46-432e-a71a-d44b188d1686",
+          "request_id": "req-b31309b1-f0f3-49d5-a698-f1ffaf8a5355",
+          "run_id": "review-bbe4fab3-950f-4fe5-b49a-fdf0b7095176",
+          "audit_id": "audit-e24531bf-5b10-4d11-a40c-7aac8b5bca3a",
+          "proposal_sha256": "902b8b3ec8db946d21e7013694c26429dc6cff24c3e95ce21d4a64b20a8247eb"
+        },
+        "approval_identity": "TEST_DOUBLE_NOT_LIVE"
+      },
+      {
+        "id": "approval_parameter_change",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-1cfc4f59-08e2-4749-877f-463a172ea848",
+          "task_id": "review-task-5e99f341-a0f9-497f-8901-de5bc8581a78",
+          "request_id": "req-5b0acd56-dac8-4157-9b47-b1bf8efcd03f",
+          "run_id": "review-1d607ada-1c85-4eb9-9b80-577d3eaf22cc",
+          "audit_id": "audit-23fb98bc-dcd3-4bce-b020-1a7650e8219e",
+          "proposal_sha256": "4cb4304966a374e708843d8b9a024d8d8701dbbee1cabd70d0d1db5286e1458b"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      },
+      {
+        "id": "cross_task_funds_rechecked",
+        "result": "PASS",
+        "trace": {
+          "handoff_id": "handoff-3d5c5580-85d6-4af5-abaf-ad80b2fb1c8c",
+          "task_id": "review-task-ebc9d12c-8e6f-410d-8094-3804b3e84cbc",
+          "request_id": "req-33c1321d-c7c7-4ac4-b244-35128e9b7778",
+          "run_id": "review-cfc1bfff-1a40-4490-a9e8-8d69ed6c931e",
+          "audit_id": "audit-4315a991-dda1-4210-b8a5-c5bfdb3aa683",
+          "proposal_sha256": "d41734f0f34cfe7b9742eb77896ca217126404dba0052c1ed32f5cf3d2a12005"
+        },
+        "approval_identity": "SIGNED_SERVICE_TEST_DOUBLE_NOT_END_USER_LOGIN"
+      }
+    ]
+  },
+  "specification": {
+    "structural_checks_passed": 888,
+    "invalid_configurations_rejected": 4,
+    "pinned_dataset_digests_verified": 3,
+    "application_case_designs": 30,
+    "application_cases_run": 0
+  },
+  "examples": {
+    "callback_cases": 4,
+    "money_cases": 12,
+    "files_unchanged": 10
+  },
+  "syntax_check_passed": true,
+  "git_diff_check_passed": true,
+  "source_files": [
+    {
+      "path": "chenchen/integrations/review-workflow.js",
+      "sha256": "1c1631504d61ad4c3c31bc036435f717032a17dfbf025f2ecc23df73f57c834b"
+    },
+    {
+      "path": "chenchen/integrations/review-reservation.js",
+      "sha256": "e0014053978cd64a57dc32c7a30c695a0dbefa9822df4629320051d51d6e5fd4"
+    },
+    {
+      "path": "chenchen/tests/review-capability-guards.test.js",
+      "sha256": "ecc758a3e3be2a6e21aa4c58b9e16c6fc497b6a526aa3cdf8751bb9b1d27ea30"
+    },
+    {
+      "path": "chenchen/tests/review-context-binding.test.js",
+      "sha256": "c3f5e04ae98fd584978873fb9d0843bf0346a174e2a6fb87e136047932cc5937"
+    },
+    {
+      "path": "modules/safety-risk-eval/joint-acceptance/harness.cjs",
+      "sha256": "0c9b9f59fae3d8250238d8816837063fc1a99cf0f170506421f7611b522f0606"
+    }
+  ],
+  "historical_fingerprint_rewritten": false,
+  "declared_context_conflicts_rejected": true,
+  "legacy_missing_context_supported": true,
+  "authenticated_end_user_isolation_verified": false,
+  "deployed_current_candidate": false,
+  "formal_joint_acceptance": false,
+  "real_model_calls": 0,
+  "paid_model_calls": 0,
+  "real_financial_operations": 0
+}

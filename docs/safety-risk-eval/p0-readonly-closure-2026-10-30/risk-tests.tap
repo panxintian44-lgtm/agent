@@ -1,0 +1,3004 @@
+TAP version 13
+# Subtest: same conversation → program BLOCK → signed Core callback → original UI response
+ok 1 - same conversation → program BLOCK → signed Core callback → original UI response
+  ---
+  duration_ms: 112.8893
+  type: 'test'
+  ...
+# Subtest: same conversation → program ALLOW → signed Core callback → original UI response
+ok 2 - same conversation → program ALLOW → signed Core callback → original UI response
+  ---
+  duration_ms: 52.7008
+  type: 'test'
+  ...
+# Subtest: missing facts stays REVIEW and external text cannot approve or change permissions
+ok 3 - missing facts stays REVIEW and external text cannot approve or change permissions
+  ---
+  duration_ms: 39.9906
+  type: 'test'
+  ...
+# Subtest: a declined first review uses a new Core task after changed facts
+ok 4 - a declined first review uses a new Core task after changed facts
+  ---
+  duration_ms: 98.8574
+  type: 'test'
+  ...
+# Subtest: no model fallback after Core failure and retries with the same key do not call again
+ok 5 - no model fallback after Core failure and retries with the same key do not call again
+  ---
+  duration_ms: 50.2594
+  type: 'test'
+  ...
+# Subtest: missing server credentials preserves program advice but makes zero model or callback calls
+ok 6 - missing server credentials preserves program advice but makes zero model or callback calls
+  ---
+  duration_ms: 56.6113
+  type: 'test'
+  ...
+# Subtest: invalid program result contradictory_check stops before model and callback with linked audit
+ok 7 - invalid program result contradictory_check stops before model and callback with linked audit
+  ---
+  duration_ms: 38.784
+  type: 'test'
+  ...
+# Subtest: invalid program result unsupported_policy stops before model and callback with linked audit
+ok 8 - invalid program result unsupported_policy stops before model and callback with linked audit
+  ---
+  duration_ms: 38.9226
+  type: 'test'
+  ...
+# Subtest: missing raw risk result is retained as null with UNKNOWN audit and no downstream calls
+ok 9 - missing raw risk result is retained as null with UNKNOWN audit and no downstream calls
+  ---
+  duration_ms: 27.1347
+  type: 'test'
+  ...
+# Subtest: global demo quota blocks new model calls without silently falling back
+ok 10 - global demo quota blocks new model calls without silently falling back
+  ---
+  duration_ms: 61.8588
+  type: 'test'
+  ...
+# Subtest: required calculation error pauses all model and business callback calls
+ok 11 - required calculation error pauses all model and business callback calls
+  ---
+  duration_ms: 17.1249
+  type: 'test'
+  ...
+# Subtest: changed model action parameters fail binding before a callback
+ok 12 - changed model action parameters fail binding before a callback
+  ---
+  duration_ms: 22.4808
+  type: 'test'
+  ...
+# Subtest: first POST proposal evidence must match the stored model before signing
+ok 13 - first POST proposal evidence must match the stored model before signing
+  ---
+  duration_ms: 20.094
+  type: 'test'
+  ...
+# Subtest: first POST raw evidence must match the stored model before signing
+ok 14 - first POST raw evidence must match the stored model before signing
+  ---
+  duration_ms: 21.8531
+  type: 'test'
+  ...
+# Subtest: first POST provider evidence must match the stored model before signing
+ok 15 - first POST provider evidence must match the stored model before signing
+  ---
+  duration_ms: 27.3638
+  type: 'test'
+  ...
+# Subtest: confirmed finance snapshot survives restart and its hash remains reproducible
+ok 16 - confirmed finance snapshot survives restart and its hash remains reproducible
+  ---
+  duration_ms: 45.6348
+  type: 'test'
+  ...
+# Subtest: unsigned legacy-mode Core receipt is UNKNOWN and never displayed as passed
+ok 17 - unsigned legacy-mode Core receipt is UNKNOWN and never displayed as passed
+  ---
+  duration_ms: 31.0713
+  type: 'test'
+  ...
+# Subtest: full official handoff schema rejects nested fields beyond draft validator
+ok 18 - full official handoff schema rejects nested fields beyond draft validator
+  ---
+  duration_ms: 1.0715
+  type: 'test'
+  ...
+# Subtest: yuan wrapper preserves unknown and never allows control fields
+ok 19 - yuan wrapper preserves unknown and never allows control fields
+  ---
+  duration_ms: 0.3298
+  type: 'test'
+  ...
+# Subtest: untrusted Core redirect is rejected without forwarding credentials
+ok 20 - untrusted Core redirect is rejected without forwarding credentials
+  ---
+  duration_ms: 0.3555
+  type: 'test'
+  ...
+# Subtest: local service requires private app authentication and rejects browser origins
+ok 21 - local service requires private app authentication and rejects browser origins
+  ---
+  duration_ms: 71.485
+  type: 'test'
+  ...
+# Subtest: rent protection blocks an 8000 yuan investment from 10000 yuan with a 2000 yuan shortfall
+ok 22 - rent protection blocks an 8000 yuan investment from 10000 yuan with a 2000 yuan shortfall
+  ---
+  duration_ms: 14.9462
+  type: 'test'
+  ...
+# Subtest: affordable analysis may ALLOW but neither approval nor execution is granted
+ok 23 - affordable analysis may ALLOW but neither approval nor execution is granted
+  ---
+  duration_ms: 0.9464
+  type: 'test'
+  ...
+# Subtest: a boundary amount is allowed and existing holds are subtracted once
+ok 24 - a boundary amount is allowed and existing holds are subtracted once
+  ---
+  duration_ms: 1.516
+  type: 'test'
+  ...
+# Subtest: fees reduce the suggested principal without taking protected money
+ok 25 - fees reduce the suggested principal without taking protected money
+  ---
+  duration_ms: 0.9918
+  type: 'test'
+  ...
+# Subtest: no finance returns REVIEW and never reads amounts out of natural language
+ok 26 - no finance returns REVIEW and never reads amounts out of natural language
+  ---
+  duration_ms: 0.9108
+  type: 'test'
+  ...
+# Subtest: unknown holds are not silently replaced with zero
+ok 27 - unknown holds are not silently replaced with zero
+  ---
+  duration_ms: 1.2613
+  type: 'test'
+  ...
+# Subtest: unconfirmed facts do not support numeric balance conclusions
+ok 28 - unconfirmed facts do not support numeric balance conclusions
+  ---
+  duration_ms: 0.5646
+  type: 'test'
+  ...
+# Subtest: unconfirmed purposes remain unknown instead of enabling an ALLOW
+ok 29 - unconfirmed purposes remain unknown instead of enabling an ALLOW
+  ---
+  duration_ms: 0.5136
+  type: 'test'
+  ...
+# Subtest: missing purpose list cannot be treated as confirmed empty list
+ok 30 - missing purpose list cannot be treated as confirmed empty list
+  ---
+  duration_ms: 0.6659
+  type: 'test'
+  ...
+# Subtest: missing income list prevents complete evidence even if the declared balance is known
+ok 31 - missing income list prevents complete evidence even if the declared balance is known
+  ---
+  duration_ms: 0.8166
+  type: 'test'
+  ...
+# Subtest: salary already included in cash is not added a second time
+ok 32 - salary already included in cash is not added a second time
+  ---
+  duration_ms: 0.8488
+  type: 'test'
+  ...
+# Subtest: expected salary never expands currently investable cash
+ok 33 - expected salary never expands currently investable cash
+  ---
+  duration_ms: 0.8789
+  type: 'test'
+  ...
+# Subtest: unknown income inclusion remains REVIEW instead of assuming a reconciled ledger
+ok 34 - unknown income inclusion remains REVIEW instead of assuming a reconciled ledger
+  ---
+  duration_ms: 2.2543
+  type: 'test'
+  ...
+# Subtest: missing currency does not silently normalize an unknown balance into CNY
+ok 35 - missing currency does not silently normalize an unknown balance into CNY
+  ---
+  duration_ms: 0.4151
+  type: 'test'
+  ...
+# Subtest: unknown income status stays REVIEW even if the amount is declared included
+ok 36 - unknown income status stays REVIEW even if the amount is declared included
+  ---
+  duration_ms: 0.4689
+  type: 'test'
+  ...
+# Subtest: text injection is preserved as untrusted business data and grants no authority
+ok 37 - text injection is preserved as untrusted business data and grants no authority
+  ---
+  duration_ms: 0.7393
+  type: 'test'
+  ...
+# Subtest: external control field user_id is rejected
+ok 38 - external control field user_id is rejected
+  ---
+  duration_ms: 0.371
+  type: 'test'
+  ...
+# Subtest: external control field permission_granted is rejected
+ok 39 - external control field permission_granted is rejected
+  ---
+  duration_ms: 0.065
+  type: 'test'
+  ...
+# Subtest: external control field approval_state is rejected
+ok 40 - external control field approval_state is rejected
+  ---
+  duration_ms: 0.0573
+  type: 'test'
+  ...
+# Subtest: external control field gateway_connected is rejected
+ok 41 - external control field gateway_connected is rejected
+  ---
+  duration_ms: 0.1199
+  type: 'test'
+  ...
+# Subtest: external control field ledger_revision is rejected
+ok 42 - external control field ledger_revision is rejected
+  ---
+  duration_ms: 0.0491
+  type: 'test'
+  ...
+# Subtest: external control field execution_allowed is rejected
+ok 43 - external control field execution_allowed is rejected
+  ---
+  duration_ms: 0.0512
+  type: 'test'
+  ...
+# Subtest: nested external control fields are rejected
+ok 44 - nested external control fields are rejected
+  ---
+  duration_ms: 0.2072
+  type: 'test'
+  ...
+# Subtest: invalid minor-unit amount 1.005 never rounds or rescales
+ok 45 - invalid minor-unit amount 1.005 never rounds or rescales
+  ---
+  duration_ms: 0.1542
+  type: 'test'
+  ...
+# Subtest: invalid minor-unit amount 1000000 never rounds or rescales
+ok 46 - invalid minor-unit amount 1000000 never rounds or rescales
+  ---
+  duration_ms: 0.0826
+  type: 'test'
+  ...
+# Subtest: invalid minor-unit amount 9007199254740992 never rounds or rescales
+ok 47 - invalid minor-unit amount 9007199254740992 never rounds or rescales
+  ---
+  duration_ms: 0.0595
+  type: 'test'
+  ...
+# Subtest: invalid minor-unit amount Infinity never rounds or rescales
+ok 48 - invalid minor-unit amount Infinity never rounds or rescales
+  ---
+  duration_ms: 0.0521
+  type: 'test'
+  ...
+# Subtest: invalid minor-unit amount -1 never rounds or rescales
+ok 49 - invalid minor-unit amount -1 never rounds or rescales
+  ---
+  duration_ms: 0.0481
+  type: 'test'
+  ...
+# Subtest: wrong currency, data mode, contract and execution tool fail structurally
+ok 50 - wrong currency, data mode, contract and execution tool fail structurally
+  ---
+  duration_ms: 0.1666
+  type: 'test'
+  ...
+# Subtest: unknown monetary values remain null and require review
+ok 51 - unknown monetary values remain null and require review
+  ---
+  duration_ms: 0.5688
+  type: 'test'
+  ...
+# Subtest: independent cash floor is retained in the proposed smaller amount
+ok 52 - independent cash floor is retained in the proposed smaller amount
+  ---
+  duration_ms: 0.5519
+  type: 'test'
+  ...
+# Subtest: budget reference deviations are warnings rather than a universal hard threshold
+ok 53 - budget reference deviations are warnings rather than a universal hard threshold
+  ---
+  duration_ms: 0.8447
+  type: 'test'
+  ...
+# Subtest: a category budget can stand alone without inventing a take-home-income denominator
+ok 54 - a category budget can stand alone without inventing a take-home-income denominator
+  ---
+  duration_ms: 1.3993
+  type: 'test'
+  ...
+# Subtest: emergency reserve targets produce advice without overriding hard protections
+ok 55 - emergency reserve targets produce advice without overriding hard protections
+  ---
+  duration_ms: 0.5803
+  type: 'test'
+  ...
+# Subtest: invalid calendar date returns engine ERROR with no execution
+ok 56 - invalid calendar date returns engine ERROR with no execution
+  ---
+  duration_ms: 0.504
+  type: 'test'
+  ...
+# Subtest: large lists and duplicate identifiers cannot become trusted evidence
+ok 57 - large lists and duplicate identifiers cannot become trusted evidence
+  ---
+  duration_ms: 0.5136
+  type: 'test'
+  ...
+# Subtest: caller data are not mutated and action amount JSON roundtrip is exact
+ok 58 - caller data are not mutated and action amount JSON roundtrip is exact
+  ---
+  duration_ms: 0.6739
+  type: 'test'
+  ...
+# Subtest: question text accepts the Core 20000-character boundary without truncation
+ok 59 - question text accepts the Core 20000-character boundary without truncation
+  ---
+  duration_ms: 0.4068
+  type: 'test'
+  ...
+# Subtest: stored four-state examples reproduce the adapter and preserve frozen callback keys
+ok 60 - stored four-state examples reproduce the adapter and preserve frozen callback keys
+  ---
+  duration_ms: 22.2861
+  type: 'test'
+  ...
+# Subtest: actual Core generated handoff accepts ALLOW mapping but keeps human approval pending
+ok 61 - actual Core generated handoff accepts ALLOW mapping but keeps human approval pending
+  ---
+  duration_ms: 9.2655
+  type: 'test'
+  ...
+# Subtest: actual Core REVIEW callback pauses execution and cannot be replaced
+ok 62 - actual Core REVIEW callback pauses execution and cannot be replaced
+  ---
+  duration_ms: 11.4075
+  type: 'test'
+  ...
+# Subtest: actual Core BLOCK callback pauses execution and cannot be replaced
+ok 63 - actual Core BLOCK callback pauses execution and cannot be replaced
+  ---
+  duration_ms: 7.9744
+  type: 'test'
+  ...
+# Subtest: ERROR creates no Core callback or decision and can be diagnosed before a first callback
+ok 64 - ERROR creates no Core callback or decision and can be diagnosed before a first callback
+  ---
+  duration_ms: 10.02
+  type: 'test'
+  ...
+# Subtest: after REQUEST_MORE_INFO a revised scenario receives a new task and linkage
+ok 65 - after REQUEST_MORE_INFO a revised scenario receives a new task and linkage
+  ---
+  duration_ms: 21.0538
+  type: 'test'
+  ...
+# Subtest: callback cannot introduce approval, action overrides or adapter metadata
+ok 66 - callback cannot introduce approval, action overrides or adapter metadata
+  ---
+  duration_ms: 6.3972
+  type: 'test'
+  ...
+# Subtest: synthetic provider fixtures remain explicitly labelled and do not assert live acceptance
+ok 67 - synthetic provider fixtures remain explicitly labelled and do not assert live acceptance
+  ---
+  duration_ms: 1.5901
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves 0
+ok 68 - yuan conversion preserves 0
+  ---
+  duration_ms: 2.7737
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves 0.01
+ok 69 - yuan conversion preserves 0.01
+  ---
+  duration_ms: 0.35
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves 0.1
+ok 70 - yuan conversion preserves 0.1
+  ---
+  duration_ms: 0.1454
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves 1.23
+ok 71 - yuan conversion preserves 1.23
+  ---
+  duration_ms: 0.093
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves 12000
+ok 72 - yuan conversion preserves 12000
+  ---
+  duration_ms: 0.099
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves "0"
+ok 73 - yuan conversion preserves "0"
+  ---
+  duration_ms: 0.122
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves "0.00"
+ok 74 - yuan conversion preserves "0.00"
+  ---
+  duration_ms: 0.1971
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves "0001.20"
+ok 75 - yuan conversion preserves "0001.20"
+  ---
+  duration_ms: 0.1231
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves "2000.01"
+ok 76 - yuan conversion preserves "2000.01"
+  ---
+  duration_ms: 0.2304
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves "10000000000.00"
+ok 77 - yuan conversion preserves "10000000000.00"
+  ---
+  duration_ms: 4.3337
+  type: 'test'
+  ...
+# Subtest: yuan conversion preserves null
+ok 78 - yuan conversion preserves null
+  ---
+  duration_ms: 0.4369
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: undefined
+ok 79 - invalid yuan is rejected: undefined
+  ---
+  duration_ms: 0.5626
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: true
+ok 80 - invalid yuan is rejected: true
+  ---
+  duration_ms: 0.0917
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: false
+ok 81 - invalid yuan is rejected: false
+  ---
+  duration_ms: 0.0453
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: 
+ok 82 - invalid yuan is rejected: 
+  ---
+  duration_ms: 0.0442
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected:  
+ok 83 - invalid yuan is rejected:  
+  ---
+  duration_ms: 0.0442
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected:  1.00
+ok 84 - invalid yuan is rejected:  1.00
+  ---
+  duration_ms: 0.036
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: 1.00 
+ok 85 - invalid yuan is rejected: 1.00 
+  ---
+  duration_ms: 0.0358
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: 1,000
+ok 86 - invalid yuan is rejected: 1,000
+  ---
+  duration_ms: 0.0369
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: 1e3
+ok 87 - invalid yuan is rejected: 1e3
+  ---
+  duration_ms: 0.0537
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: +1
+ok 88 - invalid yuan is rejected: +1
+  ---
+  duration_ms: 0.0487
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: .50
+ok 89 - invalid yuan is rejected: .50
+  ---
+  duration_ms: 0.1144
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: 1.
+ok 90 - invalid yuan is rejected: 1.
+  ---
+  duration_ms: 0.0723
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: [object Object]
+ok 91 - invalid yuan is rejected: [object Object]
+  ---
+  duration_ms: 0.0509
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: 
+ok 92 - invalid yuan is rejected: 
+  ---
+  duration_ms: 0.0407
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: NaN
+ok 93 - invalid yuan is rejected: NaN
+  ---
+  duration_ms: 0.046
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: Infinity
+ok 94 - invalid yuan is rejected: Infinity
+  ---
+  duration_ms: 0.0362
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: -Infinity
+ok 95 - invalid yuan is rejected: -Infinity
+  ---
+  duration_ms: 0.0505
+  type: 'test'
+  ...
+# Subtest: invalid yuan is rejected: 9007199254740992
+ok 96 - invalid yuan is rejected: 9007199254740992
+  ---
+  duration_ms: 0.0439
+  type: 'test'
+  ...
+# Subtest: excess decimal precision is never rounded: 1.005
+ok 97 - excess decimal precision is never rounded: 1.005
+  ---
+  duration_ms: 0.1247
+  type: 'test'
+  ...
+# Subtest: excess decimal precision is never rounded: 1.005
+ok 98 - excess decimal precision is never rounded: 1.005
+  ---
+  duration_ms: 0.0608
+  type: 'test'
+  ...
+# Subtest: excess decimal precision is never rounded: 0.30000000000000004
+ok 99 - excess decimal precision is never rounded: 0.30000000000000004
+  ---
+  duration_ms: 0.075
+  type: 'test'
+  ...
+# Subtest: excess decimal precision is never rounded: 1.000
+ok 100 - excess decimal precision is never rounded: 1.000
+  ---
+  duration_ms: 0.0644
+  type: 'test'
+  ...
+# Subtest: excess decimal precision is never rounded: 0.000
+ok 101 - excess decimal precision is never rounded: 0.000
+  ---
+  duration_ms: 0.0401
+  type: 'test'
+  ...
+# Subtest: excess decimal precision is never rounded: 0.001
+ok 102 - excess decimal precision is never rounded: 0.001
+  ---
+  duration_ms: 0.076
+  type: 'test'
+  ...
+# Subtest: excess decimal precision is never rounded: 0.001
+ok 103 - excess decimal precision is never rounded: 0.001
+  ---
+  duration_ms: 0.0459
+  type: 'test'
+  ...
+# Subtest: negative values require explicit permission and negative zero becomes zero
+ok 104 - negative values require explicit permission and negative zero becomes zero
+  ---
+  duration_ms: 0.3016
+  type: 'test'
+  ...
+# Subtest: unbounded decimal strings fail before BigInt conversion
+ok 105 - unbounded decimal strings fail before BigInt conversion
+  ---
+  duration_ms: 0.1268
+  type: 'test'
+  ...
+# Subtest: default and custom limits include the boundary and reject one minor unit more
+ok 106 - default and custom limits include the boundary and reject one minor unit more
+  ---
+  duration_ms: 0.3543
+  type: 'test'
+  ...
+# Subtest: exact decimal formatting uses integer arithmetic through safe integer limits
+ok 107 - exact decimal formatting uses integer arithmetic through safe integer limits
+  ---
+  duration_ms: 0.3707
+  type: 'test'
+  ...
+# Subtest: options reject misspellings, unsafe ranges and non-boolean permissions
+ok 108 - options reject misspellings, unsafe ranges and non-boolean permissions
+  ---
+  duration_ms: 0.183
+  type: 'test'
+  ...
+# Subtest: explicit units prevent double scaling and preserve unknown values
+ok 109 - explicit units prevent double scaling and preserve unknown values
+  ---
+  duration_ms: 0.8688
+  type: 'test'
+  ...
+# Subtest: money envelopes reject implicit units, unsupported currencies and extra fields
+ok 110 - money envelopes reject implicit units, unsupported currencies and extra fields
+  ---
+  duration_ms: 0.1543
+  type: 'test'
+  ...
+# Subtest: exact strings and legacy JSON numeric fields roundtrip through normal and maximum amounts
+ok 111 - exact strings and legacy JSON numeric fields roundtrip through normal and maximum amounts
+  ---
+  duration_ms: 0.2515
+  type: 'test'
+  ...
+# Subtest: legacy number conversion fails explicitly when safe integer minor units lose precision in yuan
+ok 112 - legacy number conversion fails explicitly when safe integer minor units lose precision in yuan
+  ---
+  duration_ms: 0.5022
+  type: 'test'
+  ...
+# Subtest: ALLOW: real Core authenticates signed callback and remains non-executing
+ok 113 - ALLOW: real Core authenticates signed callback and remains non-executing
+  ---
+  duration_ms: 82.0815
+  type: 'test'
+  ...
+# Subtest: REVIEW: real Core authenticates signed callback and remains non-executing
+ok 114 - REVIEW: real Core authenticates signed callback and remains non-executing
+  ---
+  duration_ms: 17.3125
+  type: 'test'
+  ...
+# Subtest: BLOCK: real Core authenticates signed callback and remains non-executing
+ok 115 - BLOCK: real Core authenticates signed callback and remains non-executing
+  ---
+  duration_ms: 12.4819
+  type: 'test'
+  ...
+# Subtest: ERROR never calls the network or records a business send intent
+ok 116 - ERROR never calls the network or records a business send intent
+  ---
+  duration_ms: 2.8846
+  type: 'test'
+  ...
+# Subtest: intent is durable before network, with complete callback and risk audit
+ok 117 - intent is durable before network, with complete callback and risk audit
+  ---
+  duration_ms: 4.5245
+  type: 'test'
+  ...
+# Subtest: intent persistence throw blocks all HTTP
+ok 118 - intent persistence throw blocks all HTTP
+  ---
+  duration_ms: 4.3472
+  type: 'test'
+  ...
+# Subtest: intent persistence false blocks all HTTP
+ok 119 - intent persistence false blocks all HTTP
+  ---
+  duration_ms: 17.3001
+  type: 'test'
+  ...
+# Subtest: intent persistence object blocks all HTTP
+ok 120 - intent persistence object blocks all HTTP
+  ---
+  duration_ms: 2.6073
+  type: 'test'
+  ...
+# Subtest: current risk_check_id mismatch blocks a stale callback
+ok 121 - current risk_check_id mismatch blocks a stale callback
+  ---
+  duration_ms: 8.2401
+  type: 'test'
+  ...
+# Subtest: current policy_version mismatch blocks a stale callback
+ok 122 - current policy_version mismatch blocks a stale callback
+  ---
+  duration_ms: 1.2456
+  type: 'test'
+  ...
+# Subtest: current checked_at mismatch blocks a stale callback
+ok 123 - current checked_at mismatch blocks a stale callback
+  ---
+  duration_ms: 1.0678
+  type: 'test'
+  ...
+# Subtest: current versions_current mismatch blocks a stale callback
+ok 124 - current versions_current mismatch blocks a stale callback
+  ---
+  duration_ms: 1.924
+  type: 'test'
+  ...
+# Subtest: all six bindings rechecked: handoff_id
+ok 125 - all six bindings rechecked: handoff_id
+  ---
+  duration_ms: 0.9222
+  type: 'test'
+  ...
+# Subtest: all six bindings rechecked: task_id
+ok 126 - all six bindings rechecked: task_id
+  ---
+  duration_ms: 0.801
+  type: 'test'
+  ...
+# Subtest: all six bindings rechecked: request_id
+ok 127 - all six bindings rechecked: request_id
+  ---
+  duration_ms: 1.086
+  type: 'test'
+  ...
+# Subtest: all six bindings rechecked: run_id
+ok 128 - all six bindings rechecked: run_id
+  ---
+  duration_ms: 1.0362
+  type: 'test'
+  ...
+# Subtest: all six bindings rechecked: audit_id
+ok 129 - all six bindings rechecked: audit_id
+  ---
+  duration_ms: 1.0735
+  type: 'test'
+  ...
+# Subtest: all six bindings rechecked: proposal_sha256
+ok 130 - all six bindings rechecked: proposal_sha256
+  ---
+  duration_ms: 1.4762
+  type: 'test'
+  ...
+# Subtest: state change while persisting intent is caught by the final current-state check
+ok 131 - state change while persisting intent is caught by the final current-state check
+  ---
+  duration_ms: 4.9165
+  type: 'test'
+  ...
+# Subtest: mutated draft decision cannot gain dispatch authority
+ok 132 - mutated draft decision cannot gain dispatch authority
+  ---
+  duration_ms: 4.311
+  type: 'test'
+  ...
+# Subtest: mutated draft reason cannot gain dispatch authority
+ok 133 - mutated draft reason cannot gain dispatch authority
+  ---
+  duration_ms: 5.1598
+  type: 'test'
+  ...
+# Subtest: mutated draft reviewer cannot gain dispatch authority
+ok 134 - mutated draft reviewer cannot gain dispatch authority
+  ---
+  duration_ms: 10.3699
+  type: 'test'
+  ...
+# Subtest: mutated draft execution_allowed cannot gain dispatch authority
+ok 135 - mutated draft execution_allowed cannot gain dispatch authority
+  ---
+  duration_ms: 2.2254
+  type: 'test'
+  ...
+# Subtest: mutated draft extra cannot gain dispatch authority
+ok 136 - mutated draft extra cannot gain dispatch authority
+  ---
+  duration_ms: 1.4204
+  type: 'test'
+  ...
+# Subtest: mutated draft undefined-extra cannot gain dispatch authority
+ok 137 - mutated draft undefined-extra cannot gain dispatch authority
+  ---
+  duration_ms: 2.555
+  type: 'test'
+  ...
+# Subtest: reject unsafe server origin https://user:password@core.invalid
+ok 138 - reject unsafe server origin https://user:password@core.invalid
+  ---
+  duration_ms: 1.1307
+  type: 'test'
+  ...
+# Subtest: reject unsafe server origin https://core.invalid/path
+ok 139 - reject unsafe server origin https://core.invalid/path
+  ---
+  duration_ms: 0.8077
+  type: 'test'
+  ...
+# Subtest: reject unsafe server origin https://core.invalid?x=1
+ok 140 - reject unsafe server origin https://core.invalid?x=1
+  ---
+  duration_ms: 0.848
+  type: 'test'
+  ...
+# Subtest: reject unsafe server origin https://core.invalid\#fragment
+ok 141 - reject unsafe server origin https://core.invalid\#fragment
+  ---
+  duration_ms: 1.1094
+  type: 'test'
+  ...
+# Subtest: reject unsafe server origin http://core.invalid
+ok 142 - reject unsafe server origin http://core.invalid
+  ---
+  duration_ms: 1.0183
+  type: 'test'
+  ...
+# Subtest: reject unsafe server origin file:///tmp/a
+ok 143 - reject unsafe server origin file:///tmp/a
+  ---
+  duration_ms: 0.7441
+  type: 'test'
+  ...
+# Subtest: reject unsafe server origin http://127.0.0.1:4175
+ok 144 - reject unsafe server origin http://127.0.0.1:4175
+  ---
+  duration_ms: 0.6723
+  type: 'test'
+  ...
+# Subtest: explicit local HTTP is limited to loopback and keeps the fixed callback path
+ok 145 - explicit local HTTP is limited to loopback and keeps the fixed callback path
+  ---
+  duration_ms: 3.8965
+  type: 'test'
+  ...
+# Subtest: wrong HMAC fails real Core authentication and yields UNKNOWN without a fabricated decision
+ok 146 - wrong HMAC fails real Core authentication and yields UNKNOWN without a fabricated decision
+  ---
+  duration_ms: 2.5948
+  type: 'test'
+  ...
+# Subtest: network errors are redacted, durably UNKNOWN, and never retried
+ok 147 - network errors are redacted, durably UNKNOWN, and never retried
+  ---
+  duration_ms: 2.611
+  type: 'test'
+  ...
+# Subtest: a committed Core response lost in transit remains UNKNOWN and no resubmission occurs
+ok 148 - a committed Core response lost in transit remains UNKNOWN and no resubmission occurs
+  ---
+  duration_ms: 17.0458
+  type: 'test'
+  ...
+# Subtest: timeout also bounds a fetch implementation that ignores AbortSignal
+ok 149 - timeout also bounds a fetch implementation that ignores AbortSignal
+  ---
+  duration_ms: 33.3179
+  type: 'test'
+  ...
+# Subtest: timeout remains active while waiting for an unfinished response body
+ok 150 - timeout remains active while waiting for an unfinished response body
+  ---
+  duration_ms: 31.456
+  type: 'test'
+  ...
+# Subtest: untrusted Core response redirect cannot report success
+ok 151 - untrusted Core response redirect cannot report success
+  ---
+  duration_ms: 5.4605
+  type: 'test'
+  ...
+# Subtest: untrusted Core response html cannot report success
+ok 152 - untrusted Core response html cannot report success
+  ---
+  duration_ms: 9.0232
+  type: 'test'
+  ...
+# Subtest: untrusted Core response invalid-json cannot report success
+ok 153 - untrusted Core response invalid-json cannot report success
+  ---
+  duration_ms: 12.0407
+  type: 'test'
+  ...
+# Subtest: untrusted Core response too-large cannot report success
+ok 154 - untrusted Core response too-large cannot report success
+  ---
+  duration_ms: 11.4103
+  type: 'test'
+  ...
+# Subtest: untrusted Core response unauthorized cannot report success
+ok 155 - untrusted Core response unauthorized cannot report success
+  ---
+  duration_ms: 6.4952
+  type: 'test'
+  ...
+# Subtest: untrusted Core response unverified cannot report success
+ok 156 - untrusted Core response unverified cannot report success
+  ---
+  duration_ms: 7.3894
+  type: 'test'
+  ...
+# Subtest: untrusted Core response mismatched-binding cannot report success
+ok 157 - untrusted Core response mismatched-binding cannot report success
+  ---
+  duration_ms: 3.3654
+  type: 'test'
+  ...
+# Subtest: untrusted Core response changed-proposal cannot report success
+ok 158 - untrusted Core response changed-proposal cannot report success
+  ---
+  duration_ms: 2.6766
+  type: 'test'
+  ...
+# Subtest: untrusted Core response changed-decision cannot report success
+ok 159 - untrusted Core response changed-decision cannot report success
+  ---
+  duration_ms: 2.4244
+  type: 'test'
+  ...
+# Subtest: untrusted Core response changed-reviewer cannot report success
+ok 160 - untrusted Core response changed-reviewer cannot report success
+  ---
+  duration_ms: 3.3908
+  type: 'test'
+  ...
+# Subtest: untrusted Core response changed-callback cannot report success
+ok 161 - untrusted Core response changed-callback cannot report success
+  ---
+  duration_ms: 2.5577
+  type: 'test'
+  ...
+# Subtest: untrusted Core response forged-execution cannot report success
+ok 162 - untrusted Core response forged-execution cannot report success
+  ---
+  duration_ms: 2.6303
+  type: 'test'
+  ...
+# Subtest: untrusted Core response forged-handoff cannot report success
+ok 163 - untrusted Core response forged-handoff cannot report success
+  ---
+  duration_ms: 3.1727
+  type: 'test'
+  ...
+# Subtest: success is withheld when persisting the verified receipt fails
+ok 164 - success is withheld when persisting the verified receipt fails
+  ---
+  duration_ms: 3.3915
+  type: 'test'
+  ...
+# Subtest: a genuine identical Core duplicate is verified without another risk decision
+ok 165 - a genuine identical Core duplicate is verified without another risk decision
+  ---
+  duration_ms: 4.4895
+  type: 'test'
+  ...
+# Subtest: missing signer configuration never reaches the network
+ok 166 - missing signer configuration never reaches the network
+  ---
+  duration_ms: 0.8922
+  type: 'test'
+  ...
+# Subtest: current state read failures are redacted and fail closed before a send intent
+ok 167 - current state read failures are redacted and fail closed before a send intent
+  ---
+  duration_ms: 0.9519
+  type: 'test'
+  ...
+# Subtest: frozen handoff field lists match the current official Core schema
+ok 168 - frozen handoff field lists match the current official Core schema
+  ---
+  duration_ms: 2.515
+  type: 'test'
+  ...
+# Subtest: official required handoff field handoff_version cannot be omitted
+ok 169 - official required handoff field handoff_version cannot be omitted
+  ---
+  duration_ms: 2.1769
+  type: 'test'
+  ...
+# Subtest: official required handoff field contract_version cannot be omitted
+ok 170 - official required handoff field contract_version cannot be omitted
+  ---
+  duration_ms: 0.3674
+  type: 'test'
+  ...
+# Subtest: official required handoff field workflow_version cannot be omitted
+ok 171 - official required handoff field workflow_version cannot be omitted
+  ---
+  duration_ms: 0.2847
+  type: 'test'
+  ...
+# Subtest: official required handoff field schema_version cannot be omitted
+ok 172 - official required handoff field schema_version cannot be omitted
+  ---
+  duration_ms: 0.2541
+  type: 'test'
+  ...
+# Subtest: official required handoff field handoff_id cannot be omitted
+ok 173 - official required handoff field handoff_id cannot be omitted
+  ---
+  duration_ms: 0.2196
+  type: 'test'
+  ...
+# Subtest: official required handoff field task_id cannot be omitted
+ok 174 - official required handoff field task_id cannot be omitted
+  ---
+  duration_ms: 0.1617
+  type: 'test'
+  ...
+# Subtest: official required handoff field request_id cannot be omitted
+ok 175 - official required handoff field request_id cannot be omitted
+  ---
+  duration_ms: 0.1968
+  type: 'test'
+  ...
+# Subtest: official required handoff field session_id cannot be omitted
+ok 176 - official required handoff field session_id cannot be omitted
+  ---
+  duration_ms: 0.259
+  type: 'test'
+  ...
+# Subtest: official required handoff field run_id cannot be omitted
+ok 177 - official required handoff field run_id cannot be omitted
+  ---
+  duration_ms: 0.2856
+  type: 'test'
+  ...
+# Subtest: official required handoff field audit_id cannot be omitted
+ok 178 - official required handoff field audit_id cannot be omitted
+  ---
+  duration_ms: 0.2693
+  type: 'test'
+  ...
+# Subtest: official required handoff field data_mode cannot be omitted
+ok 179 - official required handoff field data_mode cannot be omitted
+  ---
+  duration_ms: 0.22
+  type: 'test'
+  ...
+# Subtest: official required handoff field execution_mode cannot be omitted
+ok 180 - official required handoff field execution_mode cannot be omitted
+  ---
+  duration_ms: 0.1546
+  type: 'test'
+  ...
+# Subtest: official required handoff field capability cannot be omitted
+ok 181 - official required handoff field capability cannot be omitted
+  ---
+  duration_ms: 0.1624
+  type: 'test'
+  ...
+# Subtest: official required handoff field plan_id cannot be omitted
+ok 182 - official required handoff field plan_id cannot be omitted
+  ---
+  duration_ms: 0.1489
+  type: 'test'
+  ...
+# Subtest: official required handoff field plan_hash cannot be omitted
+ok 183 - official required handoff field plan_hash cannot be omitted
+  ---
+  duration_ms: 0.1358
+  type: 'test'
+  ...
+# Subtest: official required handoff field policy_version cannot be omitted
+ok 184 - official required handoff field policy_version cannot be omitted
+  ---
+  duration_ms: 0.105
+  type: 'test'
+  ...
+# Subtest: official required handoff field owner cannot be omitted
+ok 185 - official required handoff field owner cannot be omitted
+  ---
+  duration_ms: 0.1176
+  type: 'test'
+  ...
+# Subtest: official required handoff field record_endpoint cannot be omitted
+ok 186 - official required handoff field record_endpoint cannot be omitted
+  ---
+  duration_ms: 0.1291
+  type: 'test'
+  ...
+# Subtest: official required handoff field workflow_status cannot be omitted
+ok 187 - official required handoff field workflow_status cannot be omitted
+  ---
+  duration_ms: 0.1178
+  type: 'test'
+  ...
+# Subtest: official required handoff field status cannot be omitted
+ok 188 - official required handoff field status cannot be omitted
+  ---
+  duration_ms: 0.15
+  type: 'test'
+  ...
+# Subtest: official required handoff field decision cannot be omitted
+ok 189 - official required handoff field decision cannot be omitted
+  ---
+  duration_ms: 0.1587
+  type: 'test'
+  ...
+# Subtest: official required handoff field execution_allowed cannot be omitted
+ok 190 - official required handoff field execution_allowed cannot be omitted
+  ---
+  duration_ms: 0.1192
+  type: 'test'
+  ...
+# Subtest: official required handoff field proposal cannot be omitted
+ok 191 - official required handoff field proposal cannot be omitted
+  ---
+  duration_ms: 1.0757
+  type: 'test'
+  ...
+# Subtest: official required handoff field reviewed_input cannot be omitted
+ok 192 - official required handoff field reviewed_input cannot be omitted
+  ---
+  duration_ms: 0.1449
+  type: 'test'
+  ...
+# Subtest: official required handoff field input_authority cannot be omitted
+ok 193 - official required handoff field input_authority cannot be omitted
+  ---
+  duration_ms: 0.1233
+  type: 'test'
+  ...
+# Subtest: official required handoff field model cannot be omitted
+ok 194 - official required handoff field model cannot be omitted
+  ---
+  duration_ms: 0.1357
+  type: 'test'
+  ...
+# Subtest: official required handoff field evidence cannot be omitted
+ok 195 - official required handoff field evidence cannot be omitted
+  ---
+  duration_ms: 0.1057
+  type: 'test'
+  ...
+# Subtest: official required handoff field approval cannot be omitted
+ok 196 - official required handoff field approval cannot be omitted
+  ---
+  duration_ms: 0.1263
+  type: 'test'
+  ...
+# Subtest: official required handoff field audit cannot be omitted
+ok 197 - official required handoff field audit cannot be omitted
+  ---
+  duration_ms: 0.104
+  type: 'test'
+  ...
+# Subtest: official required handoff field memory_write_status cannot be omitted
+ok 198 - official required handoff field memory_write_status cannot be omitted
+  ---
+  duration_ms: 0.0945
+  type: 'test'
+  ...
+# Subtest: official required handoff field trace cannot be omitted
+ok 199 - official required handoff field trace cannot be omitted
+  ---
+  duration_ms: 0.0863
+  type: 'test'
+  ...
+# Subtest: official required handoff field callback cannot be omitted
+ok 200 - official required handoff field callback cannot be omitted
+  ---
+  duration_ms: 0.0854
+  type: 'test'
+  ...
+# Subtest: extra handoff field source_task_id is rejected by the frozen boundary
+ok 201 - extra handoff field source_task_id is rejected by the frozen boundary
+  ---
+  duration_ms: 0.165
+  type: 'test'
+  ...
+# Subtest: extra handoff field approval_override is rejected by the frozen boundary
+ok 202 - extra handoff field approval_override is rejected by the frozen boundary
+  ---
+  duration_ms: 0.0968
+  type: 'test'
+  ...
+# Subtest: extra handoff field execution is rejected by the frozen boundary
+ok 203 - extra handoff field execution is rejected by the frozen boundary
+  ---
+  duration_ms: 0.1193
+  type: 'test'
+  ...
+# Subtest: extra handoff field system_permissions is rejected by the frozen boundary
+ok 204 - extra handoff field system_permissions is rejected by the frozen boundary
+  ---
+  duration_ms: 0.0892
+  type: 'test'
+  ...
+# Subtest: four-state draft: ALLOW maps to APPROVE without dispatch or authority
+ok 205 - four-state draft: ALLOW maps to APPROVE without dispatch or authority
+  ---
+  duration_ms: 2.9073
+  type: 'test'
+  ...
+# Subtest: four-state draft: REVIEW maps to REQUEST_MORE_INFO without dispatch or authority
+ok 206 - four-state draft: REVIEW maps to REQUEST_MORE_INFO without dispatch or authority
+  ---
+  duration_ms: 0.5349
+  type: 'test'
+  ...
+# Subtest: four-state draft: BLOCK maps to REJECT without dispatch or authority
+ok 207 - four-state draft: BLOCK maps to REJECT without dispatch or authority
+  ---
+  duration_ms: 0.3378
+  type: 'test'
+  ...
+# Subtest: four-state draft: ERROR maps to no business callback without dispatch or authority
+ok 208 - four-state draft: ERROR maps to no business callback without dispatch or authority
+  ---
+  duration_ms: 0.295
+  type: 'test'
+  ...
+# Subtest: REVIEW recovery describes a new Core task after the immutable callback is accepted
+ok 209 - REVIEW recovery describes a new Core task after the immutable callback is accepted
+  ---
+  duration_ms: 0.2022
+  type: 'test'
+  ...
+# Subtest: risk result cannot bind another handoff_id
+ok 210 - risk result cannot bind another handoff_id
+  ---
+  duration_ms: 0.2891
+  type: 'test'
+  ...
+# Subtest: risk result cannot bind another task_id
+ok 211 - risk result cannot bind another task_id
+  ---
+  duration_ms: 0.1486
+  type: 'test'
+  ...
+# Subtest: risk result cannot bind another request_id
+ok 212 - risk result cannot bind another request_id
+  ---
+  duration_ms: 0.1378
+  type: 'test'
+  ...
+# Subtest: risk result cannot bind another run_id
+ok 213 - risk result cannot bind another run_id
+  ---
+  duration_ms: 0.4315
+  type: 'test'
+  ...
+# Subtest: risk result cannot bind another audit_id
+ok 214 - risk result cannot bind another audit_id
+  ---
+  duration_ms: 0.2247
+  type: 'test'
+  ...
+# Subtest: risk result cannot bind another proposal_sha256
+ok 215 - risk result cannot bind another proposal_sha256
+  ---
+  duration_ms: 0.1426
+  type: 'test'
+  ...
+# Subtest: trace must agree on handoff_id
+ok 216 - trace must agree on handoff_id
+  ---
+  duration_ms: 0.1705
+  type: 'test'
+  ...
+# Subtest: trace must agree on task_id
+ok 217 - trace must agree on task_id
+  ---
+  duration_ms: 0.1241
+  type: 'test'
+  ...
+# Subtest: trace must agree on request_id
+ok 218 - trace must agree on request_id
+  ---
+  duration_ms: 0.1357
+  type: 'test'
+  ...
+# Subtest: trace must agree on run_id
+ok 219 - trace must agree on run_id
+  ---
+  duration_ms: 0.0985
+  type: 'test'
+  ...
+# Subtest: trace must agree on audit_id
+ok 220 - trace must agree on audit_id
+  ---
+  duration_ms: 0.1087
+  type: 'test'
+  ...
+# Subtest: the official trace has no proposal digest, while nullable session and provider receipts remain nullable
+ok 221 - the official trace has no proposal digest, while nullable session and provider receipts remain nullable
+  ---
+  duration_ms: 0.2312
+  type: 'test'
+  ...
+# Subtest: full proposal content includes action parameters and optional funding in the original insertion order
+ok 222 - full proposal content includes action parameters and optional funding in the original insertion order
+  ---
+  duration_ms: 0.2961
+  type: 'test'
+  ...
+# Subtest: reordered proposal keys are rejected rather than assigned a new canonical digest
+ok 223 - reordered proposal keys are rejected rather than assigned a new canonical digest
+  ---
+  duration_ms: 0.1775
+  type: 'test'
+  ...
+# Subtest: changed proposal digest fails closed
+ok 224 - changed proposal digest fails closed
+  ---
+  duration_ms: 4.0293
+  type: 'test'
+  ...
+# Subtest: changed evidence digest fails closed
+ok 225 - changed evidence digest fails closed
+  ---
+  duration_ms: 1.1548
+  type: 'test'
+  ...
+# Subtest: changed plan digest fails closed
+ok 226 - changed plan digest fails closed
+  ---
+  duration_ms: 0.6237
+  type: 'test'
+  ...
+# Subtest: changed evidence plan digest fails closed
+ok 227 - changed evidence plan digest fails closed
+  ---
+  duration_ms: 2.8253
+  type: 'test'
+  ...
+# Subtest: changed approval digest fails closed
+ok 228 - changed approval digest fails closed
+  ---
+  duration_ms: 0.3769
+  type: 'test'
+  ...
+# Subtest: changed evidence audit fails closed
+ok 229 - changed evidence audit fails closed
+  ---
+  duration_ms: 0.2072
+  type: 'test'
+  ...
+# Subtest: changed audit summary fails closed
+ok 230 - changed audit summary fails closed
+  ---
+  duration_ms: 0.1939
+  type: 'test'
+  ...
+# Subtest: changed provider receipt fails closed
+ok 231 - changed provider receipt fails closed
+  ---
+  duration_ms: 0.1508
+  type: 'test'
+  ...
+# Subtest: changed policy version fails closed
+ok 232 - changed policy version fails closed
+  ---
+  duration_ms: 0.3743
+  type: 'test'
+  ...
+# Subtest: changed trace session fails closed
+ok 233 - changed trace session fails closed
+  ---
+  duration_ms: 0.307
+  type: 'test'
+  ...
+# Subtest: handoff version cannot produce a callback draft
+ok 234 - handoff version cannot produce a callback draft
+  ---
+  duration_ms: 0.2504
+  type: 'test'
+  ...
+# Subtest: Core contract cannot produce a callback draft
+ok 235 - Core contract cannot produce a callback draft
+  ---
+  duration_ms: 0.1135
+  type: 'test'
+  ...
+# Subtest: callback fields cannot produce a callback draft
+ok 236 - callback fields cannot produce a callback draft
+  ---
+  duration_ms: 0.1478
+  type: 'test'
+  ...
+# Subtest: callback endpoint cannot produce a callback draft
+ok 237 - callback endpoint cannot produce a callback draft
+  ---
+  duration_ms: 0.1421
+  type: 'test'
+  ...
+# Subtest: real execution mode cannot produce a callback draft
+ok 238 - real execution mode cannot produce a callback draft
+  ---
+  duration_ms: 0.2614
+  type: 'test'
+  ...
+# Subtest: execution already allowed cannot produce a callback draft
+ok 239 - execution already allowed cannot produce a callback draft
+  ---
+  duration_ms: 0.1328
+  type: 'test'
+  ...
+# Subtest: wrong phase cannot produce a callback draft
+ok 240 - wrong phase cannot produce a callback draft
+  ---
+  duration_ms: 0.0977
+  type: 'test'
+  ...
+# Subtest: rules fallback cannot produce a callback draft
+ok 241 - rules fallback cannot produce a callback draft
+  ---
+  duration_ms: 0.1543
+  type: 'test'
+  ...
+# Subtest: failed model cannot produce a callback draft
+ok 242 - failed model cannot produce a callback draft
+  ---
+  duration_ms: 0.2672
+  type: 'test'
+  ...
+# Subtest: authority claim cannot produce a callback draft
+ok 243 - authority claim cannot produce a callback draft
+  ---
+  duration_ms: 0.1794
+  type: 'test'
+  ...
+# Subtest: preapproved cannot produce a callback draft
+ok 244 - preapproved cannot produce a callback draft
+  ---
+  duration_ms: 0.1215
+  type: 'test'
+  ...
+# Subtest: forged approver cannot produce a callback draft
+ok 245 - forged approver cannot produce a callback draft
+  ---
+  duration_ms: 0.1192
+  type: 'test'
+  ...
+# Subtest: unknown risk state is rejected before mapping
+ok 246 - unknown risk state is rejected before mapping
+  ---
+  duration_ms: 0.2273
+  type: 'test'
+  ...
+# Subtest: incomplete ALLOW is rejected before mapping
+ok 247 - incomplete ALLOW is rejected before mapping
+  ---
+  duration_ms: 0.2339
+  type: 'test'
+  ...
+# Subtest: ERROR labelled complete is rejected before mapping
+ok 248 - ERROR labelled complete is rejected before mapping
+  ---
+  duration_ms: 0.2193
+  type: 'test'
+  ...
+# Subtest: known BLOCK hidden by ALLOW is rejected before mapping
+ok 249 - known BLOCK hidden by ALLOW is rejected before mapping
+  ---
+  duration_ms: 0.1592
+  type: 'test'
+  ...
+# Subtest: missing REVIEW reason is rejected before mapping
+ok 250 - missing REVIEW reason is rejected before mapping
+  ---
+  duration_ms: 0.1654
+  type: 'test'
+  ...
+# Subtest: unregistered reason status is rejected before mapping
+ok 251 - unregistered reason status is rejected before mapping
+  ---
+  duration_ms: 0.3485
+  type: 'test'
+  ...
+# Subtest: fake check date is rejected before mapping
+ok 252 - fake check date is rejected before mapping
+  ---
+  duration_ms: 0.2068
+  type: 'test'
+  ...
+# Subtest: missing check id is rejected before mapping
+ok 253 - missing check id is rejected before mapping
+  ---
+  duration_ms: 0.1538
+  type: 'test'
+  ...
+# Subtest: client execution field is rejected before mapping
+ok 254 - client execution field is rejected before mapping
+  ---
+  duration_ms: 0.1439
+  type: 'test'
+  ...
+# Subtest: client approval field is rejected before mapping
+ok 255 - client approval field is rejected before mapping
+  ---
+  duration_ms: 0.194
+  type: 'test'
+  ...
+# Subtest: client risk binding field is rejected before mapping
+ok 256 - client risk binding field is rejected before mapping
+  ---
+  duration_ms: 0.1806
+  type: 'test'
+  ...
+# Subtest: reason authority field is rejected before mapping
+ok 257 - reason authority field is rejected before mapping
+  ---
+  duration_ms: 0.1732
+  type: 'test'
+  ...
+# Subtest: array reason code is rejected before mapping
+ok 258 - array reason code is rejected before mapping
+  ---
+  duration_ms: 0.1711
+  type: 'test'
+  ...
+# Subtest: ERROR remains dominant when a known hard conflict also exists
+ok 259 - ERROR remains dominant when a known hard conflict also exists
+  ---
+  duration_ms: 0.2197
+  type: 'test'
+  ...
+# Subtest: callback reasons exceeding Core's 500-character limit are rejected, never truncated
+ok 260 - callback reasons exceeding Core's 500-character limit are rejected, never truncated
+  ---
+  duration_ms: 0.2311
+  type: 'test'
+  ...
+# Subtest: risk approval draft does not invent a mandatory human approval for Core NOT_REQUIRED
+ok 261 - risk approval draft does not invent a mandatory human approval for Core NOT_REQUIRED
+  ---
+  duration_ms: 0.1639
+  type: 'test'
+  ...
+# Subtest: only three fixed GET endpoints are probed without credentials, cookies, sessions or model calls
+ok 262 - only three fixed GET endpoints are probed without credentials, cookies, sessions or model calls
+  ---
+  duration_ms: 30.5249
+  type: 'test'
+  ...
+# Subtest: reported health and model configuration never become full-chain success
+ok 263 - reported health and model configuration never become full-chain success
+  ---
+  duration_ms: 0.7029
+  type: 'test'
+  ...
+# Subtest: HTTP 200 alone cannot satisfy either health schema
+ok 264 - HTTP 200 alone cannot satisfy either health schema
+  ---
+  duration_ms: 0.9255
+  type: 'test'
+  ...
+# Subtest: the chat 401 must contain the expected denial code and execution boundary
+ok 265 - the chat 401 must contain the expected denial code and execution boundary
+  ---
+  duration_ms: 1.5775
+  type: 'test'
+  ...
+# Subtest: a response that changes the execution boundary fails schema verification
+ok 266 - a response that changes the execution boundary fails schema verification
+  ---
+  duration_ms: 0.3944
+  type: 'test'
+  ...
+# Subtest: redirect 301 is rejected and never followed
+ok 267 - redirect 301 is rejected and never followed
+  ---
+  duration_ms: 0.5463
+  type: 'test'
+  ...
+# Subtest: redirect 302 is rejected and never followed
+ok 268 - redirect 302 is rejected and never followed
+  ---
+  duration_ms: 5.1173
+  type: 'test'
+  ...
+# Subtest: redirect 307 is rejected and never followed
+ok 269 - redirect 307 is rejected and never followed
+  ---
+  duration_ms: 14.5683
+  type: 'test'
+  ...
+# Subtest: redirect 308 is rejected and never followed
+ok 270 - redirect 308 is rejected and never followed
+  ---
+  duration_ms: 1.1572
+  type: 'test'
+  ...
+# Subtest: an already-followed response is rejected despite its final HTTP 200
+ok 271 - an already-followed response is rejected despite its final HTTP 200
+  ---
+  duration_ms: 1.6633
+  type: 'test'
+  ...
+# Subtest: a non-cooperative fetch still reaches the bounded timeout
+ok 272 - a non-cooperative fetch still reaches the bounded timeout
+  ---
+  duration_ms: 11.9745
+  type: 'test'
+  ...
+# Subtest: the timeout also bounds a stalled response body
+ok 273 - the timeout also bounds a stalled response body
+  ---
+  duration_ms: 25.6405
+  type: 'test'
+  ...
+# Subtest: network exceptions and private diagnostic text are redacted
+ok 274 - network exceptions and private diagnostic text are redacted
+  ---
+  duration_ms: 1.3003
+  type: 'test'
+  ...
+# Subtest: non-Error rejections and caller diagnostic codes cannot leak into the report
+ok 275 - non-Error rejections and caller diagnostic codes cannot leak into the report
+  ---
+  duration_ms: 2.3773
+  type: 'test'
+  ...
+# Subtest: raw response extras, headers and keys are never copied to the report
+ok 276 - raw response extras, headers and keys are never copied to the report
+  ---
+  duration_ms: 1.2005
+  type: 'test'
+  ...
+# Subtest: oversized JSON is rejected before parsing or reporting remote content
+ok 277 - oversized JSON is rejected before parsing or reporting remote content
+  ---
+  duration_ms: 1.6339
+  type: 'test'
+  ...
+# Subtest: non-JSON, malformed JSON and invalid UTF-8 responses fail closed
+ok 278 - non-JSON, malformed JSON and invalid UTF-8 responses fail closed
+  ---
+  duration_ms: 1.5555
+  type: 'test'
+  ...
+# Subtest: error HTTP status cannot be reported as a verified health response
+ok 279 - error HTTP status cannot be reported as a verified health response
+  ---
+  duration_ms: 0.5803
+  type: 'test'
+  ...
+# Subtest: callers cannot add endpoint overrides or unsupported timeout options
+ok 280 - callers cannot add endpoint overrides or unsupported timeout options
+  ---
+  duration_ms: 1.1121
+  type: 'test'
+  ...
+# Subtest: CLI help and unsupported arguments finish before any probe or output-file creation
+ok 281 - CLI help and unsupported arguments finish before any probe or output-file creation
+  ---
+  duration_ms: 351.5772
+  type: 'test'
+  ...
+# Subtest: opening the page only reads health and never submits business operations
+ok 282 - opening the page only reads health and never submits business operations
+  ---
+  duration_ms: 81.2414
+  type: 'test'
+  ...
+# Subtest: offline is visible immediately and reconnect only rechecks GET health
+ok 283 - offline is visible immediately and reconnect only rechecks GET health
+  ---
+  duration_ms: 5.1636
+  type: 'test'
+  ...
+# Subtest: unknown submitted writes keep the original identifiers and block new writes
+ok 284 - unknown submitted writes keep the original identifiers and block new writes
+  ---
+  duration_ms: 7.5121
+  type: 'test'
+  ...
+# Subtest: pending writes survive reload and reading old NOT_STARTED is not proof of failure
+ok 285 - pending writes survive reload and reading old NOT_STARTED is not proof of failure
+  ---
+  duration_ms: 3.7912
+  type: 'test'
+  ...
+# Subtest: hidden tabs pause polling and visible tabs perform a new read
+ok 286 - hidden tabs pause polling and visible tabs perform a new read
+  ---
+  duration_ms: 8.3045
+  type: 'test'
+  ...
+# Subtest: failed health checks never retain a green label or allow writes
+ok 287 - failed health checks never retain a green label or allow writes
+  ---
+  duration_ms: 2.8305
+  type: 'test'
+  ...
+# Subtest: an in-flight write is recorded before sending and a reloaded page cannot resubmit
+ok 288 - an in-flight write is recorded before sending and a reloaded page cannot resubmit
+  ---
+  duration_ms: 10.9719
+  type: 'test'
+  ...
+# Subtest: storage failure prevents sending a write rather than losing the cross-refresh guard
+ok 289 - storage failure prevents sending a write rather than losing the cross-refresh guard
+  ---
+  duration_ms: 2.2559
+  type: 'test'
+  ...
+# Subtest: an operation failure remains visible after successful health checks
+ok 290 - an operation failure remains visible after successful health checks
+  ---
+  duration_ms: 4.7735
+  type: 'test'
+  ...
+# Subtest: local validation feedback is visible without making a business request
+ok 291 - local validation feedback is visible without making a business request
+  ---
+  duration_ms: 4.3214
+  type: 'test'
+  ...
+# Subtest: health recovery cannot dismiss an operation error sharing a health error code
+ok 292 - health recovery cannot dismiss an operation error sharing a health error code
+  ---
+  duration_ms: 7.6366
+  type: 'test'
+  ...
+# Subtest: the UMD browser global and CommonJS both expose the presenter and describe API
+ok 293 - the UMD browser global and CommonJS both expose the presenter and describe API
+  ---
+  duration_ms: 3.5857
+  type: 'test'
+  ...
+# Subtest: the panel starts hidden and has fixed accessible identifiers
+ok 294 - the panel starts hidden and has fixed accessible identifiers
+  ---
+  duration_ms: 1.4748
+  type: 'test'
+  ...
+# Subtest: known NETWORK_TIMEOUT produces fixed Chinese problem and recovery text
+ok 295 - known NETWORK_TIMEOUT produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.5094
+  type: 'test'
+  ...
+# Subtest: known NETWORK_OFFLINE produces fixed Chinese problem and recovery text
+ok 296 - known NETWORK_OFFLINE produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.1207
+  type: 'test'
+  ...
+# Subtest: known NETWORK_ERROR produces fixed Chinese problem and recovery text
+ok 297 - known NETWORK_ERROR produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.7916
+  type: 'test'
+  ...
+# Subtest: known HTTP_SERVER_ERROR produces fixed Chinese problem and recovery text
+ok 298 - known HTTP_SERVER_ERROR produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0936
+  type: 'test'
+  ...
+# Subtest: known HTTP_UNAUTHORIZED produces fixed Chinese problem and recovery text
+ok 299 - known HTTP_UNAUTHORIZED produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.3562
+  type: 'test'
+  ...
+# Subtest: known HTTP_FORBIDDEN produces fixed Chinese problem and recovery text
+ok 300 - known HTTP_FORBIDDEN produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 1.0012
+  type: 'test'
+  ...
+# Subtest: known HTTP_RATE_LIMITED produces fixed Chinese problem and recovery text
+ok 301 - known HTTP_RATE_LIMITED produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.2999
+  type: 'test'
+  ...
+# Subtest: known HTTP_CLIENT_ERROR produces fixed Chinese problem and recovery text
+ok 302 - known HTTP_CLIENT_ERROR produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 1.3197
+  type: 'test'
+  ...
+# Subtest: known LOCAL_STORAGE_UNAVAILABLE produces fixed Chinese problem and recovery text
+ok 303 - known LOCAL_STORAGE_UNAVAILABLE produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.1201
+  type: 'test'
+  ...
+# Subtest: known CORE_UNAVAILABLE produces fixed Chinese problem and recovery text
+ok 304 - known CORE_UNAVAILABLE produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0549
+  type: 'test'
+  ...
+# Subtest: known CONNECTION_NOT_READY produces fixed Chinese problem and recovery text
+ok 305 - known CONNECTION_NOT_READY produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0352
+  type: 'test'
+  ...
+# Subtest: known HEALTH_UNAVAILABLE produces fixed Chinese problem and recovery text
+ok 306 - known HEALTH_UNAVAILABLE produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0286
+  type: 'test'
+  ...
+# Subtest: known INPUT_VALIDATION produces fixed Chinese problem and recovery text
+ok 307 - known INPUT_VALIDATION produces fixed Chinese problem and recovery text
+  ---
+  duration_ms: 0.0231
+  type: 'test'
+  ...
+# Subtest: uncertain state has priority over both HTTP denial and a contradictory unsent flag
+ok 308 - uncertain state has priority over both HTTP denial and a contradictory unsent flag
+  ---
+  duration_ms: 0.1238
+  type: 'test'
+  ...
+# Subtest: pending state says still processing rather than inventing a failed operation
+ok 309 - pending state says still processing rather than inventing a failed operation
+  ---
+  duration_ms: 0.1294
+  type: 'test'
+  ...
+# Subtest: stable unknown and pending-operation codes cannot lose their reconciliation state
+ok 310 - stable unknown and pending-operation codes cannot lose their reconciliation state
+  ---
+  duration_ms: 0.1277
+  type: 'test'
+  ...
+# Subtest: GET failure never claims that the underlying business was rejected or never executed
+ok 311 - GET failure never claims that the underlying business was rejected or never executed
+  ---
+  duration_ms: 0.1658
+  type: 'test'
+  ...
+# Subtest: a known rejected POST remains blocked without claiming a completed execution
+ok 312 - a known rejected POST remains blocked without claiming a completed execution
+  ---
+  duration_ms: 0.0803
+  type: 'test'
+  ...
+# Subtest: unknown codes and operation names are replaced rather than displayed
+ok 313 - unknown codes and operation names are replaced rather than displayed
+  ---
+  duration_ms: 0.0988
+  type: 'test'
+  ...
+# Subtest: task identifiers are bounded and cannot carry arbitrary server paragraphs
+ok 314 - task identifiers are bounded and cannot carry arbitrary server paragraphs
+  ---
+  duration_ms: 0.0899
+  type: 'test'
+  ...
+# Subtest: the exact fixed operation whitelist is accepted
+ok 315 - the exact fixed operation whitelist is accepted
+  ---
+  duration_ms: 0.0565
+  type: 'test'
+  ...
+# Subtest: show only writes sanitized textContent and exposes no raw error payload or credentials
+ok 316 - show only writes sanitized textContent and exposes no raw error payload or credentials
+  ---
+  duration_ms: 0.2111
+  type: 'test'
+  ...
+# Subtest: show and close never check, query, unlock or retry an operation
+ok 317 - show and close never check, query, unlock or retry an operation
+  ---
+  duration_ms: 1.4116
+  type: 'test'
+  ...
+# Subtest: buttons invoke only their explicit callback with sanitized current information
+ok 318 - buttons invoke only their explicit callback with sanitized current information
+  ---
+  duration_ms: 0.2698
+  type: 'test'
+  ...
+# Subtest: query is visible only when a valid task and reconciliation are both present
+ok 319 - query is visible only when a valid task and reconciliation are both present
+  ---
+  duration_ms: 0.1795
+  type: 'test'
+  ...
+# Subtest: current returns a defensive copy and repeated creation does not duplicate the panel
+ok 320 - current returns a defensive copy and repeated creation does not duplicate the panel
+  ---
+  duration_ms: 0.2007
+  type: 'test'
+  ...
+# Subtest: callback failure cannot hide or clear an unresolved operation
+ok 321 - callback failure cannot hide or clear an unresolved operation
+  ---
+  duration_ms: 0.3276
+  type: 'test'
+  ...
+# Subtest: missing document or invalid callbacks fail before creating a panel
+ok 322 - missing document or invalid callbacks fail before creating a panel
+  ---
+  duration_ms: 0.3406
+  type: 'test'
+  ...
+# Subtest: read-only health uses the pinned GET and exact safe envelope
+ok 323 - read-only health uses the pinned GET and exact safe envelope
+  ---
+  duration_ms: 27.6977
+  type: 'test'
+  ...
+# Subtest: Core reachability, model configuration and business readiness stay separate
+ok 324 - Core reachability, model configuration and business readiness stay separate
+  ---
+  duration_ms: 2.6104
+  type: 'test'
+  ...
+# Subtest: missing and failed storage never prevent independent Core diagnostics
+ok 325 - missing and failed storage never prevent independent Core diagnostics
+  ---
+  duration_ms: 4.2707
+  type: 'test'
+  ...
+# Subtest: Core connection failure is redacted and storage remains independently UP
+ok 326 - Core connection failure is redacted and storage remains independently UP
+  ---
+  duration_ms: 0.5399
+  type: 'test'
+  ...
+# Subtest: redirects, HTTP errors and other services cannot report Core UP
+ok 327 - redirects, HTTP errors and other services cannot report Core UP
+  ---
+  duration_ms: 5.4197
+  type: 'test'
+  ...
+# Subtest: Core response is limited to 32 KiB including chunked bodies
+ok 328 - Core response is limited to 32 KiB including chunked bodies
+  ---
+  duration_ms: 5.349
+  type: 'test'
+  ...
+# Subtest: hanging fetch is bounded even when the transport ignores AbortSignal
+ok 329 - hanging fetch is bounded even when the transport ignores AbortSignal
+  ---
+  duration_ms: 19.0858
+  type: 'test'
+  ...
+# Subtest: response body and cancellation share the fetch deadline
+ok 330 - response body and cancellation share the fetch deadline
+  ---
+  duration_ms: 33.6415
+  type: 'test'
+  ...
+# Subtest: slow storage is bounded without hiding Core status
+ok 331 - slow storage is bounded without hiding Core status
+  ---
+  duration_ms: 31.1877
+  type: 'test'
+  ...
+# Subtest: concurrent callers share an in-flight probe and receive independent copies
+ok 332 - concurrent callers share an in-flight probe and receive independent copies
+  ---
+  duration_ms: 0.8674
+  type: 'test'
+  ...
+# Subtest: cache expires after its TTL and is isolated by storage binding
+ok 333 - cache expires after its TTL and is isolated by storage binding
+  ---
+  duration_ms: 0.9305
+  type: 'test'
+  ...
+# Subtest: unavailable results are cached without background work and later recover
+ok 334 - unavailable results are cached without background work and later recover
+  ---
+  duration_ms: 0.4219
+  type: 'test'
+  ...
+# Subtest: the browser UMD and CommonJS expose the same small client API
+ok 335 - the browser UMD and CommonJS expose the same small client API
+  ---
+  duration_ms: 36.4623
+  type: 'test'
+  ...
+# Subtest: same-origin GET uses manual redirects and same-origin credentials without logging headers
+ok 336 - same-origin GET uses manual redirects and same-origin credentials without logging headers
+  ---
+  duration_ms: 2.3069
+  type: 'test'
+  ...
+# Subtest: JSON writes preserve the caller's existing request key and do not invent or retry requests
+ok 337 - JSON writes preserve the caller's existing request key and do not invent or retry requests
+  ---
+  duration_ms: 2.2202
+  type: 'test'
+  ...
+# Subtest: already serialized JSON is sent once without double encoding
+ok 338 - already serialized JSON is sent once without double encoding
+  ---
+  duration_ms: 0.814
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "https://untrusted.invalid/api"
+ok 339 - unsafe route is refused before sending: "https://untrusted.invalid/api"
+  ---
+  duration_ms: 0.9131
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "http://localhost/api"
+ok 340 - unsafe route is refused before sending: "http://localhost/api"
+  ---
+  duration_ms: 0.1935
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "//untrusted.invalid/api"
+ok 341 - unsafe route is refused before sending: "//untrusted.invalid/api"
+  ---
+  duration_ms: 0.1033
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/\\\\untrusted.invalid/api"
+ok 342 - unsafe route is refused before sending: "/\\\\untrusted.invalid/api"
+  ---
+  duration_ms: 0.1281
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/%2funtrusted.invalid"
+ok 343 - unsafe route is refused before sending: "/%2funtrusted.invalid"
+  ---
+  duration_ms: 0.1794
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/%5cuntrusted.invalid"
+ok 344 - unsafe route is refused before sending: "/%5cuntrusted.invalid"
+  ---
+  duration_ms: 0.1821
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "api/status"
+ok 345 - unsafe route is refused before sending: "api/status"
+  ---
+  duration_ms: 0.1036
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/api/status\#secret"
+ok 346 - unsafe route is refused before sending: "/api/status\#secret"
+  ---
+  duration_ms: 0.0786
+  type: 'test'
+  ...
+# Subtest: unsafe route is refused before sending: "/api/\\nstatus"
+ok 347 - unsafe route is refused before sending: "/api/\\nstatus"
+  ---
+  duration_ms: 0.0954
+  type: 'test'
+  ...
+# Subtest: known offline state causes zero HTTP attempts and never reports a sent request
+ok 348 - known offline state causes zero HTTP attempts and never reports a sent request
+  ---
+  duration_ms: 0.4189
+  type: 'test'
+  ...
+# Subtest: browser navigator offline state is respected by the default dependency
+ok 349 - browser navigator offline state is respected by the default dependency
+  ---
+  duration_ms: 1.5193
+  type: 'test'
+  ...
+# Subtest: GET deadline works even when fetch ignores AbortSignal
+ok 350 - GET deadline works even when fetch ignores AbortSignal
+  ---
+  duration_ms: 18.4705
+  type: 'test'
+  ...
+# Subtest: GET deadline also bounds a stalled body after HTTP 200
+ok 351 - GET deadline also bounds a stalled body after HTTP 200
+  ---
+  duration_ms: 15.1468
+  type: 'test'
+  ...
+# Subtest: POST deadline works even when fetch ignores AbortSignal
+ok 352 - POST deadline works even when fetch ignores AbortSignal
+  ---
+  duration_ms: 14.9413
+  type: 'test'
+  ...
+# Subtest: POST deadline also bounds a stalled body after HTTP 200
+ok 353 - POST deadline also bounds a stalled body after HTTP 200
+  ---
+  duration_ms: 14.5216
+  type: 'test'
+  ...
+# Subtest: a lost write receipt is uncertain, linked to the original task, and never retried
+ok 354 - a lost write receipt is uncertain, linked to the original task, and never retried
+  ---
+  duration_ms: 0.5565
+  type: 'test'
+  ...
+# Subtest: GET network failures cannot create an unknown-write event
+ok 355 - GET network failures cannot create an unknown-write event
+  ---
+  duration_ms: 0.2079
+  type: 'test'
+  ...
+# Subtest: HTTP 400 explicitly rejects a write without reporting UNKNOWN
+ok 356 - HTTP 400 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.8124
+  type: 'test'
+  ...
+# Subtest: HTTP 401 explicitly rejects a write without reporting UNKNOWN
+ok 357 - HTTP 401 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.4118
+  type: 'test'
+  ...
+# Subtest: HTTP 403 explicitly rejects a write without reporting UNKNOWN
+ok 358 - HTTP 403 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.2208
+  type: 'test'
+  ...
+# Subtest: HTTP 409 explicitly rejects a write without reporting UNKNOWN
+ok 359 - HTTP 409 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.1755
+  type: 'test'
+  ...
+# Subtest: HTTP 429 explicitly rejects a write without reporting UNKNOWN
+ok 360 - HTTP 429 explicitly rejects a write without reporting UNKNOWN
+  ---
+  duration_ms: 0.1791
+  type: 'test'
+  ...
+# Subtest: an explicit 4xx remains a rejection when its JSON is broken or its error body stalls
+ok 361 - an explicit 4xx remains a rejection when its JSON is broken or its error body stalls
+  ---
+  duration_ms: 12.9893
+  type: 'test'
+  ...
+# Subtest: HTTP 409 explicitly unknown business state keeps the original request frozen
+ok 362 - HTTP 409 explicitly unknown business state keeps the original request frozen
+  ---
+  duration_ms: 2.211
+  type: 'test'
+  ...
+# Subtest: HTTP 409 RUNNING keeps a pending operation without claiming that it failed
+ok 363 - HTTP 409 RUNNING keeps a pending operation without claiming that it failed
+  ---
+  duration_ms: 0.3832
+  type: 'test'
+  ...
+# Subtest: HTTP 429 explicitly unknown business state keeps the original request frozen
+ok 364 - HTTP 429 explicitly unknown business state keeps the original request frozen
+  ---
+  duration_ms: 1.0774
+  type: 'test'
+  ...
+# Subtest: HTTP 429 RUNNING keeps a pending operation without claiming that it failed
+ok 365 - HTTP 429 RUNNING keeps a pending operation without claiming that it failed
+  ---
+  duration_ms: 0.2848
+  type: 'test'
+  ...
+# Subtest: GET 4xx business UNKNOWN does not invent an attempted write
+ok 366 - GET 4xx business UNKNOWN does not invent an attempted write
+  ---
+  duration_ms: 0.4231
+  type: 'test'
+  ...
+# Subtest: GET HTTP 500 is explicit about write reconciliation
+ok 367 - GET HTTP 500 is explicit about write reconciliation
+  ---
+  duration_ms: 0.3672
+  type: 'test'
+  ...
+# Subtest: GET HTTP 502 is explicit about write reconciliation
+ok 368 - GET HTTP 502 is explicit about write reconciliation
+  ---
+  duration_ms: 0.2556
+  type: 'test'
+  ...
+# Subtest: GET HTTP 503 is explicit about write reconciliation
+ok 369 - GET HTTP 503 is explicit about write reconciliation
+  ---
+  duration_ms: 0.323
+  type: 'test'
+  ...
+# Subtest: POST HTTP 500 is explicit about write reconciliation
+ok 370 - POST HTTP 500 is explicit about write reconciliation
+  ---
+  duration_ms: 0.4108
+  type: 'test'
+  ...
+# Subtest: POST HTTP 502 is explicit about write reconciliation
+ok 371 - POST HTTP 502 is explicit about write reconciliation
+  ---
+  duration_ms: 0.225
+  type: 'test'
+  ...
+# Subtest: POST HTTP 503 is explicit about write reconciliation
+ok 372 - POST HTTP 503 is explicit about write reconciliation
+  ---
+  duration_ms: 1.8629
+  type: 'test'
+  ...
+# Subtest: invalid JSON and oversized write responses are uncertain without returning a fabricated result
+ok 373 - invalid JSON and oversized write responses are uncertain without returning a fabricated result
+  ---
+  duration_ms: 12.7617
+  type: 'test'
+  ...
+# Subtest: the exact 512 KiB JSON boundary is accepted and a byte more is refused
+ok 374 - the exact 512 KiB JSON boundary is accepted and a byte more is refused
+  ---
+  duration_ms: 5.0962
+  type: 'test'
+  ...
+# Subtest: GET redirects are refused without following the hostile location
+ok 375 - GET redirects are refused without following the hostile location
+  ---
+  duration_ms: 0.3635
+  type: 'test'
+  ...
+# Subtest: POST redirects are refused without following the hostile location
+ok 376 - POST redirects are refused without following the hostile location
+  ---
+  duration_ms: 0.2533
+  type: 'test'
+  ...
+# Subtest: already-followed and opaque redirect responses cannot be treated as success
+ok 377 - already-followed and opaque redirect responses cannot be treated as success
+  ---
+  duration_ms: 0.7492
+  type: 'test'
+  ...
+# Subtest: server diagnostics are bounded and stacks, tokens and unknown English text stay private
+ok 378 - server diagnostics are bounded and stacks, tokens and unknown English text stay private
+  ---
+  duration_ms: 3.6113
+  type: 'test'
+  ...
+# Subtest: HTTP 200 top UNKNOWN remains visible and prevents blind resubmission
+ok 379 - HTTP 200 top UNKNOWN remains visible and prevents blind resubmission
+  ---
+  duration_ms: 0.6104
+  type: 'test'
+  ...
+# Subtest: HTTP 200 execution UNKNOWN remains visible and prevents blind resubmission
+ok 380 - HTTP 200 execution UNKNOWN remains visible and prevents blind resubmission
+  ---
+  duration_ms: 0.5106
+  type: 'test'
+  ...
+# Subtest: HTTP 200 top RUNNING remains visible and prevents blind resubmission
+ok 381 - HTTP 200 top RUNNING remains visible and prevents blind resubmission
+  ---
+  duration_ms: 0.4065
+  type: 'test'
+  ...
+# Subtest: HTTP 200 execution RUNNING remains visible and prevents blind resubmission
+ok 382 - HTTP 200 execution RUNNING remains visible and prevents blind resubmission
+  ---
+  duration_ms: 0.2393
+  type: 'test'
+  ...
+# Subtest: existing Risk callback UNKNOWN and nested task bindings preserve the original identifiers
+ok 383 - existing Risk callback UNKNOWN and nested task bindings preserve the original identifiers
+  ---
+  duration_ms: 0.6041
+  type: 'test'
+  ...
+# Subtest: a GET query that reports a pending operation is not mistaken for another attempted write
+ok 384 - a GET query that reports a pending operation is not mistaken for another attempted write
+  ---
+  duration_ms: 0.4972
+  type: 'test'
+  ...
+# Subtest: observer exceptions do not replace a network outcome or trigger another write
+ok 385 - observer exceptions do not replace a network outcome or trigger another write
+  ---
+  duration_ms: 12.1774
+  type: 'test'
+  ...
+# Subtest: default read, write, model, and explicit deadlines are selected without real waiting
+ok 386 - default read, write, model, and explicit deadlines are selected without real waiting
+  ---
+  duration_ms: 65.413
+  type: 'test'
+  ...
+# Subtest: client and request configuration errors are rejected before HTTP
+ok 387 - client and request configuration errors are rejected before HTTP
+  ---
+  duration_ms: 1.2123
+  type: 'test'
+  ...
+# Subtest: a feasible confirmed plan is LOW/FULL, separate from execution authorization
+ok 388 - a feasible confirmed plan is LOW/FULL, separate from execution authorization
+  ---
+  duration_ms: 24.8487
+  type: 'test'
+  ...
+# Subtest: rent conflict is HIGH with exact 2000 yuan gap
+ok 389 - rent conflict is HIGH with exact 2000 yuan gap
+  ---
+  duration_ms: 3.9598
+  type: 'test'
+  ...
+# Subtest: the exact cash boundary is LOW but one fen beyond it is HIGH
+ok 390 - the exact cash boundary is LOW but one fen beyond it is HIGH
+  ---
+  duration_ms: 2.2923
+  type: 'test'
+  ...
+# Subtest: unknown balance, unconfirmed purposes and unknown holds never become LOW
+ok 391 - unknown balance, unconfirmed purposes and unknown holds never become LOW
+  ---
+  duration_ms: 3.3564
+  type: 'test'
+  ...
+# Subtest: confirmed soft-budget warning is NOTICE, itemized acceptance review is ELEVATED
+ok 392 - confirmed soft-budget warning is NOTICE, itemized acceptance review is ELEVATED
+  ---
+  duration_ms: 1.7408
+  type: 'test'
+  ...
+# Subtest: known financial block survives an independent control error as HIGH/PARTIAL
+ok 393 - known financial block survives an independent control error as HIGH/PARTIAL
+  ---
+  duration_ms: 1.4006
+  type: 'test'
+  ...
+# Subtest: failed check without a financial breach is UNKNOWN, and a new permission denial is not a Risk BLOCK
+ok 394 - failed check without a financial breach is UNKNOWN, and a new permission denial is not a Risk BLOCK
+  ---
+  duration_ms: 1.8519
+  type: 'test'
+  ...
+# Subtest: unadapted portfolios, unknown policies, absent checks and unknown reason codes fail to UNKNOWN
+ok 395 - unadapted portfolios, unknown policies, absent checks and unknown reason codes fail to UNKNOWN
+  ---
+  duration_ms: 1.3021
+  type: 'test'
+  ...
+# Subtest: model/news labels cannot change the projection or grant execution
+ok 396 - model/news labels cannot change the projection or grant execution
+  ---
+  duration_ms: 1.2106
+  type: 'test'
+  ...
+# Subtest: an independently missing optional budget cannot erase a verified rent conflict
+ok 397 - an independently missing optional budget cannot erase a verified rent conflict
+  ---
+  duration_ms: 1.1561
+  type: 'test'
+  ...
+# Subtest: malformed optional budget metrics remain separate from an established financial block
+ok 398 - malformed optional budget metrics remain separate from an established financial block
+  ---
+  duration_ms: 0.9918
+  type: 'test'
+  ...
+# Subtest: unknown core confirmation cannot be replaced by raw numeric balance calculations
+ok 399 - unknown core confirmation cannot be replaced by raw numeric balance calculations
+  ---
+  duration_ms: 1.2515
+  type: 'test'
+  ...
+# Subtest: optional missing information without a proved hard finding stays UNKNOWN
+ok 400 - optional missing information without a proved hard finding stays UNKNOWN
+  ---
+  duration_ms: 0.5458
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: BLOCK check with no risk reason
+ok 401 - result semantic mismatch is UNKNOWN/INVALID: BLOCK check with no risk reason
+  ---
+  duration_ms: 0.4541
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: REVIEW check with no risk reason
+ok 402 - result semantic mismatch is UNKNOWN/INVALID: REVIEW check with no risk reason
+  ---
+  duration_ms: 0.3247
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: REVIEW total with empty reasons
+ok 403 - result semantic mismatch is UNKNOWN/INVALID: REVIEW total with empty reasons
+  ---
+  duration_ms: 0.3281
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: ERROR with a completed flag
+ok 404 - result semantic mismatch is UNKNOWN/INVALID: ERROR with a completed flag
+  ---
+  duration_ms: 0.3222
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: missing rule check
+ok 405 - result semantic mismatch is UNKNOWN/INVALID: missing rule check
+  ---
+  duration_ms: 3.5871
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: null rule check
+ok 406 - result semantic mismatch is UNKNOWN/INVALID: null rule check
+  ---
+  duration_ms: 0.8159
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: duplicate rule check
+ok 407 - result semantic mismatch is UNKNOWN/INVALID: duplicate rule check
+  ---
+  duration_ms: 0.9055
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: foreign reason reference
+ok 408 - result semantic mismatch is UNKNOWN/INVALID: foreign reason reference
+  ---
+  duration_ms: 0.3363
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: missing gate reason reference
+ok 409 - result semantic mismatch is UNKNOWN/INVALID: missing gate reason reference
+  ---
+  duration_ms: 0.2624
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: amount as a string
+ok 410 - result semantic mismatch is UNKNOWN/INVALID: amount as a string
+  ---
+  duration_ms: 0.3756
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: mismatched shortfall arithmetic
+ok 411 - result semantic mismatch is UNKNOWN/INVALID: mismatched shortfall arithmetic
+  ---
+  duration_ms: 0.307
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: mismatched available arithmetic
+ok 412 - result semantic mismatch is UNKNOWN/INVALID: mismatched available arithmetic
+  ---
+  duration_ms: 0.5976
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: mismatched projected state
+ok 413 - result semantic mismatch is UNKNOWN/INVALID: mismatched projected state
+  ---
+  duration_ms: 0.4024
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: mismatched cashflow step
+ok 414 - result semantic mismatch is UNKNOWN/INVALID: mismatched cashflow step
+  ---
+  duration_ms: 0.4464
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: declared execution authority
+ok 415 - result semantic mismatch is UNKNOWN/INVALID: declared execution authority
+  ---
+  duration_ms: 0.3436
+  type: 'test'
+  ...
+# Subtest: result semantic mismatch is UNKNOWN/INVALID: unexplained missing core metrics
+ok 416 - result semantic mismatch is UNKNOWN/INVALID: unexplained missing core metrics
+  ---
+  duration_ms: 0.7865
+  type: 'test'
+  ...
+# Subtest: a financial BLOCK moved into an INFO channel cannot turn the grade LOW
+ok 417 - a financial BLOCK moved into an INFO channel cannot turn the grade LOW
+  ---
+  duration_ms: 0.4361
+  type: 'test'
+  ...
+# Subtest: missing known reason references and wrong rule assignment are rejected
+ok 418 - missing known reason references and wrong rule assignment are rejected
+  ---
+  duration_ms: 0.6617
+  type: 'test'
+  ...
+# Subtest: a financially contradictory result cannot hide a cash shortfall by removing every BLOCK reason
+ok 419 - a financially contradictory result cannot hide a cash shortfall by removing every BLOCK reason
+  ---
+  duration_ms: 0.4138
+  type: 'test'
+  ...
+# Subtest: a positive claimed free balance cannot conceal the same state's rent and investment hold
+ok 420 - a positive claimed free balance cannot conceal the same state's rent and investment hold
+  ---
+  duration_ms: 0.4046
+  type: 'test'
+  ...
+# Subtest: completed money calculations must contain their supporting cashflow
+ok 421 - completed money calculations must contain their supporting cashflow
+  ---
+  duration_ms: 0.2765
+  type: 'test'
+  ...
+# Subtest: completed money calculations must contain their supporting projected state
+ok 422 - completed money calculations must contain their supporting projected state
+  ---
+  duration_ms: 0.269
+  type: 'test'
+  ...
+# Subtest: completed money calculations must contain their supporting protected amount
+ok 423 - completed money calculations must contain their supporting protected amount
+  ---
+  duration_ms: 0.2362
+  type: 'test'
+  ...
+# Subtest: completed money calculations must contain their supporting independent floor
+ok 424 - completed money calculations must contain their supporting independent floor
+  ---
+  duration_ms: 0.2571
+  type: 'test'
+  ...
+# Subtest: completed money calculations must contain their supporting projected holds
+ok 425 - completed money calculations must contain their supporting projected holds
+  ---
+  duration_ms: 0.2403
+  type: 'test'
+  ...
+# Subtest: completed money calculations must contain their supporting state obligations
+ok 426 - completed money calculations must contain their supporting state obligations
+  ---
+  duration_ms: 0.5719
+  type: 'test'
+  ...
+# Subtest: completed money calculations must contain their supporting state holds
+ok 427 - completed money calculations must contain their supporting state holds
+  ---
+  duration_ms: 0.2467
+  type: 'test'
+  ...
+# Subtest: state protection and hold amounts must agree with their reported totals
+ok 428 - state protection and hold amounts must agree with their reported totals
+  ---
+  duration_ms: 0.6321
+  type: 'test'
+  ...
+# Subtest: removing a due payment cannot convert its cashflow gap into a valid path
+ok 429 - removing a due payment cannot convert its cashflow gap into a valid path
+  ---
+  duration_ms: 0.3528
+  type: 'test'
+  ...
+# Subtest: removing a planned action cannot preserve a valid projected available balance
+ok 430 - removing a planned action cannot preserve a valid projected available balance
+  ---
+  duration_ms: 0.2985
+  type: 'test'
+  ...
+# Subtest: a positive budget excess must retain its registered soft warning
+ok 431 - a positive budget excess must retain its registered soft warning
+  ---
+  duration_ms: 0.9647
+  type: 'test'
+  ...
+# Subtest: a valid incomplete REVIEW remains a valid result with unknown financial grade
+ok 432 - a valid incomplete REVIEW remains a valid result with unknown financial grade
+  ---
+  duration_ms: 0.6139
+  type: 'test'
+  ...
+# Subtest: unsupported policies and targets are explicitly distinct from malformed results
+ok 433 - unsupported policies and targets are explicitly distinct from malformed results
+  ---
+  duration_ms: 0.462
+  type: 'test'
+  ...
+# Subtest: accessors and hostile prototypes cannot run while validating a result
+ok 434 - accessors and hostile prototypes cannot run while validating a result
+  ---
+  duration_ms: 0.41
+  type: 'test'
+  ...
+# Subtest: a verified hold covering the same rent is not deducted as a second protection
+ok 435 - a verified hold covering the same rent is not deducted as a second protection
+  ---
+  duration_ms: 14.5359
+  type: 'test'
+  ...
+# Subtest: unverified hold-purpose linkage requires reconciliation without assuming coverage
+ok 436 - unverified hold-purpose linkage requires reconciliation without assuming coverage
+  ---
+  duration_ms: 0.6833
+  type: 'test'
+  ...
+# Subtest: positive protection coverage without the original purpose is inconsistent
+ok 437 - positive protection coverage without the original purpose is inconsistent
+  ---
+  duration_ms: 0.391
+  type: 'test'
+  ...
+# Subtest: an explicitly unrelated hold does not borrow rent coverage
+ok 438 - an explicitly unrelated hold does not borrow rent coverage
+  ---
+  duration_ms: 0.7069
+  type: 'test'
+  ...
+# Subtest: settling linked rent consumes its hold and obligation without another due-date payment
+ok 439 - settling linked rent consumes its hold and obligation without another due-date payment
+  ---
+  duration_ms: 0.4776
+  type: 'test'
+  ...
+# Subtest: salary already included in the snapshot does not increase current or future cash again
+ok 440 - salary already included in the snapshot does not increase current or future cash again
+  ---
+  duration_ms: 0.8286
+  type: 'test'
+  ...
+# Subtest: expected salary stays in the future timeline without enlarging today's investable cash
+ok 441 - expected salary stays in the future timeline without enlarging today's investable cash
+  ---
+  duration_ms: 0.5403
+  type: 'test'
+  ...
+# Subtest: a late salary cannot erase the earlier tuition payment gap
+ok 442 - a late salary cannot erase the earlier tuition payment gap
+  ---
+  duration_ms: 1.2693
+  type: 'test'
+  ...
+# Subtest: one fen of fees beyond the exact protected-cash boundary blocks the action
+ok 443 - one fen of fees beyond the exact protected-cash boundary blocks the action
+  ---
+  duration_ms: 0.6333
+  type: 'test'
+  ...
+# Subtest: duplicate purposes identifiers require reconciliation, not double counting
+ok 444 - duplicate purposes identifiers require reconciliation, not double counting
+  ---
+  duration_ms: 0.4957
+  type: 'test'
+  ...
+# Subtest: duplicate holds identifiers require reconciliation, not double counting
+ok 445 - duplicate holds identifiers require reconciliation, not double counting
+  ---
+  duration_ms: 0.2477
+  type: 'test'
+  ...
+# Subtest: duplicate income_events identifiers require reconciliation, not double counting
+ok 446 - duplicate income_events identifiers require reconciliation, not double counting
+  ---
+  duration_ms: 0.1574
+  type: 'test'
+  ...
+# Subtest: untrusted note cannot approve, release protected rent or enable execution
+ok 447 - untrusted note cannot approve, release protected rent or enable execution
+  ---
+  duration_ms: 0.7402
+  type: 'test'
+  ...
+# Subtest: unknown fees are missing evidence rather than zero
+ok 448 - unknown fees are missing evidence rather than zero
+  ---
+  duration_ms: 0.3201
+  type: 'test'
+  ...
+# Subtest: private read permits only its exact server-verified resource grant
+ok 449 - private read permits only its exact server-verified resource grant
+  ---
+  duration_ms: 5.7519
+  type: 'test'
+  ...
+# Subtest: a registered public resource is readable without private identity
+ok 450 - a registered public resource is readable without private identity
+  ---
+  duration_ms: 0.3636
+  type: 'test'
+  ...
+# Subtest: public registry absence is an error rather than inferred public access
+ok 451 - public registry absence is an error rather than inferred public access
+  ---
+  duration_ms: 0.1164
+  type: 'test'
+  ...
+# Subtest: client-supplied role, identity, approval or grants cannot upgrade a request
+ok 452 - client-supplied role, identity, approval or grants cannot upgrade a request
+  ---
+  duration_ms: 0.2954
+  type: 'test'
+  ...
+# Subtest: unknown capabilities and an L3 label never inherit read permission
+ok 453 - unknown capabilities and an L3 label never inherit read permission
+  ---
+  duration_ms: 0.2343
+  type: 'test'
+  ...
+# Subtest: cross-user or guessed resource IDs are rejected before returning data
+ok 454 - cross-user or guessed resource IDs are rejected before returning data
+  ---
+  duration_ms: 0.1446
+  type: 'test'
+  ...
+# Subtest: service identity is not an end-user session or vice versa
+ok 455 - service identity is not an end-user session or vice versa
+  ---
+  duration_ms: 0.1274
+  type: 'test'
+  ...
+# Subtest: an actor scope and a user grant must both cover the exact action
+ok 456 - an actor scope and a user grant must both cover the exact action
+  ---
+  duration_ms: 0.1606
+  type: 'test'
+  ...
+# Subtest: the capability actor allowlist rejects maintainers despite an otherwise valid owner grant
+ok 457 - the capability actor allowlist rejects maintainers despite an otherwise valid owner grant
+  ---
+  duration_ms: 0.208
+  type: 'test'
+  ...
+# Subtest: each registered private-read actor remains subject to the precise valid grant
+ok 458 - each registered private-read actor remains subject to the precise valid grant
+  ---
+  duration_ms: 0.401
+  type: 'test'
+  ...
+# Subtest: purpose, audience and environment do not widen automatically
+ok 459 - purpose, audience and environment do not widen automatically
+  ---
+  duration_ms: 0.2219
+  type: 'test'
+  ...
+# Subtest: expired, revoked and future grants remain denied at the exact boundary
+ok 460 - expired, revoked and future grants remain denied at the exact boundary
+  ---
+  duration_ms: 0.1889
+  type: 'test'
+  ...
+# Subtest: changed version dependencies invalidate prior consent and missing ones are errors
+ok 461 - changed version dependencies invalidate prior consent and missing ones are errors
+  ---
+  duration_ms: 0.1977
+  type: 'test'
+  ...
+# Subtest: separate partial grants cannot be unioned into an authorization
+ok 462 - separate partial grants cannot be unioned into an authorization
+  ---
+  duration_ms: 0.1509
+  type: 'test'
+  ...
+# Subtest: model sending needs independent confirmed consent and field scope
+ok 463 - model sending needs independent confirmed consent and field scope
+  ---
+  duration_ms: 0.3417
+  type: 'test'
+  ...
+# Subtest: an unconfirmed or mismatched confirmation cannot be accepted
+ok 464 - an unconfirmed or mismatched confirmation cannot be accepted
+  ---
+  duration_ms: 0.1198
+  type: 'test'
+  ...
+# Subtest: unimplemented independent writes and exports remain closed
+ok 465 - unimplemented independent writes and exports remain closed
+  ---
+  duration_ms: 0.2188
+  type: 'test'
+  ...
+# Subtest: full declared grants cannot enable L3 or real financial operations
+ok 466 - full declared grants cannot enable L3 or real financial operations
+  ---
+  duration_ms: 0.1442
+  type: 'test'
+  ...
+# Subtest: trusted read-only reconciliation is limited to the original execution
+ok 467 - trusted read-only reconciliation is limited to the original execution
+  ---
+  duration_ms: 0.2747
+  type: 'test'
+  ...
+# Subtest: ordinary owner reconciliation still requires the current owner session
+ok 468 - ordinary owner reconciliation still requires the current owner session
+  ---
+  duration_ms: 0.1204
+  type: 'test'
+  ...
+# Subtest: recovery actor cannot convert cleanup authority into investment or data access
+ok 469 - recovery actor cannot convert cleanup authority into investment or data access
+  ---
+  duration_ms: 0.1138
+  type: 'test'
+  ...
+# Subtest: missing grant validity, conflicting grant IDs and validation failures fail closed
+ok 470 - missing grant validity, conflicting grant IDs and validation failures fail closed
+  ---
+  duration_ms: 0.2143
+  type: 'test'
+  ...
+# Subtest: accessors and hostile prototypes cannot be treated as authorization data
+ok 471 - accessors and hostile prototypes cannot be treated as authorization data
+  ---
+  duration_ms: 0.0726
+  type: 'test'
+  ...
+# Subtest: permission results do not expose private IDs, grants or change historical risk
+ok 472 - permission results do not expose private IDs, grants or change historical risk
+  ---
+  duration_ms: 0.1126
+  type: 'test'
+  ...
+# Subtest: v1.1 retains the result contract while identifying the hardened policy
+ok 473 - v1.1 retains the result contract while identifying the hardened policy
+  ---
+  duration_ms: 0.0858
+  type: 'test'
+  ...
+# Subtest: all currently evaluatable private capabilities require their actual matrix versions
+ok 474 - all currently evaluatable private capabilities require their actual matrix versions
+  ---
+  duration_ms: 0.4454
+  type: 'test'
+  ...
+# Subtest: each mandatory context and grant dependency must be present
+ok 475 - each mandatory context and grant dependency must be present
+  ---
+  duration_ms: 1.4756
+  type: 'test'
+  ...
+# Subtest: matching additional version dependencies are retained without substituting required keys
+ok 476 - matching additional version dependencies are retained without substituting required keys
+  ---
+  duration_ms: 0.1417
+  type: 'test'
+  ...
+# Subtest: conditional dependencies need explicit trusted applicability even when not used
+ok 477 - conditional dependencies need explicit trusted applicability even when not used
+  ---
+  duration_ms: 0.1861
+  type: 'test'
+  ...
+# Subtest: an applicable account or constraints version is mandatory in context and grant
+ok 478 - an applicable account or constraints version is mandatory in context and grant
+  ---
+  duration_ms: 0.2218
+  type: 'test'
+  ...
+# Subtest: changed conditional applicability cannot reuse a grant with the same version values
+ok 479 - changed conditional applicability cannot reuse a grant with the same version values
+  ---
+  duration_ms: 0.1589
+  type: 'test'
+  ...
+# Subtest: applicability rejects unknown flags, non-booleans and accessors without invoking them
+ok 480 - applicability rejects unknown flags, non-booleans and accessors without invoking them
+  ---
+  duration_ms: 0.2719
+  type: 'test'
+  ...
+# Subtest: a model send cannot omit both field scopes or request an empty field list
+ok 481 - a model send cannot omit both field scopes or request an empty field list
+  ---
+  duration_ms: 0.2174
+  type: 'test'
+  ...
+# Subtest: a model send requires a nonempty server-confirmed field grant
+ok 482 - a model send requires a nonempty server-confirmed field grant
+  ---
+  duration_ms: 0.4196
+  type: 'test'
+  ...
+# Subtest: selected model fields may narrow the confirmed scope but may not widen it
+ok 483 - selected model fields may narrow the confirmed scope but may not widen it
+  ---
+  duration_ms: 0.2998
+  type: 'test'
+  ...
+# Subtest: model recipients require a complete unambiguous trusted registry
+ok 484 - model recipients require a complete unambiguous trusted registry
+  ---
+  duration_ms: 0.3978
+  type: 'test'
+  ...
+# Subtest: a matching grant cannot authorize an unregistered model recipient or environment
+ok 485 - a matching grant cannot authorize an unregistered model recipient or environment
+  ---
+  duration_ms: 0.2341
+  type: 'test'
+  ...
+# Subtest: recipient changes invalidate the old send grant and need a newly bound grant
+ok 486 - recipient changes invalidate the old send grant and need a newly bound grant
+  ---
+  duration_ms: 0.1783
+  type: 'test'
+  ...
+# Subtest: public resource versions cannot be missing, guessed, or ambiguously registered
+ok 487 - public resource versions cannot be missing, guessed, or ambiguously registered
+  ---
+  duration_ms: 0.2766
+  type: 'test'
+  ...
+# Subtest: trusted recovery's recorded proposal must match its granted version
+ok 488 - trusted recovery's recorded proposal must match its granted version
+  ---
+  duration_ms: 0.1172
+  type: 'test'
+  ...
+# Subtest: reconciliation admits only the matrix owner and two narrow trusted recovery actors
+ok 489 - reconciliation admits only the matrix owner and two narrow trusted recovery actors
+  ---
+  duration_ms: 0.2253
+  type: 'test'
+  ...
+# Subtest: without a current task, model, confirmation and execution remain disabled
+ok 490 - without a current task, model, confirmation and execution remain disabled
+  ---
+  duration_ms: 6.1479
+  type: 'test'
+  ...
+# Subtest: INVALID current validation disables all dependent actions
+ok 491 - INVALID current validation disables all dependent actions
+  ---
+  duration_ms: 2.6569
+  type: 'test'
+  ...
+# Subtest: UNSUPPORTED current validation disables all dependent actions
+ok 492 - UNSUPPORTED current validation disables all dependent actions
+  ---
+  duration_ms: 1.4926
+  type: 'test'
+  ...
+# Subtest: a validated ERROR retains its grade while preventing model review and execution
+ok 493 - a validated ERROR retains its grade while preventing model review and execution
+  ---
+  duration_ms: 1.4471
+  type: 'test'
+  ...
+# Subtest: VALID ALLOW preserves existing form states and never grants execution authority
+ok 494 - VALID ALLOW preserves existing form states and never grants execution authority
+  ---
+  duration_ms: 3.1956
+  type: 'test'
+  ...
+# Subtest: changing data marks the old grade historical and blocks all dependent actions
+ok 495 - changing data marks the old grade historical and blocks all dependent actions
+  ---
+  duration_ms: 1.5703
+  type: 'test'
+  ...
+# Subtest: invalid current results cannot inherit a historical LOW grade
+ok 496 - invalid current results cannot inherit a historical LOW grade
+  ---
+  duration_ms: 1.4084
+  type: 'test'
+  ...
+# Subtest: network model availability independently prevents model review
+ok 497 - network model availability independently prevents model review
+  ---
+  duration_ms: 1.3719
+  type: 'test'
+  ...
+# Subtest: missing network capability is unknown rather than assumed model availability
+ok 498 - missing network capability is unknown rather than assumed model availability
+  ---
+  duration_ms: 1.6592
+  type: 'test'
+  ...
+# Subtest: missing assessment cannot inherit VALID current metadata or enabled controls
+ok 499 - missing assessment cannot inherit VALID current metadata or enabled controls
+  ---
+  duration_ms: 1.4644
+  type: 'test'
+  ...
+1..499
+# tests 499
+# suites 0
+# pass 499
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1281.3284
