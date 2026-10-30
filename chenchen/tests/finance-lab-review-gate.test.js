@@ -102,7 +102,7 @@ test("T05: explicit Memory consent is visible and can be written through the exi
     assert.equal(record.consent, true);
     return { memory_id: "memory-gate-001" };
   } });
-  const created = await store.start(base({ memory_consent: true, idempotency_key: null }));
+  const created = await store.start(base({ memory_consent: true, idempotency_key: null, capability: "SIMULATION_ONLY" }));
   const risk = await store.decideRisk({ task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256, decision: "APPROVE", reviewer: "risk-owner", reason: "通过" });
   const approval = await store.decideApproval({ task_id: created.task_id, proposal_sha256: risk.proposed_action.proposal_sha256, decision: "APPROVE", approver: "user", reason: "我已确认" });
   const done = await store.simulate({ task_id: approval.task_id, proposal_sha256: approval.proposed_action.proposal_sha256 });

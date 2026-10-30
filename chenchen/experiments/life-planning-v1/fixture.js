@@ -60,7 +60,7 @@ async function runFixture({ riskDecision = "APPROVE", failModel = false } = {}) 
   let workflow;
   let handoff = null;
   const checkpoints = [];
-  try { workflow = await store.start(review.request); }
+  try { workflow = await store.start({ ...review.request, capability: "SIMULATION_ONLY" }); }
   catch (error) {
     if (!failModel || !error.workflowRecord) throw error;
     workflow = error.workflowRecord;

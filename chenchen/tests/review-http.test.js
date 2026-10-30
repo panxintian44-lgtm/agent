@@ -36,7 +36,7 @@ test("HTTP model-to-Risk-to-approval-to-simulation chain is queryable", async t 
   });
   const base = "http://127.0.0.1:" + server.address().port;
   const headers = { "Content-Type": "application/json" };
-  const start = await fetch(base + "/api/review", { method: "POST", headers, body: JSON.stringify({ request_id: "req-http-workflow-001", kind: "bill", text: "演示账单 1280 元", requested_action: "进入付款准备", action_parameters: { amount: 1280 } }) });
+  const start = await fetch(base + "/api/review", { method: "POST", headers, body: JSON.stringify({ capability: "SIMULATION_ONLY", request_id: "req-http-workflow-001", kind: "bill", text: "演示账单 1280 元", requested_action: "进入付款准备", action_parameters: { amount: 1280 } }) });
   assert.equal(start.status, 200);
   const created = await start.json();
   assert.equal(created.status, "PENDING_RISK");
@@ -119,7 +119,7 @@ test("HTTP model-to-Risk-to-approval-to-simulation chain is queryable", async t 
   });
   await t.test("HTTP retries require exact approval evidence and return traceable conflicts", async () => {
     const post = (path, body) => fetch(base + path, { method: "POST", headers, body: JSON.stringify(body) });
-    const task = await post("/api/review", { kind: "bill", text: "Synthetic retry test" }).then(r => r.json());
+    const task = await post("/api/review", { capability: "SIMULATION_ONLY", kind: "bill", text: "Synthetic retry test" }).then(r => r.json());
     const binding = { task_id: task.task_id, proposal_sha256: task.proposed_action.proposal_sha256 };
     const risk = { ...binding, decision: "APPROVE", reviewer: "risk", reason: "same" };
     await post("/api/review/risk-decision", risk);

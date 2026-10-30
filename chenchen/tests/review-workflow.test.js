@@ -40,7 +40,7 @@ function fakeReview(input) {
 
 test("golden path keeps one task across model, Risk, approval, simulation and audit", async () => {
   const store = new ReviewWorkflowStore({ modelRunner: fakeReview });
-  const created = await store.start({ request_id: "req-golden-001", kind: "bill", text: "演示账单", action_parameters: { amount: 1280 } });
+  const created = await store.start({ capability: "SIMULATION_ONLY", request_id: "req-golden-001", kind: "bill", text: "演示账单", action_parameters: { amount: 1280 } });
   assert.equal(created.status, "PENDING_RISK");
   assert.equal(created.risk_handoff.execution_allowed, false);
   assert.equal(created.execution.status, "BLOCKED");
@@ -71,7 +71,7 @@ test("golden path keeps one task across model, Risk, approval, simulation and au
 
 test("Risk rejection remains terminal for execution", async () => {
   const store = new ReviewWorkflowStore({ modelRunner: fakeReview });
-  const created = await store.start({ kind: "bill", text: "演示账单" });
+  const created = await store.start({ capability: "SIMULATION_ONLY", kind: "bill", text: "演示账单" });
   const rejected = await store.decideRisk({ task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256, decision: "REJECT", reviewer: "risk-owner", reason: "用途冲突，拒绝进入执行" });
   assert.equal(rejected.status, "REJECTED");
   assert.equal(rejected.execution.simulation_allowed, false);
@@ -85,13 +85,13 @@ test("Risk rejection remains terminal for execution", async () => {
 
 test("proposal hash prevents approval after parameters change", async () => {
   const store = new ReviewWorkflowStore({ modelRunner: fakeReview });
-  const created = await store.start({ kind: "bill", text: "演示账单" });
+  const created = await store.start({ capability: "SIMULATION_ONLY", kind: "bill", text: "演示账单" });
   await assert.rejects(store.decideRisk({ task_id: created.task_id, proposal_sha256: "changed", decision: "APPROVE", reviewer: "risk-owner", reason: "测试" }), error => error instanceof WorkflowError && error.code === "PROPOSAL_CHANGED");
 });
 
 test("model failure creates an auditable blocked workflow", async () => {
   const store = new ReviewWorkflowStore({ modelRunner: async () => { const error = new Error("provider unavailable"); error.code = "MODEL_PROVIDER_UNAVAILABLE"; error.retryable = true; throw error; } });
-  await assert.rejects(store.start({ request_id: "req-failed-001", kind: "news", text: "演示新闻" }), error => {
+  await assert.rejects(store.start({ capability: "SIMULATION_ONLY", request_id: "req-failed-001", kind: "news", text: "演示新闻" }), error => {
     assert.equal(error.workflowRecord.status, "MODEL_FAILED");
     assert.equal(error.workflowRecord.risk_handoff.execution_allowed, false);
     assert.ok(error.workflowRecord.audit.events.some(item => item.event_type === "model.failed"));
@@ -114,14 +114,14 @@ test("legacy default-only retries reuse their original record and changed inputs
   assert.equal(calls, 1);
   for (const changed of [{ text: "不同用途" }, { action_parameters: { amount: 26 } },
     { scenario: "SUBSCRIPTION_REVIEW" }, { output_formats: ["json", "xlsx"] }]) {
-    await assert.rejects(store.start({ ...input, ...changed }), error => error.code === "IDEMPOTENCY_CONFLICT");
+    await assert.rejects(store.start({ capability: "SIMULATION_ONLY", ...input, ...changed }), error => error.code === "IDEMPOTENCY_CONFLICT");
   }
   assert.equal(calls, 1);
 });
 
 test("terminal workflow states cannot be mutated by repeated Risk or approval calls", async () => {
   const store = new ReviewWorkflowStore({ modelRunner: fakeReview });
-  const created = await store.start({ kind: "bill", text: "演示账单" });
+  const created = await store.start({ capability: "SIMULATION_ONLY", kind: "bill", text: "演示账单" });
   const base = { task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256 };
   await store.decideRisk({ ...base, decision: "APPROVE", reviewer: "risk-owner", reason: "通过" });
   await store.decideApproval({ ...base, decision: "APPROVE", approver: "approver", reason: "通过" });

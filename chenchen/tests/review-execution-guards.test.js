@@ -23,7 +23,7 @@ async function setup({ funded = false, memoryWriter = null } = {}) {
       proposed_action: "HOLD_FOR_REVIEW", action_reason: "Synthetic review only", risk_level: "low" } },
     audit: { audit_id: "synthetic-audit-" + randomUUID(), events: [] }
   }) });
-  const created = await store.start({ text: "Synthetic investment after rent", memory_consent: true,
+  const created = await store.start({ capability: "SIMULATION_ONLY", text: "Synthetic investment after rent", memory_consent: true,
     ...(plan ? { action_parameters: { synthetic: true, currency: "CNY", amount: 4000,
       funding_plan_id: plan.plan_id, funding_plan_revision: plan.revision } } : {}) });
   const input = { task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256 };

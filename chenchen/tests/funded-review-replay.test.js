@@ -9,7 +9,7 @@ function fixture(fail = false) {
   const definition = { synthetic: true, confirmed: true, currency: "CNY", cash_minor: 1000000,
     protected_purposes: [{ purpose_id: "rent", label: "Synthetic rent", amount_minor: 400000 }] };
   const plan = plans.create(definition);
-  const request = { text: "合成投资，先保留房租", idempotency_key: "funded-replay", data_mode: "SYNTHETIC_REPLAY",
+  const request = { capability: "SIMULATION_ONLY", text: "合成投资，先保留房租", idempotency_key: "funded-replay", data_mode: "SYNTHETIC_REPLAY",
     context: { user_note: "保留原话" }, action_parameters: { synthetic: true, currency: "CNY", amount: 3000,
       funding_plan_id: plan.plan_id, funding_plan_revision: plan.revision } };
   const store = new ReviewWorkflowStore({ fundingPlans: plans, modelRunner: async input => {

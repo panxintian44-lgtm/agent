@@ -85,7 +85,7 @@ export async function runGoldenPath({ writeArtifacts = true, root = path.resolve
   const log = [];
 
   const approvedInput = {
-    kind: "bill", source: "synthetic-golden-path", scenario: "FUNDING_CONFLICT",
+    capability: "SIMULATION_ONLY", kind: "bill", source: "synthetic-golden-path", scenario: "FUNDING_CONFLICT",
     text: "虚构供应商账单 1280 元要求改付个人账户，请先核对。",
     idempotency_key: "golden-approved-001", context: { synthetic: true, currency: "CNY" }
   };

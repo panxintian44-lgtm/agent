@@ -19,7 +19,7 @@ async function example(status = "SIMULATED") {
       audit: { audit_id: "synthetic-audit-" + randomUUID(), events: [] } };
   } });
   let created;
-  try { created = await store.start({ text: "PRIVATE_SYNTHETIC_INPUT", data_mode: "SYNTHETIC_REPLAY", action_parameters: { amount: 4000 } }); }
+  try { created = await store.start({ capability: "SIMULATION_ONLY", text: "PRIVATE_SYNTHETIC_INPUT", data_mode: "SYNTHETIC_REPLAY", action_parameters: { amount: 4000 } }); }
   catch (error) { if (status === "MODEL_FAILED") return error.workflowRecord; throw error; }
   if (status === "PENDING_RISK") return created;
   const input = { task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256 };

@@ -36,6 +36,14 @@ class ReviewReservations {
     if (input.idempotency_key) entries.push(await this.storage.get(idempotencyKey(input.idempotency_key)));
     if (input.task_id) entries.push(await this.byTask(input.task_id));
     for (const existing of entries.filter(Boolean)) {
+      // Reject declared foreign contexts before exposing an unresolved reservation's trace.
+      if ((input.session_id && input.session_id !== existing.session_id) ||
+          (input.task_id && input.task_id !== existing.task_id)) {
+        throw new WorkflowError("IDEMPOTENCY_CONTEXT_MISMATCH", "idempotency key is bound to another session or task", {
+          statusCode: 409, stage: "VALIDATION",
+          recovery: "Use a new idempotency key for a different session or task."
+        });
+      }
       if (existing.reservation_version !== VERSION) throw unavailable();
       if (!await matchesFingerprint(existing.request_fingerprint, input)) {
         throw new WorkflowError("IDEMPOTENCY_CONFLICT", "请求已经登记，不能用相同任务或幂等键改换内容。", { statusCode: 409, stage: "VALIDATION" });

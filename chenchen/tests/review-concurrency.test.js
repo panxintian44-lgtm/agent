@@ -19,7 +19,7 @@ function model(input) {
 }
 async function setup() {
   const store = new ReviewWorkflowStore({ modelRunner: async input => model(input) });
-  const task = await store.start({ text: "虚构房租与投资安排", data_mode: "SYNTHETIC_REPLAY" });
+  const task = await store.start({ capability: "SIMULATION_ONLY", text: "虚构房租与投资安排", data_mode: "SYNTHETIC_REPLAY" });
   const input = { task_id: task.task_id, proposal_sha256: task.proposed_action.proposal_sha256 };
   const callback = decision => ({ ...input, callback_version: "risk-callback.v1", request_id: task.request_id,
     run_id: task.run_id, handoff_id: task.risk_handoff.handoff_id, audit_id: task.audit.audit_id,

@@ -97,6 +97,15 @@ async function matchesFingerprint(expected, input) {
 }
 
 async function matchesRequestFingerprint(record, input) {
+  // Keep legacy content digests intact, but never reuse them across declared contexts.
+  // Do not attach the existing record to a foreign-context error response.
+  if (record && ((input.session_id && input.session_id !== record.session_id) ||
+      (input.task_id && input.task_id !== record.task_id))) {
+    throw new WorkflowError("IDEMPOTENCY_CONTEXT_MISMATCH", "idempotency key is bound to another session or task", {
+      statusCode: 409, stage: "VALIDATION",
+      recovery: "Use a new idempotency key for a different session or task."
+    });
+  }
   if (await matchesFingerprint(record?.request_fingerprint, input)) return true;
   // Only the two newly defaulted fields may be absent from a legacy request.
   // The original stored digest still has to match all remaining input fields.
@@ -432,6 +441,21 @@ class ReviewWorkflowStore {
     throw new WorkflowError(code, message, { statusCode, stage, recovery, record: saved });
   }
 
+  hasSimulationCapability(record) {
+    return record.capability === "SIMULATION_ONLY" &&
+      record.reviewed_input?.capability === "SIMULATION_ONLY";
+  }
+
+  requireSimulationCapability(record, stage) {
+    if (this.hasSimulationCapability(record)) return;
+    record.execution.simulation_allowed = false;
+    record.execution.execution_allowed = false;
+    record.execution.status = "BLOCKED";
+    if (record.status === "READY_FOR_SIMULATION") record.status = "PENDING_APPROVAL";
+    this.deny(record, "SIMULATION_CAPABILITY_REQUIRED", "Only an explicitly reviewed SIMULATION_ONLY task may enter simulation", stage,
+      "Create a new SIMULATION_ONLY task and repeat Risk and approval; approval cannot upgrade a REVIEW_ONLY task.");
+  }
+
   decisionInput(record, input, decisions, actorField, stage) {
     this.checkInput(record, input, ["task_id", "proposal_sha256", "decision", actorField, "reason"], stage);
     try {
@@ -587,14 +611,16 @@ class ReviewWorkflowStore {
       event(record, "risk.more_info_requested", { reason: record.risk_decision.reason }, "risk");
       event(record, "execution.blocked", { reason: "risk_more_info" }, "execution-gateway");
     } else {
-      record.status = record.approval.required ? "PENDING_APPROVAL" : "READY_FOR_SIMULATION";
+      const canSimulate = this.hasSimulationCapability(record);
+      record.status = record.approval.required || !canSimulate ? "PENDING_APPROVAL" : "READY_FOR_SIMULATION";
       record.approval.status = record.approval.required ? "PENDING" : "NOT_REQUIRED";
       record.approval.expires_at = record.approval.required ? new Date(Date.now() + this.approvalTtlMs).toISOString() : null;
-      record.execution.status = record.approval.required ? "BLOCKED" : "READY";
-      record.execution.simulation_allowed = !record.approval.required;
+      record.execution.status = record.approval.required || !canSimulate ? "BLOCKED" : "READY";
+      record.execution.simulation_allowed = canSimulate && !record.approval.required;
       event(record, "risk.approved", { approval_required: record.approval.required }, "risk");
       if (record.approval.required) event(record, "approval.pending", { approval_id: record.approval.approval_id }, "approval-gateway");
-      else event(record, "execution.ready_for_simulation", {}, "execution-gateway");
+      else if (canSimulate) event(record, "execution.ready_for_simulation", {}, "execution-gateway");
+      else event(record, "execution.blocked", { reason: "simulation_capability_required", execution_allowed: false }, "execution-gateway");
     }
     return this.save(record);
   }
@@ -616,6 +642,7 @@ class ReviewWorkflowStore {
       throw new WorkflowError("APPROVAL_BLOCKED", "approval requires an approved Risk decision", { stage: "APPROVAL", recovery: "Wait for Risk APPROVE before recording approval.", record });
     }
     if (!record.approval.required) throw new WorkflowError("APPROVAL_NOT_REQUIRED", "this task does not require approval", { stage: "APPROVAL", record });
+    if (decision === "APPROVE") this.requireSimulationCapability(record, "APPROVAL");
     if (record.approval.status !== "PENDING") {
       if (record.approval.decision === decision && record.approval.approver === approver && record.approval.reason === reason) return record;
       this.deny(record, "APPROVAL_IMMUTABLE", "Approval retry must match the recorded decision, approver and reason", "APPROVAL", "Read the existing approval. Changed evidence requires a new task and review.");
@@ -667,6 +694,7 @@ class ReviewWorkflowStore {
       const saved = this.save(record);
       throw new WorkflowError("EXECUTION_BLOCKED", "execution is blocked until Risk and approval are complete", { stage: "EXECUTION", recovery: "Resolve the Risk and approval states, then retry simulation.", record: saved });
     }
+    this.requireSimulationCapability(record, "EXECUTION");
     const executionId = id("sim-exec-");
     let allocation = null;
     if (record.proposed_action.funding) {

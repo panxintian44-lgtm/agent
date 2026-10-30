@@ -99,7 +99,7 @@ test("persisted pre-scenario requests remain idempotent across a worker upgrade"
 
 test("durable workflow refuses Risk mutation after simulation", async () => {
   const app = setup();
-  const created = await worker.fetch(req("/api/review", { kind: "bill", text: "虚构账单" }), app.env).then(r => r.json());
+  const created = await worker.fetch(req("/api/review", { capability: "SIMULATION_ONLY", kind: "bill", text: "虚构账单" }), app.env).then(r => r.json());
   const base = { task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256 };
   await worker.fetch(req("/api/review/risk-decision", { ...base, decision: "APPROVE", reviewer: "risk", reason: "通过" }), app.env);
   await worker.fetch(req("/api/review/approval", { ...base, decision: "APPROVE", approver: "approver", reason: "通过" }), app.env);
@@ -120,7 +120,7 @@ test("durable workflow refuses Risk mutation after simulation", async () => {
 
 test("expired approval blocks the HTTP execution route and remains expired after reload", async () => {
   const app = setup();
-  const created = await worker.fetch(req("/api/review", { text: "Synthetic expiring approval" }), app.env).then(r => r.json());
+  const created = await worker.fetch(req("/api/review", { capability: "SIMULATION_ONLY", text: "Synthetic expiring approval" }), app.env).then(r => r.json());
   const input = { task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256 };
   const risk = await worker.fetch(req("/api/review/risk-decision", { ...input, decision: "APPROVE", reviewer: "synthetic-risk", reason: "Local PAPER test" }), app.env);
   assert.equal(risk.status, 200);
@@ -228,7 +228,7 @@ test("explicit task ids cannot create a second workflow record", async () => {
 
 test("decision retry conflicts and validation failures persist without changing approved evidence", async () => {
   const app = setup();
-  const created = await worker.fetch(req("/api/review", { text: "Synthetic approval identity check" }), app.env).then(r => r.json());
+  const created = await worker.fetch(req("/api/review", { capability: "SIMULATION_ONLY", text: "Synthetic approval identity check" }), app.env).then(r => r.json());
   const binding = { task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256 };
   for (const [path, actor, conflictCode] of [["risk-decision", "reviewer", "RISK_DECISION_IMMUTABLE"], ["approval", "approver", "APPROVAL_IMMUTABLE"]]) {
     const body = { ...binding, decision: "APPROVE", [actor]: "synthetic-owner", reason: "Same evidence" };
@@ -353,7 +353,7 @@ test("Risk dispatch fails closed and persists the Owner configuration failure", 
 const fundingDefinition = { confirmed: true, synthetic: true, currency: "CNY", cash_minor: 1000000,
   protected_purposes: [{ purpose_id: "rent", label: "房租", amount_minor: 400000 }] };
 async function fundingTask(app, plan, amount = 4000) {
-  const response = await worker.fetch(req("/api/review", { text: "Synthetic investment conflicts with rent", action_parameters: {
+  const response = await worker.fetch(req("/api/review", { capability: "SIMULATION_ONLY", text: "Synthetic investment conflicts with rent", action_parameters: {
     amount, currency: "CNY", synthetic: true, funding_plan_id: plan.plan_id, funding_plan_revision: plan.revision
   } }), app.env);
   assert.equal(response.status, 200);

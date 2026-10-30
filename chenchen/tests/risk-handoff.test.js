@@ -24,7 +24,7 @@ function callbackFor(record, decision = "APPROVE") {
     decision, reviewer: "synthetic-risk-owner", reason: "Synthetic integration test"
   };
 }
-const input = { kind: "bill", text: "Synthetic rent obligation", action_parameters: { amount: 8000, currency: "CNY" } };
+const input = { capability: "SIMULATION_ONLY", kind: "bill", text: "Synthetic rent obligation", action_parameters: { amount: 8000, currency: "CNY" } };
 
 test("handoff is a detached export with trace identifiers and model evidence", async () => {
   const store = setup();
