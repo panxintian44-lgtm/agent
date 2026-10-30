@@ -35,6 +35,8 @@ test("P0: owner and session scopes cannot cross-read or cross-write", () => {
   store.registerSession("session-b", { owner_id: "user-b" });
   store.save("session-a", memoryRecord(), { owner_id: "user-a" });
   assert.equal(store.list("session-a", { owner_id: "user-a" }).length, 1);
+  assert.throws(() => store.list("session-a"), error => error.code === "MEMORY_OWNER_REQUIRED");
+  assert.throws(() => store.save("session-a", memoryRecord("没有 owner 不能写")), error => error.code === "MEMORY_OWNER_REQUIRED");
   assert.throws(() => store.list("session-a", { owner_id: "user-b" }), error => error.code === "MEMORY_OWNER_MISMATCH");
   assert.throws(() => store.save("session-a", memoryRecord("串到另一个用户"), { owner_id: "user-b" }), error => error.code === "MEMORY_OWNER_MISMATCH");
   assert.deepEqual(store.list("session-b", { owner_id: "user-b" }), []);

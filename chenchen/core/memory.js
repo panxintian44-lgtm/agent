@@ -94,6 +94,12 @@ class MemoryStore {
     return boundOwner || null;
   }
 
+  requireBoundOwner(sessionId, ownerId) {
+    const boundOwner = this.assertOwner(sessionId, ownerId);
+    if (boundOwner && !ownerId) throw memoryError("MEMORY_OWNER_REQUIRED", "owner_id is required for a bound memory session");
+    return boundOwner;
+  }
+
   assertNotRevoked(sessionId) {
     if (this.revocations.has(sessionId)) {
       throw memoryError("MEMORY_REVOKED", "memory session was revoked and cannot be used");
@@ -130,7 +136,7 @@ class MemoryStore {
     const normalizedId = this.assertSessionId(sessionId);
     const ownerId = contextOwner(context);
     this.assertNotRevoked(normalizedId);
-    const boundOwner = this.assertOwner(normalizedId, ownerId);
+    const boundOwner = this.requireBoundOwner(normalizedId, ownerId);
     const entries = this.ensureSession(normalizedId, context);
     if (ownerId && !boundOwner) this.sessionOwners.set(normalizedId, ownerId);
     const entry = {
@@ -153,7 +159,7 @@ class MemoryStore {
     if (typeof sessionId !== "string" || !sessionId.trim()) return [];
     const normalizedId = sessionId.trim();
     const ownerId = contextOwner(context);
-    this.assertOwner(normalizedId, ownerId);
+    this.requireBoundOwner(normalizedId, ownerId);
     // Returning an empty set after revocation avoids leaking the old content;
     // save/registration still fail closed with MEMORY_REVOKED.
     if (this.revocations.has(normalizedId)) return [];
@@ -163,7 +169,7 @@ class MemoryStore {
   revoke(sessionId, context = {}) {
     const normalizedId = this.assertSessionId(sessionId);
     const ownerId = contextOwner(context);
-    this.assertOwner(normalizedId, ownerId);
+    this.requireBoundOwner(normalizedId, ownerId);
     const revocation = {
       session_id: normalizedId,
       owner_id: ownerId || this.sessionOwners.get(normalizedId) || null,

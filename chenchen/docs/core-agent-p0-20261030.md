@@ -9,7 +9,7 @@ Owner：陈全宝（林粹）
 本轮把 Core 侧的 Memory 保护补齐，并用现有 Risk Handoff、审批和模拟执行测试做了回归。核心要求是：
 
 - 未得到明确同意，Memory 不写入，也不创建持久化文件。
-- 每个 Memory session 绑定 owner；换 owner 读取或写入会被拒绝。
+- 每个 Memory session 绑定 owner；缺少 owner 或换 owner 读取、写入都会被拒绝。
 - 用户撤回后保留撤回记录，但旧内容不可读、不可继续写入，重启后仍然阻断。
 - Risk Handoff、审批、模拟回执继续使用同一个 `task_id`、`proposal_sha256`、`request_id`、`run_id` 和 `audit_id`。
 - Risk 超时、身份签名错误、任务或方案哈希不匹配、审批缺失时，执行保持阻断。
@@ -103,6 +103,8 @@ memory.revoke(session_id, { owner_id, reason });
 ```
 
 `record.consent` 必须是 `true`。撤回使用 `revoke`，不能用“清空后重新当成新 session”绕过；撤回记录会持久化，新的 MemoryStore 读取同一文件后仍返回空内容并拒绝写入。
+
+对已经绑定 owner 的 session，三个方法都要求传入 `owner_id`；只有 session_id 没有权限读取或写入。
 
 ## 5. 验证命令和结果
 
