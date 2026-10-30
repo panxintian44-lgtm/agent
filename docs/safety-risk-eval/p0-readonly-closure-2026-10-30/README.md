@@ -35,6 +35,8 @@
 
 新增17项已包含在301项中。规范包30组应用案例仍是设计，运行数0。真实模型、付费模型及真实金融操作均为0。
 
+TAP日志保留非法金额测试名称中的故意空格及Node断言原格式；本目录`.gitattributes`仅对TAP关闭行尾空格检查，不修改日志、摘要或代码/Markdown的检查规则。
+
 ```powershell
 npm --prefix modules/safety-risk-eval/interface-adapters ci --ignore-scripts --no-audit --no-fund
 cd chenchen
