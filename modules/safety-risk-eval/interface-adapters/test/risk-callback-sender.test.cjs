@@ -7,11 +7,11 @@ const { ReviewWorkflowStore } = require("../../../../chenchen/integrations/revie
 const { buildRiskHandoffPackage } = require("../../../../chenchen/integrations/risk-handoff.js");
 const { verifyOwnerRequest } = require("../../../../chenchen/integrations/owner-bridge.js");
 const { buildRiskCallbackDraft, extractCoreBinding } = require("../risk-callback.cjs");
-const { sendRiskCallback, CallbackSenderError, MAX_RESPONSE_BYTES } = require("../risk-callback-sender.cjs");
+const { sendRiskCallback, sendSimulationCallback, CallbackSenderError, MAX_RESPONSE_BYTES } = require("../risk-callback-sender.cjs");
 
 const CONFIG = Object.freeze({ baseUrl: "https://core.synthetic.invalid", apiKey: "synthetic-core-api-key", hmacSecret: "synthetic-risk-owner-secret", reviewer: "synthetic-server-risk-owner", timeoutMs: 2000 });
 
-async function fixture(decision = "ALLOW") {
+async function fixture(decision = "ALLOW", capability = "REVIEW_ONLY") {
   const store = new ReviewWorkflowStore({ modelRunner: async input => ({
     run_id: "synthetic-run-" + randomUUID(), source: "model", status: "PROPOSED",
     input: { kind: input.kind, input_sha256: "a".repeat(64) },
@@ -20,7 +20,7 @@ async function fixture(decision = "ALLOW") {
     audit: { audit_id: "synthetic-audit-" + randomUUID(), events: [] }
   }) });
   const record = await store.start({ kind: "bill", text: "Synthetic rent and tuition budget", requested_action: "Review allocation only",
-    policy_version: "synthetic-policy.v1", capability: "REVIEW_ONLY", action_parameters: { amount: 8000, currency: "CNY" } });
+    policy_version: "synthetic-policy.v1", capability, action_parameters: { amount: 8000, currency: "CNY" } });
   const handoff = buildRiskHandoffPackage(record);
   const risk = { risk_check_id: "synthetic-check-1", decision, check_complete: decision !== "ERROR", checked_at: "2026-10-21T13:00:00Z",
     policy_version: "synthetic-policy.v1", core_binding: extractCoreBinding(handoff), local_task_id: "synthetic-local-task-1",
@@ -204,4 +204,21 @@ test("missing signer configuration never reaches the network", async () => {
 test("current state read failures are redacted and fail closed before a send intent", async () => {
   const f = await fixture(); f.args.loadCurrent = async () => { throw new Error(CONFIG.apiKey); };
   await assert.rejects(sendRiskCallback(f.args), { code: "CALLBACK_STATE_UNAVAILABLE" }); assert.equal(f.intents.length, 0); assert.equal(f.requests.length, 0);
+});
+
+test("explicit SIMULATION_ONLY sender completes the PAPER handoff without upgrading read-only tasks", async () => {
+  const f = await fixture("ALLOW", "SIMULATION_ONLY");
+  await assert.rejects(sendRiskCallback(f.args), { code: "CALLBACK_CAPABILITY_INVALID" });
+  const result = await sendSimulationCallback(f.args);
+  assert.equal(result.status, "RECORDED");
+  assert.equal(result.capability, "SIMULATION_ONLY");
+  assert.equal(result.execution_allowed, false);
+  assert.equal(f.store.getByTaskId(f.record.task_id).status, "PENDING_APPROVAL");
+  const binding = { task_id: f.record.task_id, proposal_sha256: f.record.proposed_action.proposal_sha256 };
+  await f.store.decideApproval({ ...binding, decision: "APPROVE", approver: "synthetic-user", reason: "PAPER simulation only" });
+  const simulated = await f.store.simulate(binding);
+  assert.equal(simulated.status, "SIMULATED");
+  assert.equal(simulated.execution.receipt.mode, "SIMULATED");
+  assert.equal(simulated.execution.receipt.side_effects, false);
+  assert.equal(simulated.execution.execution_allowed, false);
 });

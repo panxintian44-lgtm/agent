@@ -48,10 +48,10 @@ function serverConfig(config) {
   return { url: url.origin + ENDPOINT, apiKey: config.apiKey, hmacSecret: config.hmacSecret, reviewer: config.reviewer, timeoutMs };
 }
 
-function verifyCurrent(draft, current, reviewer) {
+function verifyCurrent(draft, current, reviewer, expectedCapability) {
   if (!object(current) || current.versions_current !== true) fail("RISK_CHECK_STALE", "画像、方案、数据或规则版本已变化；请重新检查。");
   const binding = extractCoreBinding(current.handoff);
-  if (current.handoff.capability !== "REVIEW_ONLY") fail("CALLBACK_CAPABILITY_INVALID", "本轮可信回调仅接受 REVIEW_ONLY 的 Core 任务。");
+  if (current.handoff.capability !== expectedCapability) fail("CALLBACK_CAPABILITY_INVALID", `本轮回写仅接受 ${expectedCapability} 的 Core 任务。`);
   if (!object(draft?.audit_context) || draft.status !== "DRAFT_READY" || draft.callback === null || draft.risk_decision === "ERROR") {
     fail("CALLBACK_NOT_SENDABLE", "异常或未完成检查只能保留错误记录，不能发送业务回调。");
   }
@@ -70,7 +70,7 @@ function verifyCurrent(draft, current, reviewer) {
   return binding;
 }
 
-function verifyReceipt(body, callback) {
+function verifyReceipt(body, callback, expectedCapability) {
   if (!object(body) || body.error || !["RECORDED", "DUPLICATE"].includes(body.callback_status) || !object(body.workflow)) {
     fail("CALLBACK_RECEIPT_INVALID", "Core 未返回可验证的风险回执。", 502);
   }
@@ -78,6 +78,9 @@ function verifyReceipt(body, callback) {
   // Validate against the actual workflow, not the response's caller-controlled trace.
   try { validateRiskCallback(callback, workflow); }
   catch { fail("CALLBACK_RECEIPT_BINDING_MISMATCH", "Core 回执与发送任务或方案摘要不一致。", 502); }
+  if (workflow.capability !== expectedCapability) {
+    fail("CALLBACK_RECEIPT_CAPABILITY_INVALID", `Core 回执能力必须保持为 ${expectedCapability}。`, 502);
+  }
   const unhashed = { ...workflow.proposed_action }; delete unhashed.proposal_sha256;
   if (createHash("sha256").update(JSON.stringify(unhashed), "utf8").digest("hex") !== callback.proposal_sha256) {
     fail("CALLBACK_RECEIPT_BINDING_MISMATCH", "Core 回执中的完整方案与原摘要不一致。", 502);
@@ -138,18 +141,18 @@ async function persist(writer, value) {
 // is accepted, replay the stored outcome; do not reload it as a pending handoff or
 // blindly resend after a timeout. REQUEST_MORE_INFO needs a new Core reviewed task.
 // Persistence callbacks resolve only after durable storage and throw on failure.
-async function sendRiskCallback({ draft, loadCurrent, persistIntent, persistOutcome, config, fetchImpl = globalThis.fetch } = {}) {
+async function sendRiskCallbackInternal({ draft, loadCurrent, persistIntent, persistOutcome, config, fetchImpl = globalThis.fetch } = {}, expectedCapability, senderVersion) {
   const settings = serverConfig(config);
   if ([loadCurrent, persistIntent, persistOutcome, fetchImpl].some(fn => typeof fn !== "function")) fail("CALLBACK_DEPENDENCY_REQUIRED", "缺少可信状态读取、审计持久化或 HTTP 适配。", 503);
   let snapshot;
   try { snapshot = clone(draft); } catch { fail("CALLBACK_DRAFT_INVALID", "回调草稿无法读取。"); }
   let current;
   try { current = await loadCurrent(); } catch { fail("CALLBACK_STATE_UNAVAILABLE", "无法读取当前可信任务，回调暂停。", 503); }
-  const binding = verifyCurrent(snapshot, current, settings.reviewer);
+  const binding = verifyCurrent(snapshot, current, settings.reviewer, expectedCapability);
   const body = canonicalJson(snapshot.callback);
   const attemptId = "risk-send-" + randomUUID();
   const startedAt = new Date().toISOString();
-  const base = { sender_version: SENDER_VERSION, attempt_id: attemptId, core_binding: clone(binding),
+  const base = { sender_version: senderVersion, attempt_id: attemptId, core_binding: clone(binding), capability: expectedCapability,
     risk_check_id: snapshot.audit_context.risk_check_id, policy_version: snapshot.audit_context.policy_version,
     checked_at: snapshot.audit_context.checked_at, callback_sha256: createHash("sha256").update(body).digest("hex"),
     execution_allowed: false };
@@ -159,7 +162,7 @@ async function sendRiskCallback({ draft, loadCurrent, persistIntent, persistOutc
   const signature = await signatureFor(body, settings.hmacSecret);
   try { current = await loadCurrent(); } catch { fail("CALLBACK_STATE_UNAVAILABLE", "发送前无法重新读取可信任务，回调暂停。", 503); }
   // A state change during audit persistence must not race into a stale approval.
-  verifyCurrent(snapshot, current, settings.reviewer);
+  verifyCurrent(snapshot, current, settings.reviewer, expectedCapability);
   const controller = new AbortController();
   let abortListener;
   const aborted = new Promise((_, reject) => {
@@ -174,7 +177,7 @@ async function sendRiskCallback({ draft, loadCurrent, persistIntent, persistOutc
       headers: { "Content-Type": "application/json", "X-Core-Agent-Key": settings.apiKey, "X-Risk-Signature": signature },
       body
     })), aborted]);
-    const receipt = verifyReceipt(await readReceipt(response, aborted), snapshot.callback);
+    const receipt = verifyReceipt(await readReceipt(response, aborted), snapshot.callback, expectedCapability);
     result = { ...base, status: receipt.callback_status, dispatch_performed: true, requires_reconciliation: false,
       outcome_persisted: true, completed_at: new Date().toISOString(), receipt,
       required_next_actions: ["REPLAY_DURABLE_OUTCOME_FOR_REPEATED_REQUESTS", "KEEP_HUMAN_APPROVAL_AND_ACTION_GATEWAY_SEPARATE"] };
@@ -200,4 +203,14 @@ async function sendRiskCallback({ draft, loadCurrent, persistIntent, persistOutc
   return result;
 }
 
-module.exports = { sendRiskCallback, CallbackSenderError, SENDER_VERSION, MAX_RESPONSE_BYTES };
+async function sendRiskCallback(args = {}) {
+  return sendRiskCallbackInternal(args, "REVIEW_ONLY", SENDER_VERSION);
+}
+
+// Explicit simulation path for the PAPER demo. It is deliberately separate from
+// the read-only sender so a REVIEW_ONLY task can never be upgraded by a callback.
+async function sendSimulationCallback(args = {}) {
+  return sendRiskCallbackInternal(args, "SIMULATION_ONLY", "risk-core-simulation-callback-sender.v1");
+}
+
+module.exports = { sendRiskCallback, sendSimulationCallback, CallbackSenderError, SENDER_VERSION, MAX_RESPONSE_BYTES };
