@@ -22,20 +22,24 @@ function missingRiskFields(riskProfile) {
 }
 
 class Harness {
-  constructor({ toolset = financialTools, memory = new MemoryStore() } = {}) {
+  constructor({ toolset = financialTools, memory = new MemoryStore(), owner_id: defaultOwnerId = null } = {}) {
     this.toolset = toolset;
     this.memory = memory;
+    this.defaultOwnerId = typeof defaultOwnerId === "string" && defaultOwnerId.trim() ? defaultOwnerId.trim() : null;
     this.tasks = new Map();
   }
 
-  createSession({ intent = "PORTFOLIO_HEALTH_CHECK", risk_profile: riskProfile = null } = {}) {
+  createSession({ intent = "PORTFOLIO_HEALTH_CHECK", risk_profile: riskProfile = null, owner_id: ownerId = this.defaultOwnerId } = {}) {
     this.validateProfile(riskProfile);
     const sessionId = id("session");
     const taskId = id("task");
+    const normalizedOwnerId = typeof ownerId === "string" && ownerId.trim() ? ownerId.trim() : null;
+    if (normalizedOwnerId) this.memory.registerSession(sessionId, { owner_id: normalizedOwnerId });
     const missingFields = missingRiskFields(riskProfile);
     const state = {
       task_id: taskId,
       session_id: sessionId,
+      owner_id: normalizedOwnerId,
       contract_version: contract.CONTRACT_VERSION,
       request_id: null,
       intent,
@@ -358,13 +362,13 @@ class Harness {
   saveMemory(taskId, record) {
     const task = this.tasks.get(taskId);
     if (!task) throw new Error("task not found");
-    const entry = this.memory.save(task.state.session_id, record);
+    const entry = this.memory.save(task.state.session_id, record, { owner_id: task.state.owner_id });
     this.addEvent(task, "memory.saved", { memory_id: entry.memory_id, type: entry.type });
     return entry;
   }
 
-  listMemory(sessionId) {
-    return this.memory.list(sessionId);
+  listMemory(sessionId, ownerId = null) {
+    return this.memory.list(sessionId, ownerId ? { owner_id: ownerId } : {});
   }
 
   reset() {

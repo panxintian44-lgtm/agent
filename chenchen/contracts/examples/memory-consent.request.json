@@ -1,0 +1,14 @@
+{
+  "session_id": "session-demo-001",
+  "owner_id": "owner-demo-001",
+  "record": {
+    "type": "decision",
+    "key": "protected-purpose",
+    "value": {
+      "purpose": "房租优先于新增投资",
+      "amount_minor": 800000,
+      "currency": "CNY"
+    },
+    "consent": true
+  }
+}

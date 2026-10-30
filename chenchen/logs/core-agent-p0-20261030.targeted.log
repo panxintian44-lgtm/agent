@@ -1,0 +1,196 @@
+TAP version 13
+# Subtest: P0: unauthorized Memory writes nothing
+ok 1 - P0: unauthorized Memory writes nothing
+  ---
+  duration_ms: 5.4237
+  type: 'test'
+  ...
+# Subtest: P0: owner and session scopes cannot cross-read or cross-write
+ok 2 - P0: owner and session scopes cannot cross-read or cross-write
+  ---
+  duration_ms: 3.2359
+  type: 'test'
+  ...
+# Subtest: P0: revocation is permanent for the session and survives restart
+ok 3 - P0: revocation is permanent for the session and survives restart
+  ---
+  duration_ms: 7.6595
+  type: 'test'
+  ...
+# Subtest: P0: consented Memory is readable after restart and remains task-bound
+ok 4 - P0: consented Memory is readable after restart and remains task-bound
+  ---
+  duration_ms: 6.1993
+  type: 'test'
+  ...
+# Subtest: demo portfolio validates and preserves the weight invariant
+ok 5 - demo portfolio validates and preserves the weight invariant
+  ---
+  duration_ms: 2.8721
+  type: 'test'
+  ...
+# Subtest: invalid market values stop the tool instead of being guessed
+ok 6 - invalid market values stop the tool instead of being guessed
+  ---
+  duration_ms: 1.3219
+  type: 'test'
+  ...
+# Subtest: diagnosis is deterministic and exposes hidden concentration
+ok 7 - diagnosis is deterministic and exposes hidden concentration
+  ---
+  duration_ms: 77.9716
+  type: 'test'
+  ...
+# Subtest: candidate generation creates three structured plans
+ok 8 - candidate generation creates three structured plans
+  ---
+  duration_ms: 13.176
+  type: 'test'
+  ...
+# Subtest: simulation rejects a tampered ActionProposal
+ok 9 - simulation rejects a tampered ActionProposal
+  ---
+  duration_ms: 13.3767
+  type: 'test'
+  ...
+# Subtest: simulation returns reproducible quantiles with fixed seed
+ok 10 - simulation returns reproducible quantiles with fixed seed
+  ---
+  duration_ms: 25.7103
+  type: 'test'
+  ...
+# Subtest: harness stops at the ownership boundary and supports clarification
+ok 11 - harness stops at the ownership boundary and supports clarification
+  ---
+  duration_ms: 16.4626
+  type: 'test'
+  ...
+# Subtest: harness resumes from the last completed checkpoint after a tool failure
+ok 12 - harness resumes from the last completed checkpoint after a tool failure
+  ---
+  duration_ms: 13.9635
+  type: 'test'
+  ...
+# Subtest: memory requires explicit consent and is session-only
+ok 13 - memory requires explicit consent and is session-only
+  ---
+  duration_ms: 1.006
+  type: 'test'
+  ...
+# Subtest: paper trading fails closed and is idempotent
+ok 14 - paper trading fails closed and is idempotent
+  ---
+  duration_ms: 13.0967
+  type: 'test'
+  ...
+# Subtest: owner signatures are deterministic and reject tampering
+ok 15 - owner signatures are deterministic and reject tampering
+  ---
+  duration_ms: 12.2294
+  type: 'test'
+  ...
+# Subtest: missing actor secrets remain visibly demo-only and can be made fail closed
+ok 16 - missing actor secrets remain visibly demo-only and can be made fail closed
+  ---
+  duration_ms: 1.3729
+  type: 'test'
+  ...
+# Subtest: Risk dispatch signs one handoff and records the upstream response
+ok 17 - Risk dispatch signs one handoff and records the upstream response
+  ---
+  duration_ms: 28.9326
+  type: 'test'
+  ...
+# Subtest: Risk dispatch refuses to pretend delivery when the Owner is not configured
+ok 18 - Risk dispatch refuses to pretend delivery when the Owner is not configured
+  ---
+  duration_ms: 0.4019
+  type: 'test'
+  ...
+# Subtest: workflow dispatch stays auditable and retries only after a failed handoff
+ok 19 - workflow dispatch stays auditable and retries only after a failed handoff
+  ---
+  duration_ms: 6.5655
+  type: 'test'
+  ...
+# Subtest: Risk and approval records keep verified actor evidence
+ok 20 - Risk and approval records keep verified actor evidence
+  ---
+  duration_ms: 4.2002
+  type: 'test'
+  ...
+# Subtest: signed handoffs reject redirects without forwarding credentials
+ok 21 - signed handoffs reject redirects without forwarding credentials
+  ---
+  duration_ms: 41.7355
+  type: 'test'
+  ...
+# Subtest: HTTP 200 with rejection, HTML, invalid JSON or oversized data is not a successful handoff
+ok 22 - HTTP 200 with rejection, HTML, invalid JSON or oversized data is not a successful handoff
+  ---
+  duration_ms: 9.0649
+  type: 'test'
+  ...
+# Subtest: response-body timeout remains bounded after headers arrive
+ok 23 - response-body timeout remains bounded after headers arrive
+  ---
+  duration_ms: 1004.3846
+  type: 'test'
+  ...
+# Subtest: Owner errors cannot leak an upstream secret in public error details
+ok 24 - Owner errors cannot leak an upstream secret in public error details
+  ---
+  duration_ms: 2.5989
+  type: 'test'
+  ...
+# Subtest: credential-bearing URLs are rejected before transport
+ok 25 - credential-bearing URLs are rejected before transport
+  ---
+  duration_ms: 0.6234
+  type: 'test'
+  ...
+# Subtest: handoff is a detached export with trace identifiers and model evidence
+ok 26 - handoff is a detached export with trace identifiers and model evidence
+  ---
+  duration_ms: 17.3686
+  type: 'test'
+  ...
+# Subtest: every identity mismatch is rejected and recorded without allowing execution
+ok 27 - every identity mismatch is rejected and recorded without allowing execution
+  ---
+  duration_ms: 7.6231
+  type: 'test'
+  ...
+# Subtest: callback rejects unsupported fields, versions, decisions, and incomplete evidence
+ok 28 - callback rejects unsupported fields, versions, decisions, and incomplete evidence
+  ---
+  duration_ms: 4.4471
+  type: 'test'
+  ...
+# Subtest: callback approval still requires human approval; duplicate after simulation has no side effects
+ok 29 - callback approval still requires human approval; duplicate after simulation has no side effects
+  ---
+  duration_ms: 6.2588
+  type: 'test'
+  ...
+# Subtest: rejected and more-info callbacks remain blocked and accept only identical retries
+ok 30 - rejected and more-info callbacks remain blocked and accept only identical retries
+  ---
+  duration_ms: 5.759
+  type: 'test'
+  ...
+# Subtest: callback cannot adopt or replace a decision recorded through the old endpoint
+ok 31 - callback cannot adopt or replace a decision recorded through the old endpoint
+  ---
+  duration_ms: 2.5197
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1198.2318
