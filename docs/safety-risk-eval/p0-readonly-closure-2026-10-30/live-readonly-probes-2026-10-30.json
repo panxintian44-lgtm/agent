@@ -1,0 +1,128 @@
+{
+  "schema_version": "core-risk-public-readonly-reconciliation.v1",
+  "observed_at_utc": "2026-10-30T10:14:56Z",
+  "observed_at_beijing": "2026-10-30 18:14",
+  "request_method": "GET",
+  "authorization_headers_sent": false,
+  "core": {
+    "base_url": "https://personal-ai-fund-manager-core-agent.realchenchenluo.workers.dev",
+    "health_succeeded": true,
+    "health": {
+      "status": "ok",
+      "service": "core-agent",
+      "contract_version": "investment-agent.v1",
+      "audit_storage": "durable_object",
+      "source_commit": null,
+      "deployment_id": null
+    },
+    "capabilities_succeeded": true,
+    "capabilities": {
+      "capability_version": "core-agent-capabilities.v1",
+      "risk": {
+        "handoff_contract": "risk-handoff.v1",
+        "dispatch_url_configured": false,
+        "dispatch_signature_configured": false,
+        "dispatch_ready": false,
+        "callback_signature_configured": false
+      },
+      "approval": {
+        "decision_endpoint": "/api/review/approval",
+        "signature_configured": false,
+        "trusted_identity_ready": false,
+        "demo_actor_labels_allowed": true
+      },
+      "execution": {
+        "mode": "PAPER",
+        "allowed": false,
+        "gateway_connected": false
+      },
+      "acceptance": {
+        "synthetic_local": true,
+        "real_model": false,
+        "formal_risk_callback": false,
+        "joint_acceptance": false
+      }
+    }
+  },
+  "risk": {
+    "base_url": "https://finance-lab-risk-bridge.realchenchenluo.workers.dev",
+    "health_succeeded": true,
+    "health": {
+      "status": "ok",
+      "service": "risk-conversation",
+      "owner_source": "PR27-27bdefb",
+      "model_calls_enabled": false,
+      "joint_acceptance": false,
+      "execution_allowed": false
+    },
+    "effective_core_agent_base_url": null,
+    "effective_fixed_reviewer": null,
+    "secret_presence_verified_in_cloudflare": false,
+    "strict_identity_state_verified_in_cloudflare": false
+  },
+  "candidate_sources": {
+    "core_pr4_head": "fe3a4baeb4046d74f43bee807ed5042cf5b6ea43",
+    "core_head_change": "DOCUMENTATION_ONLY",
+    "core_contains_pr3_p0_patch": false,
+    "risk_tested_source_candidate": "0f5c0b7240167dbb6dc637dea037de0a0a13c2da",
+    "risk_fix_commit": "c1cc3c4bbab4700b5c156f09a649cbbf62e979a6",
+    "staging_snapshot": "6a972460bcb41705fd2b3b286d3720bf817c6c3d",
+    "staging_repository": "Fintechathon-agent/Fintechathon-agent",
+    "unique_integrated_candidate_sha": null
+  },
+  "worker_identifiers": {
+    "independently_read_current_cloudflare_deployments": false,
+    "historical_evidence_source": "realchenchenluo/agent@a8877adb6807f2965548c7a9977148c16794b6d3:chenchen/docs/core-risk-cloud-deployment-2026-10-21.json",
+    "core": {
+      "version_id_reported_by_owner": "209a21a4-7245-4a96-bb3a-56a064e61d85",
+      "historical_version_id": "209a21a4-7245-4a96-bb3a-56a064e61d85",
+      "historical_deployment_id": "6d8b50e9-aabc-444f-9e95-e8c7d4ac2ac0",
+      "current_deployment_id_verified": null
+    },
+    "risk": {
+      "version_id_reported_by_owner": "8f10004d-761b-43c3-9e08-543ef52746f8",
+      "historical_version_id": "8f10004d-761b-43c3-9e08-543ef52746f8",
+      "historical_deployment_id": "c2204555-5461-4885-993d-a6b0910fa42d",
+      "current_deployment_id_verified": null
+    }
+  },
+  "config_name_support": {
+    "preferred_hmac_name": "RISK_SERVICE_HMAC_SECRET",
+    "compatibility_name": "RISK_HMAC_SECRET",
+    "core_supports_compatibility_name": true,
+    "pr3_node_supports_compatibility_name": true,
+    "old_cloud_risk_supports_compatibility_name": false,
+    "historical_reviewer_id": "risk-conversation-cloudflare-v1",
+    "require_trusted_actors_applies_to": "CORE",
+    "fixed_reviewer_core_enforcement_patch_in_candidate": false
+  },
+  "callback": {
+    "path": "/api/review/risk-callback",
+    "headers": [
+      "X-Core-Agent-Key",
+      "X-Risk-Signature"
+    ],
+    "version": "risk-callback.v1",
+    "fields": [
+      "callback_version",
+      "handoff_id",
+      "task_id",
+      "request_id",
+      "run_id",
+      "audit_id",
+      "proposal_sha256",
+      "decision",
+      "reviewer",
+      "reason"
+    ],
+    "pr3_sender_allowed_capability": "REVIEW_ONLY",
+    "simulation_path_ready": false,
+    "active_owner_bridge_receiver_ready": false
+  },
+  "secret_values_read": false,
+  "business_post_requests": 0,
+  "real_model_calls": 0,
+  "deployment_performed": false,
+  "formal_joint_acceptance": false,
+  "decision": "NO_GO"
+}

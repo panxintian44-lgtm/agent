@@ -2,6 +2,8 @@
 
 日期：2026-10-30。负责人：Vesper。对应[PR #3](https://github.com/realchenchenluo/agent/pull/3)。
 
+最新接线进展见[林粹回执核对与Risk侧确认](Core回执核对与Risk确认-2026-10-30.md)：源码候选、Worker版本和部署记录分开登记；补齐Secret不等于完整模拟链路已就绪。
+
 **本地修复已验证；线上联合验收仍为NO-GO。**修复提交为[`c1cc3c4bbab4700b5c156f09a649cbbf62e979a6`](https://github.com/panxintian44-lgtm/agent/commit/c1cc3c4bbab4700b5c156f09a649cbbf62e979a6)，基线为原迁入提交`e17c881c1b7d24747c039a25a8bf7447009f0456`。未合并main、未部署云端。
 
 ## 失败复现

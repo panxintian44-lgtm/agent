@@ -4,7 +4,7 @@
   "status": "NO_GO",
   "formal_joint_acceptance": false,
   "risk_fix_commit": "c1cc3c4bbab4700b5c156f09a649cbbf62e979a6",
-  "core_pr4_observed_head": "6b69fa3a87b934644597ba8988bd3888a4c453aa",
+  "core_pr4_observed_head": "fe3a4baeb4046d74f43bee807ed5042cf5b6ea43",
   "unique_integrated_candidate_sha": null,
   "core_staging_url_confirmed": null,
   "risk_staging_url_confirmed": null,
@@ -20,7 +20,10 @@
     "VERIFY_SERVICE_IDENTITY_AND_SIGNATURE_CONFIG_WITHOUT_SHARING_SECRET_VALUES",
     "VERIFY_AUTHENTICATED_USER_APPROVAL_AND_CROSS_USER_ISOLATION",
     "VERIFY_SHARED_LEDGER_AND_EXECUTION_GATEWAY_WITH_FIXED_SYNTHETIC_DATA",
-    "COLLECT_BOTH_OWNER_SIGNOFFS_AND_HTTP_AUDIT_EVIDENCE"
+    "COLLECT_BOTH_OWNER_SIGNOFFS_AND_HTTP_AUDIT_EVIDENCE",
+    "INTEGRATE_CORE_READONLY_AND_CONTEXT_RETRY_PATCH",
+    "REBUILD_RISK_WORKER_WITH_V1_1_AND_MATCH_CORE_BASE_URL",
+    "REVIEW_EXPLICIT_SIMULATION_CAPABILITY_PATH_WITHOUT_UPGRADING_READONLY"
   ],
   "evidence_available": [
     "LOCAL_CORE_301_PASS",
@@ -32,5 +35,17 @@
   "real_financial_operations": 0,
   "public_financial_post_requests": 0,
   "real_execution_enabled": false,
-  "original_workbench_fund_writes_enabled": false
+  "original_workbench_fund_writes_enabled": false,
+  "last_readonly_reconciliation_utc": "2026-10-30T10:14:56Z",
+  "risk_tested_source_candidate": "0f5c0b7240167dbb6dc637dea037de0a0a13c2da",
+  "core_service_reported_url": "https://personal-ai-fund-manager-core-agent.realchenchenluo.workers.dev",
+  "risk_service_reported_url": "https://finance-lab-risk-bridge.realchenchenluo.workers.dev",
+  "core_worker_version_id_owner_reported": "209a21a4-7245-4a96-bb3a-56a064e61d85",
+  "risk_worker_version_id_owner_reported": "8f10004d-761b-43c3-9e08-543ef52746f8",
+  "deployment_id_cloudflare_verification": "NOT_PERFORMED_VERSION_IDS_ARE_NOT_DEPLOYMENT_IDS",
+  "public_core_callback_signature_configured": false,
+  "public_risk_owner_source": "PR27-27bdefb",
+  "core_candidate_has_risk_p0_patch": false,
+  "simulation_capability_path_ready": false,
+  "readonly_reconciliation_evidence": "live-readonly-probes-2026-10-30.json"
 }
