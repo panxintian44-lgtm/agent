@@ -5,6 +5,7 @@
 
 ## 0. 先读这几条
 
+- **2026-10-30 P0补充：**新仓库PR #3后续提交`c1cc3c4bbab4700b5c156f09a649cbbf62e979a6`修复只读审批越级、显式会话/任务重试冲突及未完成请求旁路。本地Core 301/301、Risk 499/499、组件HTTP 14/14通过；下文11/12为原迁入历史。最新复现与联合验收NO-GO见[P0记录](docs/safety-risk-eval/p0-readonly-closure-2026-10-30/README.md)，接线见[对接林粹](docs/safety-risk-eval/p0-readonly-closure-2026-10-30/对接林粹.md)。未合并PR #4、部署新Worker或取得对方联合签认。
 - **2026-10-30迁入更新：**用户随后明确要求将旧仓库PR #37纳入新仓库。本次以`realchenchenluo/agent`的`main@d4da8afbef5a4989903f211e874a7cfdfe526554`建立`codex/import-risk-pr37-v1.1`，通过`panxintian44-lgtm/agent`的Fork提交评审。本文件后文的“本轮”、旧目录和不迁移决定均为来源历史；迁入范围、新跑验证与仍待接线事项以[迁入说明](docs/safety-risk-eval/pr37-import-2026-10-30/README.md)为准。提出PR不等于目标main已经收录或线上联合验收通过。
 - 用户是**潘心恬，Vesper**，负责第四板块 **Safety / Risk / Eval**，不是金融数据或前端模块负责人。
 - 来源阶段实施的是**日常资金风控与权限优化 v1.1**：先完善规则、权限和本地验证，再接团队后端。当时用户要求在旧仓库 **PR #37** 继续；该阶段的不迁移决定已被上述最新迁入要求更新。

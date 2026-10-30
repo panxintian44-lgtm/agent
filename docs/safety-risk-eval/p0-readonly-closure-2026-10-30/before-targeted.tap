@@ -1,0 +1,303 @@
+TAP version 13
+# Subtest: signed Risk and approval cannot upgrade default review capability
+not ok 1 - signed Risk and approval cannot upgrade default review capability
+  ---
+  duration_ms: 20.9074
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-capability-guards.test.js:41:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    code: 'SIMULATION_CAPABILITY_REQUIRED'
+    stage: 'APPROVAL'
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-capability-guards.test.js:46:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: signed Risk and approval cannot upgrade REVIEW_ONLY review capability
+not ok 2 - signed Risk and approval cannot upgrade REVIEW_ONLY review capability
+  ---
+  duration_ms: 2.6161
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-capability-guards.test.js:41:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    code: 'SIMULATION_CAPABILITY_REQUIRED'
+    stage: 'APPROVAL'
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-capability-guards.test.js:46:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: approval and simulation recheck legacy_read_only capability in stored records
+not ok 3 - approval and simulation recheck legacy_read_only capability in stored records
+  ---
+  duration_ms: 2.0984
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-capability-guards.test.js:62:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    code: 'SIMULATION_CAPABILITY_REQUIRED'
+    stage: 'APPROVAL'
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-capability-guards.test.js:77:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: approval and simulation recheck missing capability in stored records
+not ok 4 - approval and simulation recheck missing capability in stored records
+  ---
+  duration_ms: 2.2526
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-capability-guards.test.js:62:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    code: 'SIMULATION_CAPABILITY_REQUIRED'
+    stage: 'APPROVAL'
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-capability-guards.test.js:77:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: approval and simulation recheck unknown capability in stored records
+not ok 5 - approval and simulation recheck unknown capability in stored records
+  ---
+  duration_ms: 1.7018
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-capability-guards.test.js:62:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    code: 'SIMULATION_CAPABILITY_REQUIRED'
+    stage: 'APPROVAL'
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-capability-guards.test.js:77:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: approval and simulation recheck top_level_upgrade capability in stored records
+not ok 6 - approval and simulation recheck top_level_upgrade capability in stored records
+  ---
+  duration_ms: 1.9268
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-capability-guards.test.js:62:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    code: 'SIMULATION_CAPABILITY_REQUIRED'
+    stage: 'APPROVAL'
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-capability-guards.test.js:77:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: approval and simulation recheck reviewed_input_upgrade capability in stored records
+not ok 7 - approval and simulation recheck reviewed_input_upgrade capability in stored records
+  ---
+  duration_ms: 2.2412
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-capability-guards.test.js:62:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    code: 'SIMULATION_CAPABILITY_REQUIRED'
+    stage: 'APPROVAL'
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-capability-guards.test.js:77:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: an explicitly reviewed simulation keeps one receipt and preserves completed history
+ok 8 - an explicitly reviewed simulation keeps one receipt and preserves completed history
+  ---
+  duration_ms: 3.7627
+  type: 'test'
+  ...
+# Subtest: NO_ACTION simulation readiness requires an explicitly reviewed simulation capability
+not ok 9 - NO_ACTION simulation readiness requires an explicitly reviewed simulation capability
+  ---
+  duration_ms: 1.0514
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-capability-guards.test.js:119:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'READY_FOR_SIMULATION'
+    - 'PENDING_APPROVAL'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'PENDING_APPROVAL'
+  actual: 'READY_FOR_SIMULATION'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-capability-guards.test.js:132:12)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: an identical retry in the same declared session keeps one model proposal
+ok 10 - an identical retry in the same declared session keeps one model proposal
+  ---
+  duration_ms: 5.6149
+  type: 'test'
+  ...
+# Subtest: a reused idempotency key cannot change declared session or disclose the original task
+not ok 11 - a reused idempotency key cannot change declared session or disclose the original task
+  ---
+  duration_ms: 1.4481
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-context-binding.test.js:30:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-context-binding.test.js:32:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a reused idempotency key cannot change declared task or disclose the original task
+not ok 12 - a reused idempotency key cannot change declared task or disclose the original task
+  ---
+  duration_ms: 1.5512
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-context-binding.test.js:30:3'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-context-binding.test.js:32:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: legacy retries without declared session identifiers retain their existing fingerprint
+ok 13 - legacy retries without declared session identifiers retain their existing fingerprint
+  ---
+  duration_ms: 1.0441
+  type: 'test'
+  ...
+# Subtest: HTTP retry rejects a changed session before returning a stored record
+not ok 14 - HTTP retry rejects a changed session before returning a stored record
+  ---
+  duration_ms: 34.2817
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-context-binding.test.js:48:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    200 !== 409
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 409
+  actual: 200
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-context-binding.test.js:64:12)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: HTTP retry rejects a changed task before returning a stored record
+not ok 15 - HTTP retry rejects a changed task before returning a stored record
+  ---
+  duration_ms: 2.4276
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-context-binding.test.js:48:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    200 !== 409
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 409
+  actual: 200
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-context-binding.test.js:64:12)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: HTTP retry rejects a changed session after a lost final write without disclosing reservation context
+not ok 16 - HTTP retry rejects a changed session after a lost final write without disclosing reservation context
+  ---
+  duration_ms: 2.6519
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-context-binding.test.js:73:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 409
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 409
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-context-binding.test.js:99:12)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: HTTP retry rejects a changed task after a lost final write without disclosing reservation context
+not ok 17 - HTTP retry rejects a changed task after a lost final write without disclosing reservation context
+  ---
+  duration_ms: 1.8316
+  type: 'test'
+  location: 'C:\\Users\\lenovo\\.codex\\tmp\\risk-p0-context-before-20261030\\chenchen\\tests\\review-context-binding.test.js:73:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 409
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 409
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\lenovo\.codex\tmp\risk-p0-context-before-20261030\chenchen\tests\review-context-binding.test.js:99:12)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 3
+# fail 14
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 163.6311
