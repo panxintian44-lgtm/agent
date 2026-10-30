@@ -6,7 +6,7 @@ const { ReviewWorkflowStore } = require("../integrations/review-workflow");
 
 async function fixture() {
   const store = new ReviewWorkflowStore();
-  const record = await store.start({ kind: "bill", text: "虚构投资计划与房租用途检查", context: { synthetic: true } }, {
+  const record = await store.start({ capability: "SIMULATION_ONLY", kind: "bill", text: "虚构投资计划与房租用途检查", context: { synthetic: true } }, {
     MODEL_PROVIDER: "workers_ai", MODEL_DISABLE_RULE_FALLBACK: "true",
     AI: { run: async () => ({ id: "synthetic-decision-test", response: {
       summary: "虚构资金用途需复核", risk_level: "medium", proposed_action: "HOLD_FOR_REVIEW",

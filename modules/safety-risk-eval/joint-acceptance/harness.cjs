@@ -229,6 +229,39 @@ async function runLocalAcceptance(snapshot) {
     await ctx.denied("/api/review/simulate", simulationBody(run), ["EXECUTION_BLOCKED"]);
     const out = await evidence(ctx, run); assert.equal(out.risk_callback == null, true); assert.equal(out.execution.receipt, null); return out;
   });
+  await check("cross_session_callback_binding", async ctx => {
+    const first = await start(ctx), second = await start(ctx);
+    assert.notEqual(first.task.session_id, second.task.session_id);
+    // A valid service signature cannot rebind one session's handoff to another task.
+    const rejected = await ctx.denied("/api/review/risk-callback", {
+      ...first.draft.callback, task_id: second.binding.task_id, run_id: second.binding.run_id
+    }, ["RISK_HANDOFF_MISMATCH"], { owner: "risk" });
+    await ctx.denied("/api/review/approval", approvalBody(ctx, second), ["APPROVAL_BLOCKED"], { owner: "approval" });
+    await ctx.denied("/api/review/simulate", simulationBody(second), ["EXECUTION_BLOCKED"]);
+    const firstEvidence = await evidence(ctx, first), secondEvidence = await evidence(ctx, second);
+    for (const item of [firstEvidence, secondEvidence]) {
+      assert.equal(item.risk_callback == null, true); assert.equal(item.execution.receipt, null);
+      assert.equal(item.funding_plan.allocated_minor, 0);
+    }
+    return { ...secondEvidence, rejected_response: rejected.data,
+      source_session_id: first.task.session_id, target_session_id: second.task.session_id,
+      source_task: firstEvidence.trace, identity_scope: "SYNTHETIC_SESSIONS_NOT_AUTHENTICATED_END_USERS" };
+  });
+  await check("approval_expired", async ctx => {
+    const run = await start(ctx); await callback(ctx, run);
+    const approved = await approve(ctx, run);
+    // Test-fixture storage mutation only: no public endpoint can set an expiry.
+    approved.approval.expires_at = new Date(Date.now() - 1000).toISOString();
+    ctx.rows.set("run:" + run.binding.run_id, structuredClone(approved));
+    await ctx.denied("/api/review/simulate", simulationBody(run), ["APPROVAL_EXPIRED"]);
+    const out = await evidence(ctx, run), reloaded = await evidence(ctx, run);
+    assert.equal(out.workflow_status, "EXPIRED"); assert.equal(out.approval.status, "EXPIRED");
+    assert.equal(out.execution.receipt, null); assert.equal(out.execution.simulation_allowed, false);
+    assert.equal(out.funding_plan.allocated_minor, 0);
+    assert.equal(out.audit_events.filter(row => row.event_type === "approval.expired").length, 1);
+    assert.equal(reloaded.workflow_status, "EXPIRED");
+    return out;
+  });
   await check("readonly_capability", async ctx => {
     const config = { baseUrl: ctx.origin, apiKey: ctx.credentials.machine, hmacSecret: ctx.credentials.risk, reviewer: ctx.reviewer, allowLocalHttp: true, timeoutMs: 5000 };
     const reviewer = createConversationReviewer({ store: ctx.journal, config });

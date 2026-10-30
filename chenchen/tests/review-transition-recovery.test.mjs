@@ -22,7 +22,7 @@ async function call(app, endpoint, body) {
   return { status: response.status, body: await response.json() };
 }
 const binding = r => ({ task_id: r.task_id, proposal_sha256: r.proposed_action.proposal_sha256 });
-async function start(app, extra = {}) { return (await call(app, "/api/review", { text: "Synthetic transition", ...extra })).body; }
+async function start(app, extra = {}) { return (await call(app, "/api/review", { capability: "SIMULATION_ONLY", text: "Synthetic transition", ...extra })).body; }
 async function approve(app, r) {
   assert.equal((await call(app, "/api/review/risk-decision", { ...binding(r), decision: "APPROVE", reviewer: "synthetic-risk", reason: "Test" })).status, 200);
   assert.equal((await call(app, "/api/review/approval", { ...binding(r), decision: "APPROVE", approver: "synthetic-user", reason: "Test" })).status, 200);
@@ -47,7 +47,7 @@ test("failed cancellation save blocks old approval, every read alias and idempot
     assertPending(await call(app, endpoint), record.task_id);
   }
   assertPending(await call(app, "/api/review/simulate", binding(record)), record.task_id);
-  assertPending(await call(app, "/api/review", { text: "Synthetic transition", ...input }), record.task_id);
+  assertPending(await call(app, "/api/review", { capability: "SIMULATION_ONLY", text: "Synthetic transition", ...input }), record.task_id);
   assert.equal(app.calls(), 1);
 });
 

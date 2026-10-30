@@ -81,7 +81,7 @@ test("Risk dispatch refuses to pretend delivery when the Owner is not configured
 
 test("workflow dispatch stays auditable and retries only after a failed handoff", async () => {
   const store = new ReviewWorkflowStore({ modelRunner: fakeReview });
-  const created = await store.start(base());
+  const created = await store.start({ ...base(), capability: "SIMULATION_ONLY" });
   const request = { task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256 };
   const failedSender = async () => { const error = new Error("risk unavailable"); error.code = "OWNER_SERVICE_UNAVAILABLE"; error.statusCode = 503; throw error; };
   await assert.rejects(store.dispatchRiskHandoff(request, failedSender), error => error.code === "OWNER_SERVICE_UNAVAILABLE" && error.workflowRecord.risk_dispatch.status === "FAILED");
@@ -94,7 +94,7 @@ test("workflow dispatch stays auditable and retries only after a failed handoff"
 
 test("Risk and approval records keep verified actor evidence", async () => {
   const store = new ReviewWorkflowStore({ modelRunner: fakeReview });
-  const created = await store.start(base());
+  const created = await store.start({ ...base(), capability: "SIMULATION_ONLY" });
   const risk = await store.decideRisk({ task_id: created.task_id, proposal_sha256: created.proposed_action.proposal_sha256, decision: "APPROVE", reviewer: "risk-001", reason: "通过" }, { owner: "risk", actor: "risk-001", mode: "HMAC_SHA256", verified: true, signature_header: "X-Risk-Signature" });
   assert.equal(risk.risk_decision.auth.verified, true);
   const approved = await store.decideApproval({ task_id: risk.task_id, proposal_sha256: risk.proposed_action.proposal_sha256, decision: "APPROVE", approver: "user-001", reason: "我已确认" }, { owner: "approval", actor: "user-001", mode: "HMAC_SHA256", verified: true, signature_header: "X-Approval-Signature" });
