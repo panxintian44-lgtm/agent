@@ -147,6 +147,28 @@ npm test
 - Vesper（潘心恬）联合签认：`PENDING`
 - 联合验收结论：`NO-GO`，原因是尚未拿到同一候选 SHA 上的 Risk 真实回调与对方 Owner 签认
 
+### 6.1 Risk 公网只读回查（2026-10-30）
+
+已对当前提供的 Risk 地址做只读 `GET /health`：
+
+`https://finance-lab-risk-bridge.realchenchenluo.workers.dev/health`
+
+返回的脱敏状态为：
+
+```json
+{
+  "status": "ok",
+  "service": "risk-conversation",
+  "deployment": "CLOUD_VALIDATION",
+  "owner_source": "PR27-27bdefb",
+  "model_calls_enabled": false,
+  "joint_acceptance": false,
+  "execution_allowed": false
+}
+```
+
+这次回查只证明旧版 Risk Worker 在线，不能证明 v1.1 已部署，也没有调用受保护的业务接口。当前仍需由双方确认唯一候选 SHA、Core/Risk 两个 Worker 或 staging 地址和部署 ID，并分别在服务端配置 `CORE_AGENT_API_KEY`、`RISK_SERVICE_HMAC_SECRET`。只核对 Secret 名称是否一致，不在聊天、前端或 GitHub 传 Secret 内容。
+
 达到 GO 的前置条件是：双方部署地址已确认、Core/Risk secret 名称已配置、各自服务端日志能核对同一 `task_id` 和 `proposal_sha256`，并在同一候选 SHA 上完成一条“输入 → 工具计算 → 独立 Risk → 人工确认 → PAPER 回执 → 审计”的重复流程。
 
 ## 7. 回滚
