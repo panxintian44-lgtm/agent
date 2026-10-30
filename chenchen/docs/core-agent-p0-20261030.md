@@ -135,9 +135,9 @@ npm test
 
 ## 6. 交付和联合验收状态
 
-- Core 修改候选 SHA：`PENDING_RELEASE_SHA`
+- Core 修改候选 SHA：`c7f6a19f46af95e2f3dc1b25c6d2bb5e672a5902`
 - 个人仓库分支：`codex/core-memory-p0-20261030`
-- PR：待推送后填写
+- PR：[realchenchenluo/agent#4](https://github.com/realchenchenluo/agent/pull/4)（Draft，未合并）
 - 团队 staging：应放入 `team-staging/core-agent/core-memory-p0-20261030/`，不修改 `team-release` 或其他 Owner 目录
 - 模型证据：仅合成替身；真实模型调用未执行
 - 实际 Risk 服务：本轮未把本地替身写成线上真实接通
