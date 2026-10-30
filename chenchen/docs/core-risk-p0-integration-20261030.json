@@ -1,0 +1,33 @@
+{
+  "report_version": "core-risk-p0-integration.v1",
+  "date": "2026-10-30",
+  "status": "LOCAL_CANDIDATE_ONLINE_NO_GO",
+  "core_base_sha": "fe3a4baeb4046d74f43bee807ed5042cf5b6ea43",
+  "risk_source_commits": [
+    "e17c881c1b7d24747c039a25a8bf7447009f0456",
+    "c1cc3c4bbab4700b5c156f09a649cbbf62e979a6",
+    "b15dbc2da0bcb59aa0394d86ad3383e90ffe2925"
+  ],
+  "contracts": {
+    "machine_identity": "CORE_AGENT_API_KEY",
+    "risk_signature_secret": "RISK_SERVICE_HMAC_SECRET",
+    "callback_header": "X-Risk-Signature",
+    "execution_mode": "PAPER",
+    "capabilities": ["REVIEW_ONLY", "SIMULATION_ONLY"]
+  },
+  "local_verification": {
+    "core_node": {"tests": 435, "passed": 434, "skipped": 1, "failed": 0},
+    "risk_interface": {"tests": 262, "passed": 262, "failed": 0},
+    "joint_preflight": {"tests": 20, "passed": 20, "failed": 0},
+    "golden_path": {"steps": 12, "status": "PASS", "external_model_calls": 0, "paid_model_calls": 0, "real_execution_gateway_called": false},
+    "dependency_audit": {"ajv": "8.20.0", "vulnerabilities": 0}
+  },
+  "online": {
+    "risk_candidate_deployed": false,
+    "core_candidate_deployed": false,
+    "formal_joint_acceptance": false,
+    "real_model_calls": 0,
+    "real_financial_operations": 0
+  },
+  "secrets_exposed": false
+}

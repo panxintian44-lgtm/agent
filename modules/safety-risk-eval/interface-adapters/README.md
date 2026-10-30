@@ -24,8 +24,9 @@ node modules/safety-risk-eval/interface-adapters/write-examples.cjs --check
 
 - `conversation-risk.cjs`：复用日常D01—D08规则，生成可复算数字和建议，模型不能改写风险结论。
 - `conversation-review.cjs`：关联用户确认的虚构快照、实际Core提议、风险检查和回调回执。
-- `risk-callback-sender.cjs`：当前状态双次核验、HMAC签名、意图先落盘、回执验证；未知结果先核查。
+- `risk-callback-sender.cjs`：当前状态双次核验、HMAC签名、意图先落盘、回执验证；未知结果先核查。默认 `sendRiskCallback()` 只接受 `REVIEW_ONLY`。
+- `sendSimulationCallback()`：独立的 `SIMULATION_ONLY` PAPER 回写入口。它不接受只读任务，不授予真实执行权；Core 仍必须完成人工审批后才能生成 `SIMULATED` 回执。
 - `conversation-server.cjs`：只监听本机，供原Python问答服务携带服务端凭据调用。
 - `verify-python-bridge.cjs`：本地真实Python→Node HTTP与Core工作流兼容验证，模型是明确标记的替身。
 
-全部入口只分析，不能审批或执行。线上启用需Core Owner配置可信签名和服务身份；缺配置不降级为成功。私人快照和运行日志仅保存在被忽略的 `.runtime/`。
+原问答入口只分析，不能审批或执行；模拟回写也只把确定性的 Risk 结果送回 Core，不代替人工审批，不进入真实执行。线上启用需 Core Owner 配置可信签名和服务身份；缺配置不降级为成功。私人快照和运行日志仅保存在被忽略的 `.runtime/`。
