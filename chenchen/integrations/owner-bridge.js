@@ -52,8 +52,15 @@ function envValue(env, key) {
   return typeof value === "string" ? value.trim() : value ? String(value).trim() : "";
 }
 
-function ownerSecret(owner, env) {
-  return (OWNER_FIELDS[owner]?.secret || []).map(key => envValue(env, key)).find(Boolean) || "";
+function flagValue(env, key) {
+  if (env?.[key] === undefined || env?.[key] === null) return false;
+  if (typeof env[key] === "boolean") return env[key];
+  if (typeof env[key] !== "string" || !["true", "false"].includes(env[key].trim().toLowerCase())) {
+    throw bridgeError("OWNER_CONFIG_INVALID", `${key} must be exactly true or false.`, {
+      statusCode: 503, stage: "CONFIGURATION", recovery: `Set ${key}=true or ${key}=false on the server.`
+    });
+  }
+  return env[key].trim().toLowerCase() === "true";
 }
 
 function ownerUrl(owner, env) {
@@ -64,13 +71,76 @@ function bridgeError(code, message, { statusCode = 503, retryable = false, stage
   return new ReviewError(code, message, { statusCode, retryable, stage, recovery, details });
 }
 
-async function verifyOwnerRequest({ owner, body, headers, env }) {
+function validActor(value) {
+  return typeof value === "string" && value.length > 0 && value.length <= 200 && value.trim() === value && !/[\u0000-\u001f\u007f]/.test(value);
+}
+
+function fixedRiskReviewer(env) {
+  const configured = env?.RISK_REVIEWER_ID;
+  if (configured === undefined || configured === null || configured === "") return "";
+  if (!validActor(configured)) {
+    throw bridgeError("OWNER_CONFIG_INVALID", "RISK_REVIEWER_ID must be a non-empty server-side identity without surrounding whitespace or control characters.", {
+      statusCode: 503, stage: "CONFIGURATION", recovery: "Set one fixed RISK_REVIEWER_ID on both services; do not read it from user input."
+    });
+  }
+  return configured;
+}
+
+function resolveOwnerConfig(owner, env) {
   const definition = OWNER_FIELDS[owner];
   if (!definition) throw bridgeError("UNKNOWN_OWNER", "未定义的 Owner 类型。", { statusCode: 500 });
-  const secret = ownerSecret(owner, env);
+  const requireTrustedActors = flagValue(env, "REQUIRE_TRUSTED_ACTORS");
+  const requireRiskReviewer = owner === "risk" ? flagValue(env, "REQUIRE_RISK_REVIEWER") : false;
+  const primarySecret = envValue(env, definition.secret[0]);
+  const compatibilitySecret = envValue(env, definition.secret[1]);
+  const primaryRequired = owner === "risk" && (requireTrustedActors || requireRiskReviewer);
+  if (primaryRequired && !primarySecret && compatibilitySecret) {
+    throw bridgeError("OWNER_CONFIG_INVALID", "Risk strict mode requires RISK_SERVICE_HMAC_SECRET; the compatibility secret name is not accepted.", {
+      statusCode: 503, stage: "CONFIGURATION", recovery: "Configure RISK_SERVICE_HMAC_SECRET on the server and keep its value private."
+    });
+  }
+  const secret = primarySecret || compatibilitySecret;
+  const reviewer = owner === "risk" ? fixedRiskReviewer(env) : "";
+  if (owner === "risk" && requireRiskReviewer && !reviewer) {
+    throw bridgeError("OWNER_REVIEWER_NOT_CONFIGURED", "Risk strict mode requires RISK_REVIEWER_ID.", {
+      statusCode: 503, stage: "CONFIGURATION", recovery: "Configure the same fixed RISK_REVIEWER_ID on both services."
+    });
+  }
+  return { owner, secret, secret_name: primarySecret ? definition.secret[0] : (compatibilitySecret ? definition.secret[1] : null),
+    primary_secret_configured: Boolean(primarySecret), compatibility_secret_configured: Boolean(compatibilitySecret),
+    require_trusted_actors: requireTrustedActors, require_risk_reviewer: requireRiskReviewer,
+    reviewer, secret_required: primaryRequired };
+}
+
+function ownerConfigurationStatus(owner, env) {
+  try {
+    const config = resolveOwnerConfig(owner, env);
+    return { owner, secret_configured: Boolean(config.secret), secret_name: config.secret_name,
+      primary_secret_configured: config.primary_secret_configured,
+      compatibility_secret_configured: config.compatibility_secret_configured,
+      require_trusted_actors: config.require_trusted_actors, require_risk_reviewer: config.require_risk_reviewer,
+      reviewer_configured: Boolean(config.reviewer), configuration_error: null };
+  } catch (error) {
+    const definition = OWNER_FIELDS[owner];
+    const primary = definition ? envValue(env, definition.secret[0]) : "";
+    const compatibility = definition ? envValue(env, definition.secret[1]) : "";
+    let trusted = false, reviewerStrict = false;
+    try { trusted = flagValue(env, "REQUIRE_TRUSTED_ACTORS"); } catch { /* report invalid below */ }
+    try { reviewerStrict = owner === "risk" && flagValue(env, "REQUIRE_RISK_REVIEWER"); } catch { /* report invalid below */ }
+    return { owner, secret_configured: Boolean(primary || compatibility), secret_name: primary ? definition.secret[0] : (compatibility ? definition.secret[1] : null),
+      primary_secret_configured: Boolean(primary), compatibility_secret_configured: Boolean(compatibility),
+      require_trusted_actors: trusted, require_risk_reviewer: reviewerStrict,
+      reviewer_configured: owner === "risk" && validActor(env?.RISK_REVIEWER_ID), configuration_error: error.code || "OWNER_CONFIG_INVALID" };
+  }
+}
+
+async function verifyOwnerRequest({ owner, body, headers, env }) {
+  const definition = OWNER_FIELDS[owner];
+  const config = resolveOwnerConfig(owner, env);
+  const secret = config.secret;
   const actor = typeof body?.[definition.actor] === "string" ? body[definition.actor].trim() : null;
   if (!secret) {
-    if (envValue(env, "REQUIRE_TRUSTED_ACTORS").toLowerCase() === "true") {
+    if (config.require_trusted_actors) {
       throw bridgeError("OWNER_AUTH_NOT_CONFIGURED", `${owner} 的可信身份验证尚未配置。`, { recovery: "配置对应 HMAC secret 后再启用 REQUIRE_TRUSTED_ACTORS。" });
     }
     return { owner, actor, mode: "DEMO_UNVERIFIED", verified: false, signature_header: definition.signature };
@@ -81,7 +151,13 @@ async function verifyOwnerRequest({ owner, body, headers, env }) {
   if (supplied.trim().toLowerCase() !== expected) {
     throw bridgeError("OWNER_AUTH_INVALID", `${owner} 回写签名无效。`, { statusCode: 401, stage: "AUTHENTICATION", recovery: "重新读取当前 Handoff，使用相同请求正文生成签名。" });
   }
-  return { owner, actor, mode: "HMAC_SHA256", verified: true, signature_header: definition.signature };
+  if (owner === "risk" && config.reviewer && actor !== config.reviewer) {
+    throw bridgeError("OWNER_ACTOR_MISMATCH", "Risk reviewer does not match the fixed server-side identity.", {
+      statusCode: 403, stage: "AUTHENTICATION", recovery: "Use the configured RISK_REVIEWER_ID; do not take reviewer identity from the user request."
+    });
+  }
+  return { owner, actor, mode: "HMAC_SHA256", verified: true, signature_header: definition.signature,
+    ...(owner === "risk" ? { fixed_reviewer_verified: Boolean(config.reviewer) } : {}) };
 }
 
 function buildRiskDispatchEnvelope(handoff) {
@@ -165,11 +241,12 @@ async function postSignedJson({ owner, url, secret, body, fetchImpl = globalThis
 }
 
 async function dispatchRiskHandoff(handoff, env, options = {}) {
+  const config = resolveOwnerConfig("risk", env);
   const envelope = buildRiskDispatchEnvelope(handoff);
   return postSignedJson({
     owner: "risk",
     url: ownerUrl("risk", env),
-    secret: ownerSecret("risk", env),
+    secret: config.secret,
     body: envelope,
     fetchImpl: options.fetchImpl,
     timeoutMs: options.timeoutMs || envValue(env, "RISK_SERVICE_TIMEOUT_MS") || 12000,
@@ -177,4 +254,4 @@ async function dispatchRiskHandoff(handoff, env, options = {}) {
   });
 }
 
-module.exports = { ADAPTER_VERSION, OWNER_FIELDS, canonicalize, canonicalJson, hmacHex, signatureFor, verifyOwnerRequest, buildRiskDispatchEnvelope, dispatchRiskHandoff, bridgeError };
+module.exports = { ADAPTER_VERSION, OWNER_FIELDS, canonicalize, canonicalJson, hmacHex, signatureFor, verifyOwnerRequest, ownerConfigurationStatus, buildRiskDispatchEnvelope, dispatchRiskHandoff, bridgeError };

@@ -19,6 +19,8 @@
 4. `SIMULATION_ONLY` 必须在任务创建时明确声明，单独使用模拟回写器；之后仍要人工审批，最终只生成 `SIMULATED` 回执，`side_effects=false`、`execution_allowed=false`。
 5. 重复请求必须使用相同任务上下文；更换 `session_id` 或 `task_id` 会得到 `IDEMPOTENCY_CONTEXT_MISMATCH`，不会读取旧任务结果。
 6. Risk 回写统一使用 `CORE_AGENT_API_KEY` 和 `RISK_SERVICE_HMAC_SECRET` 的服务端配置名称，密钥值不进入聊天、前端、日志或 GitHub。
+7. Risk reviewer 必须来自服务端固定配置 `RISK_REVIEWER_ID`。签名正确但 reviewer 不一致返回 `OWNER_ACTOR_MISMATCH`；`REQUIRE_RISK_REVIEWER=true` 缺固定身份或配置非法时直接停止。
+8. `approval.trusted_identity_ready` 不再表示 Secret 是否存在。服务签名只能证明服务端调用者；本人登录、账户归属、任务绑定和本人批准必须由审批服务单独提供证据。本轮合成签名测试不计作本人批准。
 
 ## 本地验证结果
 
@@ -32,6 +34,9 @@
 | Core Golden Path | 12 步通过；外部模型 0 次、付费模型 0 次、真实执行网关 0 次 |
 | 模拟链路 | `SIMULATION_ONLY → Risk → 人工审批 → SIMULATED` 通过 |
 | 依赖审计 | `ajv` 已升级到 8.20.0，当前审计 0 漏洞 |
+| 固定 Risk reviewer | 正确签名 + 正确固定身份通过；正确签名 + 错误身份返回 `OWNER_ACTOR_MISMATCH` |
+| 严格配置 | 缺 `RISK_REVIEWER_ID`、只配置 `RISK_HMAC_SECRET`、非法开关值均安全停止 |
+| 审批身份边界 | 配置审批服务签名后 `trusted_identity_ready` 仍为 false，等待独立本人身份与批准证据 |
 
 推荐复核命令：
 
@@ -59,7 +64,7 @@ npm run test:joint-preflight
 - 当前线上 Risk 是否具备明确的模拟能力接线；只读任务不得升级；
 - 用同一个合成任务跑 HTTP：模型提议 → Risk → 人工审批 → PAPER 模拟 → 审计回放。
 
-这些线上条件未完成前，状态保持 `NO-GO`；本地替身测试不能替代线上联合验收，也不能把旧 PR27 报告成新版本。
+这些线上条件未完成前，状态保持 `NO-GO`；本地替身测试不能替代线上联合验收，也不能把旧 PR27 报告成新版本。本轮只确认配置名称、是否配置和校验结果；真实 `RISK_REVIEWER_ID` 固定值、两边 Secret 是否一致、登录/账户归属/本人批准证据仍需双方通过安全渠道核对，不能把合成测试身份当成线上身份。
 
 ## 回滚
 
