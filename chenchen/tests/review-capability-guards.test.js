@@ -27,7 +27,7 @@ async function setup(capability) {
   const riskSecret = "synthetic-test-risk-secret";
   const riskAuth = await verifyOwnerRequest({ owner: "risk", body: risk,
     headers: new Headers({ "X-Risk-Signature": await signatureFor(risk, riskSecret) }),
-    env: { REQUIRE_TRUSTED_ACTORS: "true", RISK_SERVICE_HMAC_SECRET: riskSecret } });
+    env: { REQUIRE_TRUSTED_ACTORS: "true", RISK_SERVICE_HMAC_SECRET: riskSecret, RISK_REVIEWER_ID: "synthetic-risk-owner" } });
   const checked = await store.decideRisk(risk, riskAuth);
   const approval = { ...base, decision: "APPROVE", approver: "synthetic-confirmed-user", reason: "Synthetic PAPER confirmation" };
   const approvalSecret = "synthetic-test-approval-secret";

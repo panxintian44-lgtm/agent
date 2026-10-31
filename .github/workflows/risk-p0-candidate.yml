@@ -1,0 +1,54 @@
+name: Risk P0 candidate verification
+
+on:
+  pull_request:
+    paths:
+      - "chenchen/**"
+      - "modules/safety-risk-eval/**"
+      - ".github/workflows/risk-p0-candidate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            modules/safety-risk-eval/interface-adapters/package-lock.json
+            modules/safety-risk-eval/cloudflare/package-lock.json
+      - name: Install locked build dependencies
+        run: |
+          npm --prefix modules/safety-risk-eval/interface-adapters ci --ignore-scripts --no-audit --no-fund
+          npm --prefix modules/safety-risk-eval/cloudflare ci --ignore-scripts --no-audit --no-fund
+      - name: Build from a clean committed candidate
+        run: npm --prefix modules/safety-risk-eval/cloudflare run build
+      - name: Verify local programs and signed loopback HTTP
+        shell: bash
+        run: |
+          set -euo pipefail
+          evidence="$RUNNER_TEMP/risk-p0-evidence"
+          mkdir -p "$evidence"
+          (cd chenchen && node --test --test-reporter=tap) > "$evidence/core-tests.tap" 2>&1
+          npm --prefix chenchen run check > "$evidence/core-check.txt" 2>&1
+          node --test --test-reporter=tap modules/safety-risk-eval/unified-rating/test/*.test.cjs modules/safety-risk-eval/interface-adapters/test/*.test.cjs modules/safety-risk-eval/network-resilience/test/*.test.cjs modules/safety-risk-eval/network-resilience/test/*.test.mjs modules/safety-risk-eval/joint-acceptance/test/*.test.cjs > "$evidence/risk-tests.tap" 2>&1
+          node --test --test-reporter=tap modules/safety-risk-eval/cloudflare/test/*.test.mjs > "$evidence/cloud-tests.tap" 2>&1
+          node modules/safety-risk-eval/joint-acceptance/current-candidate-http.cjs --out "$evidence/current-candidate-http.json"
+          node modules/safety-risk-eval/interface-adapters/write-examples.cjs --check > "$evidence/examples-check.json"
+          cp modules/safety-risk-eval/cloudflare/dist/source-manifest.json "$evidence/cloud-build-manifest.json"
+          git diff --exit-code
+      - name: Preserve scoped evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: risk-p0-local-verification
+          path: ${{ runner.temp }}/risk-p0-evidence/
+          if-no-files-found: warn
+          retention-days: 7

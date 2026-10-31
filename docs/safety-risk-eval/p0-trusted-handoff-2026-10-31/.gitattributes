@@ -1,0 +1,2 @@
+# Preserve intentional spaces in original TAP assertion diagnostics.
+*.tap whitespace=-blank-at-eol

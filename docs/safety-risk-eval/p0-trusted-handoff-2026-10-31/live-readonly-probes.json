@@ -1,0 +1,100 @@
+{
+  "checked_at_utc": "2026-10-31T06:14:01.3854907Z",
+  "scope": "PUBLIC_GET_ONLY_NO_BUSINESS_POST",
+  "current_cloudflare_deployment_mapping_verified": false,
+  "real_financial_operations": 0,
+  "report_version": "risk-staging-readonly-probes.v1",
+  "real_model_calls": 0,
+  "secrets_read_or_written": false,
+  "formal_joint_acceptance": false,
+  "wrangler": {
+    "deployment_attempted": false,
+    "version": "4.156.0",
+    "temporary_preview_used": false,
+    "authenticated": false,
+    "check": "wrangler whoami",
+    "result": "You are not authenticated"
+  },
+  "observations": [
+    {
+      "response": {
+        "status": "ok",
+        "service": "core-agent",
+        "contract_version": "investment-agent.v1",
+        "review_endpoint": "/api/review",
+        "docs": "/docs",
+        "model": {
+          "provider": "cloudflare_workers_ai",
+          "name": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "configured": true
+        },
+        "audit_storage": "durable_object"
+      },
+      "url": "https://personal-ai-fund-manager-core-agent.realchenchenluo.workers.dev/health",
+      "method": "GET",
+      "observed_at_utc": "2026-10-31T06:13:59.4534612Z"
+    },
+    {
+      "response": {
+        "capability_version": "core-agent-capabilities.v1",
+        "service": "core-agent",
+        "contract_version": "model-review.v1",
+        "model": {
+          "provider": "cloudflare_workers_ai",
+          "name": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "configured": true,
+          "inference_probe": "NOT_RUN",
+          "response_id_sources": [
+            "body.id",
+            "body.response_id",
+            "header.x-request-id",
+            "header.x-correlation-id"
+          ],
+          "paid_calls_this_check": 0
+        },
+        "risk": {
+          "handoff_contract": "risk-handoff.v1",
+          "dispatch_url_configured": false,
+          "dispatch_signature_configured": false,
+          "dispatch_ready": false,
+          "callback_signature_configured": false
+        },
+        "approval": {
+          "decision_endpoint": "/api/review/approval",
+          "signature_configured": false,
+          "trusted_identity_ready": false,
+          "demo_actor_labels_allowed": true
+        },
+        "execution": {
+          "mode": "PAPER",
+          "allowed": false,
+          "gateway_connected": false
+        },
+        "acceptance": {
+          "synthetic_local": true,
+          "real_model": false,
+          "formal_risk_callback": false,
+          "joint_acceptance": false
+        }
+      },
+      "url": "https://personal-ai-fund-manager-core-agent.realchenchenluo.workers.dev/api/review/capabilities",
+      "method": "GET",
+      "observed_at_utc": "2026-10-31T06:14:00.4133149Z"
+    },
+    {
+      "response": {
+        "status": "ok",
+        "service": "risk-conversation",
+        "deployment": "CLOUD_VALIDATION",
+        "owner_source": "PR27-27bdefb",
+        "model_calls_enabled": false,
+        "joint_acceptance": false,
+        "execution_allowed": false
+      },
+      "url": "https://finance-lab-risk-bridge.realchenchenluo.workers.dev/health",
+      "method": "GET",
+      "observed_at_utc": "2026-10-31T06:14:01.3854361Z"
+    }
+  ],
+  "configuration_values_read": false
+}

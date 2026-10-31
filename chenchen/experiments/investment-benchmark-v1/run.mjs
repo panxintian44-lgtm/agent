@@ -58,6 +58,7 @@ async function workerCase(c) {
   const env = { MODEL_PROVIDER: "workers_ai", MODEL_MAX_ATTEMPTS: "1", MODEL_TIMEOUT_MS: mode === "model-timeout" ? "15" : "5000",
     MODEL_REQUESTS_PER_MINUTE: "1000", MODEL_DISABLE_RULE_FALLBACK: "true", RATE_LIMIT_PER_MINUTE: "0", REQUIRE_TRUSTED_ACTORS: "true",
     RISK_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"), APPROVAL_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"),
+    RISK_REVIEWER_ID: "synthetic-risk",
     AI: { run: async (model, request) => {
       const call = { model: "FIXED_TEST_DOUBLE", configured_model: model, request, response: null };
       modelCalls.push(call);

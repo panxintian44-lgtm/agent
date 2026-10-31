@@ -18,7 +18,7 @@ export async function verifyAccountSummary({ input = fixture, synthetic = true, 
   const env = {
     MODEL_PROVIDER: "workers_ai", MODEL_MAX_ATTEMPTS: "1", MODEL_REQUESTS_PER_MINUTE: "100", MODEL_DISABLE_RULE_FALLBACK: "true",
     RATE_LIMIT_PER_MINUTE: "0", REQUIRE_TRUSTED_ACTORS: "true", RISK_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"),
-    APPROVAL_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"),
+    APPROVAL_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"), RISK_REVIEWER_ID: "synthetic-risk-reviewer",
     AI: { run: async (_model, request) => {
       captured.push(structuredClone(request));
       return { id: "synthetic-account-summary-response-" + captured.length, response: {

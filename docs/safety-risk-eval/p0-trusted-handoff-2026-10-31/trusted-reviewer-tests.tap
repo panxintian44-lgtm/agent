@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: strict Risk identity requires both a server-side fixed reviewer and a valid signature
+ok 1 - strict Risk identity requires both a server-side fixed reviewer and a valid signature
+  ---
+  duration_ms: 4.7798
+  type: 'test'
+  ...
+# Subtest: REQUIRE_TRUSTED_ACTORS rejects a signed callback when the fixed reviewer is missing
+ok 2 - REQUIRE_TRUSTED_ACTORS rejects a signed callback when the fixed reviewer is missing
+  ---
+  duration_ms: 1.0122
+  type: 'test'
+  ...
+# Subtest: REQUIRE_TRUSTED_ACTORS rejects unsigned demo identity when the service secret is missing
+ok 3 - REQUIRE_TRUSTED_ACTORS rejects unsigned demo identity when the service secret is missing
+  ---
+  duration_ms: 0.5584
+  type: 'test'
+  ...
+# Subtest: REQUIRE_TRUSTED_ACTORS rejects misspelled boolean configuration instead of silently downgrading
+ok 4 - REQUIRE_TRUSTED_ACTORS rejects misspelled boolean configuration instead of silently downgrading
+  ---
+  duration_ms: 0.9645
+  type: 'test'
+  ...
+# Subtest: REQUIRE_RISK_REVIEWER rejects a signed callback when the fixed reviewer is missing
+ok 5 - REQUIRE_RISK_REVIEWER rejects a signed callback when the fixed reviewer is missing
+  ---
+  duration_ms: 0.6307
+  type: 'test'
+  ...
+# Subtest: REQUIRE_RISK_REVIEWER rejects unsigned demo identity when the service secret is missing
+ok 6 - REQUIRE_RISK_REVIEWER rejects unsigned demo identity when the service secret is missing
+  ---
+  duration_ms: 0.2961
+  type: 'test'
+  ...
+# Subtest: REQUIRE_RISK_REVIEWER rejects misspelled boolean configuration instead of silently downgrading
+ok 7 - REQUIRE_RISK_REVIEWER rejects misspelled boolean configuration instead of silently downgrading
+  ---
+  duration_ms: 0.3719
+  type: 'test'
+  ...
+# Subtest: a valid signature cannot authenticate the wrong fixed reviewer other-risk-service
+ok 8 - a valid signature cannot authenticate the wrong fixed reviewer other-risk-service
+  ---
+  duration_ms: 0.4153
+  type: 'test'
+  ...
+# Subtest: a valid signature cannot authenticate the wrong fixed reviewer SYNTHETIC-RISK-SERVICE-V1
+ok 9 - a valid signature cannot authenticate the wrong fixed reviewer SYNTHETIC-RISK-SERVICE-V1
+  ---
+  duration_ms: 0.5004
+  type: 'test'
+  ...
+# Subtest: a valid signature cannot authenticate the wrong fixed reviewer 
+ok 10 - a valid signature cannot authenticate the wrong fixed reviewer 
+  ---
+  duration_ms: 0.4652
+  type: 'test'
+  ...
+# Subtest: a valid signature cannot authenticate the wrong fixed reviewer undefined
+ok 11 - a valid signature cannot authenticate the wrong fixed reviewer undefined
+  ---
+  duration_ms: 0.4022
+  type: 'test'
+  ...
+# Subtest: configured reviewer is enforced even when strict flags are not enabled
+ok 12 - configured reviewer is enforced even when strict flags are not enabled
+  ---
+  duration_ms: 0.4204
+  type: 'test'
+  ...
+# Subtest: strict Risk identity rejects invalid configured reviewer length 1
+ok 13 - strict Risk identity rejects invalid configured reviewer length 1
+  ---
+  duration_ms: 0.3542
+  type: 'test'
+  ...
+# Subtest: strict Risk identity rejects invalid configured reviewer length 501
+ok 14 - strict Risk identity rejects invalid configured reviewer length 501
+  ---
+  duration_ms: 0.371
+  type: 'test'
+  ...
+# Subtest: a fixed reviewer accepts the existing 500-character identity boundary
+ok 15 - a fixed reviewer accepts the existing 500-character identity boundary
+  ---
+  duration_ms: 0.3821
+  type: 'test'
+  ...
+# Subtest: correct actor labels never bypass signature validation
+ok 16 - correct actor labels never bypass signature validation
+  ---
+  duration_ms: 0.3029
+  type: 'test'
+  ...
+# Subtest: legacy signed Risk mode does not claim a fixed actor or end-user identity
+ok 17 - legacy signed Risk mode does not claim a fixed actor or end-user identity
+  ---
+  duration_ms: 0.4417
+  type: 'test'
+  ...
+# Subtest: unsigned non-strict demo remains visibly unverified
+ok 18 - unsigned non-strict demo remains visibly unverified
+  ---
+  duration_ms: 0.1421
+  type: 'test'
+  ...
+# Subtest: an approval service HMAC does not prove the named end user approved
+ok 19 - an approval service HMAC does not prove the named end user approved
+  ---
+  duration_ms: 0.6124
+  type: 'test'
+  ...
+# Subtest: capabilities separate configured service signatures from unimplemented end-user authentication
+ok 20 - capabilities separate configured service signatures from unimplemented end-user authentication
+  ---
+  duration_ms: 15.9291
+  type: 'test'
+  ...
+# Subtest: capabilities report malformed or incomplete strict identity configuration as not ready
+ok 21 - capabilities report malformed or incomplete strict identity configuration as not ready
+  ---
+  duration_ms: 0.9227
+  type: 'test'
+  ...
+# Subtest: a signed wrong reviewer cannot mutate task, approve, simulate or trigger more inference
+ok 22 - a signed wrong reviewer cannot mutate task, approve, simulate or trigger more inference
+  ---
+  duration_ms: 9.6734
+  type: 'test'
+  ...
+# Subtest: valid fixed service identity does not upgrade a read-only task
+ok 23 - valid fixed service identity does not upgrade a read-only task
+  ---
+  duration_ms: 6.4531
+  type: 'test'
+  ...
+# Subtest: signed service test doubles preserve one task/hash through explicit PAPER simulation
+ok 24 - signed service test doubles preserve one task/hash through explicit PAPER simulation
+  ---
+  duration_ms: 5.8419
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 151.5057

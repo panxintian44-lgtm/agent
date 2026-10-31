@@ -60,6 +60,28 @@ function ownerUrl(owner, env) {
   return envValue(env, OWNER_FIELDS[owner]?.url);
 }
 
+function booleanSetting(env, key) {
+  const value = envValue(env, key).toLowerCase();
+  return { enabled: value === "true", valid: ["", "true", "false"].includes(value) };
+}
+
+// Expose configuration readiness, never credential values or end-user identity claims.
+function riskIdentityStatus(env) {
+  const actors = booleanSetting(env, "REQUIRE_TRUSTED_ACTORS");
+  const reviewerFlag = booleanSetting(env, "REQUIRE_RISK_REVIEWER");
+  const reviewer = envValue(env, "RISK_REVIEWER_ID");
+  const configured = typeof env?.RISK_REVIEWER_ID === "string" && reviewer.length > 0 && reviewer.length <= 500;
+  const required = actors.enabled || reviewerFlag.enabled || Boolean(reviewer);
+  const flagsValid = actors.valid && reviewerFlag.valid;
+  const signatureConfigured = Boolean(ownerSecret("risk", env));
+  return {
+    fixed_reviewer_required: required,
+    fixed_reviewer_configured: configured,
+    strict_settings_valid: flagsValid,
+    callback_identity_ready: flagsValid && configured && signatureConfigured
+  };
+}
+
 function bridgeError(code, message, { statusCode = 503, retryable = false, stage = "OWNER_INTEGRATION", recovery = "检查对应 Owner 的地址、签名密钥和联调状态。", details = null } = {}) {
   return new ReviewError(code, message, { statusCode, retryable, stage, recovery, details });
 }
@@ -69,11 +91,19 @@ async function verifyOwnerRequest({ owner, body, headers, env }) {
   if (!definition) throw bridgeError("UNKNOWN_OWNER", "未定义的 Owner 类型。", { statusCode: 500 });
   const secret = ownerSecret(owner, env);
   const actor = typeof body?.[definition.actor] === "string" ? body[definition.actor].trim() : null;
+  const actors = booleanSetting(env, "REQUIRE_TRUSTED_ACTORS");
+  const riskIdentity = owner === "risk" ? riskIdentityStatus(env) : null;
+  if (!actors.valid || riskIdentity && !riskIdentity.strict_settings_valid) {
+    throw bridgeError("OWNER_AUTH_CONFIG_INVALID", "身份校验开关不是有效的布尔配置。", {
+      recovery: "服务端 REQUIRE_TRUSTED_ACTORS 和 REQUIRE_RISK_REVIEWER 仅允许 true 或 false；不要从请求读取。"
+    });
+  }
   if (!secret) {
-    if (envValue(env, "REQUIRE_TRUSTED_ACTORS").toLowerCase() === "true") {
+    if (actors.enabled || riskIdentity?.fixed_reviewer_required) {
       throw bridgeError("OWNER_AUTH_NOT_CONFIGURED", `${owner} 的可信身份验证尚未配置。`, { recovery: "配置对应 HMAC secret 后再启用 REQUIRE_TRUSTED_ACTORS。" });
     }
-    return { owner, actor, mode: "DEMO_UNVERIFIED", verified: false, signature_header: definition.signature };
+    return { owner, actor, mode: "DEMO_UNVERIFIED", verified: false, signature_header: definition.signature,
+      identity_scope: "UNVERIFIED", fixed_actor_verified: false, end_user_identity_verified: false };
   }
   const supplied = headerValue(headers, definition.signature) || "";
   if (!supplied) throw bridgeError("OWNER_AUTH_REQUIRED", `${owner} 回写缺少签名。`, { statusCode: 401, stage: "AUTHENTICATION", recovery: `使用 ${definition.signature} 携带 sha256 HMAC 签名后重试。` });
@@ -81,7 +111,18 @@ async function verifyOwnerRequest({ owner, body, headers, env }) {
   if (supplied.trim().toLowerCase() !== expected) {
     throw bridgeError("OWNER_AUTH_INVALID", `${owner} 回写签名无效。`, { statusCode: 401, stage: "AUTHENTICATION", recovery: "重新读取当前 Handoff，使用相同请求正文生成签名。" });
   }
-  return { owner, actor, mode: "HMAC_SHA256", verified: true, signature_header: definition.signature };
+  if (riskIdentity?.fixed_reviewer_required && !riskIdentity.fixed_reviewer_configured) {
+    throw bridgeError("OWNER_IDENTITY_NOT_CONFIGURED", "Risk 的固定审核身份尚未正确配置。", {
+      recovery: "在双方服务端配置相同且不超过 500 字符的 RISK_REVIEWER_ID；不能从用户表单读取。"
+    });
+  }
+  if (riskIdentity?.fixed_reviewer_configured && actor !== envValue(env, "RISK_REVIEWER_ID")) {
+    throw bridgeError("OWNER_ACTOR_MISMATCH", "Risk 审核身份与服务端配置不一致。", {
+      statusCode: 403, stage: "AUTHENTICATION", recovery: "使用服务端配置的 Risk 身份重新签署；不要修改原任务。"
+    });
+  }
+  return { owner, actor, mode: "HMAC_SHA256", verified: true, signature_header: definition.signature,
+    identity_scope: "SERVICE", fixed_actor_verified: Boolean(riskIdentity?.fixed_reviewer_configured), end_user_identity_verified: false };
 }
 
 function buildRiskDispatchEnvelope(handoff) {
@@ -177,4 +218,4 @@ async function dispatchRiskHandoff(handoff, env, options = {}) {
   });
 }
 
-module.exports = { ADAPTER_VERSION, OWNER_FIELDS, canonicalize, canonicalJson, hmacHex, signatureFor, verifyOwnerRequest, buildRiskDispatchEnvelope, dispatchRiskHandoff, bridgeError };
+module.exports = { ADAPTER_VERSION, OWNER_FIELDS, canonicalize, canonicalJson, hmacHex, signatureFor, riskIdentityStatus, verifyOwnerRequest, buildRiskDispatchEnvelope, dispatchRiskHandoff, bridgeError };

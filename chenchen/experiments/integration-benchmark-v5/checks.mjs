@@ -117,6 +117,7 @@ function setup() {
   const env = { MODEL_PROVIDER: "workers_ai", MODEL_MAX_ATTEMPTS: "1", MODEL_DISABLE_RULE_FALLBACK: "true", MODEL_REQUESTS_PER_MINUTE: "100",
     RATE_LIMIT_PER_MINUTE: "0", REQUIRE_TRUSTED_ACTORS: "true", CORE_AGENT_API_KEY: randomBytes(32).toString("hex"),
     RISK_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"), APPROVAL_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"),
+    RISK_REVIEWER_ID: "synthetic-risk",
     AI: { run: async (...args) => {
       const response = { id: "synthetic-provider-" + modelCalls.length, response: { summary: "合成签名边界测试", proposed_action: "HOLD_FOR_REVIEW",
         risk_level: "unknown", action_reason: "等待风控与审批", evidence: [], missing_information: [] } };

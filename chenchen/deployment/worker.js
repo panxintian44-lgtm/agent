@@ -139,6 +139,8 @@ function capabilityStatus(env) {
   const riskUrlConfigured = Boolean(String(env.RISK_SERVICE_URL || "").trim());
   const riskSecretConfigured = Boolean(String(env.RISK_SERVICE_HMAC_SECRET || env.RISK_HMAC_SECRET || "").trim());
   const approvalSecretConfigured = Boolean(String(env.APPROVAL_SERVICE_HMAC_SECRET || env.APPROVAL_HMAC_SECRET || "").trim());
+  const riskIdentity = ownerBridge.riskIdentityStatus(env);
+  const trustedActorsSetting = String(env.REQUIRE_TRUSTED_ACTORS || "").trim().toLowerCase();
   return {
     capability_version: "core-agent-capabilities.v1",
     service: "core-agent",
@@ -156,13 +158,16 @@ function capabilityStatus(env) {
       dispatch_url_configured: riskUrlConfigured,
       dispatch_signature_configured: riskSecretConfigured,
       dispatch_ready: riskUrlConfigured && riskSecretConfigured,
-      callback_signature_configured: riskSecretConfigured
+      callback_signature_configured: riskSecretConfigured,
+      ...riskIdentity
     },
     approval: {
       decision_endpoint: "/api/review/approval",
       signature_configured: approvalSecretConfigured,
-      trusted_identity_ready: approvalSecretConfigured,
-      demo_actor_labels_allowed: !approvalSecretConfigured && String(env.REQUIRE_TRUSTED_ACTORS || "").toLowerCase() !== "true"
+      service_signature_ready: approvalSecretConfigured,
+      trusted_identity_ready: false,
+      end_user_identity_ready: false,
+      demo_actor_labels_allowed: !approvalSecretConfigured && ["", "false"].includes(trustedActorsSetting)
     },
     execution: {
       mode: "PAPER",

@@ -14,6 +14,7 @@ const rows = new Map(), transport = [], cases = []; let calls = 0, failProvider 
 const env = { MODEL_PROVIDER: "workers_ai", MODEL_MAX_ATTEMPTS: "1", MODEL_REQUESTS_PER_MINUTE: "100",
   MODEL_DISABLE_RULE_FALLBACK: "true", RATE_LIMIT_PER_MINUTE: "0", REQUIRE_TRUSTED_ACTORS: "true",
   RISK_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"), APPROVAL_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"),
+  RISK_REVIEWER_ID: "synthetic-risk-reviewer",
   AI: { run: async () => { calls++; if (failProvider) throw new Error("SYNTHETIC_PROVIDER_FAILURE");
     return { id: "synthetic-vendor-response-" + calls, response: { summary: "虚构案例：投资前保留房租用途。", risk_level: "unknown",
       proposed_action: "HOLD_FOR_REVIEW", action_reason: "仅为模型替身提议，等待风控与人工审批。", missing_information: ["正式账户数据"], evidence: ["虚构房租安排"] } }; } } };

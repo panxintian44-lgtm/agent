@@ -49,6 +49,7 @@ function storageApp() {
   const env = { MODEL_PROVIDER: "workers_ai", MODEL_MAX_ATTEMPTS: "1", MODEL_REQUESTS_PER_MINUTE: "100",
     MODEL_DISABLE_RULE_FALLBACK: "true", MODEL_FALLBACK_TO_RULES: "false", RATE_LIMIT_PER_MINUTE: "0", REQUIRE_TRUSTED_ACTORS: "true",
     RISK_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"), APPROVAL_SERVICE_HMAC_SECRET: randomBytes(32).toString("hex"),
+    RISK_REVIEWER_ID: "synthetic-risk",
     AI: { run: async (...args) => {
       const response = { id: "synthetic-provider-" + (modelCalls.length + 1), response: {
         summary: "合成存储故障测试", risk_level: "unknown", proposed_action: "HOLD_FOR_REVIEW",

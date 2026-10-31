@@ -1,0 +1,30 @@
+# Copy to ignored wrangler.staging.toml in this directory and fill approved values.
+# This file does not select or overwrite a production Worker.
+name = "risk-staging-candidate"
+main = "dist/risk-worker.mjs"
+compatibility_date = "2026-10-11"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[version_metadata]
+binding = "CF_VERSION_METADATA"
+
+[vars]
+CORE_AGENT_BASE_URL = "https://core-staging.example.invalid"
+RISK_REVIEWER_ID = "risk-conversation-cloudflare-v1"
+REQUIRE_TRUSTED_ACTORS = "true"
+REQUIRE_RISK_REVIEWER = "true"
+RISK_MODEL_CALLS_ENABLED = "false"
+
+[[durable_objects.bindings]]
+name = "RISK_CONVERSATIONS"
+class_name = "RiskConversationService"
+
+[[migrations]]
+tag = "risk-conversation-v1"
+new_sqlite_classes = ["RiskConversationService"]
+
+# Secrets are service-side bindings only:
+# CORE_AGENT_API_KEY
+# RISK_SERVICE_HMAC_SECRET
+# RISK_CONVERSATION_API_KEY

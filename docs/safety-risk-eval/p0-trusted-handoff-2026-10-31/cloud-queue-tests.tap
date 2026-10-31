@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: build snapshot verifies consumed bytes against a clean immutable commit
+ok 1 - build snapshot verifies consumed bytes against a clean immutable commit
+  ---
+  duration_ms: 0.8403
+  type: 'test'
+  ...
+# Subtest: HEAD changes during build reject the release snapshot
+ok 2 - HEAD changes during build reject the release snapshot
+  ---
+  duration_ms: 0.2897
+  type: 'test'
+  ...
+# Subtest: a changed working tree rejects the release snapshot
+ok 3 - a changed working tree rejects the release snapshot
+  ---
+  duration_ms: 0.0954
+  type: 'test'
+  ...
+# Subtest: modified input is rejected even when its Git dirty status stays the same
+ok 4 - modified input is rejected even when its Git dirty status stays the same
+  ---
+  duration_ms: 0.6657
+  type: 'test'
+  ...
+# Subtest: a clean label does not override mismatching committed source
+ok 5 - a clean label does not override mismatching committed source
+  ---
+  duration_ms: 0.1794
+  type: 'test'
+  ...
+# Subtest: dirty local snapshots remain dirty and do not claim committed source equality
+ok 6 - dirty local snapshots remain dirty and do not claim committed source equality
+  ---
+  duration_ms: 0.1124
+  type: 'test'
+  ...
+# Subtest: the terminal Git check also rejects changes after hashing source inputs
+ok 7 - the terminal Git check also rejects changes after hashing source inputs
+  ---
+  duration_ms: 0.1424
+  type: 'test'
+  ...
+# Subtest: public health reports actual build source and does not claim deployment or approval
+ok 8 - public health reports actual build source and does not claim deployment or approval
+  ---
+  duration_ms: 13.2501
+  type: 'test'
+  ...
+# Subtest: missing auth and browser-origin requests never forward to a Durable Object
+ok 9 - missing auth and browser-origin requests never forward to a Durable Object
+  ---
+  duration_ms: 0.8427
+  type: 'test'
+  ...
+# Subtest: unconfigured durable storage and unsupported owner-bridge direction fail explicitly
+ok 10 - unconfigured durable storage and unsupported owner-bridge direction fail explicitly
+  ---
+  duration_ms: 0.5863
+  type: 'test'
+  ...
+# Subtest: assessment reuses deterministic risk, journals evidence and does not call model or callback
+ok 11 - assessment reuses deterministic risk, journals evidence and does not call model or callback
+  ---
+  duration_ms: 14.607
+  type: 'test'
+  ...
+# Subtest: assessment rejects injected control fields without changing permissions
+ok 12 - assessment rejects injected control fields without changing permissions
+  ---
+  duration_ms: 0.6069
+  type: 'test'
+  ...
+# Subtest: model calls stay disabled until the service flag is explicitly enabled
+ok 13 - model calls stay disabled until the service flag is explicitly enabled
+  ---
+  duration_ms: 0.6061
+  type: 'test'
+  ...
+# Subtest: status describes machine configuration without claiming user/account isolation
+ok 14 - status describes machine configuration without claiming user/account isolation
+  ---
+  duration_ms: 0.6251
+  type: 'test'
+  ...
+# Subtest: enabled review rejects missing signature without external calls
+ok 15 - enabled review rejects missing signature without external calls
+  ---
+  duration_ms: 0.47
+  type: 'test'
+  ...
+# Subtest: enabled review rejects missing reviewer without external calls
+ok 16 - enabled review rejects missing reviewer without external calls
+  ---
+  duration_ms: 0.5328
+  type: 'test'
+  ...
+# Subtest: enabled review rejects disabled strict policy without external calls
+ok 17 - enabled review rejects disabled strict policy without external calls
+  ---
+  duration_ms: 0.4549
+  type: 'test'
+  ...
+# Subtest: SQLite audit insert failure never reports assessment success
+ok 18 - SQLite audit insert failure never reports assessment success
+  ---
+  duration_ms: 1.2617
+  type: 'test'
+  ...
+# Subtest: durability failure blocks outgoing model traffic and poisons later requests
+ok 19 - durability failure blocks outgoing model traffic and poisons later requests
+  ---
+  duration_ms: 2.6729
+  type: 'test'
+  ...
+# Subtest: a one-time flush failure blocks already queued reviews before any external call
+ok 20 - a one-time flush failure blocks already queued reviews before any external call
+  ---
+  duration_ms: 1.9908
+  type: 'test'
+  ...
+# Subtest: restart converts unfinished requests to UNKNOWN and prevents replay
+ok 21 - restart converts unfinished requests to UNKNOWN and prevents replay
+  ---
+  duration_ms: 0.9848
+  type: 'test'
+  ...
+# Subtest: tampered audit chain prevents store startup
+ok 22 - tampered audit chain prevents store startup
+  ---
+  duration_ms: 0.3813
+  type: 'test'
+  ...
+# Subtest: built Worker reuses signed readonly callback and keeps task/hash/audit bound
+ok 23 - built Worker reuses signed readonly callback and keeps task/hash/audit bound
+  ---
+  duration_ms: 19.4709
+  type: 'test'
+  ...
+# Subtest: callback result unknown remains UNKNOWN, never retries or reports execution
+ok 24 - callback result unknown remains UNKNOWN, never retries or reports execution
+  ---
+  duration_ms: 6.3412
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 154.9753

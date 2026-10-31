@@ -38,7 +38,7 @@ async function fixture(t, transform) {
     else if (route.endsWith("/risk-handoff")) response = buildRiskHandoffPackage(core.getByRunId(decodeURIComponent(route.split("/")[3])));
     else if (route.startsWith("/api/review/task/")) response = core.getByTaskId(decodeURIComponent(route.slice("/api/review/task/".length)));
     else if (route === "/api/review/risk-callback") {
-      const body = JSON.parse(options.body), auth = await verifyOwnerRequest({ owner: "risk", body, headers: new Headers(options.headers), env: { RISK_SERVICE_HMAC_SECRET: CONFIG.hmacSecret, REQUIRE_TRUSTED_ACTORS: "true" } });
+      const body = JSON.parse(options.body), auth = await verifyOwnerRequest({ owner: "risk", body, headers: new Headers(options.headers), env: { RISK_SERVICE_HMAC_SECRET: CONFIG.hmacSecret, RISK_REVIEWER_ID: CONFIG.reviewer, REQUIRE_TRUSTED_ACTORS: "true" } });
       response = await core.receiveRiskCallback(body, auth);
     } else throw new Error("Unexpected test route");
     if (transform) response = await transform(route, response, { core, journal });

@@ -36,7 +36,7 @@ async function fixture(decision = "ALLOW", capability = "REVIEW_ONLY") {
     assert.equal(options.headers["X-Core-Agent-Key"], CONFIG.apiKey);
     const callback = JSON.parse(options.body);
     const auth = await verifyOwnerRequest({ owner: "risk", body: callback, headers: new Headers(options.headers),
-      env: { RISK_SERVICE_HMAC_SECRET: CONFIG.hmacSecret, REQUIRE_TRUSTED_ACTORS: "true" } });
+      env: { RISK_SERVICE_HMAC_SECRET: CONFIG.hmacSecret, RISK_REVIEWER_ID: CONFIG.reviewer, REQUIRE_TRUSTED_ACTORS: "true" } });
     const receipt = await store.receiveRiskCallback(callback, auth);
     return Response.json(receipt);
   };
