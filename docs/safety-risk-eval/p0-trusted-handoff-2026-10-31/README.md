@@ -2,6 +2,8 @@
 
 本轮在 PR #5 的 `75dcfa269f63ef2fe81394277a0ce537b4feb9aa` 上继续修复，不覆盖 PR #3、PR #4 或线上 Worker。运行代码候选、报告摘要及文件摘要以本目录 `verification.json` 为准。
 
+最终运行代码候选为 `6df8d34e40d56ba4acaa232f70fc4f45f52343bd`；后续证据提交仅修改本目录文档和报告，不改变运行代码。该 SHA 的干净构建已连续两次核对 bundle 与 manifest 摘要相同，Wrangler `--dry-run` 通过；仍未部署。原始证据禁用 Git 换行转换，确保机器报告中的文件摘要可在远端复算。
+
 ## 当前可交付范围
 
 - Risk 回调除 HMAC 外，按服务端 `RISK_REVIEWER_ID` 核对固定审核身份。签名正确但身份不符仍拒绝；严格配置缺失或非法时安全停止。

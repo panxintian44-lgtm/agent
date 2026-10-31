@@ -1,0 +1,294 @@
+{
+  "report_version": "risk-trusted-handoff-verification.v1",
+  "generated_at": "2026-10-31T11:22:14.277Z",
+  "base_integration_sha": "75dcfa269f63ef2fe81394277a0ce537b4feb9aa",
+  "tested_code_candidate_sha": "6df8d34e40d56ba4acaa232f70fc4f45f52343bd",
+  "report_parent_sha": "6df8d34e40d56ba4acaa232f70fc4f45f52343bd",
+  "runtime_changes_since_candidate": [],
+  "environment": {
+    "platform": "win32",
+    "node": "v24.22.1",
+    "ajv": "8.20.0"
+  },
+  "baseline_core": {
+    "file": "baseline-core-tests.tap",
+    "sha256": "f4542c00cfad699a7282402eea7a3428963c8efe47af9b2306e40fca4df646e2",
+    "tests": 435,
+    "passed": 434,
+    "failed": 0,
+    "skipped": 1
+  },
+  "trusted_reviewer_before": {
+    "file": "trusted-reviewer-before.tap",
+    "sha256": "793e409c653a93604b7c3f1512e202f5afc15f233e8e3c18392020b5bf1e7573",
+    "tests": 24,
+    "passed": 2,
+    "failed": 22,
+    "skipped": 0
+  },
+  "trusted_reviewer_after": {
+    "file": "trusted-reviewer-tests.tap",
+    "sha256": "fbd73a3af7ce3b2c4d66ea7458b36cb122f349cb41f55dd3e12d0465057925eb",
+    "tests": 24,
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0
+  },
+  "core": {
+    "file": "core-tests.tap",
+    "sha256": "63ec20837774127dd10061b605c60344db7b41b4f169661a1cf20938283ebfae",
+    "tests": 459,
+    "passed": 458,
+    "failed": 0,
+    "skipped": 1
+  },
+  "risk": {
+    "file": "risk-tests.tap",
+    "sha256": "10c6b0eaf5620316b9416124d975467b3ebc059546ada472e8bbd8c08fb71898",
+    "tests": 501,
+    "passed": 501,
+    "failed": 0,
+    "skipped": 0
+  },
+  "cloud": {
+    "file": "cloud-tests.tap",
+    "sha256": "6395e87c12961c10c2cb13c8b822c7a00c013ec7a3b0f1d11642b0497669263f",
+    "tests": 24,
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0
+  },
+  "local_http": {
+    "file": "current-candidate-http.json",
+    "passed": 18,
+    "failed": 0,
+    "scope": "CURRENT_FULL_CORE_WORKER_LOCAL_HTTP_AND_REAL_RISK_PROGRAM_ONLY",
+    "cases": [
+      {
+        "case_id": "signed_simulation_same_task_audit_and_duplicate_receipt",
+        "result": "PASS"
+      },
+      {
+        "case_id": "readonly_signed_allow_and_confirmation_cannot_upgrade",
+        "result": "PASS"
+      },
+      {
+        "case_id": "rent_conflict_deterministic_block",
+        "result": "PASS"
+      },
+      {
+        "case_id": "risk_signature_missing",
+        "result": "PASS"
+      },
+      {
+        "case_id": "risk_signature_invalid",
+        "result": "PASS"
+      },
+      {
+        "case_id": "signed_but_wrong_fixed_reviewer",
+        "result": "PASS"
+      },
+      {
+        "case_id": "approval_signature_missing",
+        "result": "PASS"
+      },
+      {
+        "case_id": "approval_signature_invalid",
+        "result": "PASS"
+      },
+      {
+        "case_id": "approval_missing_or_rejected",
+        "result": "PASS"
+      },
+      {
+        "case_id": "approval_expired",
+        "result": "PASS"
+      },
+      {
+        "case_id": "approval_parameters_or_proposal_changed",
+        "result": "PASS"
+      },
+      {
+        "case_id": "same_key_different_session_or_task_no_data_leak",
+        "result": "PASS"
+      },
+      {
+        "case_id": "signed_cross_task_callback",
+        "result": "PASS"
+      },
+      {
+        "case_id": "risk_service_disconnected",
+        "result": "PASS"
+      },
+      {
+        "case_id": "callback_intent_audit_failure_zero_network",
+        "result": "PASS"
+      },
+      {
+        "case_id": "callback_committed_response_lost_unknown_no_retry",
+        "result": "PASS"
+      },
+      {
+        "case_id": "simulation_result_storage_unknown_safe_stop",
+        "result": "PASS"
+      },
+      {
+        "case_id": "protected_purpose_version_change_invalidates_execution",
+        "result": "PASS"
+      }
+    ]
+  },
+  "cloud_build": {
+    "source_commit": "6df8d34e40d56ba4acaa232f70fc4f45f52343bd",
+    "source_dirty": false,
+    "release_eligible": true,
+    "source_files": 32,
+    "bundle_sha256": "3819a0fcb6d027c97095be420a1b63934701ced51034bf1f41b57a33bfcd4aa0",
+    "toolchain": {
+      "node": "v24.22.1",
+      "esbuild": "0.28.2",
+      "ajv": "8.20.0"
+    }
+  },
+  "source_files": [
+    {
+      "path": "chenchen/integrations/owner-bridge.js",
+      "sha256": "674e75d2ffabf81134ef39a17501766f7d25fb413a258d34cf7abcd2c30dbc44",
+      "git_blob": "3ce46af50835b7e61523c317d8799490389c4494"
+    },
+    {
+      "path": "chenchen/deployment/worker.js",
+      "sha256": "2e7b96c50b940592be336e738f7472f002eff4eb8fe48cc90ddd96179a329c0d",
+      "git_blob": "487c1cfd067e384ead69217007dd38d1f3858c70"
+    },
+    {
+      "path": "chenchen/integrations/review-workflow.js",
+      "sha256": "c2fc5cf1a0d458512d72bc7311851f763e187e14557064aa5eaffe7eb678e850",
+      "git_blob": "431096615a8a50b0fb72dea7e14571b34b531320"
+    },
+    {
+      "path": "chenchen/integrations/review-reservation.js",
+      "sha256": "ac836c35504dccf669c5af725b0ee71b628049bf6ad627108a0e961c0c048760",
+      "git_blob": "9b2cddaec044c98b798b6351c1555d072ab46c91"
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/risk-callback-sender.cjs",
+      "sha256": "513e580d1be2481192dde59af6543cbc543cb7122ab0e3f1152afaa1f15ef6e8",
+      "git_blob": "6e4993073145bb3752f5c2a46a88b2917057907c"
+    },
+    {
+      "path": "modules/safety-risk-eval/cloudflare/worker.mjs",
+      "sha256": "328d84d8b117a87ccc41a69f556ed069ce40561b5335c9861223bc92d5c2290d",
+      "git_blob": "ab127e499d846ad9896f9d77aafc5ddcfdd54254"
+    },
+    {
+      "path": "modules/safety-risk-eval/cloudflare/store.mjs",
+      "sha256": "0a1b815efd1897e74b1c1078fbfbb17c3e6281a31a29c26b5227565332ce4773",
+      "git_blob": "bf5385fad8f9f22ec8c415c5c365253015f617b8"
+    },
+    {
+      "path": "modules/safety-risk-eval/cloudflare/build.mjs",
+      "sha256": "8a37e9c35e3a8fd15da49a2977c3a02689943fdc1747b7c1e2328ee99d23f6b8",
+      "git_blob": "e126696114e3438ad9367a341575d655f8041fec"
+    },
+    {
+      "path": "modules/safety-risk-eval/joint-acceptance/current-candidate-http.cjs",
+      "sha256": "56c056912f94fafb88442088f6dee35f6b051175b6a49c2ed51ed74e088215fb",
+      "git_blob": "0a5a395306c0f7d0ef51b3254199b71d6d92a836"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "baseline-core-tests.tap",
+      "sha256": "f4542c00cfad699a7282402eea7a3428963c8efe47af9b2306e40fca4df646e2"
+    },
+    {
+      "path": "trusted-reviewer-before.tap",
+      "sha256": "793e409c653a93604b7c3f1512e202f5afc15f233e8e3c18392020b5bf1e7573"
+    },
+    {
+      "path": "trusted-reviewer-tests.tap",
+      "sha256": "fbd73a3af7ce3b2c4d66ea7458b36cb122f349cb41f55dd3e12d0465057925eb"
+    },
+    {
+      "path": "cloud-queue-before.tap",
+      "sha256": "ee051b78371660823ea59377712d95c782aec95e8f6be5f44aa2a2a3287a7711"
+    },
+    {
+      "path": "cloud-queue-tests.tap",
+      "sha256": "8aa784352430cac5397c41d9717651ea573d9f8ad64f580b23253f2e85866609"
+    },
+    {
+      "path": "core-tests.tap",
+      "sha256": "63ec20837774127dd10061b605c60344db7b41b4f169661a1cf20938283ebfae"
+    },
+    {
+      "path": "core-check.txt",
+      "sha256": "f5f44da69b6675737f7aaa939b567f47d11527d700f9f063b46cef78c7f86b62"
+    },
+    {
+      "path": "risk-tests.tap",
+      "sha256": "10c6b0eaf5620316b9416124d975467b3ebc059546ada472e8bbd8c08fb71898"
+    },
+    {
+      "path": "cloud-tests.tap",
+      "sha256": "6395e87c12961c10c2cb13c8b822c7a00c013ec7a3b0f1d11642b0497669263f"
+    },
+    {
+      "path": "current-candidate-http.json",
+      "sha256": "dc7f9d1f47f08d9465e9735de14bf7578022c4728c9f5cbde9907af8e0e49708"
+    },
+    {
+      "path": "cloud-build-manifest.json",
+      "sha256": "e37ebee3afda28440bec310e505af46a4c2477042bdd5bd9cc407d045c8c4e05"
+    },
+    {
+      "path": "wrangler-dry-run.txt",
+      "sha256": "009db2ce49cab189760c5946aa26818c717a31bb96e650ea7eb913aee8c56279"
+    },
+    {
+      "path": "examples-check.json",
+      "sha256": "9a42b70d5b28b385be2de5ce70a3abe4ceeb25e84f6ce66e685b4332202e0f7a"
+    },
+    {
+      "path": "live-readonly-probes.json",
+      "sha256": "d6103143a2bad1506aac35522e7cad7db55e8ada13d1db4490cfb0528894d599"
+    }
+  ],
+  "commands": [
+    "node --test --test-reporter=tap chenchen/tests/trusted-risk-reviewer.test.mjs",
+    "cd chenchen && node --test --test-reporter=tap",
+    "cd chenchen && npm run check",
+    "node --test --test-reporter=tap modules/safety-risk-eval/unified-rating/test/*.test.cjs modules/safety-risk-eval/interface-adapters/test/*.test.cjs modules/safety-risk-eval/network-resilience/test/*.test.cjs modules/safety-risk-eval/network-resilience/test/*.test.mjs modules/safety-risk-eval/joint-acceptance/test/*.test.cjs",
+    "node modules/safety-risk-eval/joint-acceptance/current-candidate-http.cjs --out <report.json>",
+    "npm --prefix modules/safety-risk-eval/cloudflare run build",
+    "node --test --test-reporter=tap modules/safety-risk-eval/cloudflare/test/*.test.mjs",
+    "node modules/safety-risk-eval/interface-adapters/write-examples.cjs --check",
+    "git diff --check"
+  ],
+  "limitations": [
+    "LOCAL_PROGRAM_SQLITE_AND_LOOPBACK_HTTP_NOT_TEAM_STAGING",
+    "MODEL_AND_APPROVAL_ARE_EXPLICIT_TEST_DOUBLES",
+    "SERVICE_HMAC_IS_NOT_AUTHENTICATED_END_USER_APPROVAL",
+    "CORE_FUNDING_DEMO_IS_NOT_SHARED_FINANCE_LEDGER",
+    "CLOUD_ADAPTER_REVIEW_ONLY_NOT_CORE_PUSH_RECEIVER_OR_SIMULATION_GATEWAY",
+    "CLOUDFLARE_CLI_NOT_AUTHENTICATED_NO_DEPLOYMENT"
+  ],
+  "ci": {
+    "workflow": ".github/workflows/risk-p0-candidate.yml",
+    "permissions": "contents:read",
+    "online_run_verified": false
+  },
+  "staging": {
+    "core_deployment_id": null,
+    "risk_deployment_id": null,
+    "candidate_deployed": false,
+    "both_owner_signoff": false,
+    "formal_joint_acceptance": false,
+    "status": "NO_GO"
+  },
+  "real_model_calls": 0,
+  "paid_model_calls": 0,
+  "real_financial_operations": 0,
+  "real_execution_enabled": false
+}

@@ -33,7 +33,7 @@ const build = json("cloud-build-manifest.json");
 if (build.source_commit !== candidate || build.source_dirty || !build.release_eligible) throw new Error("Cloud build must come from the committed code candidate.");
 const cloudBundle = fs.readFileSync(path.join(root, "modules/safety-risk-eval/cloudflare/dist/risk-worker.mjs"));
 if (sha256(cloudBundle) !== build.bundle_sha256) throw new Error("Cloud bundle digest mismatch.");
-const rawFiles = ["baseline-core-tests.tap", "trusted-reviewer-before.tap", "trusted-reviewer-tests.tap", "core-tests.tap", "risk-tests.tap", "cloud-tests.tap", "current-candidate-http.json", "cloud-build-manifest.json", "live-readonly-probes.json"];
+const rawFiles = ["baseline-core-tests.tap", "trusted-reviewer-before.tap", "trusted-reviewer-tests.tap", "cloud-queue-before.tap", "cloud-queue-tests.tap", "core-tests.tap", "core-check.txt", "risk-tests.tap", "cloud-tests.tap", "current-candidate-http.json", "cloud-build-manifest.json", "wrangler-dry-run.txt", "examples-check.json", "live-readonly-probes.json"];
 const sources = ["chenchen/integrations/owner-bridge.js", "chenchen/deployment/worker.js", "chenchen/integrations/review-workflow.js", "chenchen/integrations/review-reservation.js", "modules/safety-risk-eval/interface-adapters/risk-callback-sender.cjs", "modules/safety-risk-eval/cloudflare/worker.mjs", "modules/safety-risk-eval/cloudflare/store.mjs", "modules/safety-risk-eval/cloudflare/build.mjs", "modules/safety-risk-eval/joint-acceptance/current-candidate-http.cjs"];
 const report = {
   report_version: "risk-trusted-handoff-verification.v1", generated_at: new Date().toISOString(),
@@ -43,7 +43,7 @@ const report = {
   baseline_core: tap("baseline-core-tests.tap"), trusted_reviewer_before: tap("trusted-reviewer-before.tap", true),
   trusted_reviewer_after: tap("trusted-reviewer-tests.tap"), core: tap("core-tests.tap"), risk: tap("risk-tests.tap"), cloud: tap("cloud-tests.tap"),
   local_http: { file: "current-candidate-http.json", passed: http.passed, failed: http.failed, scope: http.scope, cases: http.cases.map(row => ({ case_id: row.case_id, result: row.result })) },
-  cloud_build: { source_commit: build.source_commit, source_dirty: build.source_dirty, release_eligible: build.release_eligible, bundle_sha256: build.bundle_sha256, toolchain: build.toolchain },
+  cloud_build: { source_commit: build.source_commit, source_dirty: build.source_dirty, release_eligible: build.release_eligible, source_files: Object.keys(build.source_files_sha256).length, bundle_sha256: build.bundle_sha256, toolchain: build.toolchain },
   source_files: sources.map(file => ({ path: file, sha256: sha256(fs.readFileSync(path.join(root, file))), git_blob: git("rev-parse", candidate + ":" + file) })),
   evidence_files: rawFiles.map(file => ({ path: file, sha256: sha256(read(file)) })),
   commands: [

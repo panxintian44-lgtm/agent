@@ -2,145 +2,145 @@ TAP version 13
 # Subtest: build snapshot verifies consumed bytes against a clean immutable commit
 ok 1 - build snapshot verifies consumed bytes against a clean immutable commit
   ---
-  duration_ms: 0.9256
+  duration_ms: 0.8357
   type: 'test'
   ...
 # Subtest: HEAD changes during build reject the release snapshot
 ok 2 - HEAD changes during build reject the release snapshot
   ---
-  duration_ms: 0.3074
+  duration_ms: 0.3199
   type: 'test'
   ...
 # Subtest: a changed working tree rejects the release snapshot
 ok 3 - a changed working tree rejects the release snapshot
   ---
-  duration_ms: 0.0998
+  duration_ms: 0.1066
   type: 'test'
   ...
 # Subtest: modified input is rejected even when its Git dirty status stays the same
 ok 4 - modified input is rejected even when its Git dirty status stays the same
   ---
-  duration_ms: 0.7059
+  duration_ms: 0.6897
   type: 'test'
   ...
 # Subtest: a clean label does not override mismatching committed source
 ok 5 - a clean label does not override mismatching committed source
   ---
-  duration_ms: 0.1936
+  duration_ms: 0.2498
   type: 'test'
   ...
 # Subtest: dirty local snapshots remain dirty and do not claim committed source equality
 ok 6 - dirty local snapshots remain dirty and do not claim committed source equality
   ---
-  duration_ms: 0.1908
+  duration_ms: 0.1368
   type: 'test'
   ...
 # Subtest: the terminal Git check also rejects changes after hashing source inputs
 ok 7 - the terminal Git check also rejects changes after hashing source inputs
   ---
-  duration_ms: 0.1809
+  duration_ms: 0.1428
   type: 'test'
   ...
 # Subtest: public health reports actual build source and does not claim deployment or approval
 ok 8 - public health reports actual build source and does not claim deployment or approval
   ---
-  duration_ms: 14.2351
+  duration_ms: 13.2373
   type: 'test'
   ...
 # Subtest: missing auth and browser-origin requests never forward to a Durable Object
 ok 9 - missing auth and browser-origin requests never forward to a Durable Object
   ---
-  duration_ms: 0.8594
+  duration_ms: 1.1701
   type: 'test'
   ...
 # Subtest: unconfigured durable storage and unsupported owner-bridge direction fail explicitly
 ok 10 - unconfigured durable storage and unsupported owner-bridge direction fail explicitly
   ---
-  duration_ms: 0.6105
+  duration_ms: 0.7401
   type: 'test'
   ...
 # Subtest: assessment reuses deterministic risk, journals evidence and does not call model or callback
 ok 11 - assessment reuses deterministic risk, journals evidence and does not call model or callback
   ---
-  duration_ms: 15.134
+  duration_ms: 14.5638
   type: 'test'
   ...
 # Subtest: assessment rejects injected control fields without changing permissions
 ok 12 - assessment rejects injected control fields without changing permissions
   ---
-  duration_ms: 0.684
+  duration_ms: 0.6519
   type: 'test'
   ...
 # Subtest: model calls stay disabled until the service flag is explicitly enabled
 ok 13 - model calls stay disabled until the service flag is explicitly enabled
   ---
-  duration_ms: 0.6854
+  duration_ms: 0.5707
   type: 'test'
   ...
 # Subtest: status describes machine configuration without claiming user/account isolation
 ok 14 - status describes machine configuration without claiming user/account isolation
   ---
-  duration_ms: 0.7606
+  duration_ms: 0.7629
   type: 'test'
   ...
 # Subtest: enabled review rejects missing signature without external calls
 ok 15 - enabled review rejects missing signature without external calls
   ---
-  duration_ms: 0.499
+  duration_ms: 0.491
   type: 'test'
   ...
 # Subtest: enabled review rejects missing reviewer without external calls
 ok 16 - enabled review rejects missing reviewer without external calls
   ---
-  duration_ms: 0.4534
+  duration_ms: 0.4274
   type: 'test'
   ...
 # Subtest: enabled review rejects disabled strict policy without external calls
 ok 17 - enabled review rejects disabled strict policy without external calls
   ---
-  duration_ms: 0.4458
+  duration_ms: 0.4414
   type: 'test'
   ...
 # Subtest: SQLite audit insert failure never reports assessment success
 ok 18 - SQLite audit insert failure never reports assessment success
   ---
-  duration_ms: 1.182
+  duration_ms: 1.2501
   type: 'test'
   ...
 # Subtest: durability failure blocks outgoing model traffic and poisons later requests
 ok 19 - durability failure blocks outgoing model traffic and poisons later requests
   ---
-  duration_ms: 2.5088
+  duration_ms: 2.7786
   type: 'test'
   ...
 # Subtest: a one-time flush failure blocks already queued reviews before any external call
 ok 20 - a one-time flush failure blocks already queued reviews before any external call
   ---
-  duration_ms: 1.8523
+  duration_ms: 2.029
   type: 'test'
   ...
 # Subtest: restart converts unfinished requests to UNKNOWN and prevents replay
 ok 21 - restart converts unfinished requests to UNKNOWN and prevents replay
   ---
-  duration_ms: 0.8808
+  duration_ms: 0.8784
   type: 'test'
   ...
 # Subtest: tampered audit chain prevents store startup
 ok 22 - tampered audit chain prevents store startup
   ---
-  duration_ms: 0.3651
+  duration_ms: 0.3555
   type: 'test'
   ...
 # Subtest: built Worker reuses signed readonly callback and keeps task/hash/audit bound
 ok 23 - built Worker reuses signed readonly callback and keeps task/hash/audit bound
   ---
-  duration_ms: 18.9582
+  duration_ms: 19.6833
   type: 'test'
   ...
 # Subtest: callback result unknown remains UNKNOWN, never retries or reports execution
 ok 24 - callback result unknown remains UNKNOWN, never retries or reports execution
   ---
-  duration_ms: 7.0101
+  duration_ms: 6.9176
   type: 'test'
   ...
 1..24
@@ -151,4 +151,4 @@ ok 24 - callback result unknown remains UNKNOWN, never retries or reports execut
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 160.5917
+# duration_ms 153.3363

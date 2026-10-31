@@ -1,0 +1,14 @@
+{
+  "source_dirty": false,
+  "wrangler_dry_run_passed": true,
+  "report_version": "risk-cloud-reproducibility.v1",
+  "bundle_equal": true,
+  "bundle_sha256": "3819a0fcb6d027c97095be420a1b63934701ced51034bf1f41b57a33bfcd4aa0",
+  "wrangler_version": "4.156.0",
+  "deployed": false,
+  "clean_builds_compared": 2,
+  "source_commit": "6df8d34e40d56ba4acaa232f70fc4f45f52343bd",
+  "manifest_sha256": "e37ebee3afda28440bec310e505af46a4c2477042bdd5bd9cc407d045c8c4e05",
+  "comparison_method": "Two sequential npm run build executions followed by exact SHA256 equality checks; command exited 0",
+  "manifest_equal": true
+}

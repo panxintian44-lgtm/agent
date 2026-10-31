@@ -1,0 +1,16 @@
+npm warn exec The following package was not found and will be installed: wrangler@4.156.0
+
+ ⛅️ wrangler 4.156.0
+────────────────────
+Total Upload: 444.88 KiB / gzip: 86.52 KiB
+Your Worker has access to the following bindings:
+Binding                                                                    Resource                     
+env.RISK_CONVERSATIONS (RiskConversationService)                           Durable Object               
+env.CF_VERSION_METADATA                                                    Worker Version Metadata      
+env.CORE_AGENT_BASE_URL ("https://core-staging.example.invalid")           Environment Variable         
+env.RISK_REVIEWER_ID ("risk-conversation-cloudflare-v1")                   Environment Variable         
+env.REQUIRE_TRUSTED_ACTORS ("true")                                        Environment Variable         
+env.REQUIRE_RISK_REVIEWER ("true")                                         Environment Variable         
+env.RISK_MODEL_CALLS_ENABLED ("false")                                     Environment Variable         
+
+--dry-run: exiting now.
