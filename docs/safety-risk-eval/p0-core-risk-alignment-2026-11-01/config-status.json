@@ -1,0 +1,51 @@
+{
+  "report_version": "core-risk-config-confirmation.v1",
+  "observed_at": "2026-10-31T17:32:41.3955800Z",
+  "code_candidate_sha": "4f97748dbb4c86a8bb751d66e0a145390e4ba39b",
+  "secret_values_read": false,
+  "cross_service_signature_verification": "NOT_PERFORMED",
+  "fields": [
+    {
+      "name": "RISK_REVIEWER_ID",
+      "code_contract": "FIXED_SERVICE_ID_1_TO_200_NO_PADDING_OR_CONTROL",
+      "core_online": "UNKNOWN",
+      "risk_online": "UNKNOWN",
+      "same_value_verified": false
+    },
+    {
+      "name": "RISK_SERVICE_HMAC_SECRET",
+      "code_contract": "STRICT_PRIMARY_NAME_REQUIRED",
+      "core_online": "NOT_CONFIGURED_SELF_REPORTED",
+      "risk_online": "UNKNOWN",
+      "same_value_verified": false
+    },
+    {
+      "name": "CORE_AGENT_API_KEY",
+      "code_contract": "SERVER_SIDE_MACHINE_AUTH_ONLY",
+      "core_online": "UNKNOWN",
+      "risk_online": "UNKNOWN",
+      "same_value_verified": false
+    },
+    {
+      "name": "REQUIRE_TRUSTED_ACTORS",
+      "code_contract": "TRUE_FOR_STAGING",
+      "core_online": "UNKNOWN",
+      "risk_online": "UNKNOWN",
+      "same_value_verified": false
+    },
+    {
+      "name": "REQUIRE_RISK_REVIEWER",
+      "code_contract": "TRUE_FOR_STAGING",
+      "core_online": "UNKNOWN",
+      "risk_online": "UNKNOWN",
+      "same_value_verified": false
+    }
+  ],
+  "public_risk_owner_source": "PR27-27bdefb",
+  "core_worker_version_id": null,
+  "risk_worker_version_id": null,
+  "core_deployment_id": null,
+  "risk_deployment_id": null,
+  "authenticated_end_user_approval": "NOT_VERIFIED",
+  "joint_acceptance": "NO_GO"
+}

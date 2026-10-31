@@ -1,0 +1,5 @@
+
+> portfolio-sentinel@0.13.0 check
+> node scripts/check.js
+
+JavaScript syntax checks passed.

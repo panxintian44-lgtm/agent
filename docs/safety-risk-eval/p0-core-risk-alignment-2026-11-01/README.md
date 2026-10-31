@@ -11,6 +11,10 @@
 
 最终共同运行代码 SHA 和新的构建摘要在 `verification.json` 中登记；10月31日的报告、签名和原始日志保持历史原样，不能沿用旧测试数或旧包摘要代表新候选。
 
+本轮供双方审阅和确认的共同代码候选为 `4f97748dbb4c86a8bb751d66e0a145390e4ba39b`，同时保留上述 Core 与 Risk 两条提交历史。干净 Risk 云构建的 source_commit 也是该 SHA，bundle SHA-256 为 `cb5042bd1e6abc85a93cde7fa8511c82c513408ba64ddc02f2c4d442e6d133b2`。后续报告提交只补充证据，不代表双方已签认或已经部署。
+
+同候选本地结果：Core 475 项中 474 通过、1 项既有跳过；固定审核身份专项 36/36（包含在 Core 总数中）；Risk 501/501；云适配 30/30；本机签名 HTTP 18/18（其包装测试包含在 Risk 中）。语法、样例和 Wrangler dry-run 通过，GitHub CI 与线上验收另行核对，真实模型及真实金融操作为零。
+
 ## 保留的共同约定
 
 1. 严格 Risk 身份只使用主名称 `RISK_SERVICE_HMAC_SECRET`；仅有 `RISK_HMAC_SECRET` 的严格环境必须停止。非严格历史演示兼容不等于正式服务验收。

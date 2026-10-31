@@ -1,0 +1,174 @@
+{
+  "report_version": "core-risk-alignment-verification.v1",
+  "generated_at": "2026-10-31T17:39:40.775Z",
+  "upstream_core_sha": "4f98bcfbb45e3d8522484f5b446e498abd7b1ed1",
+  "previous_risk_head": "e8f01cc5a77077f87fbabb891c0e51de21b9b6b6",
+  "tested_code_candidate_sha": "4f97748dbb4c86a8bb751d66e0a145390e4ba39b",
+  "both_source_histories_retained": true,
+  "runtime_changes_since_candidate": [],
+  "environment": {
+    "platform": "win32",
+    "node": "v24.22.1",
+    "ajv": "8.20.0"
+  },
+  "tests": {
+    "trusted_reviewer": {
+      "file": "trusted-reviewer-tests.tap",
+      "sha256": "1a8d83598d1c096e7e934b84c2c0ff6775a73f9a8ad2c7e92bd25ce16ba084e8",
+      "tests": 36,
+      "passed": 36,
+      "failed": 0,
+      "skipped": 0
+    },
+    "core": {
+      "file": "core-tests.tap",
+      "sha256": "19c22d657acccdd9ed6e1772b488cdc1d67f4e25b2d2ed71b85367d5bdfa729a",
+      "tests": 475,
+      "passed": 474,
+      "failed": 0,
+      "skipped": 1
+    },
+    "risk": {
+      "file": "risk-tests.tap",
+      "sha256": "490b931e1083400de2e57af796077e4b374e45d6873c7fec44481289e1165e55",
+      "tests": 501,
+      "passed": 501,
+      "failed": 0,
+      "skipped": 0
+    },
+    "cloud": {
+      "file": "cloud-tests.tap",
+      "sha256": "a204cc79a016d97b30a42dc927f3289d169972e4f033ffaee0cd37d674b75f84",
+      "tests": 30,
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0
+    },
+    "http": {
+      "passed": 18,
+      "failed": 0,
+      "scope": "CURRENT_FULL_CORE_WORKER_LOCAL_HTTP_AND_REAL_RISK_PROGRAM_ONLY"
+    }
+  },
+  "cloud_build": {
+    "source_commit": "4f97748dbb4c86a8bb751d66e0a145390e4ba39b",
+    "source_dirty": false,
+    "release_eligible": true,
+    "bundle_sha256": "cb5042bd1e6abc85a93cde7fa8511c82c513408ba64ddc02f2c4d442e6d133b2",
+    "source_files": 32,
+    "toolchain": {
+      "node": "v24.22.1",
+      "esbuild": "0.28.2",
+      "ajv": "8.20.0"
+    }
+  },
+  "evidence_files": [
+    {
+      "path": "trusted-reviewer-tests.tap",
+      "sha256": "1a8d83598d1c096e7e934b84c2c0ff6775a73f9a8ad2c7e92bd25ce16ba084e8"
+    },
+    {
+      "path": "core-tests.tap",
+      "sha256": "19c22d657acccdd9ed6e1772b488cdc1d67f4e25b2d2ed71b85367d5bdfa729a"
+    },
+    {
+      "path": "risk-tests.tap",
+      "sha256": "490b931e1083400de2e57af796077e4b374e45d6873c7fec44481289e1165e55"
+    },
+    {
+      "path": "cloud-tests.tap",
+      "sha256": "a204cc79a016d97b30a42dc927f3289d169972e4f033ffaee0cd37d674b75f84"
+    },
+    {
+      "path": "core-check.txt",
+      "sha256": "f5f44da69b6675737f7aaa939b567f47d11527d700f9f063b46cef78c7f86b62"
+    },
+    {
+      "path": "current-candidate-http.json",
+      "sha256": "8e27324be7726367ee5567cdaa9b4aa5c28b36e2673856b6105f2a8ba3227c38"
+    },
+    {
+      "path": "cloud-build-manifest.json",
+      "sha256": "ab565ae886cfa29450d7d0e221b6edd991847d5b9b2ff7e9084fa6a9f1dd1df3"
+    },
+    {
+      "path": "wrangler-dry-run.txt",
+      "sha256": "5f04efa36084604a21e9fc19a8cc27babd7fcf21c503f590e214963531bd211e"
+    },
+    {
+      "path": "examples-check.json",
+      "sha256": "9a42b70d5b28b385be2de5ce70a3abe4ceeb25e84f6ce66e685b4332202e0f7a"
+    },
+    {
+      "path": "live-readonly-probes.json",
+      "sha256": "e2b4b8ffbb4390e45d59ec3e4ba84be14cc6cefd22527b547f8df9e35c98a3eb"
+    },
+    {
+      "path": "config-status.json",
+      "sha256": "6ff8a1483699331e93339543f068abc8d953b998ac3ba42d976ffc2c1c77683d"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "chenchen/integrations/owner-bridge.js",
+      "sha256": "f1402b6dd18a03c43a4e8f507cff5e685682a716ffadff878a126c36cae15ba7",
+      "git_blob": "5b4492cd415c0e504b253578071fb88759f1ad9f"
+    },
+    {
+      "path": "chenchen/deployment/worker.js",
+      "sha256": "55e8f3ce48d92640973a22e436eec23a92699a61f2608734e85c7d204f123078",
+      "git_blob": "537af2c4f810a214e9ec22c2ea73225c05966f08"
+    },
+    {
+      "path": "chenchen/integrations/review-workflow.js",
+      "sha256": "c2fc5cf1a0d458512d72bc7311851f763e187e14557064aa5eaffe7eb678e850",
+      "git_blob": "431096615a8a50b0fb72dea7e14571b34b531320"
+    },
+    {
+      "path": "chenchen/integrations/review-reservation.js",
+      "sha256": "ac836c35504dccf669c5af725b0ee71b628049bf6ad627108a0e961c0c048760",
+      "git_blob": "9b2cddaec044c98b798b6351c1555d072ab46c91"
+    },
+    {
+      "path": "modules/safety-risk-eval/cloudflare/worker.mjs",
+      "sha256": "a3da3c6b1a7f2c4b22ca55879c97ff2115c6b7c7ffa36672dfcbd7240ee6bee7",
+      "git_blob": "de4a336039b064975ea7b88520cd4e0e7a1e3e52"
+    },
+    {
+      "path": "modules/safety-risk-eval/cloudflare/store.mjs",
+      "sha256": "0a1b815efd1897e74b1c1078fbfbb17c3e6281a31a29c26b5227565332ce4773",
+      "git_blob": "bf5385fad8f9f22ec8c415c5c365253015f617b8"
+    },
+    {
+      "path": "modules/safety-risk-eval/cloudflare/build.mjs",
+      "sha256": "8a37e9c35e3a8fd15da49a2977c3a02689943fdc1747b7c1e2328ee99d23f6b8",
+      "git_blob": "e126696114e3438ad9367a341575d655f8041fec"
+    },
+    {
+      "path": "modules/safety-risk-eval/cloudflare/build-snapshot.mjs",
+      "sha256": "b56b288db023c071ea496b3ad636297c5466824dd52e909bdfd0d35854ac88db",
+      "git_blob": "ccf55884708c0ffb1389adffa83db06dae5aaacf"
+    },
+    {
+      "path": "modules/safety-risk-eval/interface-adapters/risk-callback-sender.cjs",
+      "sha256": "513e580d1be2481192dde59af6543cbc543cb7122ab0e3f1152afaa1f15ef6e8",
+      "git_blob": "6e4993073145bb3752f5c2a46a88b2917057907c"
+    }
+  ],
+  "historic_evidence_preserved_at": "docs/safety-risk-eval/p0-trusted-handoff-2026-10-31/",
+  "configuration_confirmation": "CODE_NAMES_AND_VALIDATION_ALIGNED_LIVE_BINDINGS_NOT_VERIFIED",
+  "model": "EXPLICIT_TEST_DOUBLE",
+  "approval": "SIGNED_SERVICE_TEST_DOUBLE_NOT_AUTHENTICATED_USER",
+  "storage": "LOCAL_SQLITE_AND_MEMORY_ADAPTERS_NOT_CLOUDFLARE_ACCEPTANCE",
+  "real_model_calls": 0,
+  "paid_model_calls": 0,
+  "real_financial_operations": 0,
+  "deployed": false,
+  "staging_urls_confirmed": false,
+  "deployment_sha_mapping_verified": false,
+  "both_owner_signoff": false,
+  "authenticated_end_user_approval_verified": false,
+  "shared_finance_ledger_verified": false,
+  "formal_joint_acceptance": false,
+  "status": "NO_GO"
+}
