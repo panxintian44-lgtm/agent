@@ -54,6 +54,41 @@ test("owner signatures are deterministic and reject tampering", async () => {
   await assert.rejects(ownerBridge.verifyOwnerRequest({ owner: "risk", body: { reviewer: "risk-001", ...body }, headers: { "x-risk-signature": "sha256=bad" }, env: { RISK_SERVICE_HMAC_SECRET: "risk-secret" } }), error => error.code === "OWNER_AUTH_INVALID");
 });
 
+test("Risk accepts only the fixed reviewer after a valid signature", async () => {
+  const body = { reviewer: "risk-fixed", task_id: "synthetic-task" };
+  const env = { RISK_SERVICE_HMAC_SECRET: "risk-secret", RISK_REVIEWER_ID: "risk-fixed",
+    REQUIRE_TRUSTED_ACTORS: "true", REQUIRE_RISK_REVIEWER: "true" };
+  const auth = await ownerBridge.verifyOwnerRequest({ owner: "risk", body,
+    headers: { "X-Risk-Signature": await ownerBridge.signatureFor(body, env.RISK_SERVICE_HMAC_SECRET) }, env });
+  assert.equal(auth.fixed_reviewer_verified, true);
+  const wrong = { ...body, reviewer: "another-reviewer" };
+  await assert.rejects(ownerBridge.verifyOwnerRequest({ owner: "risk", body: wrong,
+    headers: { "X-Risk-Signature": await ownerBridge.signatureFor(wrong, env.RISK_SERVICE_HMAC_SECRET) }, env }),
+  error => error.code === "OWNER_ACTOR_MISMATCH" && error.statusCode === 403);
+});
+
+test("Risk strict identity configuration fails closed without exposing secret values", async () => {
+  const strictBase = { RISK_SERVICE_HMAC_SECRET: "risk-secret", REQUIRE_TRUSTED_ACTORS: "true", REQUIRE_RISK_REVIEWER: "true" };
+  await assert.rejects(ownerBridge.verifyOwnerRequest({ owner: "risk", body: { reviewer: "risk-fixed" }, headers: {}, env: strictBase }),
+    error => error.code === "OWNER_REVIEWER_NOT_CONFIGURED" && !JSON.stringify(error).includes("risk-secret"));
+  await assert.rejects(ownerBridge.verifyOwnerRequest({ owner: "risk", body: { reviewer: "risk-fixed" }, headers: {}, env: { ...strictBase, RISK_REVIEWER_ID: " risk-fixed" } }),
+    error => error.code === "OWNER_CONFIG_INVALID");
+  await assert.rejects(ownerBridge.verifyOwnerRequest({ owner: "risk", body: { reviewer: "risk-fixed" }, headers: {}, env: { RISK_HMAC_SECRET: "legacy-secret", RISK_REVIEWER_ID: "risk-fixed", REQUIRE_TRUSTED_ACTORS: "true" } }),
+    error => error.code === "OWNER_CONFIG_INVALID" && !JSON.stringify(error).includes("legacy-secret"));
+  await assert.rejects(ownerBridge.verifyOwnerRequest({ owner: "risk", body: { reviewer: "risk-fixed" }, headers: {}, env: { RISK_SERVICE_HMAC_SECRET: "risk-secret", RISK_REVIEWER_ID: "risk-fixed", REQUIRE_RISK_REVIEWER: "sometimes" } }),
+    error => error.code === "OWNER_CONFIG_INVALID");
+});
+
+test("owner configuration status reports names and readiness without secret contents", () => {
+  const status = ownerBridge.ownerConfigurationStatus("risk", { RISK_SERVICE_HMAC_SECRET: "risk-secret", RISK_REVIEWER_ID: "risk-fixed", REQUIRE_TRUSTED_ACTORS: "true", REQUIRE_RISK_REVIEWER: "true" });
+  assert.deepEqual(status, {
+    owner: "risk", secret_configured: true, secret_name: "RISK_SERVICE_HMAC_SECRET", primary_secret_configured: true,
+    compatibility_secret_configured: false, require_trusted_actors: true, require_risk_reviewer: true,
+    reviewer_configured: true, configuration_error: null
+  });
+  assert.equal(JSON.stringify(status).includes("risk-secret"), false);
+});
+
 test("missing actor secrets remain visibly demo-only and can be made fail closed", async () => {
   const demo = await ownerBridge.verifyOwnerRequest({ owner: "approval", body: { approver: "demo-user" }, headers: {}, env: {} });
   assert.deepEqual({ mode: demo.mode, verified: demo.verified }, { mode: "DEMO_UNVERIFIED", verified: false });

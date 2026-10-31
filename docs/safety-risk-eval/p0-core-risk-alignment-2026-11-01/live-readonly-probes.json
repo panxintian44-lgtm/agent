@@ -1,0 +1,73 @@
+{
+  "observations": [
+    {
+      "url": "https://personal-ai-fund-manager-core-agent.realchenchenluo.workers.dev/api/review/capabilities",
+      "method": "GET",
+      "observed_at_utc": "2026-10-31T17:32:39.7400843Z",
+      "response": {
+        "capability_version": "core-agent-capabilities.v1",
+        "service": "core-agent",
+        "contract_version": "model-review.v1",
+        "model": {
+          "provider": "cloudflare_workers_ai",
+          "name": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "configured": true,
+          "inference_probe": "NOT_RUN",
+          "response_id_sources": [
+            "body.id",
+            "body.response_id",
+            "header.x-request-id",
+            "header.x-correlation-id"
+          ],
+          "paid_calls_this_check": 0
+        },
+        "risk": {
+          "handoff_contract": "risk-handoff.v1",
+          "dispatch_url_configured": false,
+          "dispatch_signature_configured": false,
+          "dispatch_ready": false,
+          "callback_signature_configured": false
+        },
+        "approval": {
+          "decision_endpoint": "/api/review/approval",
+          "signature_configured": false,
+          "trusted_identity_ready": false,
+          "demo_actor_labels_allowed": true
+        },
+        "execution": {
+          "mode": "PAPER",
+          "allowed": false,
+          "gateway_connected": false
+        },
+        "acceptance": {
+          "synthetic_local": true,
+          "real_model": false,
+          "formal_risk_callback": false,
+          "joint_acceptance": false
+        }
+      }
+    },
+    {
+      "url": "https://finance-lab-risk-bridge.realchenchenluo.workers.dev/health",
+      "method": "GET",
+      "observed_at_utc": "2026-10-31T17:32:41.3955236Z",
+      "response": {
+        "status": "ok",
+        "service": "risk-conversation",
+        "deployment": "CLOUD_VALIDATION",
+        "owner_source": "PR27-27bdefb",
+        "model_calls_enabled": false,
+        "joint_acceptance": false,
+        "execution_allowed": false
+      }
+    }
+  ],
+  "public_business_posts": 0,
+  "secrets_read_or_written": false,
+  "checked_at_utc": "2026-10-31T17:32:41.3955800Z",
+  "scope": "PUBLIC_GET_ONLY",
+  "real_model_calls": 0,
+  "deployment_mapping_verified": false,
+  "report_version": "core-risk-alignment-public-probes.v1",
+  "formal_joint_acceptance": false
+}

@@ -20,6 +20,7 @@ test("strict Risk identity requires both a server-side fixed reviewer and a vali
   const auth = await riskAuth({ reviewer: reviewerId, decision: "APPROVE" });
   assert.equal(auth.verified, true);
   assert.equal(auth.fixed_actor_verified, true);
+  assert.equal(auth.fixed_reviewer_verified, true);
   assert.equal(auth.identity_scope, "SERVICE");
   assert.equal(auth.end_user_identity_verified, false);
 });
@@ -28,7 +29,7 @@ for (const flag of ["REQUIRE_TRUSTED_ACTORS", "REQUIRE_RISK_REVIEWER"]) {
   test(`${flag} rejects a signed callback when the fixed reviewer is missing`, async () => {
     await assert.rejects(riskAuth({ reviewer: reviewerId }, {
       [flag]: "true", RISK_SERVICE_HMAC_SECRET: riskSecret
-    }), { code: "OWNER_IDENTITY_NOT_CONFIGURED", statusCode: 503 });
+    }), { code: "OWNER_REVIEWER_NOT_CONFIGURED", statusCode: 503 });
   });
   test(`${flag} rejects unsigned demo identity when the service secret is missing`, async () => {
     await assert.rejects(riskAuth({ reviewer: reviewerId }, {
@@ -38,11 +39,16 @@ for (const flag of ["REQUIRE_TRUSTED_ACTORS", "REQUIRE_RISK_REVIEWER"]) {
   test(`${flag} rejects misspelled boolean configuration instead of silently downgrading`, async () => {
     await assert.rejects(riskAuth({ reviewer: reviewerId }, {
       ...strictEnv, [flag]: "ture"
-    }), { code: "OWNER_AUTH_CONFIG_INVALID", statusCode: 503 });
+    }), { code: "OWNER_CONFIG_INVALID", statusCode: 503 });
+  });
+  test(`${flag} rejects the compatibility secret name without the primary Risk secret`, async () => {
+    await assert.rejects(riskAuth({ reviewer: reviewerId }, {
+      [flag]: "true", RISK_HMAC_SECRET: riskSecret, RISK_REVIEWER_ID: reviewerId
+    }), { code: "OWNER_CONFIG_INVALID", statusCode: 503 });
   });
 }
 
-for (const actor of ["other-risk-service", "SYNTHETIC-RISK-SERVICE-V1", "", undefined]) {
+for (const actor of ["other-risk-service", "SYNTHETIC-RISK-SERVICE-V1", "", undefined, ` ${reviewerId}`, `${reviewerId}\n`]) {
   test(`a valid signature cannot authenticate the wrong fixed reviewer ${String(actor)}`, async () => {
     await assert.rejects(riskAuth({ reviewer: actor, decision: "APPROVE" }), {
       code: "OWNER_ACTOR_MISMATCH", statusCode: 403
@@ -56,18 +62,54 @@ test("configured reviewer is enforced even when strict flags are not enabled", a
   }), { code: "OWNER_ACTOR_MISMATCH" });
 });
 
-for (const configured of [" ", "x".repeat(501)]) {
-  test(`strict Risk identity rejects invalid configured reviewer length ${configured.length}`, async () => {
+for (const configured of [" ", "x".repeat(201), ` ${reviewerId}`, `${reviewerId} `, `${reviewerId}\n`, `${reviewerId}\u0000tail`]) {
+  test(`strict Risk identity rejects invalid configured reviewer ${JSON.stringify(configured)}`, async () => {
     await assert.rejects(riskAuth({ reviewer: reviewerId }, {
       ...strictEnv, RISK_REVIEWER_ID: configured
-    }), { code: "OWNER_IDENTITY_NOT_CONFIGURED", statusCode: 503 });
+    }), { code: "OWNER_CONFIG_INVALID", statusCode: 503 });
   });
 }
 
-test("a fixed reviewer accepts the existing 500-character identity boundary", async () => {
-  const reviewer = "x".repeat(500);
+test("a fixed reviewer accepts the 200-character service identity boundary", async () => {
+  const reviewer = "x".repeat(200);
   const auth = await riskAuth({ reviewer }, { ...strictEnv, RISK_REVIEWER_ID: reviewer });
   assert.equal(auth.fixed_actor_verified, true);
+});
+
+test("a configured fixed reviewer cannot fall back to an unsigned demo without strict flags", async () => {
+  await assert.rejects(riskAuth({ reviewer: reviewerId }, { RISK_REVIEWER_ID: reviewerId }), {
+    code: "OWNER_AUTH_NOT_CONFIGURED", statusCode: 503
+  });
+});
+
+test("strict mode uses the primary secret even when a compatibility binding also exists", async () => {
+  const env = { ...strictEnv, RISK_HMAC_SECRET: "SYNTHETIC_DIFFERENT_COMPATIBILITY_SECRET" };
+  assert.equal((await riskAuth({ reviewer: reviewerId }, env)).fixed_reviewer_verified, true);
+  await assert.rejects(riskAuth({ reviewer: reviewerId }, env,
+    await ownerBridge.signatureFor({ reviewer: reviewerId }, env.RISK_HMAC_SECRET)), {
+    code: "OWNER_AUTH_INVALID", statusCode: 401
+  });
+});
+
+test("legacy compatibility secret remains a service signature without a fixed actor or end user", async () => {
+  const auth = await riskAuth({ reviewer: "legacy-synthetic-label" }, { RISK_HMAC_SECRET: riskSecret });
+  assert.equal(auth.verified, true);
+  assert.equal(auth.fixed_actor_verified, false);
+  assert.equal(auth.fixed_reviewer_verified, false);
+  assert.equal(auth.identity_scope, "SERVICE");
+  assert.equal(auth.end_user_identity_verified, false);
+});
+
+test("Risk readiness reports a strict alias-only configuration as not ready", () => {
+  const env = { REQUIRE_RISK_REVIEWER: "true", RISK_REVIEWER_ID: reviewerId, RISK_HMAC_SECRET: riskSecret };
+  const status = ownerBridge.ownerConfigurationStatus("risk", env);
+  assert.equal(status.secret_name, "RISK_HMAC_SECRET");
+  assert.equal(status.configuration_error, "OWNER_CONFIG_INVALID");
+  const risk = ownerBridge.riskIdentityStatus(env);
+  assert.equal(risk.fixed_reviewer_required, true);
+  assert.equal(risk.fixed_reviewer_configured, true);
+  assert.equal(risk.strict_settings_valid, true);
+  assert.equal(risk.callback_identity_ready, false);
 });
 
 test("correct actor labels never bypass signature validation", async () => {
@@ -151,7 +193,7 @@ test("capabilities separate configured service signatures from unimplemented end
 });
 
 test("capabilities report malformed or incomplete strict identity configuration as not ready", async () => {
-  for (const patch of [{ RISK_REVIEWER_ID: "" }, { RISK_REVIEWER_ID: "x".repeat(501) },
+  for (const patch of [{ RISK_REVIEWER_ID: "" }, { RISK_REVIEWER_ID: "x".repeat(201) },
     { REQUIRE_RISK_REVIEWER: "ture" }, { RISK_SERVICE_HMAC_SECRET: "" }]) {
     const app = setup(); Object.assign(app.env, patch);
     const result = await call(app, "/api/review/capabilities");

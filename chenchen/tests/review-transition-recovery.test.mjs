@@ -119,6 +119,7 @@ test("failed admission cannot mutate workflow and rejected signatures cannot cre
   const app = setup(), record = await start(app), original = structuredClone(app.rows.get("run:" + record.run_id));
   app.env.REQUIRE_TRUSTED_ACTORS = "true";
   app.env.RISK_SERVICE_HMAC_SECRET = "synthetic-test-secret";
+  app.env.RISK_REVIEWER_ID = "synthetic-risk";
   assert.equal((await call(app, "/api/review/risk-decision", { ...binding(record), decision: "REJECT", reviewer: "synthetic-risk", reason: "Test" })).status, 401);
   assert.deepEqual(app.rows.get("run:" + record.run_id), original);
   assert.ok(![...app.rows.values()].some(v => v?.transition_version && v.state === "PENDING"));

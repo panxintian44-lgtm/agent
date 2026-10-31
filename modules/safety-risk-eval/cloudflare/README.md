@@ -60,7 +60,7 @@ POST 输入沿用 `question、daily_finance_yuan、idempotency_key`。金额是�
 | `CORE_AGENT_API_KEY` | 服务端 Secret；Core 机器访问，不能代替本人登录 |
 | `RISK_SERVICE_HMAC_SECRET` | 服务端 Secret；与 Core 主名称一致；本云适配不自动使用旧别名 |
 | `RISK_CONVERSATION_API_KEY` | 服务端 Secret；`X-Risk-Conversation-Key` 机器调用鉴权，24—200 ASCII 字符 |
-| `RISK_REVIEWER_ID` | 固定服务审核者，与 Core 校验值一致 |
+| `RISK_REVIEWER_ID` | 固定服务审核者，与 Core 校验值一致；沿用 Core 候选的 1—200 字符、无前后空白及控制字符要求 |
 | `REQUIRE_TRUSTED_ACTORS` | 必须为 `true`，否则 `/api/review` 暂停 |
 | `REQUIRE_RISK_REVIEWER` | 必须为 `true`，否则 `/api/review` 暂停 |
 | `RISK_MODEL_CALLS_ENABLED` | 默认为 `false`；需要费用与服务 Owner 明确确认后才可开启 |

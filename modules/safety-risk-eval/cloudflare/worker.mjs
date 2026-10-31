@@ -12,7 +12,7 @@ const ACTOR = "finance-lab-cloud-validation";
 const MAX_BYTES = 128 * 1024;
 const fail = (code, message, status = 422) => { throw Object.assign(new Error(message), { code, status }); };
 const json = (status, value) => Response.json(value, { status, headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" } });
-const safeText = value => typeof value === "string" && value.trim() === value && value.length > 0 && value.length <= 500;
+const safeText = value => typeof value === "string" && value.trim() === value && value.length > 0 && value.length <= 200 && !/[\u0000-\u001f\u007f]/.test(value);
 function authenticate(request, env) {
   const expected = env.RISK_CONVERSATION_API_KEY;
   if (typeof expected !== "string" || !/^[\x21-\x7e]{24,200}$/.test(expected)) fail("SERVICE_AUTH_NOT_CONFIGURED", "服务端身份尚未配置，接口暂停。", 503);

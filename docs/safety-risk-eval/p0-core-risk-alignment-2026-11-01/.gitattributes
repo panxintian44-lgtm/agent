@@ -1,0 +1,4 @@
+# Preserve original evidence bytes and platform line endings.
+*.tap -text whitespace=-blank-at-eol,cr-at-eol
+*.json -text whitespace=cr-at-eol
+*.txt -text whitespace=-blank-at-eol,cr-at-eol

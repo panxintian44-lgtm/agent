@@ -1,0 +1,33 @@
+{
+  "report_version": "core-risk-fixed-reviewer.v1",
+  "date": "2026-10-31",
+  "candidate_branch": "codex/core-risk-p0-integration-20261030",
+  "status": "LOCAL_VERIFIED_ONLINE_CONFIGURATION_PENDING",
+  "config_names": {
+    "risk_secret_primary": "RISK_SERVICE_HMAC_SECRET",
+    "risk_secret_compatibility": "RISK_HMAC_SECRET",
+    "risk_reviewer": "RISK_REVIEWER_ID",
+    "core_machine_identity": "CORE_AGENT_API_KEY",
+    "strict_core_owner_auth": "REQUIRE_TRUSTED_ACTORS",
+    "strict_risk_reviewer": "REQUIRE_RISK_REVIEWER"
+  },
+  "local_results": {
+    "owner_bridge_tests": "9 passed",
+    "cloudflare_capability_tests": "21 passed",
+    "capability_guard_tests": "23 passed",
+    "risk_interface_tests": "262 passed",
+    "wrong_reviewer_result": "OWNER_ACTOR_MISMATCH",
+    "approval_trusted_identity_ready": false,
+    "real_model_calls": 0,
+    "real_financial_operations": 0,
+    "personal_approval_evidence": 0
+  },
+  "online_results": {
+    "reviewer_value_confirmed": false,
+    "secret_values_read": false,
+    "secret_configuration_status_confirmed": false,
+    "deployment_git_sha_mapping_confirmed": false,
+    "joint_acceptance": "NO-GO"
+  },
+  "secrets_exposed": false
+}

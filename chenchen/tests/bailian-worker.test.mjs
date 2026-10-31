@@ -8,7 +8,7 @@ test("deployed handler wires durable Bailian accounting, blocked execution and t
     put: async entries => { for (const [key, value] of Object.entries(entries)) data.set(key, structuredClone(value)); } };
   const env = { MODEL_PROVIDER: "aliyun_bailian", DASHSCOPE_API_KEY: "synthetic-provider-key",
     CORE_AGENT_API_KEY: "synthetic-backend-key", BAILIAN_WORKSPACE_ID: "llm-test", BAILIAN_TEST_BUDGET_CNY: "0.01",
-    BAILIAN_ALLOW_PAID_CALLS: "true", RATE_LIMIT_PER_MINUTE: "0", REQUIRE_TRUSTED_ACTORS: "true" };
+    BAILIAN_ALLOW_PAID_CALLS: "true", RATE_LIMIT_PER_MINUTE: "0", REQUIRE_TRUSTED_ACTORS: "true", RISK_REVIEWER_ID: "synthetic-risk" };
   let service = new ReviewService({ storage }, env);
   env.REVIEW_SERVICE = { idFromName: name => name, get: () => service };
   let calls = 0;

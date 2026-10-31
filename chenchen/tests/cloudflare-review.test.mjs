@@ -52,10 +52,22 @@ test("capabilities report demo, real integration and execution boundaries withou
   assert.equal(capabilities.risk.dispatch_ready, false);
   assert.equal(capabilities.approval.signature_configured, false);
   assert.equal(capabilities.approval.trusted_identity_ready, false);
+  assert.equal(capabilities.approval.trusted_identity_evidence, "APPROVAL_SERVICE_REQUIRED");
   assert.equal(capabilities.approval.demo_actor_labels_allowed, true);
   assert.equal(capabilities.execution.allowed, false);
   assert.equal(capabilities.execution.gateway_connected, false);
   assert.equal(capabilities.acceptance.joint_acceptance, false);
+});
+
+test("approval service signature does not masquerade as end-user identity or approval", async () => {
+  const app = setup();
+  app.env.APPROVAL_SERVICE_HMAC_SECRET = "synthetic-approval-service-secret";
+  app.env.REQUIRE_TRUSTED_ACTORS = "true";
+  const capabilities = await worker.fetch(req("/api/review/capabilities"), app.env).then(r => r.json());
+  assert.equal(capabilities.approval.signature_configured, true);
+  assert.equal(capabilities.approval.trusted_identity_ready, false);
+  assert.equal(capabilities.approval.trusted_identity_evidence, "APPROVAL_SERVICE_REQUIRED");
+  assert.equal(capabilities.approval.demo_actor_labels_allowed, false);
 });
 
 test("public review survives cold starts and keeps workflow mutations in the audit", async () => {

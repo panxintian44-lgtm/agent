@@ -136,11 +136,10 @@ function capabilityStatus(env) {
   const modelConfigured = workersAi
     ? typeof env.AI?.run === "function"
     : Boolean(config.apiKey && config.model && !config.configurationIssue);
+  const riskConfig = ownerBridge.ownerConfigurationStatus("risk", env);
+  const approvalConfig = ownerBridge.ownerConfigurationStatus("approval", env);
   const riskUrlConfigured = Boolean(String(env.RISK_SERVICE_URL || "").trim());
-  const riskSecretConfigured = Boolean(String(env.RISK_SERVICE_HMAC_SECRET || env.RISK_HMAC_SECRET || "").trim());
-  const approvalSecretConfigured = Boolean(String(env.APPROVAL_SERVICE_HMAC_SECRET || env.APPROVAL_HMAC_SECRET || "").trim());
   const riskIdentity = ownerBridge.riskIdentityStatus(env);
-  const trustedActorsSetting = String(env.REQUIRE_TRUSTED_ACTORS || "").trim().toLowerCase();
   return {
     capability_version: "core-agent-capabilities.v1",
     service: "core-agent",
@@ -156,18 +155,28 @@ function capabilityStatus(env) {
     risk: {
       handoff_contract: "risk-handoff.v1",
       dispatch_url_configured: riskUrlConfigured,
-      dispatch_signature_configured: riskSecretConfigured,
-      dispatch_ready: riskUrlConfigured && riskSecretConfigured,
-      callback_signature_configured: riskSecretConfigured,
+      dispatch_signature_configured: riskConfig.secret_configured,
+      dispatch_ready: riskUrlConfigured && riskConfig.secret_configured && !riskConfig.configuration_error,
+      callback_signature_configured: riskConfig.secret_configured,
+      signature_secret_name: riskConfig.secret_name,
+      fixed_reviewer_configured: riskConfig.reviewer_configured,
+      strict_reviewer_required: riskConfig.require_risk_reviewer,
+      strict_trusted_actors: riskConfig.require_trusted_actors,
+      configuration_error: riskConfig.configuration_error,
       ...riskIdentity
     },
     approval: {
       decision_endpoint: "/api/review/approval",
-      signature_configured: approvalSecretConfigured,
-      service_signature_ready: approvalSecretConfigured,
+      signature_configured: approvalConfig.secret_configured,
+      service_signature_ready: approvalConfig.secret_configured && !approvalConfig.configuration_error,
+      signature_secret_name: approvalConfig.secret_name,
+      // A service signature proves the calling service, not the end user's login,
+      // account ownership, task authorization, or personal approval.
       trusted_identity_ready: false,
       end_user_identity_ready: false,
-      demo_actor_labels_allowed: !approvalSecretConfigured && ["", "false"].includes(trustedActorsSetting)
+      trusted_identity_evidence: "APPROVAL_SERVICE_REQUIRED",
+      demo_actor_labels_allowed: !approvalConfig.secret_configured && !approvalConfig.require_trusted_actors && !approvalConfig.configuration_error,
+      configuration_error: approvalConfig.configuration_error
     },
     execution: {
       mode: "PAPER",

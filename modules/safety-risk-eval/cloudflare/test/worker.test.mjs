@@ -134,6 +134,7 @@ test("status describes machine configuration without claiming user/account isola
 });
 for (const [label, override, expected] of [
   ["missing signature", { RISK_SERVICE_HMAC_SECRET: undefined }, "TRUSTED_CORE_CONFIGURATION_REQUIRED"],
+  ["compatibility secret without primary", { RISK_SERVICE_HMAC_SECRET: undefined, RISK_HMAC_SECRET: "synthetic-legacy-secret-not-live" }, "TRUSTED_CORE_CONFIGURATION_REQUIRED"],
   ["missing reviewer", { RISK_REVIEWER_ID: undefined }, "STRICT_IDENTITY_CONFIGURATION_REQUIRED"],
   ["disabled strict policy", { REQUIRE_RISK_REVIEWER: "false" }, "STRICT_IDENTITY_CONFIGURATION_REQUIRED"]
 ]) test(`enabled review rejects ${label} without external calls`, async t => {
@@ -143,6 +144,28 @@ for (const [label, override, expected] of [
   assert.equal(result.status, 503);
   assert.equal((await result.json()).error.code, expected);
   assert.equal(calls, 0);
+});
+
+for (const reviewer of ["x".repeat(201), " padded-owner", "owner\u0000suffix", "owner\u007fsuffix"]) {
+  test(`cloud reviewer configuration rejects the Core-invalid identity ${JSON.stringify(reviewer)}`, async t => {
+    const f = fixture(t, { RISK_MODEL_CALLS_ENABLED: "true", RISK_REVIEWER_ID: reviewer });
+    let calls = 0;
+    t.mock.method(globalThis, "fetch", async () => { calls++; throw new Error("must not call Core"); });
+    const status = await (await f.service.fetch(request("/api/status"))).json();
+    assert.equal(status.configured, false);
+    assert.equal(status.fixed_reviewer_configured, false);
+    const response = await f.service.fetch(request("/api/review", payload()));
+    assert.equal(response.status, 503);
+    assert.equal((await response.json()).error.code, "STRICT_IDENTITY_CONFIGURATION_REQUIRED");
+    assert.equal(calls, 0);
+  });
+}
+
+test("cloud and Core fixed reviewer configuration share the 200-character boundary", async t => {
+  const f = fixture(t, { RISK_REVIEWER_ID: "x".repeat(200) });
+  const status = await (await f.service.fetch(request("/api/status"))).json();
+  assert.equal(status.configured, true);
+  assert.equal(status.fixed_reviewer_configured, true);
 });
 test("SQLite audit insert failure never reports assessment success", async t => {
   const f = fixture(t); f.control.auditFails = true;
